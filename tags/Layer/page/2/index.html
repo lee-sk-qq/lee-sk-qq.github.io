@@ -1,0 +1,2785 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.1" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Tag: Layer - SK Lee</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="SK Lee">
+<meta property="og:url" content="https://github.com/qqskda/tags/Layer/page/2/index.html">
+<meta property="og:site_name" content="SK Lee">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/images/og_image.png">
+<meta property="article:author" content="Sungkwon Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/images/og_image.png">
+<meta name="twitter:creator" content="@qqskda">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/avatar.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/monokai-sublime.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/avatar.png" alt="SK Lee" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/qqskda">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">Tags</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Layer</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/05/26/Network/Week%207%202%20IoT%20MQTT%20Protocol%20e98c41771d4440b2ad0141c5037ae2ed/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/mqtt.jpg" alt="IoT/MQTT Protocol">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-05-26T02:01:00.000Z">May 26, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    11 minutes read (About 1586 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/05/26/Network/Week%207%202%20IoT%20MQTT%20Protocol%20e98c41771d4440b2ad0141c5037ae2ed/">IoT/MQTT Protocol</a>
+            
+        </h1>
+        <div class="content">
+            <p><a href="https://aqwerf.tistory.com/22">MQTT Protocol</a></p>
+<h2 id="Applications-Use-Transport"><a href="#Applications-Use-Transport" class="headerlink" title="Applications Use Transport"></a>Applications Use Transport</h2><p>UDP based</p>
+<ul>
+<li>Short messages, simple request/response trasactions</li>
+<li>Light server touch, ARQ suffices</li>
+<li>Real Time Protocol (RTP): Low delays, ARJ, short messages, weak client/server relationship</li>
+</ul>
+<p>TCP based</p>
+<ul>
+<li>Larger contents, longer, more complex sessions</li>
+<li>Reliaibility, Packaging and presentation important (as it is bytestream)</li>
+<li>HTTP: Strong client/server relationship, exchange messages.</li>
+</ul>
+<h2 id="Internet-of-Things-Why-different"><a href="#Internet-of-Things-Why-different" class="headerlink" title="Internet of Things - Why different?"></a>Internet of Things - Why different?</h2><ol>
+<li>Scale: 기기의 숫자<ol>
+<li>No limits on addresses and connections</li>
+<li>Limit messages to avoid network swamp - 숫자가 너무 많아서 메세지 크기를 줄여야함</li>
+</ol>
+</li>
+<li>Power: <ol>
+<li>Minimal powers; solar, batteries, RF<ol>
+<li>Reduce/turnoff transmission power</li>
+</ol>
+</li>
+<li>Do the smart things somewhere (which consums powers alot) - 즉 IoT는 수집 모니터링 과 같은 역할만 수행하고 분석은 다른 컴퓨터에서 하는것</li>
+</ol>
+</li>
+<li>Networking: 저전력, 원격 위치, 넓게 분포<ol>
+<li>Limit transmission needs - 메세지 보내는것도 에너지/트래픽이 요구됨<ol>
+<li>Reduce bandwidth/distance/targets - 스스로 제한을 걸어서 통신횟수를 줄이던지; </li>
+<li>Get/give helps from the neighbours - 주위와 연계해서 전체적인 통신횟수를 줄이던지; 대신 이러면 항상 깨어 있어야함</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Timeliness: 빠른 지시와 반응이 필요 할 수 있음<ol>
+<li>다음과 같은 사항을 고려하여 디자인 한다<ul>
+<li>Exceptions vs Regular Reports - 언제 리포트 하는지</li>
+<li>Transmitter vs Receiver Req - 송수신기 필요성</li>
+<li>Short msg, prioritised msg  - 메세지</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Reliability: 조그맣기에 어렵다 <ol>
+<li>필요할떄만 의존성 사용, 최대한 가볍게 (ARQ push/pull 이라던지)</li>
+</ol>
+</li>
+</ol>
+<h2 id="Design-PubSub"><a href="#Design-PubSub" class="headerlink" title="Design - PubSub"></a>Design - PubSub</h2><ul>
+<li>데이터와 상태의 “announcement” 는 “consumption”과 분리되어 있다.<ul>
+<li>모든 종류, 숫자의 소비자들이 subscribe 할수 있어야 하고</li>
+<li>모든 종류, 숫자의 소스들이 publish 될 수 있어야 한다</li>
+<li>Avoid “connection” - 5번과 연계됨</li>
+</ul>
+</li>
+<li>위의 사항들을 만족하기 위해 “broker” (server) is needed<ul>
+<li>가볍고, 빠르고, 유연하며, open된 브로커 (당연히 웹서버는 이에 해당안됨)</li>
+<li>각각의 기기들은 브로커에게 퍼블리시 할 뿐이고, 브로커가 소비자들의 요구를 감당한다. 이로 인해 각각의 기기들은 위의 조건들을 만족할 수 있는것.</li>
+</ul>
+</li>
+</ul>
+<h3 id="MQTT-브로커"><a href="#MQTT-브로커" class="headerlink" title="MQTT (브로커)"></a>MQTT (브로커)</h3><ul>
+<li><p>Messeage Queuing Telemetry Transport: 많은 IOT기기들에 최적화된 가벼운 메세징 프로토콜.  낮은 전력 낮은 대역폭 낮은 성능의 환경에서도 사용이 가능하다.</p>
+<ul>
+<li>TCP와 높은 버전의 UDP 등등 여러 프로토콜에 의해 사용된다.</li>
+</ul>
+</li>
+<li><p>통신 과정</p>
+<ol>
+<li>Publisher (센서 장치)가 데이터를 Topic을 정해서 브로커에게 전달.</li>
+<li>이 Topic을 sub 하는 subscriber (출력, 처리 장치) 가 브로커에게서 데이터를 받아온다<ol>
+<li>만약 해당 토픽을 구독하고 있지 않으면, 데이터는 받지 못한다.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>특징</p>
+<ul>
+<li>Pub - any vaule type to a specific (key).</li>
+<li>Sub - subs to particual topic (which may not exist now, but in the future), or to a fitered set of topics (such as Pizza, instead of Hawaiian pizza)</li>
+<li>Broker -<ul>
+<li>$sys/# - special topic</li>
+<li>Holds info about the broker itself<ul>
+<li>로드, 대역폭, 저장, 클라이언트 등등</li>
+<li>하지만 브로커간에 정형화된 필드가 존재 하지 않음 (각 브로커마다 다름)</li>
+<li>또한 resolution 이 다름 (즉 각 브로커마다 메세지 퍼블리시 텀이 다름)</li>
+</ul>
+</li>
+<li>TCP 와 UDP (버전에 따라) 모두 사용가능하다</li>
+<li>매우 비트단위인데, 압축된 메세지, 그리고 퍼블리셔와 네트워크의 부담을 줄이기 위해서이다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>메세지</p>
+<ul>
+<li>16 Messages Types<ul>
+<li>Connect and disconnect and ACK<ul>
+<li>채널과 서버 상태 확립, 그리고 스스로를 identify (lighweight security).</li>
+</ul>
+</li>
+<li>Ping req and response - Server level; 어플리케이션 계층 (not ICMP - network layer)</li>
+<li>Pub, sub, unsub: 퍼블리시의 경우 양쪽 다 쓰임 소스 → 서버, 서버 → 구독자</li>
+<li>다양한 Quality of Service</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Minimalism (main MQTT rule)</p>
+<ul>
+<li>서버는 최대한 적은 amount of state를 유지하기를 원한다.<ul>
+<li>구독자: “잠시동안 불가능” “더이상 흥미없음” 등등?</li>
+</ul>
+</li>
+<li>서버는 메세지를 queue 하지 않음 - mostly<ul>
+<li>구독자들에게 메세지가 배포되면, 그 메세지는 삭제된다</li>
+<li>구독자가 없는 메세지 또한 삭제된다</li>
+</ul>
+</li>
+<li>서버가 데이터베이스를 청소할 수 있는 기회를 제공한다 (최대한 가볍게 유지)</li>
+</ul>
+</li>
+<li><p>QoS</p>
+<ul>
+<li><p>어플리케이션 레벨에서 가지고 있는데 이는</p>
+<ul>
+<li>몇 구독자의 경우에 “확정 - sure” 이 필요하고</li>
+<li>모든 구독자는 어느때나 참여 할 수 있어야 하고</li>
+<li>전원, 게이트, 버퍼 여유분 등등 여러 사항을 고려할 수 있어야 하기 때문</li>
+</ul>
+</li>
+<li><p>다음과 같이 세가지 레벨을 가지고 있다.</p>
+<p>  <img src="/image/Week%207%202%20IoT%20MQTT%20Protocol%20e98c41771d4440b2ad0141c5037ae2ed/Untitled.png" alt=""></p>
+<ul>
+<li><p>0: 메세지를 푸시하고 바로 삭제해 버림 (Fire and Forget)</p>
+</li>
+<li><p>1: 전달을 보장한다. 따라서 확인 절차가 필요하다 (At least once)</p>
+</li>
+<li><p>2: 전달을 보장하고, 4단계의 핸드셰이크를 이용한다 (Exactly once)</p>
+</li>
+<li><p>다음과 같은 상황도 가능하다.</p>
+<p><img src="/image/Week%207%202%20IoT%20MQTT%20Protocol%20e98c41771d4440b2ad0141c5037ae2ed/Untitled%201.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Last Known Good</p>
+<ul>
+<li>드물게 보고하는 센서들</li>
+<li>새 구독자에게 뭘 줘야함 (드물게 pub 되서 마지막이 어느 상태인지 알려줘야지)</li>
+<li>Retain: 메세지를 삭제할지 유지할지 정하는 플래그<ul>
+<li>서버에 저장되며, 리붓되어도 존재한다. 구독자에게서 처음으로 요청 받을때 보내진다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Last Will and Testament</p>
+<ul>
+<li><p>어느 토픽이던 소스는 초기 메세지를 배포할수 있다  - retained 메세지, 바로 보내지는 않는다</p>
+</li>
+<li><p>만약 서버가</p>
+<ul>
+<li><p>배포된 메세지를 keepalive 구간 후에 받지 못하거나</p>
+</li>
+<li><p>TCP 연결이 MQTT 종료 메세지 없이 끊기거나</p>
+<p>한다면 연결을 잃었으며 Soruce는 실패했다고 판단한다.</p>
+</li>
+</ul>
+</li>
+<li><p>이후 각 구독자에게 알린다 (현재 서비스 불가능 등등)</p>
+</li>
+</ul>
+</li>
+<li><p>Clean Session</p>
+<ul>
+<li>연결시에 플래그 됨</li>
+<li>Clean: Pretend Ima new one</li>
+<li>Not clean: Persistent Session - Ask server to remember you.</li>
+<li>Plain for the server:<ul>
+<li>너의 모든 구독된 토픽을 저장한다</li>
+<li>모든 메세지들을 저장한다 (QoS 1 and 2)</li>
+<li>재연결 되었을때 놓친 모든 메세지를 전달한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>MQTT의 경우 어느정도의 보안이 존재하나 IoT의 경우 없다고 봐도 무방하다</p>
+<ul>
+<li>아이디 비번</li>
+<li>페이로드 시그네쳐, 무결성 검사</li>
+<li>암호화된 연결 등등</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/05/01/Network/Week%207%201%20Realtime/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/realtime.jpg" alt="Realtime">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-05-01T03:28:00.000Z">May 01, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    16 minutes read (About 2422 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/05/01/Network/Week%207%201%20Realtime/">Realtime</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference: </p>
+<ul>
+<li><p>Computer Networks, Fifth Edition by by Andrew S et al.</p>
+</li>
+<li><p>The Australian National University CECS</p>
+<h2 id="Real-time"><a href="#Real-time" class="headerlink" title="Real-time?"></a>Real-time?</h2></li>
+<li><p>한 패킷 손실을 어느정도 감당할 수 있는가</p>
+</li>
+<li><p>한 지연된 패킷을 어느정도 감당할 수 있는가</p>
+</li>
+<li><p>한 지연을 얼마나 알아차릴 수 있는가</p>
+<ul>
+<li>비디오컨퍼런스와 스트리밍, 비디오와 오디오의 싱크</li>
+</ul>
+</li>
+<li><p>TCP를 Contend Delivery Network (CDN)을 이용하여 스트리밍</p>
+<ul>
+<li>이로 인해 지연의 심각성을 낮추고, 신뢰성을 얻을 수 있다. (빠르게, 그리고 확실하게 스트리밍)</li>
+<li>CDN은 ISP와 User 사이에 있으며, ISP에 서비스 비용을 지불하고, 유저로 부터 비용을 받는다. CDN은 유저의 트래픽을 받아서 저장하고, 시청자에게 같은 데이터를 보냄으로써, 유저의 부담을 덜하며, 다수의 유저에게 같은 데이터를 보내준다.</li>
+<li>즉 트위치, 아프리카등의 플랫폼은 CDN을 이용한다고 봐야한다.</li>
+</ul>
+</li>
+<li><p>UDP for two way (interactive), real-time</p>
+<ul>
+<li>UDP의 특성상 낮은 지연과 낮은 오버헤드를 가지고 있음.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Why-is-it-hard"><a href="#Why-is-it-hard" class="headerlink" title="Why is it hard?"></a>Why is it hard?</h2><p>인터넷은 best-effort (서킷을 가지고 있지 않는한) 의 형식을 띄고 있어서 패킷 손실, 지연 등을 100% 보장할 수 없다. 다양한 종류의 원인으로 인한 손실도 존재한다.</p>
+<h3 id="Network-Delays"><a href="#Network-Delays" class="headerlink" title="Network Delays"></a>Network Delays</h3><ul>
+<li>송신자는 지속적인 흐름의 오디오/비디오 샘플들을 보낸다 (대역폭은 코덱에 따라 다르다)<ul>
+<li>물론 수신자는 지속적인 스트림을 받기를 기대한다 (끊김없이)</li>
+</ul>
+</li>
+<li>이를 위해 라우터의 경로, 대역폭, 용량 (capacity) 등을 모두 필요로 한다. 물론 종단까지의 모든 라우터와 경로가 송신자것이 아니니 불가능하다.</li>
+<li>이상적으로 레이턴시 이후에 100%의 패킷을 받는게 좋지만 (constant delay and everything at once) 현실은 다양하게 변화한다.</li>
+</ul>
+<p><img src="/image/Week%207%201%20Realtime/Untitled.png" alt=""></p>
+<p>Jitter: 처리 시간 및 결과물의 도달 시간의 변동폭 등 (패킷 지연 변동폭)</p>
+<p>즉 위의 패킷 전달 마찰은 밑의 그림과 같은 상황을 야기한다.</p>
+<p><img src="/image/Week%207%201%20Realtime/Untitled%201.png" alt=""></p>
+<p>각 패킷에 대한 지터가 다르기때문에 보낸 순서와 상관없이 도착하는 패킷 순서및 타이밍이 다른것. </p>
+<h3 id="버퍼링-TCP-lite"><a href="#버퍼링-TCP-lite" class="headerlink" title="버퍼링 (TCP - lite)"></a>버퍼링 (TCP - lite)</h3><p>송신자는 당연히 지속적인 오디오/비디오 샘플 (패킷)을 보낸다. 당연하게도 수신자는 끊김없는 스트리밍을 받기를 원한다. </p>
+<p>이와 같은 효과를 내기 위하여 수신자는 playout buffer을 만들어 지연등을 부드럽게 만든다 (보통 바이트 단위로 만들지만, 효과적이기 위해서는 시간 단위로 만들어야 한다)</p>
+<ul>
+<li>지연 시간 (playout)을 일정 단위를 추가해서, 그 시간/단위 기간동안 패킷들을 더 기다린후, 유저에게 보여주는 형식이다.</li>
+<li>내가 아는 하두리? 버퍼링은 바이트 단위의 버퍼링이다 (시간 관계없이 영상 바이트들을 어느정도 받고 나서야 시작이 됬으니까).</li>
+<li>밑의 그림처럼, 어느 선까지 받고서 그 이후의 패킷들은 버린다. (물론 예상컨데 버퍼링 implementation 마다 다를것이다.)</li>
+</ul>
+<p><img src="/image/Week%207%201%20Realtime/Untitled%202.png" alt=""></p>
+<p>물론 위와 같은 버퍼링은 trade-off가 존재한다.</p>
+<ol>
+<li>큰 버퍼: <ol>
+<li>지연으로 인한 패킷 손실이 줄어든다. 이는 곧 지터/PDV (Packet Delay Variation) 에 대한 tolerant가 늘어난다.</li>
+<li>다만 transmission 과 playout 간의 지연이 늘어난다. 즉 영상을 시작하면 부드럽게 진행되지만, 처음 시작하기까지 오래걸림. </li>
+</ol>
+</li>
+<li>작은 버퍼:<ol>
+<li>transmission and playout 의 delay가 적다</li>
+<li>여유 기간이 짧은 만큼 (큰 버퍼에 비해) 더 많은 패킷들이 지연으로 인해 손실된다. 지터/PDV에 대한 tolerant가 더 적음.</li>
+</ol>
+</li>
+</ol>
+<p>바라는 지연이 짧을수록 손실을 방지하기가 더 어려워진다 - 이로 인해 glitch 가 생성되는데. 흔한 예로는 비디오와 오디오 싱크가 안 맞는등..</p>
+<h3 id="Fixes"><a href="#Fixes" class="headerlink" title="Fixes?"></a>Fixes?</h3><ul>
+<li><p>재전송:</p>
+<ul>
+<li><p>패킷 손실을 알아차리면, ARQ (TCP-like) 를 이용해서 재전송을 요청한다.</p>
+</li>
+<li><p>이로 인해 round-trip-time + latency + Queue 딜레이 만큼 더 걸린다</p>
+<ul>
+<li>이는 곧 큰 수신 버퍼와 지연을 의미하며, 송신자 또한 버퍼 도구가 필요하다 (아마 원하는 패킷을 저장해두고 다시 보낼수 있어야 하니까).</li>
+</ul>
+</li>
+<li><p>멀티캐스트 (UDP) 방식에서는 반드시 송신자가 다시 보내는것은 아니다</p>
+<ul>
+<li>아래와 같이 주위의 다른 수신자가 있으면 걔가 보내줌</li>
+</ul>
+<p><img src="/image/Week%207%201%20Realtime/Untitled%203.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>탄력적 버퍼 (Elastic):</p>
+<ul>
+<li>상황에 맞게 버퍼의 크기를 조정함</li>
+<li>이를 위해 playout을 느리게 함</li>
+<li>상황이 나아지면 버퍼의 크기를 다시 줄여서 (지연/손실이 줄어드니) 빠르게 진행한다 (실시간일 수록 좋으니까 상황이 괜찮으면).</li>
+</ul>
+</li>
+<li><p>Error Correction:</p>
+<ul>
+<li>패킷간의 보간법을 위한 미디어 인코드 - 보간법을 이용해 뭐를 놓쳤는지 알 수 있음<ul>
+<li>Forward Error Correction - 고장난게 있으면 직접 고칠수 있음. 신뢰성이 필요한곳이나 재전송이 비싼 경우에 사용되곤 한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>병렬 전송</p>
+<ul>
+<li>다양한 카피들을 같은 시간에 보내는것 - 동영상 화질에 종류가 있는것들. 즉 1080으로 보다가 멈추는것보단 360으로라도 끊김없이 보는게 나으니까. 즉 결국 내용을 볼 수 있다는것 자체로 신뢰성이 필요한곳에 사용될 수 있다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Realtime-Transport-Protocol-RTP"><a href="#Realtime-Transport-Protocol-RTP" class="headerlink" title="Realtime Transport Protocol (RTP)"></a>Realtime Transport Protocol (RTP)</h2><p>UDP, TCP냐에 따라 연결성이 달라짐. 다양한 미디어 인코딩을 지원하며, 다양한 자원들이 병합, 동기화, 선택 될 수 있다. (비디오 따로 오디오 따로 보내서 두게를 합치거나, 언어와 자막을 선택하는등의)</p>
+<ul>
+<li>송신자는 여러가지들을 고려하여 RTP를 어떻게 보낼것인지 조정할 수 있다. 현재 스트리밍이 어떻게 되고 있는지 (비율, 인코딩, 에러 수정, 재전송 등등), 혹은 얼마나 많은 그리고 어느 종단들이 받고, 보내고 있는지 (멀티캐스트).</li>
+<li>RTP Control Proctocol (RTCP)<ul>
+<li>양방향, Out-of-Band 시그널링 (독립된 채널을 통해 시그널링 하는것) (RTP는 짝수 포트, RTCP는 홀수 포트) - 대역폭을 제한해야한다.</li>
+<li>송수신자 모두 보고를 한다. (통계: 패킷의 수신/손실, 지연, 지연 변동폭등)</li>
+<li>자원 설명, 송수신 시작/완료 (Hello Goodbye)</li>
+<li>존재 알리기 (heartbeat pulse), 거리 (홉), 재전송 요청 채널 등등 다양하게 지원함</li>
+</ul>
+</li>
+</ul>
+<h1 id="ALL-together"><a href="#ALL-together" class="headerlink" title="ALL together"></a>ALL together</h1><p>여러 사이트에 여러 미디어 스트림을 보내기.</p>
+<p>다음과 같은것들을 필요로 한다.</p>
+<ol>
+<li>Establish a call: Session Initiation Protocol (SIP) - 세션 시작</li>
+<li>Negotiate the details: Session Description Protocol (SDP) - 세션 정보 협상 (뭐로 할건지)</li>
+<li>Deliver the media: RTP and RTCP - 협의 바탕으로 결정한 프로토콜로 정보 교환</li>
+<li>Playout as reliable and quickly as you can: (buffer) - 알아서 </li>
+</ol>
+<h3 id="Session-Initiation-Protocol-SIP"><a href="#Session-Initiation-Protocol-SIP" class="headerlink" title="Session Initiation Protocol (SIP)"></a>Session Initiation Protocol (SIP)</h3><ul>
+<li>Open with IETF protocol to establish and close the call with RFC.<ul>
+<li>어느 방식으로 전달 하던 상관없음.</li>
+<li>이 세션 프로토콜은 스카이프, 메센저, 줌등에 사용되지 않음</li>
+<li>라이벌로는 ITU H.323 이 존재함</li>
+</ul>
+</li>
+<li>Voice over IP (VOIP)에 주로 쓰임</li>
+<li>프록시,registrars, redirectors, border controller, gateway 등등을 포함하하며 PSTN 연결이나, NATs등에 유용하다.</li>
+</ul>
+<p><img src="/image/Week%207%201%20Realtime/Untitled%204.png" alt=""></p>
+<h3 id="Non-realtime-realtime"><a href="#Non-realtime-realtime" class="headerlink" title="Non-realtime realtime?"></a>Non-realtime realtime?</h3><ul>
+<li>단 방향 미디어 전송: 스트리밍<ul>
+<li>less interactive, 지연에 덜 민감하며 (almost live), 대역폭이나 지터에 문제를 아직 가지고 있음.</li>
+</ul>
+</li>
+<li>Sliding windows을 통한 playout buffer 관리 (나중에 다시 한번 읽을것)<ul>
+<li>수신자는 컨텐츠를 빼내고, 버퍼를 played out 된것처럼 채운다</li>
+</ul>
+</li>
+</ul>
+<h3 id="Real-Time-streaming-Protocol-RTSP"><a href="#Real-Time-streaming-Protocol-RTSP" class="headerlink" title="Real Time streaming Protocol (RTSP)"></a>Real Time streaming Protocol (RTSP)</h3><ul>
+<li>스트리밍 세션을 만들고 미디어 전송을 협의한다 (프로토콜등)</li>
+<li>HTTP 와 SIP와 비슷하다<ul>
+<li>옵션 (무엇을 할 수 있는지) 설명 (무엇을 줄 수 있는지)</li>
+<li>셋업 (스트림(들)을 프로토콜을 통해 수신할 준비</li>
+<li>플레이 (play from time 1 to 2)</li>
+</ul>
+</li>
+<li>RTP/RTCP 등을 통해 대역폭, 인코딩을 적용함</li>
+</ul>
+<h3 id="최후의-수단-HTTP-이용"><a href="#최후의-수단-HTTP-이용" class="headerlink" title="최후의 수단: HTTP 이용"></a>최후의 수단: HTTP 이용</h3><ul>
+<li>방화벽을 통과 할 수 있으니까</li>
+<li>다양한 extensions을 지원하니까 (어플리케이션, 전송 프로토콜등)</li>
+<li>Head Request를 통한 미디어와 옵션들 요구</li>
+<li>Get with Range Get을 통한 요구<ul>
+<li>playout 버퍼를 위한 조각들을 다운, 서버에게 인코딩 부탁하기</li>
+</ul>
+</li>
+<li>HTML 5 has bulit in vidoe player. (to kill flash)</li>
+<li>이득: 서버 state 필요없음, HTTP 프록시, 캐쉬, CDNs 등을 물려 받음</li>
+</ul>
+<h3 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h3><ul>
+<li>완벽하고, 적은 지연, 실시간등은 best effort 네트워크에서 하기 정말 힘들다<ul>
+<li>Very application specific - 유통성이 없음</li>
+</ul>
+</li>
+<li>특별한 서킷을 이용해서 경로를 만드는게 아닌이상, 힘듬</li>
+<li>오디오 비디오는 괜찮음 (기술의 발달로 화질이 올라감) - 괜찮음의 정의가 시대상을 따라감</li>
+<li>기기 조종을 위한 실시간 트래픽이 늘어나는 추세임<ul>
+<li>인터넷이 최선의 선택은 아니더라도, 유일한 선택일지도 모름</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/04/26/Network/Network_DHCP%20DNS/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/DNS.jpg" alt="DHCP/DNS">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-26T04:47:00.000Z">Apr 26, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    13 minutes read (About 1882 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/04/26/Network/Network_DHCP%20DNS/">DHCP/DNS</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference: </p>
+<ul>
+<li>Computer Networks, Fifth Edition by by Andrew S et al.</li>
+<li>The Australian National University CECS</li>
+</ul>
+<hr>
+<p>어플리케이션의 디자인은 확장성, 권한, 그리고 신뢰성을 위주로 한다. </p>
+<p>보통의 클라이언트/서버 관계부터, P2P, 그리고 Publication/Subsription 등이 존재한다. </p>
+<p>steteless network (비 안정적인) 에서 세션을 만드는데</p>
+<ul>
+<li>쿠키, URL 토큰, 특정 종단과의 비디오 컨퍼런스 (줌 같이), 그리고 패킷 플로우 등을 이용한다</li>
+<li>보통 TCP/UDP 등을 이용하여 세션이 만들어진다.</li>
+</ul>
+<p>어플리케이션 계층의 경우 프레젠테이션 계층 또한 같이 관여 하는데,</p>
+<ul>
+<li>컨텐츠 패키징 (파일 확장자), 타입 (이미지, 비디오, 텍스트), 인코딩, 셀렉션 (상대방이 사용 가능한걸 보내야 하니까)</li>
+<li>종단간의 명령어와 조종을 관여한다 (나는 무엇을 원하고, 너는 무엇을 받을것이며, 나는 끝났다 와 같은 것들)</li>
+<li>영어와 같은 프로토콜을 사용하기에 디버깅이 쉽고, 오버헤드가 타 계층에 비해 적다.</li>
+</ul>
+<p>알려진 도움 프로토콜의 경우 (물론 어플리케이션이기도 하다)</p>
+<ul>
+<li>ARP: 2.5 layer (MAC &amp; IP)</li>
+<li>ICMP, IGMP: network control and feedback.</li>
+<li>즉 어떻게 IP를 찾고 어떻게 주소들을 찾을것인지 등등 방법을 정하는 계층이 어플리케이션 계층이다 (DHCP, DNS)</li>
+</ul>
+<p>하위 계층은 상위 계층에게 서비스를 제공하는 종속된 관계임을 잊지말자.</p>
+<h3 id="DHCP-Application"><a href="#DHCP-Application" class="headerlink" title="DHCP Application"></a>DHCP Application</h3><p>Client/Server 관계의 어플리케이션이다. </p>
+<ul>
+<li>Bootstrap Protocol 은 BOOTP로 불리며 TCP/IP 즉 트랜스포트 계층의 프로토콜로써 어플리케이션 계층에 속한다. 우리가 DHCP에서 자동으로 구성되는 기능이 이 프로토콜을 기반으로 만들어진것이다.<ul>
+<li>보통 UDP의 경우 클라이언트 포트는 68, 서버 포트는 67이며 모르면 ARQ 하면 된다.</li>
+<li>처음으로 부팅된 기기에 IP등 구성정보를 제공한다</li>
+<li>정적인 클라이언트 서버 형태의 구성정보 (configuration) 제공 프로토콜이다<ul>
+<li>3가지 정보를 제공하는데 IP, boot file server name, boot file name.</li>
+</ul>
+</li>
+<li>지금은 거의 사용안한다</li>
+<li>DHCP의 하휘호환 버전이며 완벽하게 호환 가능하다.</li>
+<li>요청 메세지는 브로드캐스트로 소스 주소는 0.0.0.0, 목적 주소는 브로드캐스트이다.</li>
+<li>UDP 유실에 대비해서 ARQ 와 Time out 정책을 사용한다.</li>
+</ul>
+</li>
+<li>Discover Offer Request Ack로 4단계로 구성되어 있다.</li>
+<li>Lease Renewal 하는 것은 유니캐스트로 50, 87.5, 100% 사용시마다 요청한다.<ul>
+<li>만약 리뉴얼에 실패를 한다면 혹은 처음 할당 받았으면 gratuitous ARP를 통해 겹치는 아이피가 없는지, 그리고 자신의 새 아이피를 남들에게 알리기 위해 발송한다<ul>
+<li>이러한 일이 일어나는 이유는 DHCP가 여러개 존재 할 수 있기 떄문이다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DHCP Relays: 만약 DHCP 서버가 있고 라우터가 릴레이 역할을 할당 받으면, 라우터가 DHCP와의 연결을 단독으로 진행한다. 이로 인해 당연히 네트워크내 트래픽이 줄어들고, 해당 서버가 한 네트워크를 담당하니 깔끔하기도 하다.</li>
+<li>DHCP reservation 은 한 클라이언트가 항상 같은 아이피를 사용하기 원하는 경우 (연결 할때마다 같은 아이피 할당 받음), static은 프린터와 같이 특별한 목적으로 만들어진 경우이다 (즉 이 기기의 아이피는 변하지 않는다).</li>
+<li>요즘 나오는 라우터들은 DHCP and DNS and router 역할을 모두 한다 보통 192.168.1.0/24 subnet을 사용함.</li>
+</ul>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><ul>
+<li>Redirection, load balance, dynamic allocation.<ul>
+<li>즉 관리 하기 쉬워야하고 (여러개의 협조로) 효율적이어야 한다 (높은 요청/답변 양으로 딜레이자 짧고 로드가 적어야 한다)</li>
+<li>이를 위해 분산 디렉토리, 계층적 namespace (존), 자동적인 프토토콜/프로세스 을 이용한다.</li>
+</ul>
+</li>
+<li>Service metadata</li>
+<li>Names for humans, Addresses for protcocls, and resolution for mapping between the first two.<ul>
+<li>Resolution: 분명하고 깔끔하게, 보통 names to addresses 반대로도 가능하긴함</li>
+<li>튜플 형식으로 (Names, value (addresses), type, TTL) 로 이루어져 있다.</li>
+</ul>
+</li>
+<li>Root starts from .</li>
+<li>TLD: Top level domain<ul>
+<li>ccTLD: two letter country code; jp, kr, de. It has sub domain as well;  edu.au…</li>
+</ul>
+</li>
+<li>Types:<ul>
+<li>SOA: Start of authority - who is the owner</li>
+<li>A, AAAA: IPv4, IPv6</li>
+<li>CNAME: canonical name (alias) 한 아이피 주소는 여러가지의 DN을 가질수 있다</li>
+<li>MX: eMail exchange for domain. 같은 foo.bar여도 호스트와, 메일 주소로 쓰일수 있다. 네이버처럼</li>
+<li>NS: Nameserver for the delegated domain.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/Week%206%201%20DHCP%20DNS/Untitled.png" alt=""></p>
+<ol>
+<li>이 도메인의 주인은 ns1.anu.edu.au</li>
+<li>이 도메인의 메일 서버는 mail.anu…</li>
+<li><a href="http://www.anu.edu.au는">www.anu.edu.au는</a> gaia-proxy…. 도메인의 캐노니얼 네임 (alias임)</li>
+<li>gaia-proxy의 주소는 130…</li>
+</ol>
+<ul>
+<li>여러개의 루트 서버가 존재하지만, 네임서버들은 보통 모든 루트 서버를 알고 있음.<ul>
+<li>이 루트서버는 보통 anycast (구독자와의 연결)로 이루어짐.</li>
+<li>내 네임서버가 먼저 루트서버에게 물어보고 (캐쉬 없으면) 루트서버로 부터 받은 정보로 해당 서버에 물어보기 시작함 (DNS)</li>
+<li>Iterative: 내가 가야할 다음 장소가 어디니? 하고 물어보는것<ul>
+<li>높은 성능, 낮은 딜레이</li>
+</ul>
+</li>
+<li>Recursive: 내 목적지 장소를 니가 찾아서 알려줘.<ul>
+<li>낮은 성능, 하지만 편함.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>보통 ZONE 서버들의 주소는 바뀌지 않음, 그래서 네임서버는 (처음에는 루트서버에서) 받아서 캐쉬를 함. 그러면 덜 물어보니까 네트워크 혼잡도가 줄어듬.</li>
+</ul>
+<p>메세지의 경우 UDP port 53 을 이용하며 가볍다. ARQ를 사용한다. 메세지 패킷의 플래그는 메세지의 상황마다 변화며 이로 구별한다.</p>
+<p>다른 기능들:</p>
+<ul>
+<li>여러 이름이 한 아이피를 가지는 경우 (한 서버가 여러 웹서버 지원하는경우)</li>
+<li>한 이름이 여러 아이피를 가지는 경우 (실패 혹은 부담을 줄이기 위해서)</li>
+<li>Reverse Lookup: 안전성을 확인하는 작업 (이메일 스푸핑, 사이트 확인 절차등)<ul>
+<li>질문: 이 아이피 도메인 이름이 뭐에요? 답변: 구글이요</li>
+<li>이 작업은 PTR을 이용하며 (A 가 도메인에서 아이피 인것처럼 PTR은 반대이다)</li>
+</ul>
+</li>
+<li>Sort-list: 답변에 우선순위를 부여할 수 있다. 즉 가까운 서버나 멀티인터페이스 서버에 유용하다</li>
+<li>Geopolitical-sensitives - split DNS: 너가 어디서 물어보는지에 따라 결과가 달라짐 (우리나라 야동 막은것처럼)</li>
+<li>Round-Robin / Load Balancing: 리스트를 보낼때마다 다른 순서로 보냄, 즉 한 이름이 여러 아이피를 가지고 있으면 그 아이피 순서가 바뀌어져서 보내지는것 (그래야 하나만 쓰고 그러는거 방지하니까)</li>
+<li>DDNS: 보통 개인 사용자는 유동 아이피인데, DNS 주소를 새로 할당해버리면 얘랑 주고받던 메세지가 다른곳에 도착할 수 있으니, 이른 해결하기 위한 실시간 DNS 갱신 방법이다.</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/04/12/Network/Lab%202/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 2">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-12T09:22:00.000Z">Apr 12, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 1117 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/04/12/Network/Lab%202/">Network - Lab 2</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference:</p>
+<ul>
+<li>The Australian National University CECS</li>
+</ul>
+<hr>
+<p>Q: Statistical Mulitplexing 과 다른 양방향 차이점 (CSMA/CD 말하는듯)</p>
+<p>A: 통계적 멀티플렉싱은 “시도 해 보자” 형식으로 일정하며 공유되는 대역폭에 메세지가 전달되나 시도하는 방법 (겹치면 멈치고 나중에 다시 시도하고 그거). 나머지 TDM/FDM/SDM 등은 써킷으로 대역폭이 할당되어 있다. 즉 할당된 대역폭을 아무도 사용 안하고 있다면 그 대역폭이 낭비가 됨.</p>
+<hr>
+<p>Q: 왜 프레임의 시작 끝 부분을 프레임 플래그를 통해 보여주는가? 그냥 길이 안말해주고</p>
+<p>A: 싱크가 엇나가기 너무 쉽기 때문에 (비트 하나 오류). 정기적인 시작/끝 부분을 명시하면, 모두에게 프레임 길이 안에서 회복할 기회를 주게됨.</p>
+<hr>
+<p>Q: 충돌 방지와 충돌 감지의 차이점</p>
+<p>A: CA 는 모두가 랜덤한 시간을 기다리므로써 같은 타이밍에 전달 하는것을 막는다, CD는 충돌을 감지하면 멈추고 기다리는것.</p>
+<hr>
+<p>Q: CTS/RTS 가 Hidden Terminal 문제를 어떻게 해결하며, 왜 메세지 길이가 정보에 포함되는가</p>
+<p>A: CTS는 구간내 모두가 들음으로써 RTS를 보냈던 송신자도 수신자가 받을 준비가 됨을 안다. CTS는 RTS를 보낸 송신자가 이제 메세지를 n 만큼 보낼테니 이 구간동안은 다른 사람들은 다 조용히 있으라는 정보를 같이 전달하는것. 메세지가 전달 된후 (기다림의 구간이 끝나면) 다른 사람들도 일 시작함.. 숨겨진 지국 문제는 충돌 가능성으로 인한 네트워크 용량 감소를 야기한다. </p>
+<p>숨겨진 지국 문제란, 1 과 2, 2와 3은 서로 겹치지만, 1과 3은 서로의 존재를 모른다 (즉 데이터를 보낼수 없다) 즉 이로 인해 1과 2가 통신중일때 3은 2가 사용중이라는것을 모른다. 하지만 2가 CTS를 보냄으로써 사용중임을 3이 알 수 있고 기다릴수 있다. 이 CTS RTS는 핸드쉐이크 프레임이라 한다. CSMA/CA 에서 CTS 프레임으로 숨겨진 지국으로 인한 충돌을 막는다. 이 시스템 자체는 Multiple Access CA 로 MACA 라고 불린다. </p>
+<hr>
+<p>Q: 1000Base-T Ethernet</p>
+<p>A: 1000Mb/s over Twisted Pairs (copper)</p>
+<hr>
+<p>Q: Heartbeat signal (Normal Likn Pulse)를 Etheret은 왜 데이터를 송신하지 않을때 보내는가</p>
+<p>A: 보냄으로써 자신이 존재 한다는것을 알리는것 (새로 연결됬던 기존이던). 이 시그널을 수신한 기기는 링크 라이트를 깜빡인다. </p>
+<hr>
+<p>Q: 802.3/802.11의 프레임이 왜 preamble 로 시작하는지</p>
+<p>A: 수신자가 절전모드에서 일어나서 수신 받을 준비 (클럭 동기화)를 위해서. 이것이 프리앰블의 존재 이유이고, 클럭동기화는 고정된 프리앰블을 통해 시작한다. </p>
+<hr>
+<p>Q: 왜 무선 프레임은 fixed rate preamble과 header로 시작하는지</p>
+<p>A: 신호율은 라디오 주파수에 따라 (거리 노이즈) 다른데 고정된 프리앰블이 양 기기가 모두 사용가능한지 아니면 주파수를 낮춰야 하는지 결정하기 위해서.  </p>
+<hr>
+<p>Q: 스패닝 트리 프로토콜/알고리즘 을 이더넷 네트워크에서 사용하는 가장 큰 이득은</p>
+<p>A: 루프들을 없애 broadcast storm, 중복되는 프레임들, 비순서적인 프레임들을 방지 할수 있다.</p>
+<hr>
+<p>Q: 가상랜은 이더넷 네트워크에서 사용하는 중요 이유는</p>
+<p>A: 트래픽의 단절화 (독립화)로 인한 보안과 성능 향상. </p>
+<hr>
+<p>Q: 2.4Ghz의 무선 밴드의 채널 공간 문제와, 왜 5GHz 는 문제가 없는가</p>
+<p>A: 다양한 채널등의 중복. 최대 3개 까지만 서로 방해없이 스페이싱이 가능하고, 5Ghz의 경우 공간이 훨 씬 넓어서 채널간의 혼잡이 존재 하지 않음 (다만 거리가 짧아서 아직 덜 쓰임)</p>
+<hr>
+<p>Q: 무선 Beacon 프레임의 이유는 무엇인가</p>
+<p>A: Access Point가 SSID, channel, rates 등등을 광고하는것. 누가 있는지 듣고 있는 클라이언트에게 정보제공</p>
+<hr>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/04/11/Network/Lab%203/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 3">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-11T02:30:00.000Z">Apr 11, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    14 minutes read (About 2041 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/04/11/Network/Lab%203/">Network - Lab 3</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference:</p>
+<ul>
+<li>The Australian National University CECS</li>
+<li><a href="https://recipes4dev.tistory.com/153">소켓 프로그래밍. (Socket Programming)</a></li>
+</ul>
+<hr>
+<p>Q: Why is the layer model for networking good idea?</p>
+<p>A: 레이어들은 어느 기능등이 제공및 미제공 되는지에 대해 명확하게 해준다 (각각의 레이어의 서비스들의 명확성). 필요한 기능들이 무엇인지, 그리고 상/하 레이어와의 관계, 그리고 존재하는 기준들의 사용등.</p>
+<hr>
+<p>Q: What’s a Protocol Data Unit, and what is a Service Data Unit?</p>
+<p>A: PDU는 말 그대로 네트워크 프로토콜을 통한 두 종단간의 정보교환 패키지를 말한다 (전송은 세그먼트, 네트워크는 패킷 응용계층은 데이터/메세지). SDU는 보통 API 를 통한 두 레이어간의 한 종단 지점에서 교환되는 정보 패키지를 말한다 (캡슐화 되서 넘어갈때). PDU는 같은 레이어의 교환이고 SDU는 한 모델안에서의 수직적 교환이다.</p>
+<hr>
+<p>Q: What’s the difference between a Frame and a Packet?</p>
+<p>A: 프레임은 랜 프로토콜에서 (데이터 링크) 전송되는 다양한(불분명한) 길이를 말한다. 패킷은 변수-길이 (정해진) 화물을 가지고 전역 네트워크로 전송되는 것을 지칭한다 (아이피 패킷같은). 데이터그램이나 세그먼트와 다르게 UDP or TCP와 같은 인터넷 프로토콜로 전송된다. </p>
+<hr>
+<p>Q: Why do we think of IP as being ‘end-to-end’ between hosts, and TCP/UDP as being ‘end-to-end’ between applications</p>
+<p>A:  즉 아이피는 각 호스트 (기계들) 의 연결을, TCP/UDP는 어플리케이션 연결이 주된 임무라서.</p>
+<ul>
+<li>아이피는 다양한 종류의 랜 기술과 라우터등을 통한 광역-구간 (인터넷)에서 기계간의 연결을 제공한다.  랜과 라우터등은 필요한 정보만을 읽은뒤 이 패킷들을 올바른 지역으로 보내주는 역할 (물론 체크섬이나 홉, 그리고  NAT의 경우 아이피 주소와 포트등을 수정하기도 한다). 운영체제는 패킷을 받고 언팩한다 (포트가 운영체제에게 키를 전달해준다). 아이피는 종단에서 다른 종단을 찾아 내는데 필요하다.</li>
+<li>어플리케이션은 TCP/UDP (외 다른 프로토콜) 를 서로간 대화하는데 필요로 하는데, 포트는 운영체제에게 키를 제공함으로써 패킷 수하물 (페이로드)가 올바른 어플리케이션으로 전송되게 한다. 라우터와 다른 기기들은 (NAT와 깐깐한 네트워크 보안을 제외하고) 패킷안의 내용을 확인하지 않는다. TCP/UDP 는 어플리케이션끼리 이야기 하는데 필요한 프로토콜, 종단간의 위치를 찾는데는 사용되지 않는다.</li>
+</ul>
+<hr>
+<p>Q: Why does the IETF standards process look for ‘rough consensus and running code’?</p>
+<p>A: IETF (프로토콜 표준화 기구). The phrase is often extended into the saying “rough consensus and running code”, to make it clear that the IETF is interested in practical, working systems that can be quickly implemented. (거친 합의란, 모든 사람이 동의할 필요는 없지만, 관련자들간에 사용 될 수 있도록 합의된 상황이다. - 정치권에서 정당내에서 의견이 다르지만, 정당의 의견을 거친합의로 모은후 대중에게 알리는것과 같은것). 표준화를 만든다는것은 매우 복잡하고 끝이 보이질 않는 작업이다 (RFC 는 표준화 프로토콜의 공식 문서다). 프로토콜은 RFC문서에 명확한 기준을 가지고 명시되는데 이는, 다른 사람과 당신이 서버/클라이언트에서 통신할 수 있도록 가능케 해준다. 즉 이 거친 합의는, 모두가 이 프로토콜을 따르지는 않지만, 이 프로토콜을 따르는 사람들 끼리의 통신을 가능하게 한다. </p>
+<hr>
+<p>Q: Which IP header and which ICMP packets are important for traceroute to find the path of packets? Why? (how does it use them?)</p>
+<p>A: ICMP (Internet control message protocol). TTL값은 IP 데이터그램이 인터넷 시스템 내에서 존재할 수 있는 시간의 상한선으로 볼 수 있다. TTL 필드는 데이터그램의 송신자에 의해 설정되며, 목적지까지의 전송 경로에 있는 모든 라우터들에 의해 그 값이 감소된다. 목적지에 다다르기 전에 TTL 필드의 값이 0이 되면 해당 데이터그램은 폐기되고 ICMP 에러 데이터그램 11 - Time Exceeded가 송신자에게 보내진다. TTL 필드의 목적은 전달되지 못한 데이터그램이 인터넷 시스템 내에서 지속적으로 순환하여 넘쳐나게 되는 상황을 방지하는 데에 있다. Traceroute는 1부터 선형적으로 늘어나는 TTL을 포함시켜 목적지로 보낸다 (죽으면 하나 늘려서 다시 보내고 등등). Each router will decrease the TTL by one, our server on the other end will receive an IP packet with a TTL of one and replies with an ICMP reply to H1. We now know that the destination is reachable and we have learned all routers in our path. Each IP packet that we send is called a <strong>probe</strong>. Traceroute can be used with ICMP, UDP and TCP, depending on your operating system.</p>
+<p>정리: TTL이 0이 될때마다 라우터는 자신의 아이피 주소와 시간초과 패킷을 보내고, 서버또한 수신 응답 메세지를 보내므로, 서버까지 도달하는 라우터들의 주소 즉 경로들을 알 수 있게 된다. 이 방법은 최단 경로를 항상 의미 하지 않으며, 최단 경로를 제공 받는 경우는 라우팅 테이블이 최적으로 관리되고 있을때만이다. </p>
+<hr>
+<p>Q: Given some /25 address range, how many hosts could we potentially have on our network? What does the /25 netmask look like in dotted-quad notation?</p>
+<p>A: 네트워크 주소는 총 4바이트로 32비트이다. /25는 첫 25비트가 호스트 주소이고 나머지 7비트가 내 개인 주소가 된다. 2의 7승은 128인데 1개는 유선, 1개는 브로드캐스트 주소를 빼면 128-2 = 126개가 된다.</p>
+<p>/25 넷마스크는 첫 25 자리가 모두 1이라는 뜻이므로 255.255.255.128 이 된다. 즉 128~255 사이의 128개 중 126 개가 가능한것.</p>
+<hr>
+<p>Q; What’s the benefit of using the longest-prefix rule in forwarding table?</p>
+<p>A:  수많은 주소들은 한 곳에 축약할 수 있음 (이 프리픽스에 해당하는 주소들을 프리픽스로 통합이니까). 이로 인해 예외적인 주소들을 추가 하고 싶으면, 해당하는 주소 한개만 더 추가하면 됨 (프리픽스 안에 주소 중 하나여도). aggregate an entire network’s worth of host addresses into a single entry. 장점은: 경로 찾기의 성능향상, 비용 감소, 안전성 증가. </p>
+<p><a href="https://yonghyunlee.gitlab.io/temp_post/network-2/">IPv4 주소</a></p>
+<hr>
+<p>Q: Why would a host send a Gratuitous ARP frame?</p>
+<p>A:  쓸데 없는 ARP란 답변을 바라지 않는 브로드 캐스팅 패킷이다. 패킷안에는 송신자와 수신자 모두 같은 아이피를 가지고 있으며, 맥주소는 브로드캐스트 주소이다. 유용한 이유로는 다음이 있다. </p>
+<ol>
+<li>아이피 충돌 감지. 해당 패킷을 받은 머신은 자신의 아이피와 비교후 충돌하는지 알 수 있다.<ol>
+<li>먼 DHCP에게 아이피를 받는 경우도 있어서 중복될 경우 충돌 확인이 가능하다.</li>
+<li>혹은 자신이 아이피를 바꿀 경우에도 1,2번 모두 도움 가능.</li>
+</ol>
+</li>
+<li>다른 머신들의  ARP 테이블 업데이트를 도운다 (라우팅 테이블 같은거)</li>
+<li>각 머신의 맥 주소 스위치에게 어는 포트로 연락을 취해야 하는지 알릴수 있음. (스위치는 해당 네트워크 세그먼트를 향한다고 생각하면 된다.)</li>
+</ol>
+<p><a href="https://wiki.wireshark.org/Gratuitous_ARP">Gratuitous_ARP</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/24/Network/Lab%201/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 1">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-24T07:28:00.000Z">Mar 24, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 minutes read (About 765 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/24/Network/Lab%201/">Network - Lab 1</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference:</p>
+<ul>
+<li>The Australian National University CECS</li>
+</ul>
+<hr>
+<p>Q: Why frequency?</p>
+<p>A: 자연은 날카로운 엣지 (디지털) 를 좋아하지 않고 웨이브를 선호함. 빛, 전자, 소리, 액체등 파동</p>
+<p>(팍 하고 튀는거) 스위치는 순간적이지도, 지속적이지도 않음 (한번 킬때 팍 보내지도, 계속 보내지도 않음 짧은시간 유지임) 전구또한 확 켜지는게 아닌 밝아지고 어두워지는 형식. </p>
+<p>즉 아날로그 파동과 주파수들의 조합을 이용해서 디지털 엣지를 구현하는식.</p>
+<hr>
+<p>Q: Why FDM &gt; Frequent Shift Keying?</p>
+<p>A: Because electronics can be tuned to a frequency and use it as a dedicated channel with ASK/PSK. Hence better than using an idle frequencies and jumping between them. 즉 한 주파수 내에 정보를 담을수 있는데 주파수의 높낮이로 정보를 보내는것은 비효율적이다. </p>
+<hr>
+<p>Q: The benefit of the thicker coax, and what are the main downsides?</p>
+<p>A: Greater Shielding and noise protection, less resistance hence longer runs with same power. However; difficult to deplof (stiff) and expensive.</p>
+<hr>
+<p>Q: Diff betwenn cat5 and 7</p>
+<p>A: 7 has foil —&gt; shield, solid core wires. Hence good quality and performance but higher cost with hard to deploy as it is harder to bend around the corner.</p>
+<hr>
+<p>Q: Fiber. Diff between multimode and single mode.</p>
+<p>A: Wider MMF core gets a brighter and broader light out of the end and easy to line up with LEDs. SMF core narrower than MMF and gives you much greater and higher data rates but costs alot more as it is harder to terminate and light up with laser (MMF uses LED)</p>
+<p>SMF: 레이저, 두께에 따른 성능 차이 적음, 멀티모드보다 훨 빠름, 매우비쌈 (레이저라서)</p>
+<p>MMF: LED 광원, 두께에 따른 성능차이 있음, 광원이 확산되고 코어지름이 커서 많은 신호를 보낼수 있는데 이로인해 전송거리가 SMF에 비해 짧음.</p>
+<hr>
+<p><img src="/image/Lab%201/Untitled.png" alt=""></p>
+<p>Q: How 16 QAM works</p>
+<p>A: </p>
+<ul>
+<li>Each position represents a unique phase and amplitude shift of a signal wave.</li>
+<li>with 16 unique positions, can encode four bits per symbol (2^4 이니까 이진수로).</li>
+<li>Can arbitrarily allocate patterns to points (아무대나 배치해도 됨).</li>
+<li>Small bit pattern changes may result large changes in phase and amplitude ig. 0100 —&gt; 0101.</li>
+<li>Can have any QAM, but will be harder to separate n levels of ASK and PSK.</li>
+<li>Efficienfy = bits can encode per symbol. 35 = 5.1 bits —&gt; waste of spaces. Better to use power of 2.</li>
+</ul>
+<hr>
+<p>Q: Nyquist. 1Mhz wave with amp modulated to 8 levels.</p>
+<p>A: Potential datarate achievable = 2 * 1Mhz * lg(8) = 6 Mb/s. We multiply 2 as we can use 180 degree phase shift key = 2 bits into a single wave.</p>
+<hr>
+<p>Q: Why copper less useful in longer distance?</p>
+<p>A: </p>
+<ul>
+<li>It has too much attenuation (energy loss) as wire resistive especially with higher frequencies.</li>
+<li>Too Noisy as wire is an antenna</li>
+<li>Can be fixed with shield, twist, diff signaling, better connectors…</li>
+</ul>
+<hr>
+<p>Q: Why encoding bits into modulated signal important?</p>
+<p>A:</p>
+<ul>
+<li>It makes signal clear overall by ensuring a higher rate of transitions (easier to detect) to avoid same repeated bits like 1000000 hence solve “are you dead” problem.</li>
+<li>Provide a mechanism for clock-recovery hence able to know how wide a bit is. (data rate and clock sync - bit boundaries).</li>
+</ul>
+<hr>
+<p>Q: dB, dBm, and dBi mean.</p>
+<p>A:</p>
+<ul>
+<li>dB: signal/noise ratio. 20dB = 2B = 10^2. -20dB = -2B = 10^-2 = 0.01.</li>
+<li>dBm: zero point is 1mW (0dBm = 1mW, 20dBm = 100mW)</li>
+<li>dBi: measure gain of antenna relative to an isotropic antenna (transmitter or receiver).</li>
+</ul>
+<hr>
+<p>Q: How can make wireless transmission better?</p>
+<p>A: Shout louder or slower (clearer), frequency hopping to avoid noise (smarter), beam-shaping (focus), or higher/tailer antennas (terrain).</p>
+<hr>
+<p>Q: How can make signal go further?</p>
+<p>A: Repeater (regenerate signal), and amplifiers (both signal and noise). It costs money and power, and also may cause delay for unpack and repack process in repeater.</p>
+<hr>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/12/Network/Network_Ethernet%20and%20Wifi/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/router.jpg" alt="Ethernet and Wifi">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-12T02:50:00.000Z">Mar 12, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 minutes read (About 1263 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/12/Network/Network_Ethernet%20and%20Wifi/">Ethernet and Wifi</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference: </p>
+<ul>
+<li>Computer Networks, Fifth Edition by by Andrew S et al.</li>
+<li>The Australian National University CECS</li>
+</ul>
+<h3 id="IEEE-802-3-for-Ethernet"><a href="#IEEE-802-3-for-Ethernet" class="headerlink" title="IEEE 802.3 for Ethernet"></a>IEEE 802.3 for Ethernet</h3><p><img src="/image/Week%203%202%20Ethernet%20and%20Wifi/Untitled.png" alt=""></p>
+<p>1000BASE-LX: </p>
+<ul>
+<li>1Gb/s Baseband</li>
+<li>Fiber Optic Pairs</li>
+<li>1310nm over MMF (500M) or SMF (10km)</li>
+<li>8b/10b NRZ encoding</li>
+</ul>
+<h1 id="Ethernet"><a href="#Ethernet" class="headerlink" title="Ethernet"></a>Ethernet</h1><p>If not all 4 pairs unused, can run power over data wires (DVD TV from textbook)</p>
+<p>Very good plug and play - well designed to cope with network changes</p>
+<p>Very good backwards compatibility - Link negotiation on connection</p>
+<h3 id="Auto-negotiation"><a href="#Auto-negotiation" class="headerlink" title="Auto-negotiation"></a>Auto-negotiation</h3><p>Plugging in an Ethernet device to a switch, need to agree</p>
+<ul>
+<li>Speed, Duplex, and Cross-over (which wire does what)</li>
+<li>Detect a plug-in and disconnect</li>
+<li>Heartbeat = Normal Link Pulse (NLP)</li>
+<li>Capability = Fast link Pulses (FLP) - Encodes messages in 16bit words</li>
+</ul>
+<p><img src="/image/Week%203%202%20Ethernet%20and%20Wifi/Untitled%201.png" alt=""></p>
+<p>Every device can listen. If it is not for you, drop it. If it is, inform OS - Unless you are in ‘promiscuous mode’ that listens to everything.</p>
+<h3 id="Addressing"><a href="#Addressing" class="headerlink" title="Addressing"></a>Addressing</h3><p><img src="/image/Week%203%202%20Ethernet%20and%20Wifi/Untitled%202.png" alt=""></p>
+<p>ff:ff:ff:ff:ff:ff = Broadcast Frame</p>
+<h3 id="Ethernet-Hubs"><a href="#Ethernet-Hubs" class="headerlink" title="Ethernet Hubs"></a>Ethernet Hubs</h3><p>Shared Media, CSMA and Collisions - through a hub/repeater</p>
+<h2 id="Ethernet-Switching"><a href="#Ethernet-Switching" class="headerlink" title="Ethernet Switching"></a>Ethernet Switching</h2><p>More scalable, more reliable.</p>
+<ol>
+<li>Listen to what’s coming and record the source MAC address</li>
+<li>If its a new mac address<ol>
+<li>Send it to all ports (unicast port flooding)</li>
+<li>Hope somebody replies and then record their port</li>
+<li>Broadcasting in now switch’s resp, not the cable</li>
+</ol>
+</li>
+</ol>
+<h3 id="Hierarchy-of-Switches"><a href="#Hierarchy-of-Switches" class="headerlink" title="Hierarchy of Switches"></a>Hierarchy of Switches</h3><p>Good for loop-free topology.</p>
+<p>If there is a loop, it creates Redundant links, parallel links, Short cuts, mistakes, evil intent…</p>
+<p>To avoid the broadcast storm (switches trying to find a device in the network and it results in creating a loop of searching), implement spanning tree. Spanning tree is the loop free tree. </p>
+<h3 id="Spanning-Tree-Protocol-STP-802-1d-w-…"><a href="#Spanning-Tree-Protocol-STP-802-1d-w-…" class="headerlink" title="Spanning Tree Protocol (STP) 802.1d,w,…"></a>Spanning Tree Protocol (STP) 802.1d,w,…</h3><p><img src="/image/Week%203%202%20Ethernet%20and%20Wifi/Untitled%203.png" alt=""></p>
+<ol>
+<li>Block all but STP protocol</li>
+<li>Elect a root node (lowest address wins) and at the same time</li>
+<li>Grow the shortest Tree using distance (hop count) and value (speed) from root.<ol>
+<li>Tie - Lowest address wins</li>
+<li>Record the ports that are not on the tree towards the root.</li>
+</ol>
+</li>
+<li>Initially everyone thinks they are the root - tells its neighbours —&gt; Everyone updates by competing</li>
+<li>Once converged: turn off ports (paths) that are not on the upward tree - although remember where they are for back ups</li>
+</ol>
+<h3 id="Casting"><a href="#Casting" class="headerlink" title="Casting"></a>Casting</h3><ul>
+<li>Broadcast: ff.ff.ff.ff.ff.ff —&gt; everyone gets it.</li>
+<li>Uni-cast: Only intended recipient should get it.</li>
+<li>Multi-cast: Everyone who is interested get it; special bit flag in MAC, or Devices can subscribe their NIC (network interface controller).</li>
+</ul>
+<h3 id="Link-Aggregation"><a href="#Link-Aggregation" class="headerlink" title="Link Aggregation"></a>Link Aggregation</h3><p>하나의 연결이 지탱할 수 있는 스루풋 증가와 링크 실패를 대비한 다중화 (redundancy)를 제공하기 위해 여러 네트워크를 병렬로 연결하는 방식. 링크 어그리게이션 그룹은 물리적 포트들을 하나로 병합해 고대역 데이터 경로를 만듬과 동시에 여러 포트들간의 트래픽 부하 분산을 구현하고 연결의 신뢰성을 강화한다. </p>
+<p>Single point of failure (단일 장애점) - 한곳의 실패가 네트워크 다운 시키는 현상을 막아주고,</p>
+<p>대역폭의 한계를 하나의 논리 링크로 병합해 극복하는것.</p>
+<h3 id="Switch-vs-Router"><a href="#Switch-vs-Router" class="headerlink" title="Switch vs Router"></a>Switch vs Router</h3><p>Switch:</p>
+<ul>
+<li>Pros:<ul>
+<li>Plug and play —&gt; good for network engineer</li>
+<li>Has relatively higher send and filtering rate of packets. (as it is 2 layer)</li>
+<li>Use Spanning tree topology to prevent broadcast storm (from loop)</li>
+</ul>
+</li>
+<li>Cons:<ul>
+<li>Has high APR traffic at large network</li>
+<li>Do not handle broadcast storm caused by one problematic host.</li>
+</ul>
+</li>
+</ul>
+<p>Router:</p>
+<ul>
+<li>Pros:<ul>
+<li>No circular loop —&gt; but only follow the routing table. Hence maintain the best route</li>
+<li>No Spanning tree —&gt; flexible topology</li>
+<li>Firewall exists —&gt; prevent broadcast storm by host.</li>
+</ul>
+</li>
+<li>Cons:<ul>
+<li>Not plug and play.</li>
+<li>Packet process time is longer.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Virtual-LAN"><a href="#Virtual-LAN" class="headerlink" title="Virtual LAN"></a>Virtual LAN</h3><p><a href="https://ko.wikipedia.org/wiki/%EA%B0%80%EC%83%81_%EB%9E%9C">가상 랜</a></p>
+<ul>
+<li>이로 인해 트래픽 분산과 트래픽 우선 순위 설정이 가능해진다.</li>
+<li>스위치의 불필요한 낭비, 트래픽 격리, 그리고 유저 관리에 도움을 준다</li>
+<li>각 가상랜은 자기들만 스위치에 있는것 처럼 행동하며, 독자적인 브로드캐스트를 구성한다.</li>
+<li>두 독자적 가상랜의 병합은 한가지 포트를 라우터에 연결후 (혹은 스위치내에 자체적으로 가지고 있기도 하다), 병합 설정해 주면된다. 이로 인해 같은 스위치 내이지만, 라우터를 통한 다른 스위치가 서로 연결된듯 구성된다.</li>
+<li>VLAN Trunking 을 이용하여 스위치 두개를 설정된 트렁킹 포트에 연결함으로 각 스위치 내의 가상랜은 서로 병합시킬 수 있다.</li>
+</ul>
+<hr>
+<h3 id="Wifi"><a href="#Wifi" class="headerlink" title="Wifi"></a>Wifi</h3><ul>
+<li>much more challenging communication</li>
+<li>Based on CSMA/CA with optional RTS/CTS (MACA)</li>
+<li>Along with<ul>
+<li>OFDM: Orthogonal Frequency Division Multiplexing</li>
+<li>MIMO: Multiple Input Multiple Output (multiple antennas, multiple paths)</li>
+<li>DSSS: Direct Sequence Spread Spectrum<ul>
+<li>Related to Frequency Hopping Spread Spectiurm</li>
+<li>Codes accross a freq band (CDMA)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="802-11"><a href="#802-11" class="headerlink" title="802.11"></a>802.11</h1><p>There are two reasons 802.11 MAC protocol does not implement CD:</p>
+<ul>
+<li>To do CD, it requires send ane receive at the same time. Generally, 802.11 adapter receive is relatively weaker than send, making both available costs alot.</li>
+<li>Even if send and receive available, hidden terminal problem, and fading may not allow to detect properly.</li>
+</ul>
+<p><img src="/image/Week%203%202%20Ethernet%20and%20Wifi/Untitled%204.png" alt=""></p>
+<h3 id="Address"><a href="#Address" class="headerlink" title="Address"></a>Address</h3><ol>
+<li>Wirelss station MAC address that receives frames.</li>
+<li>Station MAC Address that sends frames.</li>
+<li>Router Interface MAC address<ol>
+<li>The router does not know the existence of address 1, the Acess Point.</li>
+<li>Connects wired lan and BSS.</li>
+</ol>
+</li>
+<li>Ad-hoc address. </li>
+</ol>
+<h3 id="Frame-Cotrol-has"><a href="#Frame-Cotrol-has" class="headerlink" title="Frame Cotrol has:"></a>Frame Cotrol has:</h3><ul>
+<li>Control Frames: Control the communication with the Access Point</li>
+<li>Management Frames: Manage the relationship with the Access Point</li>
+<li>Data Frames: Send data…</li>
+</ul>
+<h2 id="Control-Frames"><a href="#Control-Frames" class="headerlink" title="Control Frames:"></a>Control Frames:</h2><h3 id="Reliability"><a href="#Reliability" class="headerlink" title="Reliability"></a>Reliability</h3><p>Due to the high BER, has three approaches:</p>
+<ul>
+<li>Detect errors and drop frames (something else will take care of it – 802.3)</li>
+<li>Detect errors and fix frames at receiver (forward error correction)</li>
+<li>Detect errors and sender sends again (Automated Repeat reQuest – ARQ – 802.11)</li>
+</ul>
+<h3 id="Automatic-Repeat-reQuest-ARQ-by-Acknowledgement"><a href="#Automatic-Repeat-reQuest-ARQ-by-Acknowledgement" class="headerlink" title="Automatic Repeat reQuest (ARQ) by Acknowledgement"></a>Automatic Repeat reQuest (ARQ) by Acknowledgement</h3><p><a href="https://en.wikipedia.org/wiki/Automatic_repeat_request">Automatic repeat request</a></p>
+<ul>
+<li>For every frame I sent need ACK; if not, send again within timeout.</li>
+<li>If ACK lost —&gt; send again with a flag that it is resent frame</li>
+<li>If timeout too short —&gt; send again with a flag</li>
+<li>Stop and Wait ARQ<ul>
+<li>Helps with high delays, Single bit sequence number, ACK includes the sequence num</li>
+</ul>
+</li>
+<li>Robust, but throttles performance goes up as bandwidth*delay goes up.</li>
+</ul>
+<p><a href="https://en.wikipedia.org/wiki/Stop-and-wait_ARQ">Stop-and-wait ARQ</a></p>
+<h3 id="802-11-Control-Frames-has"><a href="#802-11-Control-Frames-has" class="headerlink" title="802.11 Control Frames has:"></a>802.11 Control Frames has:</h3><p>RTS, CTS, ACK, Request for RTS (RRTS), Data Sendinf (DS)</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/11/Network/Network_LAN/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/lan.jpg" alt="LAN">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-11T03:06:00.000Z">Mar 11, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 minutes read (About 813 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/11/Network/Network_LAN/">LAN</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference: </p>
+<ul>
+<li>Computer Networks, Fifth Edition by by Andrew S et al.</li>
+<li>The Australian National University CECS</li>
+</ul>
+<hr>
+<h3 id="Local-Area-Network"><a href="#Local-Area-Network" class="headerlink" title="Local Area Network"></a>Local Area Network</h3><ul>
+<li>Adiministrative Domain: as a collection of hosts and routers, and the interconnecting network managed by a single authority.</li>
+<li>Broadcast Domain: Can talk to anyone on the LAN!</li>
+</ul>
+<p>Design should be:</p>
+<ul>
+<li>Simple as possible</li>
+<li>Deliver msg from sender to receiver asap/efficiently (over a cable)</li>
+<li>LAN is hardware. Leave the difficulties to software</li>
+</ul>
+<p><strong>There is:</strong></p>
+<ul>
+<li>No guaranteed delivery</li>
+<li>No built in error detection and correction</li>
+<li>No specialised features (realtime, bulk-transfer)</li>
+<li>Yes to performance</li>
+</ul>
+<h3 id="Multiplexing"><a href="#Multiplexing" class="headerlink" title="Multiplexing"></a>Multiplexing</h3><p>It can be by time, space, and frequency. Everyone gets an equal share but does everyone need that much?</p>
+<ul>
+<li>It’s a effectively a circuit —&gt; wasting capacity.</li>
+</ul>
+<p><strong>Statistical Multiplexing</strong> </p>
+<ul>
+<li>Demand for capacity varies with time<ul>
+<li>Random access-priority across all devices</li>
+<li>Statistically don’t need the bandwidth all the time, give it a try!</li>
+</ul>
+</li>
+<li>A communcation channel is divided into an arbitrary number of variable bitrate digital channel or data streams. The link sharing is adapted to the instantaneous traffic demands of the data streams that are transderred over each channel.</li>
+<li>Is faciliated through packet mode or packet oriented communication which is utilized by packet switch.</li>
+<li>Code Division Multiple Access (CDMA) - different amount of spreading codes or spreading factors can be assigned to diff users.</li>
+</ul>
+<hr>
+<p><strong>Circuits</strong> : a fixed pipe only for you that tied to both endpoints - send bits whenever wants to the other end</p>
+<p><strong>Cells</strong> : TDM - Send a specific number of bits when it is your turn to the other end</p>
+<p><strong>Frames</strong> : Arbitrary length, targeted messages - Send a collection of bits when you want (The most common LAN approach).</p>
+<h3 id="Frames"><a href="#Frames" class="headerlink" title="Frames"></a>Frames</h3><ul>
+<li>Destination address, source address, assemblage of bits starts and stops.</li>
+<li>Need to agree how long the frame could be</li>
+<li>Need to agree how to access the network fairly</li>
+</ul>
+<p>Flag is needed to ensure the sync.</p>
+<p><img src="/image/Week%203%201%20LAN/Untitled.png" alt=""></p>
+<p>payload has escape byte before its escape byte or flag byte</p>
+<p>ig. FABEFCDF (F is flag and E is escape) To ensure the message, it must be sent as FABEEEFCDF. Then receiver drops two Es.</p>
+<h2 id="Media-Access-Control-MAC-and-sharing"><a href="#Media-Access-Control-MAC-and-sharing" class="headerlink" title="Media Access Control (MAC) and sharing"></a>Media Access Control (MAC) and sharing</h2><p>It Needs</p>
+<ol>
+<li>Address Scheme:<ol>
+<li>MAC address for your network interface </li>
+<li>Identity of the interface</li>
+<li>Listen to all traffic, respond msg sent to you</li>
+</ol>
+</li>
+<li>Access Scheme for multiple devices:<ol>
+<li>Party Atmosphere : your job to listen and respond.</li>
+</ol>
+</li>
+</ol>
+<h3 id="Randomised-Access-try-your-luck"><a href="#Randomised-Access-try-your-luck" class="headerlink" title="Randomised Access (try your luck)"></a>Randomised Access (try your luck)</h3><ol>
+<li>Send data if you have</li>
+<li>If receiver does not acknowledge or you hear other sending its data, we have collision</li>
+<li>If collision then back off and try again.</li>
+</ol>
+<p>Simple but effective if the congestion is not high. </p>
+<p>Stat performance is 18-36% while it depends on the back-off scheme.</p>
+<h3 id="Carrier-Sense-for-Multiple-Access-CSMA-Stricter-Rules"><a href="#Carrier-Sense-for-Multiple-Access-CSMA-Stricter-Rules" class="headerlink" title="Carrier Sense (for) Multiple Access (CSMA) - Stricter Rules"></a>Carrier Sense (for) Multiple Access (CSMA) - Stricter Rules</h3><p>It is good for wired network</p>
+<ol>
+<li>Check if anyone sending (senses for carrier)</li>
+<li>if clean, send the whole frame</li>
+</ol>
+<p>It may cause:</p>
+<ul>
+<li>Delay on long cable as both may send at the same time.</li>
+<li>As bandwidth delay gets bigger, problem gets bigger.</li>
+<li>Sets upper limits on delay and minimus frame size.<ul>
+<li>Need time to detect a collision</li>
+<li>Min frame time  = 2* (oneway delay)</li>
+</ul>
+</li>
+</ul>
+<h3 id="CSMA-CA-collision-avoidance"><a href="#CSMA-CA-collision-avoidance" class="headerlink" title="CSMA/CA (collision avoidance)"></a>CSMA/CA (collision avoidance)</h3><ul>
+<li>Listen for carrier. If clean, wait for random time (to avoid everyone wait and start at the same time.) Then send the frame</li>
+</ul>
+<h3 id="CSMA-CD-collision-Detection"><a href="#CSMA-CD-collision-Detection" class="headerlink" title="CSMA/CD (collision Detection)"></a>CSMA/CD (collision Detection)</h3><ul>
+<li>Listen carrier. Send and listen for a collision while sending. Collision —&gt; stop immediately and jam everyone. Then back-off and retry (while everyone wait)</li>
+</ul>
+<hr>
+<p>Backing off needs</p>
+<ul>
+<li>some limits for how long - not too short or long</li>
+<li>Ideally 1/N (n  = num of terminals)</li>
+<li>Binary Exponential Back-Off  (BEB) is to estimate out the N - Count num of collision you had. First wait 0-1 second wait 0-3 Third wait 0-7 frames.</li>
+</ul>
+<hr>
+<h2 id="Wireless"><a href="#Wireless" class="headerlink" title="Wireless"></a>Wireless</h2><p>Wireless is harder as </p>
+<ul>
+<li>each node has coverage  - can be part of a single network but can’t see all the nodes due to power limitation.</li>
+<li>TX (transmit) can be a million times louder than RX (Response) - Can’t listen collisions, or can’t respond quickly (wasting time).</li>
+</ul>
+<h3 id="MACA-Broadcast-anyone-can-hear"><a href="#MACA-Broadcast-anyone-can-hear" class="headerlink" title="MACA (Broadcast - anyone can hear)"></a>MACA (Broadcast - anyone can hear)</h3><ul>
+<li>Multiple Access, Collision Avoidance.</li>
+<li>Quick handshake before yelling</li>
+<li>Sender: Request To Send (RTS) + N bytes</li>
+<li>Receiver: Clear To Send (CTS) + N bytes</li>
+<li>Sender Transmits<ul>
+<li>Any nodes heard CTS silent for N bytes</li>
+<li>Any nodes heard RTS silent for CTS.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Contention-Free-Access"><a href="#Contention-Free-Access" class="headerlink" title="Contention Free Access"></a>Contention Free Access</h2><p>Not random, take turns</p>
+<h3 id="Token-Ring"><a href="#Token-Ring" class="headerlink" title="Token Ring"></a>Token Ring</h3><p>Passes around the token and can send data only if u have it. Ideally aligned with physical reality.</p>
+<ul>
+<li>If token lost - need regenerate after agreed timeout</li>
+<li>less efficient TDM with lower loads.</li>
+<li>Great under load, but doesn’t scale well</li>
+</ul>
+<hr>
+<h3 id="Topologies"><a href="#Topologies" class="headerlink" title="Topologies"></a>Topologies</h3><p>Most wired LANs have moved away from bus topologies.</p>
+<ul>
+<li>Hard to scale</li>
+<li>Make cable longer<ul>
+<li>Needs repeater, hub, bridge (which links two smaller LANs and learns addresses on each side.)</li>
+</ul>
+</li>
+</ul>
+<p>Nearly all moved to Switch</p>
+<ul>
+<li>Crossbar devices that learn source/destination addresses from the traffic</li>
+<li>Makes every link point to point</li>
+<li>Great in scalability and performance</li>
+</ul>
+<hr>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/08/Network/Congestion%20add6356566344a51ab188da187eac9bf/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/traffic.jpg" alt="Congestion">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-08T11:46:00.000Z">Mar 08, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    19 minutes read (About 2892 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/08/Network/Congestion%20add6356566344a51ab188da187eac9bf/">Congestion</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Sliding-Windows"><a href="#Sliding-Windows" class="headerlink" title="Sliding Windows"></a>Sliding Windows</h3><ul>
+<li>For reliability and throughput</li>
+</ul>
+<p>만약 단방향 딜레이가 50ms 라고 한다면, Round-trip-time (RTT) 는 100ms</p>
+<p>따라서 single segment (윈도우에서의 한 segment를 말한다) per RTT 라고 한다면 </p>
+<p>⇒ 10 packets/s (한 패킷 RTT = 100ms) - 10개의 segment 가 1초에 진행됨</p>
+<p>이 상황에서는 대역폭이 증가해도 늘어나지가 않음, 왜냐면 이건 딜레이랑 관계된거니까</p>
+<p>1 s = 1000 ms</p>
+<p>Per connection 당 W 개의 segments-window 를 만든다고 가정해보자</p>
+<p>다음과 같은 공식을 따른다 W = 2 * bandwdith * delay </p>
+<p>예를들어 100 Mb/s, delay = 50ms 라면</p>
+<ul>
+<li>W = 2 * 100 Mb/s * 50ms = 200 Mb/s * 0.05 S = 10 Mb (윈도우 사이즈가 10메가 피트인거)</li>
+<li>따라서 만약 한 segments 가 10kb 라면, W has 1000 segments</li>
+<li>윈도우는 양방향 이므로 한 방향으로 500개의 segments가 있는것.</li>
+</ul>
+<p>즉 윈도우는 양방향을 의미하며, 10Mb  사이즈의 윈도우라면, 각 방향으로 5Mb 씩 사용이 가능한것.</p>
+<p>5Mb 양이 가는중이거나 오는중인것.</p>
+<p>윈도우 Ack 하는 방식에는 여러가지가 존재한다</p>
+<h2 id="Go-back-N"><a href="#Go-back-N" class="headerlink" title="Go back N"></a>Go back N</h2><p>Receiver: 단 한가지만 버퍼 한다 (1,2 이후에 3만 기다리는거)</p>
+<ul>
+<li>만약 도착한 sequence 가 내가 기다린거면 오케이</li>
+<li>만약 아니라면 뭐든 상관없이 싹다 버리고 내가 원하는거 올때까지 기다린다<ul>
+<li>시간제한이 지나면 해당 세그먼트를 재전송 하라고 송신자에게 요구한다</li>
+</ul>
+</li>
+</ul>
+<p>Sender</p>
+<ul>
+<li>만약 일정시간내에 ACK를 받지 못하면 알아서 다시 보낸다</li>
+</ul>
+<p>문제는 이 방식이 1 부터 100까지 보냈는데 수신자가 10 못받았다고 기다리면 10 부터 다시 보내야함</p>
+<p>당연히 효율적이지 못함</p>
+<h2 id="Selective-Repeat"><a href="#Selective-Repeat" class="headerlink" title="Selective Repeat"></a>Selective Repeat</h2><p>Receiver: 여러가지를 버퍼한다 (예를들어 1,2, [], 4, []) </p>
+<ul>
+<li>받은 순서대로 ACK 한다 (즉 내가 원하던게 순서대로이지 않아도 일단 ACK 보냄)</li>
+<li>받지 못한것도 ACK (못 받았다고 알려주는거)<ul>
+<li>이 행위를 SACK (selective ACK) 라고 한다</li>
+</ul>
+</li>
+</ul>
+<p>Sender: 각 segment 별로 타이머가 따로 존재한다 </p>
+<ul>
+<li>시간내에 ACK 못받으면 알아서 보냄 (각  segment별로 타이머가 존재하는것을 상기하자)</li>
+</ul>
+<p>훨씬 효율적이며 요즈음은 대중화됨</p>
+<h2 id="매우-송신자-네트워크-위주이다"><a href="#매우-송신자-네트워크-위주이다" class="headerlink" title="매우 송신자/네트워크 위주이다"></a>매우 송신자/네트워크 위주이다</h2><ul>
+<li>송신자가 transmssion 을 담당한다<ul>
+<li>UDP - 보내고 잊는다 (컨트롤 없음)</li>
+<li>TCP - 천천히 ACK를 기다린다 (메세지 전달을 보장함)</li>
+<li>네트워크를 full로 쓸수 있게 optimize 한다</li>
+</ul>
+</li>
+</ul>
+<p>수신자가 송신자의 속도를 따라가지 못할 경우를 대비해서 flow control 이 필요하다</p>
+<h3 id="Flow-Control-Receiver-쪽의-sliding-windows"><a href="#Flow-Control-Receiver-쪽의-sliding-windows" class="headerlink" title="Flow Control: Receiver 쪽의 sliding windows"></a>Flow Control: Receiver 쪽의 sliding windows</h3><ul>
+<li>Transport Layer:<ul>
+<li>네트워크로 부터 segment 를 받고, 어플리케이션 버퍼에 넣는다</li>
+</ul>
+</li>
+<li>Application 은 recv(N-bytes) 를 이용해 버퍼로부터 읽는다</li>
+</ul>
+<p>SYN 과 ACK 를 통해서 송수신자는 서로 어디까지 읽었는지 보내지만, 수신자가 flow control window (WIN)의 크기또한 송신자에게 같이 보낼수 있음</p>
+<p>즉 WIN의 크기를 송신자에게 보내서 송신자는 지금 수신자가 어느 상태인지 알수 있는거. </p>
+<ul>
+<li>더많이 읽을수 있는데 보내는 속도가 느린지, 아니면 거의 꽉차서 조금 위험해서 속도를 줄여야 하는지.</li>
+</ul>
+<h1 id="Congestion"><a href="#Congestion" class="headerlink" title="Congestion"></a>Congestion</h1><ul>
+<li>교통체증: 뭔가 막혀서 지금 나머지 다 기다리는중<ul>
+<li>여러가지 이유로 존재 가능하며</li>
+<li>어디서 무슨 이유로 이러는지 알 수 없음</li>
+</ul>
+</li>
+<li>송신자는 계속 보낸다<ul>
+<li>이는 상태를 개인이던 모두에게던 악화시킨다</li>
+<li>혼잡은 곧 손실을 의미한다</li>
+</ul>
+</li>
+</ul>
+<h2 id="Router-Buffers-Queues"><a href="#Router-Buffers-Queues" class="headerlink" title="Router Buffers: Queues"></a>Router Buffers: Queues</h2><ul>
+<li>FIFO on every interface</li>
+<li>빠른 속도로 트래픽을 감당할 수 있다</li>
+<li>문제는 이 큐가 오버플로우가 발생하면 패킷이 드롭되는것</li>
+<li>보통 트래픽 패턴에 따라 좌지우지 된다</li>
+</ul>
+<p>이렇게 패킷이 드랍되면, 수신자는 다시 보내라고 할거고, 송신자는 다시 보내고 결국 악순환이 이어짐</p>
+<p>따라서 이러한 상황을 피하기 위해서 이 사태가 일어나기 직전까지 아슬아슬하게 성능을 최대한 유지하는게 관건 (물론 네트워크 상황은 변화기에 상황에 따라 알아서 변하는 알고리즘이어야 한다)</p>
+<p>요점은 효율성 (최대한 네트워크 최대치를 사용) 그리고 공평하게 (모두가 비슷한 사용량) </p>
+<p>Network layer 가 혼잡을 see 할수 있다 (IP - ICMP 말하는듯) 따라서 피드백을 줌</p>
+<p>Transport layer 에서 혼잡이 일어난다 (큐 오버플로우 등) 따라서 송신자의 행동을 수정함</p>
+<ul>
+<li>TCP 윈도우 사이즈를 다이나믹 하게 조정한다</li>
+</ul>
+<h3 id="Statistical-multiplexing-하면-안됨"><a href="#Statistical-multiplexing-하면-안됨" class="headerlink" title="Statistical multiplexing 하면 안됨?"></a>Statistical multiplexing 하면 안됨?</h3><ul>
+<li>매우 어렵다<ul>
+<li>모든 어플리케이션은 다른 양상을 띄고 있고</li>
+<li>로드는 항상 변하며</li>
+<li>다양한 장소에서 혼잡이 발생 할 수 있고</li>
+<li>한곳에서 전체적인 상황을 볼 수가 없다</li>
+</ul>
+</li>
+<li>따라서 이를 해결하기 위해서는<ul>
+<li>송신자가 지속적으로, 병행적으로 적응할수 있어야 한다</li>
+</ul>
+</li>
+</ul>
+<p>효율성과 공평성에서 가장 중요한것은 그 누구도 starvation을 겪으면 안되는것</p>
+<p>그럼 송신자는 어떻게 “ADAPT” 할 수 있는가</p>
+<ol>
+<li>OPEN/CLOSE loop<ul>
+<li>Open: 서킷을 미리 예약해 두는것</li>
+<li>Close: 피드백에 따라 적응하는거</li>
+</ul>
+</li>
+<li>Host or Network driven<ul>
+<li>Host: 얼마나 사용할지 호스트가 정하는거</li>
+<li>Network: 네트워크가 규약으로 정해둔거 (유동적이지 못함)</li>
+</ul>
+</li>
+<li>Allocate bandwidth via<ul>
+<li>Rate Based : 어플리케이션에게 어느 속도로 보낼지 알려줌</li>
+<li>Widows size : 윈도우 사이즈 (control flow)로 보고 정함</li>
+</ul>
+</li>
+</ol>
+<p>TCP의 경우 Closed, host, window based 이다. </p>
+<h2 id="Additive-Increase-Multiplicative-Decrease-AIMD"><a href="#Additive-Increase-Multiplicative-Decrease-AIMD" class="headerlink" title="Additive Increase, Multiplicative Decrease (AIMD)"></a>Additive Increase, Multiplicative Decrease (AIMD)</h2><ul>
+<li>송신자는 천천히 송신율을 올린다<ul>
+<li>혼잡을 일으키는 숫자를 줄이니,결국 더 많이 보내는것</li>
+</ul>
+</li>
+<li>혼잡이 발생하는 순간 배수적으로 송신율을 줄인다<ul>
+<li>빨리 줄여서 혼잡을 최소화 시키는것</li>
+</ul>
+</li>
+<li>장점:<ul>
+<li>모든 호스트가 이 방법을 쓰면 모두 공평하고 효율적으로 대역폭을 사용할 수 있음<ul>
+<li>위상을 알 필요가 없음 (왜냐면 피드백 위주니까)</li>
+<li>모두가 (조금씩 다른 방법으로 ) 한다</li>
+</ul>
+</li>
+<li>다른 control law 에 비해 효과적으로 작동함</li>
+<li>네트워크로부터 단 한가지의 신호만을 필요로함 (사실 리시버로부터)<ul>
+<li>왜냐면 수신자가 혼잡 상황에 대해 알려주기만 하면됨 밑의 표를 참조</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="/image/Congestion%20add6356566344a51ab188da187eac9bf/How%20network%20signal%20the%20sender%20494b8b92a4e24aef8d3cd60d5aa20bcc.csv">How network signal the sender</a></p>
+<h2 id="AIMD-implementation"><a href="#AIMD-implementation" class="headerlink" title="AIMD implementation"></a>AIMD implementation</h2><h3 id="ACK-Clocking"><a href="#ACK-Clocking" class="headerlink" title="ACK Clocking"></a>ACK Clocking</h3><ul>
+<li>ACK가 돌아오는 속도를 보고 송신자가 이에 맞추는것<ul>
+<li>보낸 속도보다 ACK 돌아오는 속도가 적다면, 중간에 무슨 이유던간 라우터가 buffer 에 저장되어 있는 상태를 의미하기에, 이 라우터 버퍼 오버플로우를 방지하기 위해 속도를 줄이는거</li>
+</ul>
+</li>
+<li>이 돌아오는 속도로 Congestion Window (CWND) 를 계산 할 수 있다<ul>
+<li>W (window size) 보다 작다, 또한 CWND 는 WIN 과 전혀 관계없다<ul>
+<li>WIN 은 수신자 컨트롤 플로우 사이즈이고, 혼잡 CWND는 라우터에 관한거 (혹은 네트워크 전반)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>적은 손실과 딜레이를 네트워크상에 가능하게 한다.<ul>
+<li>Clocking 을 통해, burst 를 smooth 하게 바꾸면서도 같은 송신율을 유지한다<ul>
+<li>중간 라우터에서 queue up 하지 않으니까</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>그렇다면 이 CWND를 처음에 어떻게 알 수 있을까?</p>
+<p>처음 1 패킷 부터 보내기 시작해서, 손실 없이 ACK가 돌아오면 CWND 를 1씩 더한다</p>
+<p>⇒ 이 방식은 매우 안전하지만 동시에 매우 느리다 (이는 곧 비효율성을 의미한다)</p>
+<p>따라서 이 CWND의 효율적인 증가및 감소를 위한 알고리즘이 바로</p>
+<h3 id="TCP-Slow-Start"><a href="#TCP-Slow-Start" class="headerlink" title="TCP Slow Start"></a>TCP Slow Start</h3><ul>
+<li>극 초기에 (1부터 시작할때) 1씩 더하지 말고 ACK 가 올떄마다 2씩 증가시키는거<ul>
+<li>첫 시작은 slow (1이니까) 대신 빠르게 속도를 올림</li>
+</ul>
+</li>
+<li>배수로 증가시키기에 어느 한순간 급작스럽게 congestion을 만들어 패킷 손실/피드백을 받을것이다<ul>
+<li>이럴 경우 multiplicative 하게 감소한다. 이 감소 방법에는 여러가지 버전이 있지만 초기버전의 경우</li>
+<li>Threshold: ss-thresh = 0.5 * CWND (@ loss) (Reno 방식이다)</li>
+<li>이 순간부터는 배수가 아닌 더하기 형식으로 증가한다.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/Congestion%20add6356566344a51ab188da187eac9bf/Untitled.png" alt=""></p>
+<h3 id="Fast-retransmit-빠른-재전송"><a href="#Fast-retransmit-빠른-재전송" class="headerlink" title="Fast retransmit (빠른 재전송)"></a>Fast retransmit (빠른 재전송)</h3><ul>
+<li>Pre-SACK: 만약 기다리던 segment 가 아닌 다른 세그먼트가 도착한다면<ul>
+<li>예를들어 92 108 116 124 가 도착했다고 하자</li>
+<li>ACK는 기다리는 넘버를 의미하니 수신자가 송신자에게 ACK 100 을 보내야 한다</li>
+<li>108 이 도착하면 ACK 100, 116 이 도착하면 ACK 100, 124 가 도착해도 ACK 100 을 보낸다</li>
+<li>이 ACK 100 이 세번 도착하면 해당 100 데이터를 (타이머가 되기전에) 빠르게 다시 보낸다</li>
+<li>만약 잘 도착했다면, 현재 내가 보낸 데이터들 다음 번호인 132 (124+8) 이 도착할것이고</li>
+<li>만약 100 이후에 잃어버린 세그먼트가 있다면 그 세그먼트에 대해서 ACK를 보낼것이다</li>
+</ul>
+</li>
+</ul>
+<p>따라서 타임아웃 되기전에 빠르게 고치려고 하는것. </p>
+<p>주의 해야 하는점은 빠른 재전송의 경우 같은 ACK를 세번 받았을때 행해진다. 이 빠른 재전송이 일어나면 CWND 를 반으로 줄여야 한다.  타임아웃이 일어나면 1부터 다시 시작하는것</p>
+<p>초기 모델은 이 타임아웃과 ACK 3번 중복을 받으면 (둘중 하나) 그럼 바로 1부터 시작했음</p>
+<p>현 Reno의 경우 타임아웃은 심각하게 (1부터) 3-중복은 덜 심각하게 (* 0.5) 받아 들인다. </p>
+<h3 id="Fast-Recovery-빠른-회복"><a href="#Fast-Recovery-빠른-회복" class="headerlink" title="Fast Recovery (빠른 회복)"></a>Fast Recovery (빠른 회복)</h3><p>빠른 재전송이 일어났으면 일단 cwnd 는 반으로 줄이고, </p>
+<ul>
+<li>빠른 재전송이후 seq number 가 어디에 있는지 기다린다 (즉 이 기간동안 기다린다 패킷 보내지 않고)<ul>
+<li>기다리는 동안 해당 100 ACK 이 오면 cwnd 1씩 증가</li>
+<li>만약 그 다음 segment 들이 모두 성공적으로 도착했다면 (catch up 헀다면), 반으로 감소시킨 CWND 로부터 증가시켜 간다 (ACK Clock 을 유지한다)</li>
+<li>안고쳐지면 타임아웃이 일어날거임, 그럼 cwnd = 1, ACK clock 또한 초기화 한다.</li>
+</ul>
+</li>
+</ul>
+<p>여러가지 방식들이 존재한다</p>
+<p>TCP Reno</p>
+<ul>
+<li>위의 얘기한 0.5를 곱하는 방식이다. 이 방식은 한 손실을 고칠수 있다 per RTT<ul>
+<li>즉 하나 손실하면, 보내고 기다리고 (고쳐진지 확인)</li>
+</ul>
+</li>
+<li>만약 여러 손실이 발생하면 CWND 를 반으로 감소시킨다</li>
+</ul>
+<p>TCP New Reno</p>
+<ul>
+<li>ACK 분석이 더 좋으며, 이로 인해 여러 손실들을 고칠수 있다 per RTT</li>
+</ul>
+<p>TCP SACK</p>
+<ul>
+<li>훨씬 좋다, 수신자가 ACK를 범위 단계로 보내기 때문에 송신자가 필요한것만 여러개 딱딱 보낼수 있음.</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/08/Network/Network_Physical%20Layer/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/network.jpeg" alt="Physical Layer">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-08T11:46:00.000Z">Mar 08, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 minutes read (About 817 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/08/Network/Network_Physical%20Layer/">Physical Layer</a>
+            
+        </h1>
+        <div class="content">
+            <p>푸리에 식의 각각의 구성 성분이 같은 값으로 줄어들면, 진폭은 줄어들지 언정 왜곡되지 않는다 (직사각형 깔끔한 모양)</p>
+<p>하지만 모든 전송 설비는 각 구성 성분값을 다르게 변화 시키므로, 왜곡이 유발된다. 보통의 와이어들은 0부터 어느정도의 구역까지는 왜곡되지 않음.</p>
+<p>강하게 왜곡 돼지 않고 전송된 주파수 대역을 대역폭이라고 하는데 보통 0에서 수신전력의 절반까지의 주파수를 말한다.</p>
+<p>대역폭은 구성, 두께 및 길이의 의존하는 전송 매체의 물리적 특성</p>
+<p>The bandwidth is the width of the band of frequencien thar are passed. </p>
+<p>The information that can be carried is depending on the width.</p>
+<p>Baseband : 0 to max freq </p>
+<p>Passband : Signals shifted to occupy a higher range of freq for wireless communication.</p>
+<p>Purpose of Physical layer : send bits to the other system.</p>
+<ol>
+<li><p>Magnetic Media: Use portable device like CD. The cost and bandwidth are faster/cheaper than any network. However, delay isn’t good (as it cannot be the live communication).</p>
+</li>
+<li><p>Twisted Pair: It is twisted to avoid constituting antenna (twisted cancel the waves hence lose less wire). Signal is carried by the diff between the two wires. </p>
+<ul>
+<li>Telephone: need repeater if the distance longer than few kilometers.</li>
+<li>Transmitting information: several mb/s for a few kilo. Adequate performance and cheap cost ⇒ will be used</li>
+</ul>
+<p> ** Different LAN protocol use the twisted pair differently.</p>
+<ul>
+<li>Full-duplex : in both direction at the same time.</li>
+<li>Half-duplex : one direction at once - can change the direction.</li>
+<li>Simpelx : only one way traffic.</li>
+</ul>
+<p> ** cat 5: LAN, cat 6: UTP, cat 7: STP</p>
+</li>
+<li><p>Coaxial Cable: better than UTP in shielding and greater bandwidth ⇒ longer distances at higher speed.</p>
+<ul>
+<li>Construction and shielding ⇒ high bandwidth and excellent noise immunity.</li>
+<li>Was widely used for phone cable which now replaced by fiber optics for long routes.</li>
+</ul>
+</li>
+<li><p>Power Lines - data signal is superimposed on the low freq power signal (the high frequency works as the normal power line).</p>
+</li>
+<li><p>Fiber Optics - costs expensive and costs more energy to send bits. FTTH (Fiber to the Home).</p>
+<ol>
+<li>Light Source</li>
+<li>Transmission Medium</li>
+<li>Detector</li>
+</ol>
+<ul>
+<li><p>The light is refracted (bounced within the cable) while maintaining certian angle. Hence, propagate for many kilometers without any loss.</p>
+</li>
+<li><p>Multimode fiber: multiple rays within the line.</p>
+</li>
+<li><p>Singlemode fiber: one straight ray due to the small diameter of the cable (100 Gbps for 100 km).<br>Transmission of Light-Fiber</p>
+<p>Chromatic Dispersion (length of the wave gets longer) - 겹치지 않기 위해서는 서로간의 거리를 늘려야 하나, 속도를 줄이는 방법만 가능. Soliton 이라는 특수 형태의 펄스를 만들어 분산 효과를 상새하는 방법을 사용중.</p>
+</li>
+</ul>
+</li>
+<li><p>Fiber Cable - core is surrounded by glass cladding to maintain the light. </p>
+<ol>
+<li>Plugged into fiber socket: Lose about 10~20% but easy to reconfigure.</li>
+<li>Spliced mechanically: carefully cut two ends and connect with special sleeve; lose 10%</li>
+<li>Fused (melted) to form one: small amount of attenuation (손실) occurs.</li>
+</ol>
+</li>
+</ol>
+<h2 id="Comparison-of-Fiber-Optics-and-Copper-Wire"><a href="#Comparison-of-Fiber-Optics-and-Copper-Wire" class="headerlink" title="Comparison of Fiber Optics and Copper Wire"></a>Comparison of Fiber Optics and Copper Wire</h2><p>Fiber<br>  1.Can handle higher bandwidth ⇒ can be used in high-end network.</p>
+<p>  2.Low attenuation ⇒ need of repeater every 50km (copper: 5km) → save costs</p>
+<p>  3.Not interfered by power surge, electromagnetic interference, or power failures → good for harsh env.</p>
+<p>  4.Thin and lightweight → phone companies like it. Good replacement for copper and they can resale copper  and also cheaper to installation and maintain cost.</p>
+<p>  5.Do not leak and are difficult to tap - good security.</p>
+<ul>
+<li>친숙치 않은 기술, 휘어지면 쉽게 손상 가능, 본질적으로 단방향이므로 2개의 섬유 또는 2개의 주파수 필요. 전기 인터페이스보다 비쌈.</li>
+</ul>
+<h3 id="Week-2-2-Wirelsee-Communication"><a href="#Week-2-2-Wirelsee-Communication" class="headerlink" title="Week 2/2 - Wirelsee Communication."></a>Week 2/2 - Wirelsee Communication.</h3><ol>
+<li><p>The Electromagnetic Spectrum - wave caused by movement of electron. The num of oscillations per second = Frequency in unit of Hz. Wavelength : distance between cosecutive maxima/minima.</p>
+<ul>
+<li><p>apprpriate antenna size - electromagnetic waves can be broadcast efficiently.</p>
+</li>
+<li><p>In a vaccum - all elecmagnetic travel at the same speed (speed of light). → copper : 2/3 of this speed.</p>
+<p><img src="/image/ch%202%20Physical%20Layer/Untitled.png" alt=""></p>
+</li>
+<li><p>Mostly use narrow frequency band - concentrate signals to use the spectrum efficient and to obtaion reasonable data rate with enough power.</p>
+</li>
+</ul>
+</li>
+</ol>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/tags/Layer/">Previous</a>
+        </div>
+        <div class="pagination-next is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/tags/Layer/page/3/">Next</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/tags/Layer/">1</a></li>
+            
+            <li><a class="pagination-link is-current" href="/tags/Layer/page/2/">2</a></li>
+            
+        </ul>
+    </nav>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="SK Lee">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        SK Lee
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Server&amp;Network Student
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Australia/ACT</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            54
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            7
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/lee-sk-qq" target="_blank" rel="noopener">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/qqskda">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Twitter" href="https://twitter.com/qqskda">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://medium.com/@poringpeco" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Medium</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">medium.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.linkedin.com/in/sungkwon-lee-089389145/" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Linkedin</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.linkedin.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">12</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">28</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/CPP/">
+            <span class="level-start">
+                <span class="level-item">CPP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Life/">
+            <span class="level-start">
+                <span class="level-item">Life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Machine-Learning/">
+            <span class="level-start">
+                <span class="level-item">Machine Learning</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Network/Lab/">
+            <span class="level-start">
+                <span class="level-item">Lab</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/OCSO/">
+            <span class="level-start">
+                <span class="level-item">OCSO</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Parallel-Computing/">
+            <span class="level-start">
+                <span class="level-item">Parallel Computing</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
+                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
+                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
+                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
+                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
+                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPP/">
+                        <span class="tag">CPP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keyboard/">
+                        <span class="tag">Keyboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Layer/">
+                        <span class="tag">Layer</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Summary/">
+                        <span class="tag">Summary</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Theory/">
+                        <span class="tag">Theory</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/CPP/">
+            <span class="level-start">
+                <span class="level-item">CPP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Life/">
+            <span class="level-start">
+                <span class="level-item">Life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Machine-Learning/">
+            <span class="level-start">
+                <span class="level-item">Machine Learning</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Network/Lab/">
+            <span class="level-start">
+                <span class="level-item">Lab</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/OCSO/">
+            <span class="level-start">
+                <span class="level-item">OCSO</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Parallel-Computing/">
+            <span class="level-start">
+                <span class="level-item">Parallel Computing</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
+                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
+                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
+                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
+                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
+                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPP/">
+                        <span class="tag">CPP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keyboard/">
+                        <span class="tag">Keyboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Layer/">
+                        <span class="tag">Layer</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Summary/">
+                        <span class="tag">Summary</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Theory/">
+                        <span class="tag">Theory</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/avatar.png" alt="SK Lee" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Sungkwon Lee&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://github.com/qqskda',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

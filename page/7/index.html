@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.1" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>SK Lee</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="SK Lee">
+<meta property="og:url" content="https://github.com/qqskda/page/7/index.html">
+<meta property="og:site_name" content="SK Lee">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/images/og_image.png">
+<meta property="article:author" content="Sungkwon Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/images/og_image.png">
+<meta name="twitter:creator" content="@qqskda">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/avatar.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/monokai-sublime.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/avatar.png" alt="SK Lee" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/qqskda">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/06/08/MSL/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/unsu.jpg" alt="Unsupervised Learning Clustering">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-06-08T03:53:00.000Z">Jun 08, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Machine-Learning/">Machine Learning</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    14 minutes read (About 2094 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/06/08/MSL/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/">Unsupervised Learning Clustering</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference:</p>
+<ol>
+<li>An Introduction To Statistical Learning with Applications in R (ISLR Sixth Printing)</li>
+<li><a href="https://godongyoung.github.io/category/ML.html">https://godongyoung.github.io/category/ML.html</a></li>
+</ol>
+<h2 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h2><p>관측치들을 각 그룹별로 나누는데. 해당 그룹내의 관측치들은 유사하게, 다른 그룹의 관측치와는 상이하게 나누는것. 이 유사/상이 하다를 정의를 domain-specific (도메인 특정) 을 기반으로 한다 </p>
+<p>클러스터링이 비지도 (unsupervised) 방식인 이유는, 자료를 기반으로한 구조 (structure)를 발견, 그룹을 나누는것인데 비해, 지도 방식의 경우 어떠한 결과를 유추/예측 하고자 하는것. </p>
+<p>Clustering AND PCA 모두 summary를 통해 데이터를 간단하게 하려 하지만</p>
+<ul>
+<li>PCA:  분산의 많은 비율을 설명하는 관측치들을 저차원 표현으로 찾으려 함</li>
+<li>Clustering:  관측치들중 같은 서브그룹을 찾으려 함.</li>
+</ul>
+<p>즉 클러스터링은 사람들 (관측치)들중 이 제품을 잘 살것같은 그룹을 찾아내는 형식 -  market segmentation 이라고도 한다. </p>
+<h2 id="K-mean-clustering"><a href="#K-mean-clustering" class="headerlink" title="K - mean clustering"></a>K - mean clustering</h2><p>미리 지정한 수의 클러스터로 나누는것.</p>
+<p>이 k 개의 클러스터간 서로 절대 겹치지 않으며 모든 관측치들은 어느 한 클러스터에 속해있다.   </p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/Untitled.png" alt=""></p>
+<p>위의 식에서 유추할수 있듯, 한 클러스터 내에서의 변동이 가장 적은 클러스터링을 목표로 하고 있다. </p>
+<p>이 변동 W(Ck) 를 정의 하는 방법은 여러가지 이지만 가장 일반적으로 유클리드 거리 제곱 (squared Euclidean distance)를 사용한다.  이를 적용하면 위의 식이 다음과 같이 변한다. </p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/Untitled%201.png" alt=""></p>
+<p>Ck = 클러스터내 관측치들의 수. 관측치들 사이의 pairwise한 거리의 제곱의 합을 관측수로 나눈것. </p>
+<p>물론 위의 모든 방식을 사용하려면 K ** n 개의 분할 방법이 존재하기에 다음과 같은 알고리즘을 사용한다. </p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/Untitled%202.png" alt=""></p>
+<p>즉 랜덤하게 클러스터를 분배하고, 각 클러스터의 관측치들의 centeroid 를 벡터 중간값으로 정한후, 가까운 클러스터로 다시 재분배, 반복하는것. 해당 재분배가 (클러스터의 변화가) 없을때가지 반복하는것. </p>
+<p>물론 이러한 방식은 초기 클러스터가 어떻게 분배 되느냐에 따라 달라지는 국소 최적 (local optimum) 이다 따라서 이를 피하기 위해 랜덤 할당을 다르게 해서 여러번 실행해보고, 위의 식의 값이 가장 작은것을 선택한다 ( = gloabl optimum) K 숫자 선택은 이후에 다뤄진다. </p>
+<h2 id="Hierarchical-clustering"><a href="#Hierarchical-clustering" class="headerlink" title="Hierarchical clustering"></a>Hierarchical clustering</h2><p>K-mean clustering 이 가지고 있는 단점: K 를 미리 지정해야 한다 이 없는 방식이며, dendrogram 이라고 하는 tree-based 로 표현한다</p>
+<p>bottom-up (위로) and agglomerative (융합) 클러스터링을 설명하는데 이들은 가장 보편적인 계층적 클러스터링 ‘방식이다. </p>
+<h3 id="해석"><a href="#해석" class="headerlink" title="해석"></a>해석</h3><p><img src="/image/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/Untitled%203.png" alt=""></p>
+<p>밑의 (잎) 이 위로 올라가며 가지로 융합되는 모습이다. 이 융합되는 트리의 높이가 낮을수록 관측치간의 유사성이 더 높음을 뜻한다. 또한 그림으로 한눈에 다른 색 (다른 그룹)이 서로 융합되는 높이를 알수도 있다. . 위의 그래프의 경우 초록 노랑의 융합이 빨강보다 더 빠르기에 초록 노랑이 더 유사함을 알 수 있다. </p>
+<p>주의할 점은 이 관측치의 유사성은 수평 (즉 옆에 가까이 있냐) 수준이 아닌 수직 (융합이 언제 일어나느냐) 로 판단해야 한다. 덴드로그램을 절단하는 수평선이 곧 k의 수이다. 위의 그래프는 5에서 절단함으로써 3개의 클러스터링을 얻는다. </p>
+<p>다만 덴드로그램은 TREE 이기때문에 2개씩으로 밖에 나눌수가 없음. 즉 프랑스미국영국을 나눌때 프랑스 | 미국영국 이후 프랑스 미국 영국 과 같이 두번에 걸쳐 3번에 나눈다. 결국 각각의 다른 그룹이 2번에 걸쳐 나눠지는 이러한 형태때문에 가끔 k-mean clustering 보다 정확도가 낮은 결과를 나타낼수 있다. </p>
+<h3 id="알고리즘"><a href="#알고리즘" class="headerlink" title="알고리즘"></a>알고리즘</h3><p>각 관측지의 페어마다 비유사성 (dissimilarity)를 정의한다 (유클리드 거리를 가장 많이 사용). </p>
+<p>덴드로그램 바닥의 n 개의 관측치에 n 개의 클러스터를 주고, 가장 가까운것끼리 합쳐서 결국 1개의 클러스터가 될때까지 진행한다. </p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/Untitled%204.png" alt=""></p>
+<p>위의 알고리즘은 문제를 가지고 있는데, 여러 관측치를 가지고 있는 클러스터간에 비유사성은 어떻게 정의 하는가 이다. 이를 해결하기 위해 완전연결 평균연결 단일연결 무게중심연결을 사용하는데 보통 평균,완전. 단일을 많이 사용한다.  평균,완전 연결이 균형잡힌 덴드로그램을 제공하는 경향이 있어 더 선호된다. </p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/Untitled%205.png" alt=""></p>
+<h3 id="비유사성-측도"><a href="#비유사성-측도" class="headerlink" title="비유사성 측도"></a>비유사성 측도</h3><p>현재까지 유클리드 거리를 사용했으나, correlation-based distance 같은 방법은 상관성만 높다면 거리가 떨어져있어도 유사하다고 간주하는 방법이다. 즉 유클리드는 소비자가 구매한 양끼리 묶어서 클러스터링을, 상관 기반 거리는 비슷한 물품을 구매한 소매자끼리 묶는 방식이다. </p>
+<p>또한 비유사성의 경우 표준편차가 1이 되도록 스케일링을 고려해야 할 수 있다 (단위차이를 없애기 위해)</p>
+<h3 id="이슈"><a href="#이슈" class="headerlink" title="이슈"></a>이슈</h3><p>클러스터링은 매우 유용하지만 여러 이슈도 존재한다.</p>
+<p>큰 결과 작은 결정 (small decision with big consequences)</p>
+<ul>
+<li>표준화과 진행되어야 하는가? 평균 = 0, 표준편차 = 1 이 되도록 스케일링 되어야 한다등등</li>
+<li>계층적 클러스터링의 경우<ul>
+<li>어떤 비유사성 측도를 사용할것인가</li>
+<li>어떤 연결을 사용해야 하는가</li>
+<li>어디서 덴드로그램을 절단해야 하는가</li>
+</ul>
+</li>
+<li>K-평균 클러스터링의 경우 몇개의 클러스터를 사용해야 하는가</li>
+</ul>
+<p>이러한 작은 결정들은 결과에 큰 영향을 미친다. </p>
+<h3 id="검증"><a href="#검증" class="headerlink" title="검증"></a>검증</h3><p>찾은 클러스터들이 단지 아웃라이어 (노이즈)의 결과인지 아니면 진정 어느 한 부분그룹을 대표하는 (나타내는)  클러스터인지 검증해야 한다. 이를 위해 p값을 할당하는 기법들이 존재하지만 무엇이 딱 좋다 말할수는 없다</p>
+<h3 id="다른-고려사항"><a href="#다른-고려사항" class="headerlink" title="다른 고려사항"></a>다른 고려사항</h3><p>k-mean clustering and 계층적 클러스터링 모두 각 관측치에 하나의 클러스터를 할당한다. 이러한 행동은 outlier 들의 존재로 클러스터가 심하게 왜곡될수 있다. mixture model 은 이러한 특이점을 수용하는 방법인데 k-mean clustering 의 soft 버전이라고 할 수 있다. </p>
+<p>또한 클러스터링 방법은 작은 변동 (perturbations)에 robust 하지 않다. 이는 n개의 관측치에서 몇개를 제외하고 클러스터링을 다시 진행하면 보통 그 전의 클러스터링과 유사하지 않다. </p>
+<h3 id="결과-해석및-접근-방법"><a href="#결과-해석및-접근-방법" class="headerlink" title="결과 해석및 접근 방법"></a>결과 해석및 접근 방법</h3><p>위의 이유들로 인해 여러번 클러스터링을 하고, 지속되는 패턴을 찾는것이 좋다. 클러스터링이 얼마나 robust 한지 감을 잡기 위해 부분관측치에 대해 클러스터링을 수행하는것도 좋다. </p>
+<p>중요한점은 분석결과인데, 이러한 결과로 인한 결과는 절대적으로 신뢰해서는 안되며, 단지 가설 개발에 이용되어야 한다.</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/page/6/">Previous</a>
+        </div>
+        <div class="pagination-next">
+            <a class="is-flex-grow has-text-black-ter" href="/page/8/">Next</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
+            
+            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/6/">6</a></li>
+            
+            <li><a class="pagination-link is-current" href="/page/7/">7</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/8/">8</a></li>
+            
+            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/54/">54</a></li>
+            
+        </ul>
+    </nav>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="SK Lee">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        SK Lee
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Server&amp;Network Student
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Australia/ACT</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            54
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            7
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/lee-sk-qq" target="_blank" rel="noopener">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/qqskda">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Twitter" href="https://twitter.com/qqskda">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://medium.com/@poringpeco" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Medium</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">medium.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.linkedin.com/in/sungkwon-lee-089389145/" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Linkedin</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.linkedin.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">12</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">28</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/CPP/">
+            <span class="level-start">
+                <span class="level-item">CPP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Life/">
+            <span class="level-start">
+                <span class="level-item">Life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Machine-Learning/">
+            <span class="level-start">
+                <span class="level-item">Machine Learning</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Network/Lab/">
+            <span class="level-start">
+                <span class="level-item">Lab</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/OCSO/">
+            <span class="level-start">
+                <span class="level-item">OCSO</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Parallel-Computing/">
+            <span class="level-start">
+                <span class="level-item">Parallel Computing</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
+                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
+                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
+                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
+                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
+                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPP/">
+                        <span class="tag">CPP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keyboard/">
+                        <span class="tag">Keyboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Layer/">
+                        <span class="tag">Layer</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Summary/">
+                        <span class="tag">Summary</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Theory/">
+                        <span class="tag">Theory</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/CPP/">
+            <span class="level-start">
+                <span class="level-item">CPP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Life/">
+            <span class="level-start">
+                <span class="level-item">Life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Machine-Learning/">
+            <span class="level-start">
+                <span class="level-item">Machine Learning</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Network/Lab/">
+            <span class="level-start">
+                <span class="level-item">Lab</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/OCSO/">
+            <span class="level-start">
+                <span class="level-item">OCSO</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Parallel-Computing/">
+            <span class="level-start">
+                <span class="level-item">Parallel Computing</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
+                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
+                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
+                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
+                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
+                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPP/">
+                        <span class="tag">CPP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keyboard/">
+                        <span class="tag">Keyboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Layer/">
+                        <span class="tag">Layer</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Summary/">
+                        <span class="tag">Summary</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Theory/">
+                        <span class="tag">Theory</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/avatar.png" alt="SK Lee" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Sungkwon Lee&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://github.com/qqskda',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

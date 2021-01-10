@@ -1,0 +1,9 @@
+﻿Signal,Pros/Cons
+Packet Loss,"* Really obvious - 얘만 도착 안하니까
+* 다만 혼잡을 앞서 예측하지는 못함"
+Packet Delays,"* 혼잡을 미리 예상할 수 있음 (조금 늦어지니까 전보다)
+* 물론 이 혼잡은 추론되는것 (사실과 다를수 있음)"
+Router Explicit Congestion Notification,"* 혼잡을 미리 알 수 있음 (라우터가 알려주니까)
+* 라우터와 호스트간에 협조가 필요함 
+   * 라우터가 송신자에게 보내는게 아니라 데이타그램에 플래그를 설정해서 수신자에게 전달
+   * 수신자는 해당 ACK를 받을때 ECN flag 를 set 해서 보내는거"

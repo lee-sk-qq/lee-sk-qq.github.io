@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.1" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Category: Parallel Computing - SK Lee</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="SK Lee">
+<meta property="og:url" content="https://github.com/qqskda/categories/Parallel-Computing/index.html">
+<meta property="og:site_name" content="SK Lee">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/images/og_image.png">
+<meta property="article:author" content="Sungkwon Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/images/og_image.png">
+<meta name="twitter:creator" content="@qqskda">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/avatar.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/monokai-sublime.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/avatar.png" alt="SK Lee" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/qqskda">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">Categories</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">Parallel Computing</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/05/01/Parallel/Week%206%20SMP%20Hardware/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/SMP.jpg" alt="Shared Memory Address">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-05-01T10:23:00.000Z">May 01, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    21 minutes read (About 3124 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/05/01/Parallel/Week%206%20SMP%20Hardware/">Shared Memory Address</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference : </p>
+<ul>
+<li>Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</li>
+<li>The Australian National University CECS</li>
+</ul>
+<h1 id="Shared-Memory-Hardware"><a href="#Shared-Memory-Hardware" class="headerlink" title="Shared Memory Hardware"></a>Shared Memory Hardware</h1><p>Uniform Memory Acccess Shared Address Space with cache: 보통 UMA와 같지만 로컬 캐시를 가지고 있음</p>
+<p>NUMA with cache: 보통 NUMA와 비슷함. 프로세서, 캐시, 메모리 한그룹이 묶여있고 이 그룹이 Interconnection Network을 통해서 연결되어 있음.</p>
+<h2 id="Shared-Address-Space-Systems"><a href="#Shared-Address-Space-Systems" class="headerlink" title="Shared Address Space Systems"></a>Shared Address Space Systems</h2><ul>
+<li>만약 로컬 메모리에 대한 접근이 원격 접근보다 가격이 싸다면  (즉 NUMA) 보다 싸다면 Shared Address Space Systems가 알고리즘에 포함되어야 함.<ul>
+<li>어떻게, 운영체제가 호환되는지는 다른 문제임</li>
+</ul>
+</li>
+<li>보통 공유 주소 공간을 가지고 있는게 프로그래밍 하기 쉬운이유가, 읽기 전용의 시스템은 그냥 순차적 프로그램 짜듯이 짜면됨. 다란 읽기/쓰기 같은경우, 병행적 접근때문에 MUTEX 가 필요함.</li>
+<li>주요 프로그래밍 모델들은 쓰레드와 directive based (컴파일러에 해당 인풋을 어떻게 처리할지 지시하는 언어적 구조) 이다. (Pthreads and OpenMP)</li>
+<li>동기화는 락과 관련된 메카니즘을 사용한다.</li>
+</ul>
+<h3 id="SASS-with-Shared-memory-computers"><a href="#SASS-with-Shared-memory-computers" class="headerlink" title="SASS with Shared memory computers"></a>SASS with Shared memory computers</h3><ul>
+<li>공유 메모리는 전통적으로 메모리가 물질적으로 여러 프로세서들에게 연결되고, 모든 프로세서가 해당 메모리에 동일한 접근 권한을 가진곳에 사용되어 왔다.<ul>
+<li>해당 방식은 UMA 라고 한다.</li>
+<li>SMP는 원래 Symmetric Multi-Processor라 하여 모든 CPU들이 동일한 운영체제 성능을 (인터럽트나 다른 시스템콜 등) 가진것을 칭했는데, 요즘은 Shared Memory Processor의 축약어이다.</li>
+</ul>
+</li>
+<li>분산 메모리 컴퓨터는 각 메모리의 다른 부분이 물질적으로 다른 프로세서와 연결되어 있음에 차이점이 존재한다. 이 distributed momory shared address space computer를 NUMA 시스템이라 한다.</li>
+</ul>
+<h3 id="멀티프로세서에서의-캐시"><a href="#멀티프로세서에서의-캐시" class="headerlink" title="멀티프로세서에서의 캐시"></a>멀티프로세서에서의 캐시</h3><p>여러장의 데이터들이 여러 프로세서들에 의해 값이 변화된다.</p>
+<ul>
+<li>시스템 안의 각각의 물리적인 메모리 워드를 찾아낼 수 있는 주소변환 메카니즘, 그리고 여러 데이터들의 병행적 수행들이 잘 정의된 세만틱들을 가지고 있어야 한다.</li>
+<li>여러 프로세서들의 접근에 의한 캐시값의 일관성유지가 필요함.</li>
+<li>몇 기기들은 공유 주소 공간 메커니즘까지만 관여하고 일관성은 시스템이나 유저레벨의 소프트웨어에 일임한다.</li>
+</ul>
+<h3 id="Cache-memory-Coherency"><a href="#Cache-memory-Coherency" class="headerlink" title="Cache/memory Coherency"></a>Cache/memory Coherency</h3><ul>
+<li>매모리 시스템은 다음 사항들을 지키면 일관적이다<ul>
+<li>실행된 순서대로 (Ordered as Issued) : 즉 한 프로세서가 읽고 수정하는동안, 다른 프로세서가 해당 값은 수정하지 않을때 (읽기는 가능)</li>
+<li>쓰기 전달 (Write Propagation): p1 reads, p2 writes, then p1 should have value of p2.</li>
+<li>Write Serialization: 다른 프로세서들이 볼때 두 프로세서가 두 쓰기를 실행한 순서를 정확히 알고 있다면.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Cache-Coherency-Proctocol"><a href="#Cache-Coherency-Proctocol" class="headerlink" title="Cache Coherency Proctocol"></a>Cache Coherency Proctocol</h3><p><a href="https://goodgid.github.io/Cache-Coherence/#%EC%BA%90%EC%8B%9C-%EA%B4%80%EB%A0%A8-%EC%9A%A9%EC%96%B4">캐시 일관성(Cache Coherence)</a></p>
+<p>Invalidate Protocol: P0 P1이 같은 값을 읽었는데 P0가 값을 바꾸면, 해당 메모리와 이 값을 읽은 P1에게 이 값은 Invalidate되었음을 알려주는 방식 (이 값 쓰지마라) - 보통 이 방식을 사용 </p>
+<p>Update Protocol: P0 P1이 같은 값을 읽었는데 P0가 값을 바꾸면, 메모리와 P1이 가지고 있는 해당값을 업데이트 해줌.</p>
+<p>비교:</p>
+<ul>
+<li>업데이트 프로토콜의 경우 같은 단어에 대한 여러 쓰기는 (거의 동시 읽기) 여러 쓰기 브로드캐스트s 를 필요로 한다. 이에 비해 Invalidate는 단 하나의 initial invalidation을 필요로 함.</li>
+<li>업데이트 프로토콜의 경우 여러 복수단어들의 캐시 블록들에게 각각의 캐시 블록 (라인)에 쓰여진 각각의 값들은 브로드캐스트 되어야 한다. 즉 한 블록에 한 단어만 보낼수 있음 (즉 여러 n 값들은 n번 보내져야 함). 반대로 invalidate only require one line.</li>
+<li>업데이트 프로토콜의 경우 한 프로세서가 한 값을 쓰고, 이 쓰여진 값이 다른곳에서 읽혀지는데 걸리는 지연시간이 더 적다. (즉 invalidate에 비해 값이 쓰여지고 읽혀지는 지연이 짧다는말)</li>
+</ul>
+<h3 id="False-Sharing"><a href="#False-Sharing" class="headerlink" title="False Sharing"></a>False Sharing</h3><p>두 프로세서는 같은 캐쉬라인에서 다른 부분을 수정함.</p>
+<p>Invalidate의 경우 핑퐁된 캐시 라인들을 이용한다.</p>
+<p>Update의 경우 로컬로 읽지만, 프로세서간의 업데이트 트래픽을 많이 발생시킨다.</p>
+<p>다음 사항들을 병력 프로그래밍이나 시스템을 디자인 할때 항상 염두해야한다</p>
+<ul>
+<li>캐시라인 사이즈, 길수록 좋다</li>
+<li>캐시 라인 사이즈를 고려한 데이터 구조의 alignment</li>
+</ul>
+<h3 id="Implementation-of-Cache-Coherency"><a href="#Implementation-of-Cache-Coherency" class="headerlink" title="Implementation of Cache Coherency"></a>Implementation of Cache Coherency</h3><ul>
+<li>조그만 스케일의 버스 기반 기기들의 경우<ul>
+<li>한 프로세서는 반드시 쓰기 invalidation을 브로드캐스트 할 수 있도록 버스에 대한 접근 할 수 있어야 한다.</li>
+<li>경쟁하는 두 프로세서들의 경우, 먼저 버스에 접근을 얻는 프로세서가 해당 데이터를 invalidate 한다 (즉 먼저 오는 프로세서의 값을 사용하는것)</li>
+</ul>
+</li>
+<li>캐시 미스의 경우 데이터의 최신 카피를 위치해야 한다.<ul>
+<li>write-through cache 의 경우 쉬움</li>
+<li>Write-back cache의 경우, 각 프로세서들의 캐시는 버스를 감시하며 데이터의 최신 카피가 있다면 반응한다 (snoop - 감시)</li>
+</ul>
+</li>
+<li>읽기의 경우 다른 카피들이 해당 블록을 캐시했는지 알고싶어한다 (즉 해당 블록이 사용중인지)<ul>
+<li>write-back cache가 버스에 detail을 넣을지 말지 결정하기 위해서라던지</li>
+<li>태그를 이용해서 공유 status를 통해 관리한다</li>
+</ul>
+</li>
+<li>프로세서 멈춤을 최소화하기<ul>
+<li>태그들의 복사나, 혹은 inclusive cache 를 여러개 갖던지 하는 방식으로</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/Week%206%20SMP%20Hardware/Untitled.png" alt=""></p>
+<p>위 그래프와 아래 값들의 변화를 주의해서 살펴본다.</p>
+<p><img src="/image/Week%206%20SMP%20Hardware/Untitled%201.png" alt=""></p>
+<h3 id="스누피-캐시-시스템"><a href="#스누피-캐시-시스템" class="headerlink" title="스누피 캐시 시스템"></a>스누피 캐시 시스템</h3><ul>
+<li>모든 캐시들은 모든 변화를 브로드캐스트 한다<ul>
+<li>버스나 링 위상의 interconnects에 쉽게 적합할수 있다 (implement)</li>
+<li>그러나 확장성이 재한되어 있다 (8개 이하).</li>
+</ul>
+</li>
+<li>모든 프로세서들의 캐시들은 interconnect port의 변화를 감지한다 (관심있는 부분만)<ul>
+<li>관련 프로토콜의 상태 다이어그램을 통해 태그들이 업데이트 된다.</li>
+</ul>
+</li>
+<li>하드웨어 감시는 읽기가 한 더러운 카피를 가지고 있는 캐시블록에 대해 읽기가 실행되었으며, 이 행위가 버스 컨트롤에서 데이터를 빼내고, 관련 태그를 S로 바꾸었음을 알아차릴 수 있다. (예를 들어)</li>
+</ul>
+<p><img src="/image/Week%206%20SMP%20Hardware/Untitled%202.png" alt=""></p>
+<h3 id="Directory-Cache-Based-Systems"><a href="#Directory-Cache-Based-Systems" class="headerlink" title="Directory Cache-Based Systems"></a>Directory Cache-Based Systems</h3><p>디렉터리 기반 일관성 구조는 <strong>캐시 블록의 공유 상태, 노드 등을 기록하는 저장 공간인 디렉터리를 이용</strong>하여 관리하는 구조이다 - presence bitmap을 전역 메모리와 함깨 이용하여 각각의 메모리 블락이 어느 캐시에 위치하고 있는지를 디렉터리에 저장하는 방식.</p>
+<p>이에 반해 디렉터리 기반 구조는 어떤 노드에서 해당 캐시 블록의 복사본을 가지고 있는지를 알고 있기 때문에 <strong>특정 노드</strong>에만 요청을 하게 된다. 따라서 브로드캐스트가 불필요하게 되어 대역폭이 상대적으로 작아도 된다. 이 때문에 64개 이상의 프로세서를 가지는 대규모 시스템에서는 디렉터리 기반의 캐시 일관성 프로토콜을 사용하는 경우가 많다.</p>
+<p>이 디렉터리는 메모리와 붙어 있는데 공유 메모리의 경우 디렉터리가 따로, 로컬 메모리를 이용하는 경우 각각의 로컬 디렉터리를 사용한다.</p>
+<ul>
+<li>쉬운 프로토콜은 다음과 같을것이다<ul>
+<li>shared: 프로세서들은 블락 캐시를 가지고 있고, 메모리 값은 최신화를 유지한다</li>
+<li>Uncached: 어느 프로세서도 카피를 가지고 있지 않는다 (즉 뺴서 저장하고 하지 않음)</li>
+<li>Exclusive: 오직 한 프로세서만 (주인) 카피를 가지고 있고, 메모리에 있는 값은 옛날 값이다.</li>
+</ul>
+</li>
+<li>공유되고 깨끗한 캐시 블록에대해 쓰기/읽기 미스와 쓰기는 다음과 같은 사항을 반드시 지켜야 한다<ul>
+<li>이 블록에 대한 현 상태를 체크하기 위해 디렉터리 주소를 처음에 참조해야한다 (즉 directory entry를 먼저 refernce해서 상태 체크 해야함)</li>
+<li>그후에 entry의 상태와 presence bitmap을 업데이트한다</li>
+<li>presence bitmap에 있는 해당 프로세서들에게 적절한 상태 업데이트 소식을 전달한다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="디렉터리-기반-시스템의-문제점"><a href="#디렉터리-기반-시스템의-문제점" class="headerlink" title="디렉터리 기반 시스템의 문제점"></a>디렉터리 기반 시스템의 문제점</h3><p>디렉터리 저장의 메모리 요구량</p>
+<p>특정 데이터 접근 방법에 따른 퍼포먼스 차이</p>
+<p>presence bitmap을 어떻게 관리할것인지 (복사? 꼭?)</p>
+<p>어떻게 presence bitmap에 존재하는 모든 프로세서들에게 invalidation을 보낼것인지</p>
+<ul>
+<li>MESI 프로토콜 <a href="https://goodgid.github.io/Cache-Coherence/#%EC%BA%90%EC%8B%9C-%EA%B4%80%EB%A0%A8-%EC%9A%A9%EC%96%B4">출처</a><ul>
+<li>캐시 메모리의 일관성을 유지하기 위해서 <strong>별도의 플래그(flag)</strong>를 할당한 후 플래그의 상태를 통해 데이터의 유효성 여부를 판단하는 프로토콜이다.</li>
+<li>데이터 캐시는 태그 당 <strong>두 개의 상태 비트</strong>를 <strong>포함</strong>한다.</li>
+<li>멀티프로세서 시스템에서 캐시 메모리의 일관성을 유지하기 위해 메모리가 가질 수 있는 <strong>4가지 상태</strong>를 정의한다.<ul>
+<li>Modified(수정) 상태 : 데이터가 수정된 상태</li>
+<li>Exclusive(배타) 상태 : 유일한 복사복이며, 주기억장치의 내용과 동일한 상태</li>
+<li>Shared(공유) 상태 : 데이터가 두 개 이상의 프로세서 캐쉬에 적재되어 있는 상태</li>
+<li>Invalid(무효) 상태 : 데이터가 다른 프로세스에 의해 수정되어 무효화된 상태</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Coherency-Wall-캐시-일관성의-한계및-단점"><a href="#Coherency-Wall-캐시-일관성의-한계및-단점" class="headerlink" title="Coherency Wall - 캐시 일관성의 한계및 단점"></a>Coherency Wall - 캐시 일관성의 한계및 단점</h2><ul>
+<li>인터커넥트는 로직 서킷들에 비해 50배나 넘는 에너지를 소모함</li>
+<li>각각의 invalidation을 위해 브로드캐스트 메세지를 필요로 하는 프로토콜의 경우<ul>
+<li>에너지 소비는 O(p), overall cost = O(P^2)</li>
+<li>네트워크의 지연을 일으키기도 하다</li>
+</ul>
+</li>
+<li>디렉터리 기반 프로토콜은 같은 데이터를 들고 있는 곳에만 메세지를 보낸다<ul>
+<li>훨씬 확장성이 높으며 가벼운 데이터 공유를 가진다 (가진 애들끼리만 대화 하니까)</li>
+<li>이외는 모두 안좋다 잘못된 direction으로 인한 오버헤드도 발생함</li>
+<li>한 캐시 라인당, 비트 벡터의 길이가 a 라 하면 O(a^2) 의 공간 소모</li>
+</ul>
+</li>
+<li>false sharing은 어느 경우라고 트래픽을 낭비하는 모습을 보여줌</li>
+<li>Atomic instructions 메모리 시스템의 동기화를 LLC (Last level cache) 까지 낮추는데 비용이 각각 O(p)</li>
+</ul>
+<h2 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h2><ul>
+<li>캐시 일관성은 실행 순서, 쓰기 전달, 쓰기 순차 세개의 요소를 가지고 있다</li>
+<li>두가지 방식을 가지고 있는데<ul>
+<li>브로드캐스트/스눕: 중소 규모의 인트라 칩, 그리고 작은 인터 소켓시스템에 적합</li>
+<li>디렉터리 기반: 대중 규모의 인터 소켓 시스템에 적합</li>
+</ul>
+</li>
+<li>False sharing: 잠재적인 퍼포먼스 문제가 있음 (특히 캐시 라인이 길어질수록)</li>
+<li>대규모의 인트라 칩 시스템의 경우 일관성은 보통 운영체제나, Message Passing 프로그래밍 모델을 이용한다.</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/30/Parallel/Week%205%202%20Message%20Passing%20Interface%202/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/mpisecond.jpg" alt="Message Passing Interface 2">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-30T03:41:00.000Z">Mar 30, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 870 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/30/Parallel/Week%205%202%20Message%20Passing%20Interface%202/">Message Passing Interface 2</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="MPI-1"><a href="#MPI-1" class="headerlink" title="MPI-1"></a>MPI-1</h3><ol>
+<li>Fixed process model</li>
+<li>point-to-point communications</li>
+<li>collective operations.</li>
+<li>communicators for safe library writing</li>
+<li>utility routines</li>
+</ol>
+<h3 id="MPI-2"><a href="#MPI-2" class="headerlink" title="MPI-2"></a>MPI-2</h3><ol>
+<li>Dynamic process management.</li>
+<li>one-sided communications</li>
+<li>cooperative I/O</li>
+</ol>
+<h3 id="Dynamic-Process-Management"><a href="#Dynamic-Process-Management" class="headerlink" title="Dynamic Process Management"></a>Dynamic Process Management</h3><ul>
+<li>MPI - 1 had a static or fixed number of processes<ul>
+<li>Cannot add nor delete processes</li>
+<li>The cost of having idle processes may be large.</li>
+</ul>
+</li>
+<li>Some applications favour dynamic spawning<ul>
+<li>run-time assessment of environment</li>
+<li>serial applications with parallel modules</li>
+<li>scavenger applications.</li>
+</ul>
+</li>
+</ul>
+<p><strong>CAUTION: process initiation is expensive, hence requires careful thought.</strong></p>
+<h3 id="MPI-2-Process-Management"><a href="#MPI-2-Process-Management" class="headerlink" title="MPI-2 Process Management"></a>MPI-2 Process Management</h3><ol>
+<li>Parents spawn children</li>
+<li>Existing MPI applications can connect</li>
+<li>Formerly independent sub-applications can tear down communications and become independent. </li>
+</ol>
+<p>Task Spawning  - MPI_spawn();</p>
+<ol>
+<li>It is a collective operation over the parent process’ communicator.</li>
+<li>info <em>parameter</em>: how to start the new processes (host, architecture, work dir, path).</li>
+<li><em>intercomm</em> and <em>errcodes</em> are returned values.</li>
+</ol>
+<h3 id="Communicators"><a href="#Communicators" class="headerlink" title="Communicators"></a>Communicators</h3><ul>
+<li>MPI processes are identified by (group, rank) pairs.</li>
+<li>Communicators are either infra group,  or<ul>
+<li>inter group : ranks refer to processes in the remote group.</li>
+</ul>
+</li>
+<li>Processes in the parent and childern group each have thier own MPI_COMM_WORLD</li>
+<li>Send and Recv have a destination and a inter/infra communicator.</li>
+<li>Possible to merge processes or free parents from children by MPI_Intercomm_merge() and MPI_Comm_free().</li>
+</ul>
+<p><img src="/image/Week%205%202%20Message%20Passing%20Interface%202/Untitled.png" alt=""></p>
+<h3 id="One-sided-Communications"><a href="#One-sided-Communications" class="headerlink" title="One-sided Communications"></a>One-sided Communications</h3><p>For traditional MP, there is an implicit synchronisation - it may be delayed by asynchronous message passing.</p>
+<p>In One-sided Communications,</p>
+<ul>
+<li>One process specifies all communication parameters.<ul>
+<li>Data transfer and synchronisation are separate.</li>
+</ul>
+</li>
+<li>Typical operations are put, get, accumulate. MPI_put()</li>
+</ul>
+<h3 id="MPI-2-Remote-Memory-Access-RMA"><a href="#MPI-2-Remote-Memory-Access-RMA" class="headerlink" title="MPI-2 Remote Memory Access (RMA)"></a>MPI-2 Remote Memory Access (RMA)</h3><ul>
+<li>Processes assign a portion (or window) of their address space that explicitly expose to RMA operations. MPI_Win()</li>
+<li>Two types of targets<ul>
+<li>Active target RMA: requires all processors that created the window to call  MPI_Win_fence() before any RMA operations is guaranteed to complete.<ul>
+<li>One-sided communication: no process is req to post a recv.</li>
+<li>Cooperative in that all processes must synchronize before any of them are guaranteed to have got/put data.</li>
+</ul>
+</li>
+<li>Passive target RMA: only requirment is that originating process places MPI_Win_Lock() and MPI_Win_Unlock() before and after the data transfer.<ul>
+<li>Transfer is guranteed to have completed on return from unlock.</li>
+<li>Known as one-sided communication.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Potential unsync can be avoided by locks or mutexes.</li>
+</ul>
+<h3 id="MPI-2-File-Operations"><a href="#MPI-2-File-Operations" class="headerlink" title="MPI-2 File Operations"></a>MPI-2 File Operations</h3><ul>
+<li>Positioning: explicit offset, shared pointer/ individual pointers</li>
+<li>Synch: blocking/non-blocking (async)</li>
+<li>Coordination: collective / non-collective</li>
+<li>File types:<ul>
+<li>is a datatype made up of elementary types; MPI_Int()</li>
+<li>allows to specify non-contiguous accesses.</li>
+<li>can be tiled. s.t. process writes to block of the file.</li>
+</ul>
+</li>
+</ul>
+<h3 id="MPI-IO-Usage"><a href="#MPI-IO-Usage" class="headerlink" title="MPI-IO Usage"></a>MPI-IO Usage</h3><ul>
+<li>각 프로세서는 자신의 데이터를 따로 파일에 쓸수 있다</li>
+<li>프로세서들은 하나의 파일로 데이터를 추가 할 수 있다. (로그파일 형식) - 한 파일 포인터 사용</li>
+<li>프로세서들은 협력해서 하나의 큰 매트릭스를 파일에 쓸수 있다<ul>
+<li>파일을 타일 하기 위한 파일타입 생성</li>
+<li>각가의 포인터를 이용</li>
+<li>모음 명령어를 이용하여 데이터 셔플링 가능케 함</li>
+</ul>
+</li>
+<li>병렬 파일 시스템이 사용될수 있지만 그냥 평범한 파일 시스템으로 보일 수 있음</li>
+</ul>
+<h3 id="Simple-MPI-I-O"><a href="#Simple-MPI-I-O" class="headerlink" title="Simple MPI I/O"></a>Simple MPI I/O</h3><p>각 개인 포인터를 이용한 협력 파일 명령어. 각각의 프로세서의 메모리가 할당된 파일 타일에 데이터를 넣는 형식</p>
+<p><img src="/image/Week%205%202%20Message%20Passing%20Interface%202/Untitled%201.png" alt=""></p>
+<ul>
+<li>MPI_File_Open() 을 이용하여 커뮤니케이터와, 각 개인 포인터와 공유 파일 포인터를 생성함<ul>
+<li>Info parameter 는 성능 조절, 특이 케이스 핸들링등에 대해 파일에 공유</li>
+</ul>
+</li>
+<li>각각의 읽기 쓰기는 포지셔닝을 필요로 하는데 이는<ul>
+<li>MPI_File_Seek; …Read() —&gt; 개인 파일 포인터 이용</li>
+<li>MPI_File_Read_at; —&gt; 해당 오프셋에서 직접적으로 읽기</li>
+<li>MPI_File_seek_shared; … read_shared() —&gt; 공유 파일 포인터 이용. Seek_shared is collective.</li>
+<li>읽기 쓰기로 버퍼, 카운트, 데이터 형식을 specify 한다 (보통 send/recev 처럼)</li>
+<li>MPI_File_close() is also collective.</li>
+</ul>
+</li>
+</ul>
+<h3 id="MPI-2-and-Beyond"><a href="#MPI-2-and-Beyond" class="headerlink" title="MPI-2 and Beyond"></a>MPI-2 and Beyond</h3><ul>
+<li>MPI-2 는 많은 기능을 넣었는데 1의 기능보다 훨씬 느려졌고, 해당 사용 회사들의 기능들은 오랫동안 미완성이었음</li>
+<li>MPI-3는 단방향 통신과 non-blocking collective 를 향상 시킴</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/29/Parallel/Week5%201%20SynchComp/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/barrier.jpg" alt="Synchronous Computations">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-29T10:07:00.000Z">Mar 29, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 minutes read (About 750 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/29/Parallel/Week5%201%20SynchComp/">Synchronous Computations</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference: Barry Wilkinson, Michael Allen - Parallel Programming_ Techniques and Applications Using Networked Workstations and Parallel Computers (2nd Edition)  -Prentice Hall (2004)</p>
+<h1 id="Barrier"><a href="#Barrier" class="headerlink" title="Barrier"></a>Barrier</h1><ul>
+<li>A particular reference point for processors which no one can proceed until every processors (or stated number) get to the point.</li>
+<li>Commonly when processes need to exchange data and then continue.</li>
+<li>Once the last one has arrived, inactive processes are awakened.</li>
+<li>Apply both shared memory, and message-passing systemss</li>
+</ul>
+<h2 id="Barrier-MPI"><a href="#Barrier-MPI" class="headerlink" title="Barrier - MPI"></a>Barrier - MPI</h2><ul>
+<li>MPI_Barrier(MPI_Comm comm) is called by each process and return once everyone arrives.</li>
+<li>Naturally synchronus, and message tags are not used.</li>
+</ul>
+<h3 id="Counter-Implementation"><a href="#Counter-Implementation" class="headerlink" title="Counter Implementation"></a>Counter Implementation</h3><p>Called a linear barrier as well. Counting the number of processes is handled by a single counter.</p>
+<ul>
+<li>Implementations must handle possible time delays for eg. two barriers in quick succession.</li>
+<li>There are two phases:<ul>
+<li>Arrival Phase : Send msg to master and stay inactive or idle as not all are arrived.</li>
+<li>Departure Phase : Receive from master and released.</li>
+</ul>
+</li>
+</ul>
+<p>— Remember Send() is not the blocking (depend on the buffer size), but Receive() always do the blocking. Cost = O(p) for time and computation complexity</p>
+<h3 id="Tree-Based-Implementation"><a href="#Tree-Based-Implementation" class="headerlink" title="Tree-Based Implementation"></a>Tree-Based Implementation</h3><ul>
+<li>Use of decentralized tree construction.</li>
+<li>Arrival and Depature order is reversal as it supposed to be.</li>
+<li>Since it is up and down, O(2 lg p) = O(lg p) for communication time.</li>
+</ul>
+<p><strong>Note: broadcast does not ensure synch in terms of a global time</strong></p>
+<h3 id="Butterfly-Omega-Barrier"><a href="#Butterfly-Omega-Barrier" class="headerlink" title="Butterfly (Omega) Barrier"></a>Butterfly (Omega) Barrier</h3><p>Pairs of processes sync at each stage as following</p>
+<ol>
+<li>01 23 45 67 (4 has 4,5)</li>
+<li>02 13 46 57 (4 has 4,5,6,7)</li>
+<li>04 15 26 37 (4 has 0,1,2,3,4,5,6,7)</li>
+</ol>
+<p>After the stages, every processes are synchronized and can continue. O(2 lg p) = O(lg p) for communication time.</p>
+<h3 id="Local-Synchronization"><a href="#Local-Synchronization" class="headerlink" title="Local Synchronization"></a>Local Synchronization</h3><p>It can be formulated for only essential synchronization among few processes, instead of being “wastefully” idle — In a mesh or a pipeline and only neighbours sync. Not using barriers, but ues Receive to communicate and idle certian processes to exchange its data.</p>
+<h3 id="DeadLock"><a href="#DeadLock" class="headerlink" title="DeadLock"></a>DeadLock</h3><p>It will occur using synchronous routines (or blocking routines without sufficient buffering) if both performs the send first to each other. In general, assign even-numbere in send first, odd-numbered in rece first coule bo a good solution.</p>
+<p>MPI_Sendrecv() and MIP_Sendrecv_replace() —&gt; deadlock prevent commands.</p>
+<hr>
+<h3 id="Data-Parallel-Computations"><a href="#Data-Parallel-Computations" class="headerlink" title="Data Parallel Computations"></a>Data Parallel Computations</h3><ul>
+<li>ease of programming</li>
+<li>ease of increase to larger problems.<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">forall (i = <span class="number">0</span>; i&lt; n; i++)&#123;</span><br><span class="line">	a[i] = a[i] + k;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// In SIMD, those particularly designed for these, implicitly has barrier itself</span></span><br><span class="line"><span class="comment">// If MP computer using library routines, generally explicit barrier is required.</span></span><br><span class="line"><span class="comment">// Following is an example</span></span><br><span class="line">i = myrank; <span class="comment">// myrank is a process rank between 0 and n-1</span></span><br><span class="line">a[i] = a[i] + k; <span class="comment">/* body */</span></span><br><span class="line">barrier(mygroup) <span class="comment">// consider the barrier overheads as it may longer than its body</span></span><br></pre></td></tr></table></figure>
+<h1 id="Synchronous-Iteration"><a href="#Synchronous-Iteration" class="headerlink" title="Synchronous Iteration"></a>Synchronous Iteration</h1></li>
+</ul>
+<p>Parallel started at the beginning of the iteartion, yet each processes cannot proceed to the next iteration unless all the assigined tasks in the iteration is completed.</p>
+<h2 id="Jacobi-Iteration-all-x-are-updated-together"><a href="#Jacobi-Iteration-all-x-are-updated-together" class="headerlink" title="Jacobi Iteration: all x are updated together."></a>Jacobi Iteration: all x are updated together.</h2><ul>
+<li>guess X, and iterate while hope it converges.</li>
+<li>In converges if tha matrix is diagonally dominant.</li>
+<li>Terminates whin convergence is achieved (subtract of two is within the error tolerance)</li>
+</ul>
+<p><img src="/image/Week5%201%20SynchComp/Untitled.png" alt=""></p>
+<p><a href="https://ko.wikipedia.org/wiki/%EC%95%BC%EC%BD%94%EB%B9%84_%EB%B0%A9%EB%B2%95">야코비 방법</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Sequential </span></span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">	x[i] = b[i]; <span class="comment">//b[] holding the constants</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (iteration = <span class="number">0</span>; interation &lt; limit; iteration++)&#123;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)&#123;        <span class="comment">// n number of rows and cols.</span></span><br><span class="line">   		sum = -a[i][i] * x[d]         <span class="comment">// Jacobi method excludes itself.</span></span><br><span class="line">   		<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)&#123;      <span class="comment">// each row summation iteration</span></span><br><span class="line">   			sum = sum + a[i][j] * x[j]  <span class="comment">// summation of one row</span></span><br><span class="line">   		&#125;</span><br><span class="line">        new_x[i] = (b[i] - sum) / a[i][i] <span class="comment">//a[i][i] cannot be zero</span></span><br><span class="line">    &#125;</span><br><span class="line">   	<span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++&#125; x[i] = new_x[i] <span class="comment">//data move</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Parallel</span></span><br><span class="line">i = process_id;</span><br><span class="line">x[i] = b[i];                      <span class="comment">// assign each process array	for (iteration = 0; interation &lt; limit; iteration++)&#123;</span></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)&#123;          <span class="comment">// n number of rows and cols.</span></span><br><span class="line">    sum = -a[i][i] * x[j]         <span class="comment">// Jacobi method excludes itself.</span></span><br><span class="line">   	<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)&#123;      <span class="comment">// each row summation iteration</span></span><br><span class="line">  		sum = sum + a[i][j] * x[j]  <span class="comment">// summation of one row</span></span><br><span class="line">    &#125;</span><br><span class="line">   	new_x[i] = (b[i] - sum) / a[i][i] <span class="comment">//a[i][i] cannot be zero</span></span><br><span class="line">    broadcast_gather (&amp;new_x[i], new_x); <span class="comment">//spread and gather data over processes</span></span><br><span class="line">    global_barrier();</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++&#125; x[i] = new_x[i] <span class="comment">//data move</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/Week5%201%20SynchComp/Untitled%201.png" alt=""></p>
+<p>Broadcast_gather expect all the processes to have matching routines. Hence further implementation must be made to avoid deadlocks whet each prcoss can stop once it met its tolerance (so each has diff num of iterations). It can be easily replaced with send and recv().</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p><img src="/image/Week5%201%20SynchComp/Untitled%202.png" alt=""></p>
+<h2 id="Heat-Equation"><a href="#Heat-Equation" class="headerlink" title="Heat Equation"></a>Heat Equation</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Sequential Code</span></span><br><span class="line"><span class="keyword">for</span> (iter = <span class="number">0</span>; iter &lt; limit; iter++)&#123;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span> (j = <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">        	q[i][j] = <span class="number">0.25</span> * (h[i<span class="number">-1</span>][j]+....);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   	<span class="keyword">for</span> (i =<span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">   		<span class="keyword">for</span> (j = <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">   			h[i][j] = g[i][j];</span><br><span class="line">   		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">// Parallel Code</span></span><br><span class="line"><span class="keyword">for</span> (iter =<span class="number">0</span>; iter &lt; max_iter; iter++)&#123;</span><br><span class="line">	g = <span class="number">0.25</span> * (w + x + y + z+);</span><br><span class="line">	send(&amp;g, ...)</span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">	recv (&amp;z, ...)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/image/Week5%201%20SynchComp/Untitled%203.png" alt=""></p>
+<ul>
+<li>Block Partitioning: Each process generates and receives 4 messages each —&gt; hence total of 8.</li>
+<li>Strpi Partitioning: Two edges where data points are exchanged. Each edge generates and receives 2 messages —&gt; hence total of 4.</li>
+</ul>
+<p><strong>In general, strip partition is best for a large startup time, and a block partition is best for a small start up.</strong> </p>
+<p><img src="/image/Week5%201%20SynchComp/Untitled%204.png" alt=""></p>
+<p>For p ≥ 9, if above equation is fulfilled, the block partition has a larger communication time.</p>
+<h3 id="Safety-amp-Deadlock"><a href="#Safety-amp-Deadlock" class="headerlink" title="Safety &amp; Deadlock"></a>Safety &amp; Deadlock</h3><p><img src="/image/Week5%201%20SynchComp/Untitled%205.png" alt=""></p>
+<p>As it is unreliable to assume the internal buffer will be enough, there are two methods.</p>
+<ol>
+<li>Switching send and recv in different order as mentioned couple of times so far.</li>
+<li>Implement Asynchronus communication using ghost points.</li>
+</ol>
+<p>Assign extra receive buffers for edges where data is exchanged. It is typically translated as extra rows and columns in each process’ local array (known as halo). In this buffer, asynchronus calls such as MPI_Isend() can be used.</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/25/Parallel/Week%202%206%20PerfModels/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/perf.jpg" alt="Perfectly Parallel Models">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-25T08:06:00.000Z">Mar 25, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 474 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/25/Parallel/Week%202%206%20PerfModels/">Perfectly Parallel Models</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference : </p>
+<ul>
+<li>Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</li>
+<li>The Australian National University CECS</li>
+</ul>
+<h2 id="Granularity"><a href="#Granularity" class="headerlink" title="Granularity"></a>Granularity</h2><ul>
+<li>Granularity: size of the tasks<ul>
+<li>Coarse grain: large tasks/many instructions</li>
+<li>Fine grain: small tasks/few instructions</li>
+</ul>
+</li>
+<li>Metric = t_compute / t_communication</li>
+<li>It may depend on number of processors.</li>
+</ul>
+<h2 id="Speedup"><a href="#Speedup" class="headerlink" title="Speedup"></a>Speedup</h2><ul>
+<li>the relative performance between single and multiple processors<ul>
+<li>⇒ S(n) = exe time on single / exe time on p = t_seq / t_par</li>
+</ul>
+</li>
+<li>t_seq should be the fastest known sequential algo; best parallel algo may be differernt</li>
+<li>S_operation(p) = operation count rate with p / operation count rate on single</li>
+<li>Linear speedup = max possible S(n) = p</li>
+<li>if S(P) &gt; P then<ul>
+<li>May imply the algo is not the best one, go and check the seq algo</li>
+<li>May arise due to the unique feature of architecture.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Parallel-Overhead"><a href="#Parallel-Overhead" class="headerlink" title="Parallel Overhead"></a>Parallel Overhead</h2><ul>
+<li>Factors that limit parallel scalability:<ul>
+<li>periods that not all p works + time when one p is active on seq parts</li>
+<li>load imbalance</li>
+<li>extra computations not in the seq code —&gt; seq code in one p might be faster some cases</li>
+<li>communication times</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/Week%202%206%20PerfModels/Untitled.png" alt=""></p>
+<p><img src="/image/Week%202%206%20PerfModels/Untitled%201.png" alt=""></p>
+<p><img src="/image/Week%202%206%20PerfModels/Untitled%202.png" alt=""></p>
+<h2 id="Efficiency-and-Cost"><a href="#Efficiency-and-Cost" class="headerlink" title="Efficiency and Cost"></a>Efficiency and Cost</h2><ul>
+<li>Efficiency: How well using the processors</li>
+</ul>
+<p>$$E = t_{seq} / t_{par} / p = S(p)/p * 100%$$</p>
+<ul>
+<li>Cost: parallel execution time * total num of p<ul>
+<li>Cost optimal = cost has same asymptotic growth as a func of input size as the fastest seq algo on a single processor</li>
+</ul>
+</li>
+</ul>
+<p>$$cost = t_{par} * p = (t_{seq}*p)/S(p) = t_{seq} / E$$</p>
+<h2 id="Adding-n-num-on-n-processors"><a href="#Adding-n-num-on-n-processors" class="headerlink" title="Adding n num on n processors"></a>Adding n num on n processors</h2><p>Adding n in a single core = n; adding n in n processor = lg(n). Therefore speedup = O(n/lg(n))</p>
+<p>cost = number of p * time of execution = n * lg(n) = O(n lg(n))</p>
+<p>Hence it is not cost-optimal</p>
+<p><img src="/image/Week%202%206%20PerfModels/Untitled%203.png" alt=""></p>
+<h2 id="Scalability"><a href="#Scalability" class="headerlink" title="Scalability"></a>Scalability</h2><p>Imprecise measure:</p>
+<ul>
+<li>hardware: 하드웨어를 늘리면 퍼포먼스가 좋아지나?<ul>
+<li>링, 크로스바, 하이퍼큐브 위상을 고려하고 프로세서에 무슨 변화를 줘야 하는지 고려</li>
+</ul>
+</li>
+<li>Algorithm: 사용하고 있는 알고리즘이 더 많은 프로세서와 accomodate 가능 한가?</li>
+<li>Combined: 문제 크기 증가를 프로세서를 증가함으로써 accomodate 가능 한가?</li>
+<li>계산 사이즈를 배로 늘렸을때의 변화를 고려<ul>
+<li>N*N 매트릭스의 N사이즈를 두배로 늘리면, 더하기 계산의 비용은 4배지만 곱하기 비용은 8배로 늘어난다</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/Week%202%206%20PerfModels/Untitled%204.png" alt=""></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/24/Parallel/Week%204%209%20Pipelining/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/pipelining.jpg" alt="Pipelining">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-24T05:35:00.000Z">Mar 24, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 207 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/24/Parallel/Week%204%209%20Pipelining/">Pipelining</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference : Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</p>
+<h1 id="Pipelinig"><a href="#Pipelinig" class="headerlink" title="Pipelinig"></a>Pipelinig</h1><ul>
+<li>There are three types of pipelining;<ol>
+<li>Adding numbers (type 1)</li>
+<li>Insertion Sort (type 2)</li>
+<li>Linear System back substitution (type 3)</li>
+</ol>
+</li>
+<li>Prblems that can be divided into a series of seq tasks that can be completed one after another.</li>
+<li>Typical Scenario<ol>
+<li>독립된 문제가 한 개 이상 계산 될 예정일때 (Instruction)</li>
+<li>각각 여러 계산을 필요로 하는 연결된 데이터들을 계산되어야 할때 (Graphics)</li>
+<li>다른 계산에 필요한 작업이 그 계산이 필요로 하기전에 작업을 마칠수 있을때 (Software)</li>
+</ol>
+</li>
+</ul>
+<h3 id="Type-1-Adding-number"><a href="#Type-1-Adding-number" class="headerlink" title="Type 1 - Adding number"></a>Type 1 - Adding number</h3><p><img src="/image/Week%204%209%20Pipelining/Untitled.png" alt=""></p>
+<ul>
+<li>Single Intance:</li>
+</ul>
+<p><img src="/image/Week%204%209%20Pipelining/Untitled%201.png" alt=""></p>
+<ul>
+<li>Multiple Instance:</li>
+</ul>
+<p><img src="/image/Week%204%209%20Pipelining/Untitled%202.png" alt=""></p>
+<h3 id="Type-2-Insertion-Sort"><a href="#Type-2-Insertion-Sort" class="headerlink" title="Type 2 - Insertion Sort"></a>Type 2 - Insertion Sort</h3><p><img src="/image/Week%204%209%20Pipelining/Untitled%203.png" alt=""></p>
+<h3 id="Type-3-Linear-Equations"><a href="#Type-3-Linear-Equations" class="headerlink" title="Type 3 - Linear Equations"></a>Type 3 - Linear Equations</h3><p>Back substitution —&gt; passes calculated value to solve the other ones (like fibonacci).</p>
+<p><img src="/image/Week%204%209%20Pipelining/Untitled%204.png" alt=""></p>
+<p>Process i performs i sends and receives, i multiply/adds, one division/subtract and one final send</p>
+<p>t_comm = (2i + 1) * (t_s +t_w) and t_comp =  2i + 2</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/24/Parallel/Week%204%208%20Partition/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/partition.jpg" alt="Partition">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-24T04:15:00.000Z">Mar 24, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 365 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/24/Parallel/Week%204%208%20Partition/">Partition</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference : Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</p>
+<h1 id="Partitioning-Strategies"><a href="#Partitioning-Strategies" class="headerlink" title="Partitioning Strategies"></a>Partitioning Strategies</h1><ul>
+<li>Replicated Data Approach (No partitioning)<ul>
+<li>Each has the entire data but does a subset of computation.</li>
+</ul>
+</li>
+<li>Partition to different process (Most Common)<ul>
+<li>Domain Decomposition</li>
+<li>Divide and Conquer</li>
+</ul>
+</li>
+<li>Partition of program func (Less Common)<ul>
+<li>Functional Decomposition</li>
+</ul>
+</li>
+</ul>
+<h2 id="Partition-to-Diff-Process"><a href="#Partition-to-Diff-Process" class="headerlink" title="Partition to Diff Process"></a>Partition to Diff Process</h2><h3 id="Use-MPI-Scatter-and-MPI-reduce-for-Vector-Addition"><a href="#Use-MPI-Scatter-and-MPI-reduce-for-Vector-Addition" class="headerlink" title="Use MPI_Scatter and MPI_reduce for Vector Addition"></a>Use MPI_Scatter and MPI_reduce for Vector Addition</h3><p><img src="Week%204%208%20Partition/Untitled.png" alt=""></p>
+<ul>
+<li>Root sends data to all processes (including itself)</li>
+<li>MPI_Scatterv() —&gt; scatters variable lengths. MPI_Allreduce() —&gt; returns result to all processors</li>
+</ul>
+<p><img src="Week%204%208%20Partition/Untitled%201.png" alt=""></p>
+<h3 id="Domain-Decomp-via-Divide-and-Conquer"><a href="#Domain-Decomp-via-Divide-and-Conquer" class="headerlink" title="Domain Decomp via Divide-and-Conquer"></a>Domain Decomp via Divide-and-Conquer</h3><ul>
+<li>For problems that can be recursively divided into smaller probs of the same type; such as summation.</li>
+<li>The analysis for simple binary tree is as following</li>
+</ul>
+<p><img src="Week%204%208%20Partition/Untitled%202.png" alt=""></p>
+<h3 id="The-Reduce-and-Scan-Abstractions"><a href="#The-Reduce-and-Scan-Abstractions" class="headerlink" title="The Reduce and Scan Abstractions"></a>The Reduce and Scan Abstractions</h3><ul>
+<li>이미 프로세서들에게 파티션된 벡터들의 합이 이에 해당한다.</li>
+<li>Reduce: Combines a set of val to produce a single value; mapping a binary tree communication pattern between processors.</li>
+<li>Scan: performs a seq opreation in parts and carries along the intermediate results.</li>
+</ul>
+<h3 id="Scans"><a href="#Scans" class="headerlink" title="Scans"></a>Scans</h3><ul>
+<li><p>Replacs each element with the cumulative sum of all preceding elements (inclusive or exclusive)</p>
+<p>  <a href="https://en.wikipedia.org/wiki/Parallel_random-access_machine">Parallel random-access machine</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">X = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</span><br><span class="line">Inc_Scan = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">21</span>,<span class="number">28</span>]</span><br><span class="line">Exc_Scan = [<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">21</span>]</span><br><span class="line"><span class="comment">//EX #1 - 8 val on 8 nodes.</span></span><br><span class="line"><span class="keyword">for</span> (d=<span class="number">1</span>; d &lt; N; d ∗= <span class="number">2</span>)</span><br><span class="line">	FORALL (k=<span class="number">0</span>; k &lt; N; k ++) IN PARALLEL</span><br><span class="line">		<span class="keyword">if</span> (k &gt;= d)</span><br><span class="line">			X[k] = X[k−d] + X[k];</span><br><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment">Ex #2 - Bucket Sort</span></span><br><span class="line"><span class="comment">1. Assign one bucket to each processors</span></span><br><span class="line"><span class="comment">2. Assign p small buckets to each processors --&gt; can ues MPI_Alltoall()</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Ex #3 - Integraton (SPMD model using static distribution)</span></span><br><span class="line"><span class="comment">--&gt; Uneven workload, terminating point for small division is an issue.</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The analysis for parallel bucket sort.</p>
+</li>
+</ul>
+<p><img src="Week%204%208%20Partition/Untitled%203.png" alt=""></p>
+<ul>
+<li>The worst case scenario: data is chunked at certain value —&gt; same as the bucket sort problem?</li>
+</ul>
+<h3 id="Barnes-Hut-Algorithm"><a href="#Barnes-Hut-Algorithm" class="headerlink" title="Barnes Hut Algorithm"></a>Barnes Hut Algorithm</h3><ul>
+<li>Algorithm —&gt; It creates oct-tree<ol>
+<li>Divide one cube into 8</li>
+<li>Delete if no needed</li>
+<li>sub-cube with more than 1 divided into 8 again.</li>
+<li>Continue untill each one has only one particle.</li>
+</ol>
+</li>
+<li>Scaling is O(n lg n)</li>
+<li>Load balancing is likely be an issue for parallel code.</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/19/Parallel/lab%202/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/lab.jpg" alt="Parallel - Lab 2">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-19T03:14:00.000Z">Mar 19, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 359 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/19/Parallel/lab%202/">Parallel - Lab 2</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference:</p>
+<ul>
+<li>The Australian National University CECS</li>
+</ul>
+<h2 id="Timer-Overhead-vs-Timer-Resolution"><a href="#Timer-Overhead-vs-Timer-Resolution" class="headerlink" title="Timer Overhead vs Timer Resolution"></a>Timer Overhead vs Timer Resolution</h2><h3 id="Diffrences"><a href="#Diffrences" class="headerlink" title="Diffrences:"></a>Diffrences:</h3><ul>
+<li><em>Timer overhead</em> is the length of time it takes to call the timer function. The total time to run your program will be increased by this value multiplied by the number of times you call the timer.</li>
+<li><em>Timer resolution</em> is the period of time below which the timer will sometimes report a value of zero. It represents the smallest period that can accurately be measured by the timer.</li>
+</ul>
+<h3 id="Assess-timer-by-calling-it-twice"><a href="#Assess-timer-by-calling-it-twice" class="headerlink" title="Assess timer by calling it twice."></a>Assess timer by calling it twice.</h3><p>For timers that operate like clocks (real time or CPU time), the differences represent the change in the value of the clock between each call. The overhead is the average of the consecutively reported differences. The lowest measured values will be integer multiples of the resolution. If the overhead is less (or finer) than the resolution, then the measured overhead may be zero.</p>
+<p><img src="/image/lab%202/Untitled.png" alt=""></p>
+<p>The above used gettimeofday()</p>
+<p>The smallest non-zero is 1, hence the resoultion of the timer is 1us.</p>
+<p>There are several zero valuse, hence the overhead or the timer is &lt;1us.</p>
+<p><img src="/image/lab%202/Untitled%201.png" alt=""></p>
+<p>The above used MPI_Wtime()</p>
+<p>MPI_Wtick gives the resolution of 1e-09 which appears to agree the MPI_Wtime() hand calculation.</p>
+<h2 id="Blocking-Behavior"><a href="#Blocking-Behavior" class="headerlink" title="Blocking Behavior"></a>Blocking Behavior</h2><p>The code fails because we have both processes wishing to send at the same time. If the message is small we see non-blocking behaviour since the message can be packed into the initial buffer (internal local system) —&gt; Hence can store and move on to the next line of execution. </p>
+<p>For larger sizes it fails because we see a transition from a non-blocking send to a blocking send when the message becomes too large. It stalls to find the receive() from the destination while the destination stalls and waits receive() as well.</p>
+<h2 id="Startup-Time"><a href="#Startup-Time" class="headerlink" title="Startup Time"></a>Startup Time</h2><p><img src="/image/lab%202/Untitled%202.png" alt=""></p>
+<p>Once the size reaches certian point, possibility of L3 Cache missing the data may cause decrease in the Bw; bw = 2.0 * length of words * sizeof(int) / time / 1e9 = GB/S</p>
+<p>From the above results:<br>Latency = 4.42e-07s / 2 = 0.22 us ⇒ Ping Pong of empty messages average time.<br>Peak bandwidth ~= 1 GB/s</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/15/Parallel/Week%202%204%20Routing/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/routing.jpg" alt="Routing">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-15T12:26:00.000Z">Mar 15, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 456 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/15/Parallel/Week%202%204%20Routing/">Routing</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference : Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</p>
+<h1 id="Routing-and-Communication-Costs"><a href="#Routing-and-Communication-Costs" class="headerlink" title="Routing and Communication Costs"></a>Routing and Communication Costs</h1><h2 id="Routing-Mechanism-path-msg-takes"><a href="#Routing-Mechanism-path-msg-takes" class="headerlink" title="Routing Mechanism - path msg takes"></a>Routing Mechanism - path msg takes</h2><ul>
+<li>minimal: shortest path, Non-minimal: not shortest, for avoid network congestion.</li>
+<li>Deterministic Routing: Unique path determined solely on the source and destination processor - ignore the state of the network.</li>
+<li>Adaptive Routing : use information on the state of the network.</li>
+</ul>
+<h2 id="Review-of-SF-and-CT"><a href="#Review-of-SF-and-CT" class="headerlink" title="Review of SF and CT"></a>Review of SF and CT</h2><h3 id="Store-and-Forward-SF"><a href="#Store-and-Forward-SF" class="headerlink" title="Store and Forward (SF)"></a>Store and Forward (SF)</h3><ul>
+<li>Common on early parallel</li>
+<li>Forwards msg after the entire msg has been received and stored.</li>
+<li>t_h is substantially less.</li>
+</ul>
+<p>$$t_c = t_s + (m * t_w + t_h) * l \approx t_s * mt_w * l$$</p>
+<h3 id="Cut-Through-Routing"><a href="#Cut-Through-Routing" class="headerlink" title="Cut-Through Routing"></a>Cut-Through Routing</h3><ul>
+<li>msg is sent in fixed-length  segments called flow-control digits or flits</li>
+<li>Wormhole routing pipelines the flits through the network.</li>
+<li>Uses less memory at the intermediate processor</li>
+<li>msg header = l * t_h to arrive.</li>
+</ul>
+<p>$$t_c = t_s + l * t_h * tw$$</p>
+<ul>
+<li>cost is O(m+l) while O(m*l) for SF.</li>
+</ul>
+<h2 id="One-To-All-Broadcast-OTAB-All-To-One-Reduction-ATOR"><a href="#One-To-All-Broadcast-OTAB-All-To-One-Reduction-ATOR" class="headerlink" title="One-To-All Broadcast (OTAB) All-To-One Reduction (ATOR)"></a>One-To-All Broadcast (OTAB) All-To-One Reduction (ATOR)</h2><h3 id="Ring-or-Linear-Array"><a href="#Ring-or-Linear-Array" class="headerlink" title="Ring or Linear Array"></a>Ring or Linear Array</h3><p>Recursive Doubling = 한곳으로 보내고 2명 2명이 2명에게 4명 4명이 4명에게….</p>
+<p>Hence msg cab be broadcast in lg(p)</p>
+<p>The destination node to each step to be sent must be carefully chosen to utilise the resources (avoid congestion on the network).</p>
+<p>Reduction can be performed by reversing the direction and the sequence of communication —&gt; will lead to the beginning node 0.</p>
+<h3 id="Mesh"><a href="#Mesh" class="headerlink" title="Mesh"></a>Mesh</h3><ul>
+<li>Can regard each row and col of a square mesh of p nodes as a linear array or sqrt(p) nodes.</li>
+<li>Perform like linear array on rows first, and do the same thing on the cols.</li>
+<li>Hence 16 nodes (4*4) will be sqrt(16) = 4 phases in one-to-all broadcast. In 3D —&gt; p^(1/3)</li>
+<li>Reduction = same as linear array.</li>
+</ul>
+<h3 id="HyperCube"><a href="#HyperCube" class="headerlink" title="HyperCube"></a>HyperCube</h3><ul>
+<li>2^d hypercube = d-dimension mesh with two nodes in each d.</li>
+<li>Steps: d steps. 8 nodes (2<em>2</em>2) —&gt; 3 steps.</li>
+<li>The dimension is identified by the MSB, while the order of visiting dimension does not affect the communication —&gt; Means no congestion.</li>
+</ul>
+<h3 id="Balanced-Binary-Tree"><a href="#Balanced-Binary-Tree" class="headerlink" title="Balanced Binary Tree"></a>Balanced Binary Tree</h3><ul>
+<li>Hypercube OTA broadcast maps naturally onto it.</li>
+</ul>
+<h2 id="All-to-All-Broadcast-ATAB-and-Reduction-ATAR"><a href="#All-to-All-Broadcast-ATAB-and-Reduction-ATAR" class="headerlink" title="All-to-All Broadcast (ATAB) and Reduction (ATAR)"></a>All-to-All Broadcast (ATAB) and Reduction (ATAR)</h2><ul>
+<li>Used in matrix operations.</li>
+<li>can be performed by p * OTAB or can be concatenated into one large message while traversing the network.</li>
+</ul>
+<h3 id="Linear-Array-and-Ring"><a href="#Linear-Array-and-Ring" class="headerlink" title="Linear Array and Ring"></a>Linear Array and Ring</h3><ul>
+<li>Each node = initial node. Use one way and pass it to the neighbour. First send urs then start to send the latest msg u got from the neighbour. Hence takes p-1 steps (need to receive 7 info in 8 nodes)</li>
+</ul>
+<h3 id="Mesh-1"><a href="#Mesh-1" class="headerlink" title="Mesh"></a>Mesh</h3><ul>
+<li>Same as linear. Perform linear ATAB for rows and do cols.</li>
+</ul>
+<h3 id="Hypercube"><a href="#Hypercube" class="headerlink" title="Hypercube"></a>Hypercube</h3><ul>
+<li>hypercube = extension of mesh to log(p) dimensions. takes log (p) steps.</li>
+</ul>
+<p><img src="/image/Week%202%204%20Routing/Untitled.png" alt=""></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/15/Parallel/Parallel_embParallel/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/embParallel.jpg" alt="embParallel">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-15T10:31:00.000Z">Mar 15, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 320 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/15/Parallel/Parallel_embParallel/">embParallel</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference : </p>
+<ul>
+<li>Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</li>
+<li>The Australian National University CECS</li>
+</ul>
+<hr>
+<h2 id="Embarrassingly-Parallel-Problems"><a href="#Embarrassingly-Parallel-Problems" class="headerlink" title="Embarrassingly Parallel Problems"></a>Embarrassingly Parallel Problems</h2><ul>
+<li>계산은 각각의 프로세서들에 의한 완전하게 독립전인 실행 부분으로 나뉘어질수 있다</li>
+<li>각각의 어플리케이션은 처치 곤란 병렬적이다</li>
+<li>데이터의 분포와 모음이 중요 이슈이다 - 비용이 많이 들거나, 중요하다</li>
+<li>대부분 마스터/슬레이브 접근방식을 사용한다 (p-1 speedup)</li>
+</ul>
+<p><img src="/image/Week%203%207%20embParallel/Untitled.png" alt=""></p>
+<p><a href="https://ko.wikipedia.org/wiki/%EC%B2%98%EC%B9%98_%EA%B3%A4%EB%9E%80_%EB%B3%91%EB%A0%AC">처치 곤란 병렬</a></p>
+<p><a href="https://ko.wikipedia.org/wiki/%EB%A7%9D%EB%8D%B8%EB%B8%8C%EB%A1%9C_%EC%A7%91%ED%95%A9">망델브로 집합</a></p>
+<h3 id="Static-Task-Assignment"><a href="#Static-Task-Assignment" class="headerlink" title="Static Task Assignment"></a>Static Task Assignment</h3><p>Each process needs to execute the procedure after being given the coordinates of the pixels to compute. Slave sends results back in  groups which reduces the number of communication stratup times (for each message).  — Note that master receives messages in any order.</p>
+<h3 id="Dynamic-Task-Assignment"><a href="#Dynamic-Task-Assignment" class="headerlink" title="Dynamic Task Assignment"></a>Dynamic Task Assignment</h3><p>Ideally, all processes must be busy; but we do not know the speed of each. Dynamic load-balancing can be achieved by a work-pool which get the works supplied when the process is idle. Each processors request a job when it finished its.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li>tasks do not need to communicate</li>
+<li>non-tirvial but. providing input, aseemble the results, load-balance, scheduling, costing…<ul>
+<li>Static (low communication) vs dynamic + overdecomp (better load balance)</li>
+</ul>
+</li>
+<li>Monte carlo or ensumble simulations are a big use of computational power.<ul>
+<li>grid computing arose to solve this issue.</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/15/Parallel/Week%202%202%20MP/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/mpi.jpeg" alt="Message Passing">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-15T08:05:00.000Z">Mar 15, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    16 minutes read (About 2459 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/15/Parallel/Week%202%202%20MP/">Message Passing</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference : Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</p>
+<h2 id="Message-Passing-Cost"><a href="#Message-Passing-Cost" class="headerlink" title="Message Passing Cost"></a>Message Passing Cost</h2><ol>
+<li>Startup Time (t_s): prepare the message (header, trailer, error correction information), execute the routing algorithm, establish an interface betw local node ane the router. —&gt; Delay is incurred only once for a single msg</li>
+<li>Per-hop Time (t_h): after a msg leaves a node, takes a finite amount of time to reach the next node (=node latency). 어느 채널, 아웃풋 버퍼로 보내야 하는지 라우팅 스위치가 판단하는 동안 대기하는 시간과 직결된다.</li>
+<li>Per-word Transfer Time (t_w): if channel bandwidth is r words per second, t_w = 1 / r to traverse the link.</li>
+</ol>
+<h2 id="Store-and-Forward-Routing-전체-메세지-수신후-저장-다음-노드로-전송"><a href="#Store-and-Forward-Routing-전체-메세지-수신후-저장-다음-노드로-전송" class="headerlink" title="Store and Forward Routing - 전체 메세지 수신후 저장, 다음 노드로 전송"></a>Store and Forward Routing - 전체 메세지 수신후 저장, 다음 노드로 전송</h2><p>msg sizeof m, l links, t_h for header, t_w speed.</p>
+<p>Total time = t_s + (t_h + t_w * m ) * l = t_s + mlt_w as t_h is comparatively small.</p>
+<h2 id="Packet-Routing-Modification-of-SF"><a href="#Packet-Routing-Modification-of-SF" class="headerlink" title="Packet Routing - Modification of SF."></a>Packet Routing - Modification of SF.</h2><p>Adv : 통신 자원 활용, 패킷 손실 (오류)로 인한 오버 헤드 감소, 다른 경로 선택 확률, 더 나은 오류 수정 기능.</p>
+<p>이로 인해 장거리 네트워크 (인터넷 - 오류율, 홉 수, 그리고 네트워크 상태 변화 변수) 에 쓰임 </p>
+<p>Total Time = t_s + t_h * l + t_w * m where t_w = t_w1 + t_w2 * (1 + s/r)</p>
+<p>각각의 패킷들이 다른 루트를 통해 전송 될수 있고, 잃어버린 패킷들의 재전송 때문에 지역/글로벌 네트워크에 많이 쓰임.</p>
+<h2 id="Cut-Through-Routing"><a href="#Cut-Through-Routing" class="headerlink" title="Cut Through Routing"></a>Cut Through Routing</h2><ol>
+<li>모든 패킷이 같은 경로를 사용하도록 해서 라우팅 정보 오버 헤드를 제거</li>
+<li>시퀀스 내 전달을 강제함으로 시퀀스 정보 제거</li>
+<li>메세지 레벨 오류 정보 (패킷 레벨 말고)를 연관함으로 오류 검출 및 정정 오버 헤드 감소</li>
+<li>병렬 시스템 오류율이 낮기 때문에, 값 비싼 오류 수정 체제대신 싼 오류 잠지 메커니즘 사용 가능</li>
+</ol>
+<p>메세지를 flow control digits or filts 라는 고정 단위로 나눔 이는 패킷 오버 헤드를 미포함 하기에 패킷보다 작을수 있음</p>
+<p>Tracer 가 목적지 노드에 먼저 도착후, 연결을 설정, 플릿이 차례대로 전송 (모두 동일한 경로, 중간에 기다림 없음 따라서 버퍼 미필요)</p>
+<p>이 와 같은 특성으로 중간 노드에서 더 적은 memory and memory bandwidth and faster</p>
+<p><strong>Total Time = t_s + l * t_h + t_w * m</strong></p>
+<p>** 메세지가 작거나, 거리가 가까운 경우, 저장후전송과 컷쓰루 방식의 통신시간은 비슷하다.</p>
+<p>제어 회로의 속도는 플릿 속도로 작동해야 하는데, 플릿 크기가 작으면 제어 회로 속도가 빨라지는데, 이는 라우터 설계에 상당한 어려움을 줌</p>
+<p>플릿 크기가 크면, 내부 버퍼 크기가 증가하므로, 메세지 전송 대기 시간 (첫 시작노드) 이 늘어남.</p>
+<p>요즘 플릿 크기는 4-32 바이트. </p>
+<p><strong>Total Time = t_s + l * t_h + t_w * m - 컷 쓰루 라우팅 공식</strong></p>
+<p>메세지 전송 비용 최적화를 위해</p>
+<ol>
+<li>Communication in Bulk: 조그만 메세지에 각각 t_s를 주느니, 큰 메세지 하나에 한번 주는것. 왜냐하면 클러스터/메세지 전달 시스템 같은 일반 플랫폼에서 t_s가 t_w 보다 훨씬 커서</li>
+<li>데이터 볼륨 최소화: t_w로 인한 오버헤드 최소화를 위해, 통신되는 데이터 양을 줄이기</li>
+<li>데이터 거리 최소화: 메세지가 통과해야 하는 홉 수를 최소화.</li>
+</ol>
+<p>첫 1,2번의 경우 쉬우나 통신 노드 거리를 줄이는 (3)은 알고리즘 설계자에게 불필요한 부담을 줌. 왜냐하면</p>
+<ol>
+<li>MPI 에서 프로그래머가 물리적 프로세서에 프로세서들을 맵핑하는것에 권한이 조금 밖에 없음. 가까운 이웃간에 통신은 괜찮을 수 있으나, 전체적인 매핑에 손상을 줄 수 있기 때문</li>
+<li>대부분의 아키텍처가 2단계 랜덤 라우팅을 이용하는데 (처음 한번 중간 한번). 이는 네트워크의 핫스팟과 부담감 (contention)을 줄여줌. 무작위 라우팅의 홉을 최소화 하면 이득이 없음</li>
+<li>홉당 시간은 t_s 와 t_w * m 에 비하면 굉장히 작아, 홉당 시간을 무시해도 된다.</li>
+</ol>
+<p>따라서 Total Time = t_s + t_w * m  으로 정리될 수 있다. —&gt; 이 식은 혼잡하지 않은 네트워크에만 유효하다.</p>
+<p>위 식은 런타임 예측 정확성과 독립적 알고리즘 설계에 중요한 영향을 미친다. 위의 식은 모든 노드간 통신에 같은 시간이 걸림으로, 완전히 연결된 네트워크에 해당함.</p>
+<p>따라서 각 아키텍처 알고리즘 설계 하는 대신 비용을 생각한 알고리즘을 병렬 컴퓨터에 설계할 수 있게 한다.</p>
+<p>물론 간소화된 공식으로 알고리즘을 설계 하면, 예측 정확도 손실이 발생하나, 홉당 시간이 굉장히 작다는 가정만 따른다면, 그 손실액은 미미하다.</p>
+<p>For communication patterns that do not congest the network, the effective bandwidth is identical to the link bandwidth. However, for communication operations that congest the network, the effective bandwidth is the link bandwidth scaled down by the degree of congestion on the most congested link.</p>
+<p>네트워크 정체 시키지 않는 대역폭은 링크대역폭. 네트워크 정체 시키는 통신의 경우 유효 대역폭은 가장 정체된 링크의 정체 정도에 따라 축소된 링크 대역폭. 이 값은 구하기 어려울 떄가 있음.</p>
+<p>따라서 우리는 하한선을 이용하는데, <strong>link bandwidth =  p/b (b = bisection width)</strong></p>
+<h2 id="Communication-Costs-in-Shared-Address-Space-Machines"><a href="#Communication-Costs-in-Shared-Address-Space-Machines" class="headerlink" title="Communication Costs in Shared-Address-Space Machines"></a>Communication Costs in Shared-Address-Space Machines</h2><p>Cache Coherence에서 비용줄이기가 더 어려운 이유</p>
+<ol>
+<li>메모리 레이아웃은 보통 시스템에 의해 결정된다. 프로그래머는 특정 데이터 아이템의 위치와, 순열 데이터 구조 최적화에 권한이 적음. 이는 이 공유 주소 공간 아키텍처에서 중요한데 로컬 및 원격 엑세스를 식별하기 어렵기 떄문. 로컬 과 원격 엑세스의 시간이 차이가 나면, 통신 비용은 데이터 레이아웃에 의해 크게 달라지기 때문.</li>
+<li>유한 캐시 크기로 인한 캐시 스래싱 발생 가능. 사용 가능한 캐쉬보다 필요한 데이터가 클 경우, 특정부분이 덮어 쓰기 되어 여러번 엑세스 될 수 있음. 이 오버헤드로 인한 프로그램 성능이 크게 저하됨. 이 문제를 피하기 위해서는 작업 세트 크기를 최소화 한 실행 스케쥴이 필요. 멀티 프로세서의 경우 페널티가 심각해지는데, 이는 프로세서간 통신과 coherence 작업이 연관되기 때문.</li>
+<li>무효화 프로토콜과 업데이트 작업은 수량화 하기 어렵다. 업데이트시 발생하는 트래픽의 경우 프로세서마다의 작업에 따라 확연히 달라지는데, 이 동시화된 데이터 갯수와 스케쥴은 프로그래머 권한 밖인 경우가 대부분.</li>
+<li>공간적 지역성 (Spatial locality) 는 모델링 하기 어렵다. 캐쉬라인은 보통 한 단어(데이터)보다 길기에 여러개를 부르는데, 이에 따른 접근 시간이 단어마다 다르다. 이전에 불려진 데이터가 불려지는 경우 (다른것은 새거) 등은 프로그래머가 최소한의 제어를 가지기 떄문에, 프로그래머가 할 수 있는것은 순열 데이터 구조를 극대화 시켜 공간적 지역성을 최대화 하는것 밖에 없다. </li>
+<li>prefetching 은 데이터 엑세스와 관련된 오버헤드를 줄이는데 중요함. 컴파일러는 미리 로드를 진행할 수 있으며, 만약 자원이 충분할 경우 이에대한 오버헤드를 숨길수 있다 (현재 진행하는 작업을 느리게 하지 않으니, 몰래 미리 스윽 해놓기 때문에 오버헤드가 없는것) 이 와 관련된 사항은, 컴파일러, 레지스터, 캐쉬의 기능이므로 정확한 모델링이 어렵다.</li>
+<li>False Sharing 은 두 프로세서가 각각 사용하는 두 단어가 동일 캐쉬 라인에 있을수 있음 (공유하지 않아도) 이때 일관성 작업과 통신 오버헤드가 발생할수 있는데, 프로그래머는 이를 최소화 하기 위해 데이터 구조를 채우는 수밖에 없다.</li>
+<li>Contention in shared access 는 공유 주소 공간 기계에서 오버헤드를 발생시키는 주요 이유중 하나. 하지만 이는 실행 스케쥴의 기능이므로, 정확한 모델링이 어렵다 (스케줄링 알고리즘 문제가 아니니까). 계산해서 점근 추정값은 가능하나, 이 수치는 의미가 없다. </li>
+</ol>
+<p>공유 주소 공간 머신의 모든 비용 모델은 이러한 오버 헤드를 고려해야 함.</p>
+<p> Total Time = t_s + t_w * m </p>
+<p>유한 캐쉬에서 발생하는 영향은  각 시스템마다의 다양한 캐쉬 사이즈로 인해 다르므로 무시됨</p>
+<p>공간적 지역성의 최대화 (캐시 라인 효과)는 명시적으로 미포함</p>
+<p>거짓 공유는 데이터 레이아웃과 같이 명령 스케줄의 기능</p>
+<p>비용 모델은 공유 데이터 구조가 잘 채워져 있다고 가정하기에, 잘못된 비용 미포함</p>
+<p>중복된 통신 및 계산을 설명하지 않음</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/categories/Parallel-Computing/page/0/">Previous</a>
+        </div>
+        <div class="pagination-next">
+            <a class="is-flex-grow has-text-black-ter" href="/categories/Parallel-Computing/page/2/">Next</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link is-current" href="/categories/Parallel-Computing/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/categories/Parallel-Computing/page/2/">2</a></li>
+            
+        </ul>
+    </nav>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="SK Lee">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        SK Lee
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Server&amp;Network Student
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Australia/ACT</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            54
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            7
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/lee-sk-qq" target="_blank" rel="noopener">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/qqskda">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Twitter" href="https://twitter.com/qqskda">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://medium.com/@poringpeco" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Medium</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">medium.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.linkedin.com/in/sungkwon-lee-089389145/" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Linkedin</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.linkedin.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">12</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">28</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/CPP/">
+            <span class="level-start">
+                <span class="level-item">CPP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Life/">
+            <span class="level-start">
+                <span class="level-item">Life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Machine-Learning/">
+            <span class="level-start">
+                <span class="level-item">Machine Learning</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Network/Lab/">
+            <span class="level-start">
+                <span class="level-item">Lab</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/OCSO/">
+            <span class="level-start">
+                <span class="level-item">OCSO</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Parallel-Computing/">
+            <span class="level-start">
+                <span class="level-item">Parallel Computing</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
+                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
+                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
+                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
+                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
+                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPP/">
+                        <span class="tag">CPP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keyboard/">
+                        <span class="tag">Keyboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Layer/">
+                        <span class="tag">Layer</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Summary/">
+                        <span class="tag">Summary</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Theory/">
+                        <span class="tag">Theory</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/CPP/">
+            <span class="level-start">
+                <span class="level-item">CPP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Life/">
+            <span class="level-start">
+                <span class="level-item">Life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Machine-Learning/">
+            <span class="level-start">
+                <span class="level-item">Machine Learning</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Network/Lab/">
+            <span class="level-start">
+                <span class="level-item">Lab</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/OCSO/">
+            <span class="level-start">
+                <span class="level-item">OCSO</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Parallel-Computing/">
+            <span class="level-start">
+                <span class="level-item">Parallel Computing</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
+                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
+                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
+                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
+                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
+                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPP/">
+                        <span class="tag">CPP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keyboard/">
+                        <span class="tag">Keyboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Layer/">
+                        <span class="tag">Layer</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Summary/">
+                        <span class="tag">Summary</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Theory/">
+                        <span class="tag">Theory</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/avatar.png" alt="SK Lee" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Sungkwon Lee&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://github.com/qqskda',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
