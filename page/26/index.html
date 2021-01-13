@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/04/01/MSL/MSL_Resampling%20Methods/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/sample.jpg" alt="Resampling Methods">
+        <a href="/2020/05/26/Network/Lab%204%20428af546b17f49db86c3c876a150e074/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 4">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-04-01T09:59:00.000Z">Apr 01, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-05-26T09:10:00.000Z">May 26, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Machine-Learning/">Machine Learning</a>
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    11 minutes read (About 1699 words)
+                    5 minutes read (About 712 words)
                 </span>
                 
                 
@@ -156,72 +156,36 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/04/01/MSL/MSL_Resampling%20Methods/">Resampling Methods</a>
+                <a class="has-link-black-ter" href="/2020/05/26/Network/Lab%204%20428af546b17f49db86c3c876a150e074/">Network - Lab 4</a>
             
         </h1>
         <div class="content">
-            <p>Reference:</p>
-<ol>
-<li>An Introduction To Statistical Learning with Applications in R (ISLR Sixth Printing)</li>
-<li><a href="https://godongyoung.github.io/category/ML.html">https://godongyoung.github.io/category/ML.html</a></li>
-</ol>
-<h1 id="Resampling"><a href="#Resampling" class="headerlink" title="Resampling"></a>Resampling</h1><p>Extract sample from training data set, and apply series of models.</p>
-<p>Application of several models will allow users to estimate which “region” will our models be when the data gets changed.</p>
-<h2 id="Cross-Validation"><a href="#Cross-Validation" class="headerlink" title="Cross-Validation"></a>Cross-Validation</h2><p>Test error and training error are different. </p>
+            <p>Q: TCP 192.168.1.2:53398 150.203.56.47:80 CLOSE_WAIT</p>
+<p>A: 소켓이 현재 닫혀진 상태이나, 웹 서버로부터 마지막 ACK를 받기를 기다리는 상태 </p>
+<hr>
+<p>Q: Packets with a source IP address of 0.0.0.0 is used (by DHCP) to signify what? What does the address mean to the Operating System? Why do we use it that way?</p>
+<p>A: 이는 해당 호스트가 현재 아이피 주소를 모르고 있은 상태이고, 이로 인하여 해당 호스트와 연락하기 위해서는 브로드캐스트를 이용 할 수 밖에 없다. 운영체제에서 0.0.0.0 은 “모든 인터페이스” 를 뜻하며 모든 인터페이스들에게 보내지고 모든 인터페이스는 이 메세지를 듣는다.</p>
+<hr>
+<p>Q:  Why does DHCP have both discover/offer AND request/acknowledge? Why not just<br>request/acknowledge?</p>
+<p>A: DHCP의 아이피 주소 할당은 임시 (lease)이며 확인되어야 하기 때문이다. 또한 만약 여러기기가 동시에 같은 아이피 주소를 요청할 경우를 대비해야 하기 때문이다. 따라서 서버와 클라이언트는 해당 아이피가 고유하다는것을 알기위한 확인 절차가 필요하다. </p>
 <ul>
-<li>Lowering the test error (data that was not given) is the goal.</li>
-<li>Training error is the error in the given data that can be underesitimated due to overfitting.</li>
+<li>Server Discovery</li>
+<li>IP lease offer</li>
+<li>IP Request</li>
+<li>IP lease ACK</li>
 </ul>
-<p>There are two ways of esitimating test error (often future prediction case) </p>
-<ol>
-<li>Indirectly infer test error by mathematical edition on the training data set (AIC, BIC).</li>
-<li>Hold out some training data to directily infer test error (Cross-Validation).</li>
-</ol>
-<h3 id="The-vaildation-set-approach"><a href="#The-vaildation-set-approach" class="headerlink" title="The vaildation set approach"></a>The vaildation set approach</h3><p><img src="/image/Ch%205%20Resampling%20Methods/Untitled.png" alt=""></p>
-<p>Hold out half of training set randomly — picked data is called vaildation set.</p>
-<ul>
-<li>반을 자르기 때문에 어떻게 잘리느냐에 따라 모델 변동과 test MSE 도 심하게 변함</li>
-<li>Use remainder training set to get error rate (ususally MSE) about vaildation set and infer test error rate.</li>
-</ul>
-<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%201.png" alt=""></p>
-<p>Degree of polynomial 이 에러를 줄이는데 도움이 안됨을 알 수 있다.</p>
-<ol>
-<li>어떻게 잘렸는지에 따라 test MSE와 degree 또한 확연하게 달라진다</li>
-<li>반을 잘랐기 때문에 추정 성능 또한 감소한다 - 반으로 적합하다고 모델을 정의 하면, 전체 자료를 적합했을 때는 test MSE가 크게 나올수 밖에 없다 (overestimate 한거니까). 반으로 전체를 예상할수 있다고 한것</li>
-</ol>
-<h3 id="Leave-one-cut-Cross-Validation-LOOCV"><a href="#Leave-one-cut-Cross-Validation-LOOCV" class="headerlink" title="Leave-one-cut Cross Validation (LOOCV)"></a>Leave-one-cut Cross Validation (LOOCV)</h3><p>한개의 자료를 빼고 이 자료에 대한 error rate 을 계산하는데, 이 계산을 모든 자료에 반복한다.</p>
-<p>Training MSE is unbiased to Test MSE but has huge variance. Random error 를 포함하고 있어 이로 인해 분산이 생기는것. 이 분산들을 보완해주는게 validation 이다. validation으로 분산을 줄이지만, 약간의 bias가 생긴다. 이 약간의 편향된 모델들을 평균냄으로써 분산이 줄어드는것</p>
-<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%202.png" alt=""></p>
-<ol>
-<li>데이터 반을 가지고 하는것에 비해, test MSE에 대한 training data가 거의 정확한 추정이 가능하다. 이는 overestimate 하지 않으며 bias가 적음을 의미한다</li>
-<li>Validation set approach 와 다르게 항상 같은 결과가 나온다.</li>
-</ol>
-<h3 id="K-fold-Cross-Validation"><a href="#K-fold-Cross-Validation" class="headerlink" title="K-fold Cross-Validation"></a>K-fold Cross-Validation</h3><p>가장 대중적으로 test error rate 구할때 사용하는 방법이다. 최선의 모델이나, 최종 선택된 모델에 관한 테스트 에러에 대해 이해하는데 사용된다. </p>
-<p>Validation set approach  는 너무 단순하고 LOOCV는 손이 너무 간다 (하나하나 적합해야 하니까). 이 중간지점이 k-fold CV. k 그룹으로 랜덤하게 데이터를 나눈다. 한 그룹을 뺴고 적합해 MSE 구하는것을 k번 반복한다 (LOOCV 처럼). 이후 K로 평균을 낸다.</p>
-<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%203.png" alt=""></p>
-<p>k = n 일경우 LOOCV와 같은식이다.k-fold CV는 LOOCV에 비해 더 간결하고 빠르게 계산을 함에도 불구하고 성응에서 큰 차이를 보이지 않는다 (좋은쪽으로). 즉 LOOCV의 장점들을 다 가지고 있다. 또한 bias-variance trade off에서 LOOCV보다 더 강점을 가지고 있다 (다음 항목 참조)</p>
-<h3 id="Bias-Variance-Trade-off-for-k-fold-CV"><a href="#Bias-Variance-Trade-off-for-k-fold-CV" class="headerlink" title="Bias-Variance Trade off for k-fold CV"></a>Bias-Variance Trade off for k-fold CV</h3><p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%204.png" alt=""></p>
-<p>위 식에서 알 수 있듯 test MSE는 bias 만으로 결정 되는것이 아니다. Variance의 관점에서 (위에 서술하였듯) LOOCV 보다 k-fold CV가 더 좋다.</p>
-<ul>
-<li>LOOCV는 낮은 bias와 높은 variance를 가지고 있는데 이는 적합시의 데이터 n-1개중 n-2가 동일한 데이터 (두개의 적합에서 2개를 제외한 나머지 데이터는 재사용된것들) 따라서 재사용을 많이한 n개의 모델들는 highly correlated 되었기 때문이다. highly correlated —&gt; higher variance (overfitting과 비슷한 개념)</li>
-<li>이로 인하여 덜 겹치는 k-fold CV가 더 낮은 분산을 갖는것이다</li>
-</ul>
-<h3 id="CV-on-Classification-Problems"><a href="#CV-on-Classification-Problems" class="headerlink" title="CV on Classification Problems"></a>CV on Classification Problems</h3><p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%205.png" alt=""></p>
-<p>식이 조금 달라졌다. 이전까지의 계산은 데이터 수에 대한 양적 변수를 가정한 CV였고 위의 식은 질적 변수에 대한 식이다 (질적 테스트는 error rate를 의미한다)</p>
-<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%206.png" alt=""></p>
-<p>검은색 선이 10-fold CV인데 파란색인 training error에 비해 테스트 에러를 잘 잡아주고 잇는 모습이다. 저 테스트 에러는 진짜 테스트 에러로 (시뮬레이션 데이터를 이용한) 실 상황에서는 구하지 못하는 경우가 많은 선. 따라서 위 그래프는 진짜 에러 비율에 대해 k-fold CV가 어느정도로 잘 잡아주는지 보여주는 것.</p>
-<h3 id="Bootstrap"><a href="#Bootstrap" class="headerlink" title="Bootstrap"></a>Bootstrap</h3><p>실제로 계산하기 어려운 uncertainty 들을 계산하는데 쓰이는 강력한 기법이다. 선형희귀의 계수 분산의 경우 표준편차 정도는 구할 수 있지만 이에 대한 정확한 통계량은 구할 수 없는데, bootstrap은 이를 가능케 한다. 또한 이 방법은 분포를 미리 가정하지 않은 (실상황처럼) 상태에서 사용 할 수 있기 때문에 더 강력한것.</p>
-<p>밑의 식은 a, 1-a를 각 두 회사에 비율 투자할때, 분산을 (risk) 최소화 할 수 있는 비율을 찾는식이다.</p>
-<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%207.png" alt=""></p>
-<p>위와 같은식을 사용 할 수 있는 이유는 아래와 같이 가지고 있는 데이터들을 복원추출 하여 새로운 샘플들을 계속 만들어 내기 때문. 밑의 식을 반복하여 큰 수인 n 개의 샘플들을 만들어 이에 대한 추정량 hat(a)가 생기는것. </p>
-<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%208.png" alt=""></p>
-<p>위의 식을 이용하며 추정량에 대한 standard error 또한 구할수 있게 된다.</p>
-<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%209.png" alt=""></p>
-<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%2010.png" alt=""></p>
-<p>노란색이 모든 자료들을 가지고 반복 추출해서 구한값, 파랑색이 bootstrap으로 하나의 data set만으로 반복추출해서 얻은 결과이다. 매우 비슷함을 알 수 있는데, bootstrap이 적은 data set으로 구하기 힘든 통계량의 특성까지고 구사 한다는것을 알 수 있다. </p>
-<h3 id="Bootstrap-for-Prediction-Error"><a href="#Bootstrap-for-Prediction-Error" class="headerlink" title="Bootstrap for Prediction Error?"></a>Bootstrap for Prediction Error?</h3><p>bootstrap 샘플의 경우 원래 데이터 들과 많이 겹치게 되는데, 이로 인해 true prediction error 을 많이 underestimate 하게 된다. 마찬가지로 원래 데이터들을 훈련 샘플로 쓰고 bootstrap의 데이터들을 vaildation 에 쓰게 되면 안 좋은 (쓰레기 같은) 값이 나온다. </p>
-<p>이에 대한 데이터 셋 겹침을 구할수 있으나, 매우 복잡해지고 이로 인해 결국 CV가 prediction error를 예상하는데 더 나은 방식이 된다.</p>
-<p>정리하자면 Test error rate을 구하는데는 bootstrap. Prediction error을 구하는데는 CV.</p>
+<hr>
+<p>Q:  Give some examples where and why a single IP address may be used by multiple (DNS)<br>names? What about examples where a single name may resolve to multiple<br>addresses?</p>
+<p>A: 예를 들어 같은 아이피 주소를 가지고 있는 웹서버와 메일 서버 같은 다른 서비스를 제공하는 경우. 이는 결국 일어날 서비스의 이동에 대한 유연성을 준다. 한 이름에 대한 여러가지 주소를 가지는 경우는 옵션과 같이 사용되는데 첫번째가 사용 불가하면 두번째가 사용된다던가, 혹은 이로 인해 로드 밸런싱도 가능하다.</p>
+<hr>
+<p>Q: In DNS, how are Zones and Domains different?</p>
+<p>A: 도메인의 경우 DNS 의 일정 부분을 이야기한다. 예를 들어 <a href="http://anu.edu.au">anu.edu.au</a> 의 경우 도메인이고 (au, edu, anu 순으로 내려온다), 이 이하의 다양한 부서와 서버들과 같은 여러가지를 묶어서 zone 이라고 표한다.</p>
+<hr>
+<p>Q: Why are DNS delegations legally important?</p>
+<p>A: 도메인 네임은 보통 그 해당 entity의 법적 이름과 연결된다. 즉 구글이라는 사업체가 있는데 이를 모방해서 <a href="http://google.com">google.com</a> 등을 사용한다면? 이는 곧 사기와 trademark infringement 와 같은 법을 어기는것.</p>
+<hr>
+<p>Q: What’s the difference (and for/against) using Iterative or Recursive DNS queries?</p>
+<p>A: Interative 는 내 스스로가 정보를 받고 다음에 물어보고 받고 물어보고 하는형식 Recursive는 네임서버에게 물어보면 걔가 알아서 물어물어 정보 가져다 주는것. 당연히 Recursive가 편하지만 더 느림.</p>
 
         </div>
         
@@ -261,7 +225,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/54/">54</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
             
         </ul>
     </nav>
@@ -311,7 +275,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            54
+                            67
                         </p>
                     </a>
                 </div>
@@ -323,7 +287,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -415,6 +379,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">13</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/07/">
@@ -536,6 +511,14 @@
                 <span class="level-item tag">10</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Parallel-Computing/">
             <span class="level-start">
                 <span class="level-item">Parallel Computing</span>
@@ -566,18 +549,18 @@
         
         <article class="media">
             
-            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
-                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -585,18 +568,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -604,18 +587,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -623,18 +606,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -642,18 +625,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -778,6 +761,14 @@
                 <span class="level-item tag">10</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Parallel-Computing/">
             <span class="level-start">
                 <span class="level-item">Parallel Computing</span>
@@ -808,18 +799,18 @@
         
         <article class="media">
             
-            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
-                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -827,18 +818,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -846,18 +837,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -865,18 +856,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -884,18 +875,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>

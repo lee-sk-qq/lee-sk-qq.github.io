@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/12/Network/Network_Ethernet%20and%20Wifi/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/router.jpg" alt="Ethernet and Wifi">
+        <a href="/2020/03/19/OCSO/Ch%207%20Offensive%20Strategy/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/strategy.jpg" alt="Offensive Strategy">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-12T02:50:00.000Z">Mar 12, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-03-19T09:53:00.000Z">Mar 19, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                <a class="has-link-grey -link" href="/categories/OCSO/">OCSO</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1263 words)
+                    6 minutes read (About 855 words)
                 </span>
                 
                 
@@ -156,163 +156,108 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/12/Network/Network_Ethernet%20and%20Wifi/">Ethernet and Wifi</a>
+                <a class="has-link-black-ter" href="/2020/03/19/OCSO/Ch%207%20Offensive%20Strategy/">Offensive Strategy</a>
             
         </h1>
         <div class="content">
-            <p>Reference: </p>
-<ul>
-<li>Computer Networks, Fifth Edition by by Andrew S et al.</li>
-<li>The Australian National University CECS</li>
+            <p>Reference : Network Attacks and Exploitation by Matthew Monte</p>
+<h3 id="Crafting-a-successful-strategy-requires"><a href="#Crafting-a-successful-strategy-requires" class="headerlink" title="Crafting a successful strategy requires:"></a>Crafting a successful strategy requires:</h3><ul>
+<li>A clearly defined goal; strategic collection, directed collection, non-kinetic CNA, strategic access and positional access.</li>
+<li>Embracing the fundamental truths of the space; three foundational principles: humanity, access, and econmoy.</li>
+<li>Determining and reducing the uncertainty of frictions while increasing the opponent’s.</li>
+<li>Determining and maximising advantageous asymmetries, while minimising the opponent’s.</li>
 </ul>
-<h3 id="IEEE-802-3-for-Ethernet"><a href="#IEEE-802-3-for-Ethernet" class="headerlink" title="IEEE 802.3 for Ethernet"></a>IEEE 802.3 for Ethernet</h3><p><img src="/image/Week%203%202%20Ethernet%20and%20Wifi/Untitled.png" alt=""></p>
-<p>1000BASE-LX: </p>
-<ul>
-<li>1Gb/s Baseband</li>
-<li>Fiber Optic Pairs</li>
-<li>1310nm over MMF (500M) or SMF (10km)</li>
-<li>8b/10b NRZ encoding</li>
+<p><img src="/image/Ch%207%20Offensive%20Strategy/Untitled.png" alt=""></p>
+<h2 id="Principle-1-Knowledge"><a href="#Principle-1-Knowledge" class="headerlink" title="Principle 1: Knowledge"></a>Principle 1: Knowledge</h2><ul>
+<li>Is the in-depth understanding of the tech aspects of architecture, OS, Network, and so on as well as psychological aspects of people and organisation.</li>
+<li>Is the target agnostic and acquired outside of any specific operation.</li>
+<li>Is essential to leverage all three principles: access, humanity, economy.</li>
+<li>Reduces frictions - helps reduce flawed attack tool.</li>
+<li>It costs time and money</li>
+<li>Has limits of incompleteness and inaccuracy.</li>
 </ul>
-<h1 id="Ethernet"><a href="#Ethernet" class="headerlink" title="Ethernet"></a>Ethernet</h1><p>If not all 4 pairs unused, can run power over data wires (DVD TV from textbook)</p>
-<p>Very good plug and play - well designed to cope with network changes</p>
-<p>Very good backwards compatibility - Link negotiation on connection</p>
-<h3 id="Auto-negotiation"><a href="#Auto-negotiation" class="headerlink" title="Auto-negotiation"></a>Auto-negotiation</h3><p>Plugging in an Ethernet device to a switch, need to agree</p>
-<ul>
-<li>Speed, Duplex, and Cross-over (which wire does what)</li>
-<li>Detect a plug-in and disconnect</li>
-<li>Heartbeat = Normal Link Pulse (NLP)</li>
-<li>Capability = Fast link Pulses (FLP) - Encodes messages in 16bit words</li>
-</ul>
-<p><img src="/image/Week%203%202%20Ethernet%20and%20Wifi/Untitled%201.png" alt=""></p>
-<p>Every device can listen. If it is not for you, drop it. If it is, inform OS - Unless you are in ‘promiscuous mode’ that listens to everything.</p>
-<h3 id="Addressing"><a href="#Addressing" class="headerlink" title="Addressing"></a>Addressing</h3><p><img src="/image/Week%203%202%20Ethernet%20and%20Wifi/Untitled%202.png" alt=""></p>
-<p>ff:ff:ff:ff:ff:ff = Broadcast Frame</p>
-<h3 id="Ethernet-Hubs"><a href="#Ethernet-Hubs" class="headerlink" title="Ethernet Hubs"></a>Ethernet Hubs</h3><p>Shared Media, CSMA and Collisions - through a hub/repeater</p>
-<h2 id="Ethernet-Switching"><a href="#Ethernet-Switching" class="headerlink" title="Ethernet Switching"></a>Ethernet Switching</h2><p>More scalable, more reliable.</p>
-<ol>
-<li>Listen to what’s coming and record the source MAC address</li>
-<li>If its a new mac address<ol>
-<li>Send it to all ports (unicast port flooding)</li>
-<li>Hope somebody replies and then record their port</li>
-<li>Broadcasting in now switch’s resp, not the cable</li>
-</ol>
-</li>
-</ol>
-<h3 id="Hierarchy-of-Switches"><a href="#Hierarchy-of-Switches" class="headerlink" title="Hierarchy of Switches"></a>Hierarchy of Switches</h3><p>Good for loop-free topology.</p>
-<p>If there is a loop, it creates Redundant links, parallel links, Short cuts, mistakes, evil intent…</p>
-<p>To avoid the broadcast storm (switches trying to find a device in the network and it results in creating a loop of searching), implement spanning tree. Spanning tree is the loop free tree. </p>
-<h3 id="Spanning-Tree-Protocol-STP-802-1d-w-…"><a href="#Spanning-Tree-Protocol-STP-802-1d-w-…" class="headerlink" title="Spanning Tree Protocol (STP) 802.1d,w,…"></a>Spanning Tree Protocol (STP) 802.1d,w,…</h3><p><img src="/image/Week%203%202%20Ethernet%20and%20Wifi/Untitled%203.png" alt=""></p>
-<ol>
-<li>Block all but STP protocol</li>
-<li>Elect a root node (lowest address wins) and at the same time</li>
-<li>Grow the shortest Tree using distance (hop count) and value (speed) from root.<ol>
-<li>Tie - Lowest address wins</li>
-<li>Record the ports that are not on the tree towards the root.</li>
-</ol>
-</li>
-<li>Initially everyone thinks they are the root - tells its neighbours —&gt; Everyone updates by competing</li>
-<li>Once converged: turn off ports (paths) that are not on the upward tree - although remember where they are for back ups</li>
-</ol>
-<h3 id="Casting"><a href="#Casting" class="headerlink" title="Casting"></a>Casting</h3><ul>
-<li>Broadcast: ff.ff.ff.ff.ff.ff —&gt; everyone gets it.</li>
-<li>Uni-cast: Only intended recipient should get it.</li>
-<li>Multi-cast: Everyone who is interested get it; special bit flag in MAC, or Devices can subscribe their NIC (network interface controller).</li>
-</ul>
-<h3 id="Link-Aggregation"><a href="#Link-Aggregation" class="headerlink" title="Link Aggregation"></a>Link Aggregation</h3><p>하나의 연결이 지탱할 수 있는 스루풋 증가와 링크 실패를 대비한 다중화 (redundancy)를 제공하기 위해 여러 네트워크를 병렬로 연결하는 방식. 링크 어그리게이션 그룹은 물리적 포트들을 하나로 병합해 고대역 데이터 경로를 만듬과 동시에 여러 포트들간의 트래픽 부하 분산을 구현하고 연결의 신뢰성을 강화한다. </p>
-<p>Single point of failure (단일 장애점) - 한곳의 실패가 네트워크 다운 시키는 현상을 막아주고,</p>
-<p>대역폭의 한계를 하나의 논리 링크로 병합해 극복하는것.</p>
-<h3 id="Switch-vs-Router"><a href="#Switch-vs-Router" class="headerlink" title="Switch vs Router"></a>Switch vs Router</h3><p>Switch:</p>
-<ul>
-<li>Pros:<ul>
-<li>Plug and play —&gt; good for network engineer</li>
-<li>Has relatively higher send and filtering rate of packets. (as it is 2 layer)</li>
-<li>Use Spanning tree topology to prevent broadcast storm (from loop)</li>
-</ul>
-</li>
-<li>Cons:<ul>
-<li>Has high APR traffic at large network</li>
-<li>Do not handle broadcast storm caused by one problematic host.</li>
-</ul>
-</li>
-</ul>
-<p>Router:</p>
-<ul>
-<li>Pros:<ul>
-<li>No circular loop —&gt; but only follow the routing table. Hence maintain the best route</li>
-<li>No Spanning tree —&gt; flexible topology</li>
-<li>Firewall exists —&gt; prevent broadcast storm by host.</li>
-</ul>
-</li>
-<li>Cons:<ul>
-<li>Not plug and play.</li>
-<li>Packet process time is longer.</li>
-</ul>
-</li>
+<p><strong>The best decisions are made by those that have a balance of knowledge of the thech, psychological, and social aspects of operations</strong></p>
+<hr>
+<h2 id="Principle-2-Awareness"><a href="#Principle-2-Awareness" class="headerlink" title="Principle 2: Awareness"></a>Principle 2: Awareness</h2><ul>
+<li>Is the careful mapping of the operational domain as well as the active detection and passive monitoring of events in near real time.</li>
+<li>Is gleaned from the target environment and is target specific.</li>
+<li>Seeks to counteract the Defender’s asymmetrical advantage of turf control.</li>
+<li>May allow the attacker to discern when the frictions of updates and upgrades are coming where they will be deployed.</li>
+<li>May tell the attacker the likelihood and consequences of being caught - as can see hows the security going by humans aspects.</li>
+<li>Leads to the more effective deployment of tactics -  as aware of the ongoing situation.</li>
+<li>Requires greater exposure and risk - need expansion to collect awareness.</li>
+<li>Too much —&gt; may lead overconfidence or can be paralysing (too much worries).</li>
+<li>Buys time: to innovate, to put in redundancy, to collect data, and clean up and out.</li>
 </ul>
 <hr>
-<h3 id="Virtual-LAN"><a href="#Virtual-LAN" class="headerlink" title="Virtual LAN"></a>Virtual LAN</h3><p><a href="https://ko.wikipedia.org/wiki/%EA%B0%80%EC%83%81_%EB%9E%9C">가상 랜</a></p>
-<ul>
-<li>이로 인해 트래픽 분산과 트래픽 우선 순위 설정이 가능해진다.</li>
-<li>스위치의 불필요한 낭비, 트래픽 격리, 그리고 유저 관리에 도움을 준다</li>
-<li>각 가상랜은 자기들만 스위치에 있는것 처럼 행동하며, 독자적인 브로드캐스트를 구성한다.</li>
-<li>두 독자적 가상랜의 병합은 한가지 포트를 라우터에 연결후 (혹은 스위치내에 자체적으로 가지고 있기도 하다), 병합 설정해 주면된다. 이로 인해 같은 스위치 내이지만, 라우터를 통한 다른 스위치가 서로 연결된듯 구성된다.</li>
-<li>VLAN Trunking 을 이용하여 스위치 두개를 설정된 트렁킹 포트에 연결함으로 각 스위치 내의 가상랜은 서로 병합시킬 수 있다.</li>
+<h2 id="Principle-3-Innovation"><a href="#Principle-3-Innovation" class="headerlink" title="Principle 3: Innovation"></a>Principle 3: Innovation</h2><ul>
+<li>Is the ability to create new technology, leverage existing technologies in new ways, or develop and adapt operational methods.</li>
+<li>Requires creativity; essential for finding flaws by divining assumptions that engineers and administrators may have not realised they were breaking.</li>
+<li>Is creativity brought to scale through sound engineering.</li>
+<li>Can improve efficiencies and decrease frictions.</li>
+<li>Confers a tactical advantage.</li>
 </ul>
 <hr>
-<h3 id="Wifi"><a href="#Wifi" class="headerlink" title="Wifi"></a>Wifi</h3><ul>
-<li>much more challenging communication</li>
-<li>Based on CSMA/CA with optional RTS/CTS (MACA)</li>
-<li>Along with<ul>
-<li>OFDM: Orthogonal Frequency Division Multiplexing</li>
-<li>MIMO: Multiple Input Multiple Output (multiple antennas, multiple paths)</li>
-<li>DSSS: Direct Sequence Spread Spectrum<ul>
-<li>Related to Frequency Hopping Spread Spectiurm</li>
-<li>Codes accross a freq band (CDMA)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="802-11"><a href="#802-11" class="headerlink" title="802.11"></a>802.11</h1><p>There are two reasons 802.11 MAC protocol does not implement CD:</p>
+<h2 id="Principle-4-Precaution"><a href="#Principle-4-Precaution" class="headerlink" title="Principle 4:  Precaution"></a>Principle 4:  Precaution</h2><p>Consider the effects of the Defender’s actions on the Attacker</p>
 <ul>
-<li>To do CD, it requires send ane receive at the same time. Generally, 802.11 adapter receive is relatively weaker than send, making both available costs alot.</li>
-<li>Even if send and receive available, hidden terminal problem, and fading may not allow to detect properly.</li>
+<li>Is the minimisation of the effect of unwitting (자신도 모르는) actions on an operation.</li>
+<li>Is the strategic principle that fills the void left by the impossibility of obtaining total awareness.</li>
+<li>Redundancy: is establishing reasonable fail-safes, backups, and contingency methodes, network signatures.. - allows the operation lives</li>
+<li>Diversity: is leveraging a wide range of tools, technologies, development methods, network signatures… - prevent full operation failure.</li>
+<li>Redundancy - Points of acceess per seg = lg(number of devices)</li>
+<li>Diversity  = 1 to 2 methods / platform.</li>
+<li>The best precaution will depend on the attacker’s level of awareness.</li>
 </ul>
-<p><img src="/image/Week%203%202%20Ethernet%20and%20Wifi/Untitled%204.png" alt=""></p>
-<h3 id="Address"><a href="#Address" class="headerlink" title="Address"></a>Address</h3><ol>
-<li>Wirelss station MAC address that receives frames.</li>
-<li>Station MAC Address that sends frames.</li>
-<li>Router Interface MAC address<ol>
-<li>The router does not know the existence of address 1, the Acess Point.</li>
-<li>Connects wired lan and BSS.</li>
-</ol>
-</li>
-<li>Ad-hoc address. </li>
-</ol>
-<h3 id="Frame-Cotrol-has"><a href="#Frame-Cotrol-has" class="headerlink" title="Frame Cotrol has:"></a>Frame Cotrol has:</h3><ul>
-<li>Control Frames: Control the communication with the Access Point</li>
-<li>Management Frames: Manage the relationship with the Access Point</li>
-<li>Data Frames: Send data…</li>
-</ul>
-<h2 id="Control-Frames"><a href="#Control-Frames" class="headerlink" title="Control Frames:"></a>Control Frames:</h2><h3 id="Reliability"><a href="#Reliability" class="headerlink" title="Reliability"></a>Reliability</h3><p>Due to the high BER, has three approaches:</p>
+<hr>
+<h2 id="Principle-5-Operational-Security"><a href="#Principle-5-Operational-Security" class="headerlink" title="Principle 5:  Operational Security"></a>Principle 5:  Operational Security</h2><p> Consider the impact of the Attacker on the Defender.</p>
 <ul>
-<li>Detect errors and drop frames (something else will take care of it – 802.3)</li>
-<li>Detect errors and fix frames at receiver (forward error correction)</li>
-<li>Detect errors and sender sends again (Automated Repeat reQuest – ARQ – 802.11)</li>
+<li>Is the minimization of adversarial exposure, recognition, and reaction to the existence of an operation.</li>
+<li>Is best defined as doing everything that prevents discovery.</li>
+<li>Is the twin of the principle of precaution; Precaution - the effects of the Defender’s actions on the Attacker, Operational Secu - the impact of the Attacker on the Defender.</li>
 </ul>
-<h3 id="Automatic-Repeat-reQuest-ARQ-by-Acknowledgement"><a href="#Automatic-Repeat-reQuest-ARQ-by-Acknowledgement" class="headerlink" title="Automatic Repeat reQuest (ARQ) by Acknowledgement"></a>Automatic Repeat reQuest (ARQ) by Acknowledgement</h3><p><a href="https://en.wikipedia.org/wiki/Automatic_repeat_request">Automatic repeat request</a></p>
-<ul>
-<li>For every frame I sent need ACK; if not, send again within timeout.</li>
-<li>If ACK lost —&gt; send again with a flag that it is resent frame</li>
-<li>If timeout too short —&gt; send again with a flag</li>
-<li>Stop and Wait ARQ<ul>
-<li>Helps with high delays, Single bit sequence number, ACK includes the sequence num</li>
+<h3 id="Minimizing-Exposure"><a href="#Minimizing-Exposure" class="headerlink" title="Minimizing Exposure"></a>Minimizing Exposure</h3><ul>
+<li>Stealthness - more than active hiding; includes being a tree in a forest.</li>
+</ul>
+<h3 id="Minimizing-Recognition"><a href="#Minimizing-Recognition" class="headerlink" title="Minimizing Recognition"></a>Minimizing Recognition</h3><ul>
+<li>Has level of exposure to observations.</li>
+<li>Ensure that observable artifacts and actions are kept within an expected pattern. (behave the common pattern they do)</li>
+<li>Decoy - spread out anomalous actions in space and time to keep below the human thrushold of perceived cause.</li>
+</ul>
+<h3 id="Controlling-Reaction"><a href="#Controlling-Reaction" class="headerlink" title="Controlling Reaction"></a>Controlling Reaction</h3><ul>
+<li>May leave decoys that misdirect Defenders into thinking they have rooted out the problem.</li>
+</ul>
+<h3 id="Measuring"><a href="#Measuring" class="headerlink" title="Measuring"></a>Measuring</h3><p>The more awareness you have, the more secure you can be. But the act of acquiring that awareness is less operationally secure.</p>
+<hr>
+<h2 id="Principle-6-Program-Security"><a href="#Principle-6-Program-Security" class="headerlink" title="Principle 6: Program Security"></a>Principle 6: Program Security</h2><ul>
+<li>Is the principle of containing damage caused during the compromise of an operation.</li>
+<li>You do not want to affect the other operation from the failure of one.</li>
+</ul>
+<h3 id="Attacker-Liabilities"><a href="#Attacker-Liabilities" class="headerlink" title="Attacker Liabilities"></a>Attacker Liabilities</h3><ul>
+<li>Anything that can be used to impede the Atttacker’s future operations.</li>
+<li>Defenders will do Battle Damage Assessment (BDA) - What<ul>
+<li>What systems were compromised? What credit cards were exposed?</li>
+<li>What user accounts? What is the value?</li>
 </ul>
 </li>
-<li>Robust, but throttles performance goes up as bandwidth*delay goes up.</li>
+<li>Defining who and how is intensive work.</li>
+<li>Categories are:<ul>
+<li>Identity, Target Pollution, Attacker Infrastructure</li>
+<li>Technical  Vulnerabilities, technical tools, Operational Methodologies.</li>
 </ul>
-<p><a href="https://en.wikipedia.org/wiki/Stop-and-wait_ARQ">Stop-and-wait ARQ</a></p>
-<h3 id="802-11-Control-Frames-has"><a href="#802-11-Control-Frames-has" class="headerlink" title="802.11 Control Frames has:"></a>802.11 Control Frames has:</h3><p>RTS, CTS, ACK, Request for RTS (RRTS), Data Sendinf (DS)</p>
+</li>
+</ul>
+<h3 id="Program-Security-Costs"><a href="#Program-Security-Costs" class="headerlink" title="Program Security Costs"></a>Program Security Costs</h3><p>Attacker Costs &lt; Defender Costs is ideal.</p>
+<p>Do following to increase the costs for defenders: </p>
+<ul>
+<li>AntiReverse Engineering - Prevent Static Analyze; Reverse Engineering - no control, but analyze and knows how does it work.</li>
+<li>AntiDebugging - Prevent Dynamic Analyze; Debugging - analyze with the control.</li>
+<li>Capability Diffusion: separate big into small segements so hard to define the links in between the programs.</li>
+</ul>
+<p>— Careless increase of Defender’s analysis cost may trigger the detection and lose the superiority; with potential of decreasing the costs for them + decrease program security</p>
+<ul>
+<li>Mitigation is the cost of preventing the attacker’s actions in the first place, or cleaning up after successful attack detection. - 예방및 공격감지후 보호/정리 비용</li>
+<li>Distribution is the cost associated with either acquiring that knowledge or sharing with others : Computer Emergency Response Teams (CERTs)</li>
+</ul>
 
         </div>
         
@@ -352,7 +297,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/54/">54</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
             
         </ul>
     </nav>
@@ -402,7 +347,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            54
+                            67
                         </p>
                     </a>
                 </div>
@@ -414,7 +359,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -506,6 +451,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">13</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/07/">
@@ -627,6 +583,14 @@
                 <span class="level-item tag">10</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Parallel-Computing/">
             <span class="level-start">
                 <span class="level-item">Parallel Computing</span>
@@ -657,18 +621,18 @@
         
         <article class="media">
             
-            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
-                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -676,18 +640,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -695,18 +659,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -714,18 +678,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -733,18 +697,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -869,6 +833,14 @@
                 <span class="level-item tag">10</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Parallel-Computing/">
             <span class="level-start">
                 <span class="level-item">Parallel Computing</span>
@@ -899,18 +871,18 @@
         
         <article class="media">
             
-            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
-                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -918,18 +890,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -937,18 +909,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -956,18 +928,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -975,18 +947,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>

@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/11/Network/Network_LAN/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/lan.jpg" alt="LAN">
+        <a href="/2020/03/19/OCSO/OCSO_Asymmetries/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/Asymmetries.jpeg" alt="Asymmetries">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-11T03:06:00.000Z">Mar 11, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-03-19T08:46:00.000Z">Mar 19, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                <a class="has-link-grey -link" href="/categories/OCSO/">OCSO</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 813 words)
+                    4 minutes read (About 622 words)
                 </span>
                 
                 
@@ -156,150 +156,41 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/11/Network/Network_LAN/">LAN</a>
+                <a class="has-link-black-ter" href="/2020/03/19/OCSO/OCSO_Asymmetries/">Asymmetries</a>
             
         </h1>
         <div class="content">
-            <p>Reference: </p>
-<ul>
-<li>Computer Networks, Fifth Edition by by Andrew S et al.</li>
-<li>The Australian National University CECS</li>
-</ul>
-<hr>
-<h3 id="Local-Area-Network"><a href="#Local-Area-Network" class="headerlink" title="Local Area Network"></a>Local Area Network</h3><ul>
-<li>Adiministrative Domain: as a collection of hosts and routers, and the interconnecting network managed by a single authority.</li>
-<li>Broadcast Domain: Can talk to anyone on the LAN!</li>
-</ul>
-<p>Design should be:</p>
-<ul>
-<li>Simple as possible</li>
-<li>Deliver msg from sender to receiver asap/efficiently (over a cable)</li>
-<li>LAN is hardware. Leave the difficulties to software</li>
-</ul>
-<p><strong>There is:</strong></p>
-<ul>
-<li>No guaranteed delivery</li>
-<li>No built in error detection and correction</li>
-<li>No specialised features (realtime, bulk-transfer)</li>
-<li>Yes to performance</li>
-</ul>
-<h3 id="Multiplexing"><a href="#Multiplexing" class="headerlink" title="Multiplexing"></a>Multiplexing</h3><p>It can be by time, space, and frequency. Everyone gets an equal share but does everyone need that much?</p>
-<ul>
-<li>It’s a effectively a circuit —&gt; wasting capacity.</li>
-</ul>
-<p><strong>Statistical Multiplexing</strong> </p>
-<ul>
-<li>Demand for capacity varies with time<ul>
-<li>Random access-priority across all devices</li>
-<li>Statistically don’t need the bandwidth all the time, give it a try!</li>
-</ul>
-</li>
-<li>A communcation channel is divided into an arbitrary number of variable bitrate digital channel or data streams. The link sharing is adapted to the instantaneous traffic demands of the data streams that are transderred over each channel.</li>
-<li>Is faciliated through packet mode or packet oriented communication which is utilized by packet switch.</li>
-<li>Code Division Multiple Access (CDMA) - different amount of spreading codes or spreading factors can be assigned to diff users.</li>
-</ul>
-<hr>
-<p><strong>Circuits</strong> : a fixed pipe only for you that tied to both endpoints - send bits whenever wants to the other end</p>
-<p><strong>Cells</strong> : TDM - Send a specific number of bits when it is your turn to the other end</p>
-<p><strong>Frames</strong> : Arbitrary length, targeted messages - Send a collection of bits when you want (The most common LAN approach).</p>
-<h3 id="Frames"><a href="#Frames" class="headerlink" title="Frames"></a>Frames</h3><ul>
-<li>Destination address, source address, assemblage of bits starts and stops.</li>
-<li>Need to agree how long the frame could be</li>
-<li>Need to agree how to access the network fairly</li>
-</ul>
-<p>Flag is needed to ensure the sync.</p>
-<p><img src="/image/Week%203%201%20LAN/Untitled.png" alt=""></p>
-<p>payload has escape byte before its escape byte or flag byte</p>
-<p>ig. FABEFCDF (F is flag and E is escape) To ensure the message, it must be sent as FABEEEFCDF. Then receiver drops two Es.</p>
-<h2 id="Media-Access-Control-MAC-and-sharing"><a href="#Media-Access-Control-MAC-and-sharing" class="headerlink" title="Media Access Control (MAC) and sharing"></a>Media Access Control (MAC) and sharing</h2><p>It Needs</p>
-<ol>
-<li>Address Scheme:<ol>
-<li>MAC address for your network interface </li>
-<li>Identity of the interface</li>
-<li>Listen to all traffic, respond msg sent to you</li>
-</ol>
-</li>
-<li>Access Scheme for multiple devices:<ol>
-<li>Party Atmosphere : your job to listen and respond.</li>
-</ol>
-</li>
-</ol>
-<h3 id="Randomised-Access-try-your-luck"><a href="#Randomised-Access-try-your-luck" class="headerlink" title="Randomised Access (try your luck)"></a>Randomised Access (try your luck)</h3><ol>
-<li>Send data if you have</li>
-<li>If receiver does not acknowledge or you hear other sending its data, we have collision</li>
-<li>If collision then back off and try again.</li>
-</ol>
-<p>Simple but effective if the congestion is not high. </p>
-<p>Stat performance is 18-36% while it depends on the back-off scheme.</p>
-<h3 id="Carrier-Sense-for-Multiple-Access-CSMA-Stricter-Rules"><a href="#Carrier-Sense-for-Multiple-Access-CSMA-Stricter-Rules" class="headerlink" title="Carrier Sense (for) Multiple Access (CSMA) - Stricter Rules"></a>Carrier Sense (for) Multiple Access (CSMA) - Stricter Rules</h3><p>It is good for wired network</p>
-<ol>
-<li>Check if anyone sending (senses for carrier)</li>
-<li>if clean, send the whole frame</li>
-</ol>
-<p>It may cause:</p>
-<ul>
-<li>Delay on long cable as both may send at the same time.</li>
-<li>As bandwidth delay gets bigger, problem gets bigger.</li>
-<li>Sets upper limits on delay and minimus frame size.<ul>
-<li>Need time to detect a collision</li>
-<li>Min frame time  = 2* (oneway delay)</li>
-</ul>
-</li>
-</ul>
-<h3 id="CSMA-CA-collision-avoidance"><a href="#CSMA-CA-collision-avoidance" class="headerlink" title="CSMA/CA (collision avoidance)"></a>CSMA/CA (collision avoidance)</h3><ul>
-<li>Listen for carrier. If clean, wait for random time (to avoid everyone wait and start at the same time.) Then send the frame</li>
-</ul>
-<h3 id="CSMA-CD-collision-Detection"><a href="#CSMA-CD-collision-Detection" class="headerlink" title="CSMA/CD (collision Detection)"></a>CSMA/CD (collision Detection)</h3><ul>
-<li>Listen carrier. Send and listen for a collision while sending. Collision —&gt; stop immediately and jam everyone. Then back-off and retry (while everyone wait)</li>
-</ul>
-<hr>
-<p>Backing off needs</p>
-<ul>
-<li>some limits for how long - not too short or long</li>
-<li>Ideally 1/N (n  = num of terminals)</li>
-<li>Binary Exponential Back-Off  (BEB) is to estimate out the N - Count num of collision you had. First wait 0-1 second wait 0-3 Third wait 0-7 frames.</li>
-</ul>
-<hr>
-<h2 id="Wireless"><a href="#Wireless" class="headerlink" title="Wireless"></a>Wireless</h2><p>Wireless is harder as </p>
-<ul>
-<li>each node has coverage  - can be part of a single network but can’t see all the nodes due to power limitation.</li>
-<li>TX (transmit) can be a million times louder than RX (Response) - Can’t listen collisions, or can’t respond quickly (wasting time).</li>
-</ul>
-<h3 id="MACA-Broadcast-anyone-can-hear"><a href="#MACA-Broadcast-anyone-can-hear" class="headerlink" title="MACA (Broadcast - anyone can hear)"></a>MACA (Broadcast - anyone can hear)</h3><ul>
-<li>Multiple Access, Collision Avoidance.</li>
-<li>Quick handshake before yelling</li>
-<li>Sender: Request To Send (RTS) + N bytes</li>
-<li>Receiver: Clear To Send (CTS) + N bytes</li>
-<li>Sender Transmits<ul>
-<li>Any nodes heard CTS silent for N bytes</li>
-<li>Any nodes heard RTS silent for CTS.</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="Contention-Free-Access"><a href="#Contention-Free-Access" class="headerlink" title="Contention Free Access"></a>Contention Free Access</h2><p>Not random, take turns</p>
-<h3 id="Token-Ring"><a href="#Token-Ring" class="headerlink" title="Token Ring"></a>Token Ring</h3><p>Passes around the token and can send data only if u have it. Ideally aligned with physical reality.</p>
-<ul>
-<li>If token lost - need regenerate after agreed timeout</li>
-<li>less efficient TDM with lower loads.</li>
-<li>Great under load, but doesn’t scale well</li>
-</ul>
-<hr>
-<h3 id="Topologies"><a href="#Topologies" class="headerlink" title="Topologies"></a>Topologies</h3><p>Most wired LANs have moved away from bus topologies.</p>
-<ul>
-<li>Hard to scale</li>
-<li>Make cable longer<ul>
-<li>Needs repeater, hub, bridge (which links two smaller LANs and learns addresses on each side.)</li>
-</ul>
-</li>
-</ul>
-<p>Nearly all moved to Switch</p>
-<ul>
-<li>Crossbar devices that learn source/destination addresses from the traffic</li>
-<li>Makes every link point to point</li>
-<li>Great in scalability and performance</li>
-</ul>
-<hr>
+            <p>Reference : Network Attacks and Exploitation by Matthew Monte</p>
+<h2 id="False-Asymmetries"><a href="#False-Asymmetries" class="headerlink" title="False Asymmetries"></a>False Asymmetries</h2><h3 id="Cost"><a href="#Cost" class="headerlink" title="Cost"></a>Cost</h3><p>Cost alot for both of attackers and defenders.</p>
+<h3 id="Attribution"><a href="#Attribution" class="headerlink" title="Attribution"></a>Attribution</h3><p>Cyber Attribution is the process of tracking, identifying and laying blame on the perretrator of a cyber attack or other hacking exploit. Finding the target and catching the attacker is pretty much the same. And even penalties different via countries.</p>
+<h2 id="True-Asymmetries-Advantage-for-attacker"><a href="#True-Asymmetries-Advantage-for-attacker" class="headerlink" title="True Asymmetries Advantage for attacker"></a>True Asymmetries Advantage for attacker</h2><h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation:"></a>Motivation:</h3><p>Attacker: costs but there is a huge payoff potential and little risk. Gains are immediate and tangible</p>
+<p>Defender: Nothing to gain, only something to lose. Loss is often intangible from nothing to catastrophic.</p>
+<p><strong>This diffrerence creates an imbalance in motivation</strong> even if the law comes in, monotony makes defender less motivated than attacker.</p>
+<h3 id="Initiative"><a href="#Initiative" class="headerlink" title="Initiative:"></a>Initiative:</h3><p>Is ability to make threats or take actions that require your opponent to react. Motivation : mental States. Initiative : measures ability. Attacker acts and Defender reacts —&gt; means that the Attakcer can stay one step ahead.</p>
+<h3 id="Focus"><a href="#Focus" class="headerlink" title="Focus:"></a>Focus:</h3><p>Attacker: has a sigle mission and point of focus. Has a feedback coming from the accomplishments and failures</p>
+<p>Defender: Split focus between securing the network and running it. Lack positive feedback. Cannot prove a negative. </p>
+<h3 id="Effect-of-failure"><a href="#Effect-of-failure" class="headerlink" title="Effect of failure:"></a>Effect of failure:</h3><p>Preventing an attack may have no effect wthasoever on the attacker</p>
+<p>Honeypot is a computer network designed to entice attackers in to trick them into exposing a larger cadre of tools and methods in the hopes of inflitcing a cost; histrically been expensive.</p>
+<p>Attacker:  loss almost non-existent; time and small amount of cost.  May apply the failure to make the next step</p>
+<p>Defender: a lot. No idea how would be the next step be.</p>
+<h3 id="Knowledge-of-Tech"><a href="#Knowledge-of-Tech" class="headerlink" title="Knowledge of Tech:"></a>Knowledge of Tech:</h3><p>Attacker : There are but a limited number of typical setups and the Attacker has seen them all. Full time spending studying offense and even defense.  Urgency for defender is different.</p>
+<p>Defender: must learn defensive methods and tech to stay current and to maintain compliance.</p>
+<p>The gap comes from the motivation and eagerness on learning more stuff.</p>
+<h3 id="Analysis-of-opponent"><a href="#Analysis-of-opponent" class="headerlink" title="Analysis of opponent:"></a>Analysis of opponent:</h3><p>On general, Attackers can acquire, analyze, and test against solutions of security software before deploying their attack tools,</p>
+<p>Attacking tools cannot be purchased, but must be captured. Must detect and capture tool for analysis, but need to analyze it to detect and capture.</p>
+<h3 id="Tailored-Software"><a href="#Tailored-Software" class="headerlink" title="Tailored Software:"></a>Tailored Software:</h3><p>Attackers have an advantage in creating and deploying pointy-end software. The development cycle can be condensed and it is under their own control. However, this advantage is not inherent. </p>
+<p>The defensive security market is actively researching and developing defensive architectures that can be<br>quickly tailored to specific environments under the buzzword adaptive defense. Results so far have been muted, but it is in the early stages. If and when a true adaptive defense is achieved, the Attackers’ advantage will dissipate.</p>
+<h3 id="Rate-of-Change"><a href="#Rate-of-Change" class="headerlink" title="Rate of Change"></a>Rate of Change</h3><p>When software is updated, if new features are added, there’s a decent chance new vulnerabilities will be introduced.</p>
+<p>The rate of change and the resultant shaky foundation it creates offers a renewing stream of vulnerabilities that is to the Attacker’s advantage.</p>
+<h2 id="True-Asymmetries-Advantage-Defender"><a href="#True-Asymmetries-Advantage-Defender" class="headerlink" title="True Asymmetries Advantage Defender"></a>True Asymmetries Advantage Defender</h2><h3 id="Network-Awareness"><a href="#Network-Awareness" class="headerlink" title="Network Awareness"></a>Network Awareness</h3><p>Defender: has full access to every details such as switch, router, firewall…</p>
+<p>Attacker: cannot acquire the same level of detail with the same level of Defender’s effort</p>
+<h3 id="Network-Posture"><a href="#Network-Posture" class="headerlink" title="Network Posture"></a>Network Posture</h3><p>microsacle ig. Address Space layout Randomization (ASLR) </p>
+<p>Defender: has full right to construct the Network attributes from policy to technological.</p>
+<p>Attacker: harder to target the moving object.</p>
+<h2 id="Advantage-Indeterminate-for-both"><a href="#Advantage-Indeterminate-for-both" class="headerlink" title="Advantage Indeterminate for both"></a>Advantage Indeterminate for both</h2><h3 id="Time"><a href="#Time" class="headerlink" title="Time"></a>Time</h3><p>Attacker: time to do overall operation. However it may allow them to be exposed. It may help but hurt at the same time.</p>
+<p>Defender:  Overall maintance, upgrade, RECON, …</p>
+<h3 id="Efficiency"><a href="#Efficiency" class="headerlink" title="Efficiency"></a>Efficiency</h3><p>Attacker: Cost of Acquiring Information vs Value of Information Acquired</p>
+<p>Defender: Cost of Securing Information vs Value of Information Secured</p>
 
         </div>
         
@@ -339,7 +230,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/54/">54</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
             
         </ul>
     </nav>
@@ -389,7 +280,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            54
+                            67
                         </p>
                     </a>
                 </div>
@@ -401,7 +292,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -493,6 +384,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">13</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/07/">
@@ -614,6 +516,14 @@
                 <span class="level-item tag">10</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Parallel-Computing/">
             <span class="level-start">
                 <span class="level-item">Parallel Computing</span>
@@ -644,18 +554,18 @@
         
         <article class="media">
             
-            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
-                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -663,18 +573,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -682,18 +592,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -701,18 +611,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -720,18 +630,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -856,6 +766,14 @@
                 <span class="level-item tag">10</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Parallel-Computing/">
             <span class="level-start">
                 <span class="level-item">Parallel Computing</span>
@@ -886,18 +804,18 @@
         
         <article class="media">
             
-            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
-                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -905,18 +823,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -924,18 +842,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -943,18 +861,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -962,18 +880,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>

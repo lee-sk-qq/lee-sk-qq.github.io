@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.1" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>SK Lee</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="SK Lee">
+<meta property="og:url" content="https://github.com/qqskda/page/65/index.html">
+<meta property="og:site_name" content="SK Lee">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/images/og_image.png">
+<meta property="article:author" content="Sungkwon Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/images/og_image.png">
+<meta name="twitter:creator" content="@qqskda">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/avatar.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/monokai-sublime.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/avatar.png" alt="SK Lee" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/qqskda">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/03/08/Parallel/Week%201%202%20Architect/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/archi.jpeg" alt="Architect">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-08T11:46:00.000Z">Mar 08, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    22 minutes read (About 3336 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/08/Parallel/Week%201%202%20Architect/">Architect</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference : Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</p>
+<h3 id="Why-parallel-is-hard"><a href="#Why-parallel-is-hard" class="headerlink" title="Why parallel is hard?"></a>Why parallel is hard?</h3><ol>
+<li>Writing (correct &amp; efficient) : hard to debug</li>
+<li>Getting (ideal) speed up:<ol>
+<li>communication shared data</li>
+<li>Synchronization (barriers and locks)</li>
+<li>need for redundant computations (balancing load evenly)</li>
+</ol>
+</li>
+<li>Parallel approach is not always right.</li>
+</ol>
+<h3 id="Design-of-diff-processor-type"><a href="#Design-of-diff-processor-type" class="headerlink" title="Design of diff processor type:"></a>Design of diff processor type:</h3><p>Single Processor Design</p>
+<ol>
+<li>Same Language</li>
+<li>many happens within a single processor</li>
+<li>Potential issues for hardware side</li>
+</ol>
+<p>Multiple Processor Design</p>
+<ol>
+<li>Architectural Classifications</li>
+<li>Shared/Distributed memory</li>
+<li>hierarchical/flat memory</li>
+<li>dynamic/static processor connectivity</li>
+<li>Evaluating static networks</li>
+</ol>
+<p>Adding two double precision (8)  = 8*8 = 64 bits</p>
+<ol>
+<li>Determine largest exponent (가장 큰 제곱수 - 지수)</li>
+<li>Normalize significand (밑수) of small exponent to the larger - 지수 밑수로 식 바꾸는거</li>
+<li>Add significand (같은 지수의 밑수들 끼리 더해주기)</li>
+<li>재정립 (올림내림 등등)</li>
+</ol>
+<p>— Each taking 1 tick → Total 4 ticks per addition (FLOP)</p>
+<h2 id="Instruction-Pipelining-https-namu-wiki-w-파이프라인-CPU"><a href="#Instruction-Pipelining-https-namu-wiki-w-파이프라인-CPU" class="headerlink" title="Instruction Pipelining (https://namu.wiki/w/파이프라인(CPU))"></a>Instruction Pipelining (<a href="https://namu.wiki/w/%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8(CPU)">https://namu.wiki/w/파이프라인(CPU)</a>)</h2><p>break an instruction into k stages ⇒ ≤ k-way || ism (instruction mix)</p>
+<p>FI = Fetch Instrn (불러오기) DI = Decode Instrn (해석하기) FO = Fetch Operand (함수 불러오기) EX = Execute Instrn (실행하기) WB = Write Back (값 적기)</p>
+<ul>
+<li>Conditional Branch - wrong guess may result flushing succeeding instructions from the pipeline.</li>
+<li>More breakdown stages → Increase in startup latency.</li>
+</ul>
+<h2 id="Pipelining-Dependent-Instrn"><a href="#Pipelining-Dependent-Instrn" class="headerlink" title="Pipelining: Dependent Instrn."></a>Pipelining: Dependent Instrn.</h2><p>Principle = CPU must ensure result is the same as if no pipelining (or ||ism)</p>
+<p>위 상기한 것중 EX의 실행하기 단계가 여러개의 사이클을 필요로 한다면 (3 사이클), EX1, EX2 처럼 연속적으로 늘어난다 (같은 카테고리에 속해있기에 dependent 하다).</p>
+<h2 id="SuperScala-https-namu-wiki-w-슈퍼스칼라"><a href="#SuperScala-https-namu-wiki-w-슈퍼스칼라" class="headerlink" title="SuperScala (https://namu.wiki/w/슈퍼스칼라)"></a>SuperScala (<a href="https://namu.wiki/w/%EC%8A%88%ED%8D%BC%EC%8A%A4%EC%B9%BC%EB%9D%BC">https://namu.wiki/w/슈퍼스칼라</a>)</h2><ul>
+<li>파이프라인 기업을 통한 CPU 속도 향상위한 컴퓨터 구조 설계 방식</li>
+</ul>
+<p>SMT (Simultaneous multi-threading) 는 쓰레드 레벨에서의 병렬화, 슈퍼스칼라는 명령어 레벨에서의 병렬화다.</p>
+<p>명령어 레벨 병렬화는 명령어간의 종속성을 최소화 해야하는데, 이로 인해 복잡한 명령어 스케쥴링이 필요하다. 이용해서 하나의 코어 파이프라인에 여러 쓰레드에 포함된 명령어를 섞어서 집어넣으면 스케줄링의 복잡성을 억제하면서도 효율적인 파이프라인 활용이 가능해진다.</p>
+<p>problem: amplifies dependencies and other problems of pipelining by a factor of w!</p>
+<p>구현방식</p>
+<p>In Order Execution :  해저드 방지를 위해 순서를 기다려야 해서 처리 속도에서 손해</p>
+<p>Out of order Execution : Implement Reorder Buffer - 버퍼 안에 배열을 해 두고 순차 관계 없이 바로 처리하는것. If branch prediction failure, need to empty the buffer and fetch the instrn fast. The bottle neck happens. 이때 명령어를 한번에 읽어오는 구조를 슈퍼스칼라 라고 한다. </p>
+<h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><p>Typically a processor can only issue one load or store instrn </p>
+<p>Memory latency and bandwidth are critical performance issues </p>
+<p>Main memory : large cheap memory with large latency and small bandwidth</p>
+<p>Cache: Opposite of main memory</p>
+<p>To reduce the time of fetching, try to ensure data is in cache (or as close to the CPU as possible)</p>
+<p>Cache memory is effective because algorithms often use data that:<br>● was recently accessed from memory (temporal locality) - 최근에 사용된 메모리<br>● was close to other recently accessed data (spatial locality) - 최근에 사용된 메모리에서 가까운것</p>
+<p>메인 메모리의 경우 블락들이 각각의 캐쉬에 맵핑이 되어있음 (직접적이든 간접적으로든). </p>
+<p>캐쉬는 보통 16-128 바이트 사이</p>
+<p>Entire cache line is fetched from memory, not just one element (why?)<br>■ try to structure code to use an entire cache line of data (한번에 복사되니까 모두 쓰게끔)<br>■ best to have unit stride (어레이 처럼 사이에 공간 없이 연속적인 유닛)<br>■ pointer chasing is very bad! (large address ‘strides’ guaranteed!) (이리저리 메모리 주소를 돌아다녀서)</p>
+<p>Memory bandwidth (전자기적 영역) can be improved by having multiple parallel paths to/from memory, organized in b banks - Unit Stirde 일때 효율적이며, 벡터 프로세싱에 좋고, bank-conflicts 일어나면 한가지 뱅크만 사용될 수도 있다. </p>
+<p>당연하게도</p>
+<ol>
+<li>필연적으로 프로세서는 클럭 속도에 따라 퍼포먼스가 제한된다</li>
+<li>아무리 클럭 속도를 올리더라도 물리학상 빛의 속도 이하로 제한된다</li>
+<li>ILP는 여러 명령을 한번에 실행가능 하지만 제한이 있다.</li>
+</ol>
+<p>하드웨어 문제:</p>
+<h3 id="Architecture-Classification-Flynn’s-Taxonomy"><a href="#Architecture-Classification-Flynn’s-Taxonomy" class="headerlink" title="Architecture Classification (Flynn’s Taxonomy)"></a>Architecture Classification (Flynn’s Taxonomy)</h3><ul>
+<li>SISD: 1 CPU</li>
+<li>MISD: Pipelined?</li>
+<li>SIMD: Array/Vector Processor<ul>
+<li>Data Parallel / Array Processor and Vector (in some extent)</li>
+<li>CPUs are controlled by one global control unit</li>
+</ul>
+</li>
+<li>MIMD: Multiple Processor<ul>
+<li>Most Successful parallel</li>
+<li>Each CPU is dealt by each control unit.</li>
+<li>Hence, processors are not synchronised → harder to program</li>
+<li>스케쥴링 - 프로세서들에게 효율적인 일 분배</li>
+<li>싱크 - 같은 데이터 동시 접근 방지</li>
+<li>연결 디자인 - 프로세서/메모리 혹 프로세서/프로세서 연결</li>
+<li>미리보기  - 자원 문제등 방지 위한 어느정도의 overhead</li>
+<li>파티셔닝 - 동시 처리 스트림을 이용할 수있는 알고리즘에서 병렬 처리를 식별하는 것은 쉽지 않습니다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Address-Space-Organization"><a href="#Address-Space-Organization" class="headerlink" title="Address Space Organization"></a>Address Space Organization</h3><h3 id="Message-Passing-Distributed-Parallel-Computers"><a href="#Message-Passing-Distributed-Parallel-Computers" class="headerlink" title="Message Passing (Distributed Parallel Computers)"></a>Message Passing (Distributed Parallel Computers)</h3><ol>
+<li>Each processor has local/private memory (메모리 공유가 아니기에)</li>
+<li>Interact solely by MP. (메세지 패싱으로만 서로)</li>
+<li>프로세서 수에 따라 대역폭이 결정됨</li>
+</ol>
+<h1 id="Shared-Address-Space"><a href="#Shared-Address-Space" class="headerlink" title="Shared Address Space"></a>Shared Address Space</h1><ol>
+<li>Interact by modifying data objects in a shared address space (공유 메모리)</li>
+<li>All the processors in the UMA model share the physical memory uniformly. In an UMA architecture, access time to a memory location is independent of which processor makes the request or which memory chip contains the transferred data (모두 공유하기 때문에 메모리 엑세스 시간이 프로세서나 메모리 위치에 따라 변하거나 하지는 않는다)</li>
+<li>메모리 대역폭이나 프로세서간 커뮤니케이션의  확장성에 문제가 있다. </li>
+</ol>
+<h3 id="Non-Uniform-Memory-Access-NUMA"><a href="#Non-Uniform-Memory-Access-NUMA" class="headerlink" title="Non-Uniform Memory Access (NUMA)"></a>Non-Uniform Memory Access (NUMA)</h3><ol>
+<li>메모리간의 서열이 존재한다</li>
+<li>모든 메모리에 접근 가능하지만, 위치에 따라 엑세스 시간이 달라진다 (머니까)</li>
+<li>이에 따라서 중간에 캐쉬를 넣어 놓음 (fetching speed 빠르니까)</li>
+</ol>
+<p><img src="/image/Week%201%202%20Architect/Untitled.png" alt=""></p>
+<h3 id="Shared-Address-Space-Access"><a href="#Shared-Address-Space-Access" class="headerlink" title="Shared Address Space Access"></a>Shared Address Space Access</h3><p>Parallel Random Access Machine (PRAM) : any shared memory machine</p>
+<p> Exclusive-read, exclusive-write (EREW PRAM)<br> Concurrent-read, exclusive-write (CREW PRAM)<br> Exclusive-read, concurrent-write (ERCW PRAM)<br> Concurrent-read, concurrent-write (CRCW PRAM)</p>
+<p>Concurrent Write 다음과 같이 관리한다:</p>
+<ol>
+<li>Common : 값이 같으면 가능</li>
+<li>Arbitrary : 아무 한 프로세서만 가능하고 나머지는 거절</li>
+<li>Priority : 프로세서간 우선순위 설정</li>
+<li>Sum : 모든 결과값 더하기 (즉 더하기 였으면 합쳐서 더해도 같으니까)</li>
+</ol>
+<h2 id="Dynamic-Processor-Connectivity"><a href="#Dynamic-Processor-Connectivity" class="headerlink" title="Dynamic Processor Connectivity"></a>Dynamic Processor Connectivity</h2><p>Switch is a mapping from the input to the output ports (# of switches = degree of switch)</p>
+<p>switches: internal buffering (출력 포트가 사용중일때), routing  (네트워크 혼잡을 완화하기 위해), multi-cast (여러 포트에 동일 출력) 을 지원할 수 있다.  밑의 메커니즘 = mapping between input &amp; output.</p>
+<p>매핑 하드웨어는 스위치 개수의 제곱, 주변 하드웨어와는 선형, 패키비지용은 핀의 개수와 선형으로 증가.</p>
+<ol>
+<li>Crossbar (프로세서가 많을 때 좋음) - 비용면에서 확장성이 뛰어나지 않음 (성능 확장 가능)<ol>
+<li>non-blocking network : 프로세서의 통신이 다른 프로세서간을 방해하지 않음</li>
+<li>network comp = Omega(p^2) - 스위치 복잡성으로 인해 높은 데이터 속도 실현 어렵</li>
+<li>각 프로세서간 연결에서 로컬 메모리와 함께 연결도 가능하다.</li>
+<li>다양한 메모리 뱅크를 가진 프로세서간 연결도 가능하다.</li>
+<li>비용 theta(p^2)</li>
+</ol>
+</li>
+<li>Multi-staged Networks (네트워크를 통하니 프로세서가 적당할때) - 성능비용 1,3 사이에 위치<ol>
+<li>O(lg p), 네트워크 비용은 theta(p lg p)</li>
+<li>해당 메모리 뱅크를 사용할 때 다른 프로세서간의 연결 (그 메모리 뱅크 사용)을 차단함</li>
+<li>route if MSB of s and t are the same; if not crossover.<ol>
+<li>010 (s) - 100 (so out through 101) - 011 (so 011) - 110 (cross to 111) - 111</li>
+<li>한 스위칭 네트워크를 지나면 비트를 쉬프트 한다 (010 에서 0,1,0 순서로 비교)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>BUS (프로세서가 적을때) - 브로드캐스트에 적합 (성능 확장 불가, 비용면에서 확장 가능)<ol>
+<li>메모리 접근을 위해 버스를 통하는데, 버스는 독점적인 접근만 허용한다 (한명만)</li>
+<li>따라서 버스의 퍼포먼스는 확장성이 제한된다 - 보통 12개 정도 까지</li>
+<li>cost for expansion = p and the distance bet two nodes are O(1) - directly connected</li>
+</ol>
+</li>
+</ol>
+<h2 id="Network-Topology"><a href="#Network-Topology" class="headerlink" title="Network Topology"></a>Network Topology</h2><ol>
+<li>Completely Connected - crossbar (non block communication) + static (directily point to point)</li>
+<li>Star Conncted - One processor acts as a central processor (bottleneck) → bus-based network</li>
+<li>K-D Mesh - <ol>
+<li>병렬 컴퓨터 보통 3차원 문제 다룸 ⇒ 3D 큐브를 보통 사용함 (Linear array)</li>
+<li>Hypercube - 대응 노드에 따른 연결 (3차원은 2차원 두개, 4차원은 3차원 두개 식으로 증가)<ol>
+<li>Hamming Distance : xor 로 인한 거리 구하기 (블록 코드의 일종)  하이퍼 큐브에서 해밍 거리는 두 프로세서간 가장 짧은 거리의 값이다.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Tree Based - only one path between any pair of nodes. 선형/스타 형식은 트리 네트워크의 일종. 프로세서가 메세지를 하위 루트 (송수신 노드 모두 포함) 까지 위로 보내고 거기서 내려주는 형식<ol>
+<li>다이나믹 트리: 리프들이 프로세서, 그 위는 스위칭 노드</li>
+<li>트리 네트워크는 상위 레벨에서 병목현상이 심함 - 통신 링크 증가, 노드를 루트에 다 가깝게 전환 해서 다이나믹 트리에서 완화 할 수 있다.</li>
+<li>이진트리는 루트를 통해 오는만큼 병목 현상이 심하나, 이를 고안한 뚱뚱한 상호 접속 나무가 있다 (fat tree interconnect) 리프노드만 프로세서를 가지고 있고, 성능을 저하시키지 않으며 파티션이 가능한데 이는 슈퍼컴퓨터에게 굉장히 유용하다. </li>
+</ol>
+</li>
+</ol>
+<h3 id="Static-Interconnection-Network"><a href="#Static-Interconnection-Network" class="headerlink" title="Static Interconnection Network"></a>Static Interconnection Network</h3><p>Diameter : 두 프로세서간 네트워크상 최단 경로상 가장 먼 거리</p>
+<p>Connectivity : 두 프로세서간 가능한 루트 (많을 수록 강한 연결을 뜻하니 좋다 - minimize fault-tolerance)</p>
+<p>이 연결성은 비연결 네트워크 두개를 만들기 위해 제거 해야하는 아크의 최소 숫자로 구분짓는다</p>
+<p><img src="/image/Week%201%202%20Architect/Untitled%201.png" alt=""></p>
+<p>Channel Width : 두 프로세서간의 링크에서 동시교환 가능한 비트의 수 (= 두 노드간 연결된 물리 링크 갯수와 같다)</p>
+<p>Bisection width : 네트워크를 정확히 이등분 하기 위해 지워야 하는 링크 숫자 (단절시키기 위해)</p>
+<p>Bisection bandwidth : </p>
+<ol>
+<li>같은 수의 프로세서를 가진 네트워크의 이등분을 위한 최소 커뮤니케이션 볼륨  (그래야 제일 비슷하게 나뉘어진거니까) - 이 값은 전체 시스템의 진실된 대역폭이며 병목 대역폭을 의미하기도 하기 때문에 중요하다.</li>
+<li>= bisection width * channel bandwidth (= channel rate * channel width) = cross-section bandwidth,</li>
+<li>can also be used as a measure of its cost. It provides a lower bound on the area.</li>
+</ol>
+<p><img src="/image/Week%201%202%20Architect/Untitled%202.png" alt=""></p>
+<h2 id="Dynamic-Interconnection-Network"><a href="#Dynamic-Interconnection-Network" class="headerlink" title="Dynamic Interconnection Network"></a>Dynamic Interconnection Network</h2><ol>
+<li>Diameter : max disatance between two nodes (indicative of max latency)</li>
+<li>Connectivity: <ol>
+<li>node connectivity : min num of nodes that must fail to fragment the network into two. </li>
+<li>cosidering all nodes gives a good approximation to the paths (=arc connectivity in a similar usage) - althogh we only should consider switch nodes.</li>
+</ol>
+</li>
+<li>Bisection Width: consider any possible partitioning of the  p processing nodes into two equal parts. - 파티션을 가로지르는 엣지 수가 최소인 파티셔닝을 선택한다  이 최소 엣지수가 이분 폭</li>
+</ol>
+<p><img src="/image/Week%201%202%20Architect/Untitled%203.png" alt=""></p>
+<p><img src="/image/Week%201%202%20Architect/Untitled%204.png" alt=""></p>
+<h2 id="Cache-Coherence-캐쉬값을-일관성있게-유지하기"><a href="#Cache-Coherence-캐쉬값을-일관성있게-유지하기" class="headerlink" title="Cache Coherence : 캐쉬값을 일관성있게 유지하기"></a>Cache Coherence : 캐쉬값을 일관성있게 유지하기</h2><ol>
+<li>무효화 프로토콜 : p0의 값이 1에서 3으로 변경됬을때 p1값 (1)과 비교후 같지 않으면 모두 무효처리<ol>
+<li>캐시 라인 다른 부분을 업데이트 하면 알아차리지 못함 (false sharing) </li>
+<li>이로 인해 일부를 업데이트 하면 다른 프로세서의 값이 무효화 됨</li>
+<li>이 값을 제대로 가지기 위해선 해당 라인을 따로 원격 프로세서에서 가져와야 함</li>
+</ol>
+</li>
+<li>업데이트 프로토콜: 한 프로세서에서 캐쉬값이 바뀌면 p1값을 3으로 업데이트 후 메모리도 3으로 바꿈<ol>
+<li>p0가 값을 읽고 사용을 안하면, p1 에서 소스 대기시간 + 네트워크 대역폭 오버헤드 이 발생함</li>
+<li>False-sharing 에서 업데이트 프로토컬은 모든 값을 업데이트 하므로 무효화 프로토콜 보다 낫다.</li>
+</ol>
+</li>
+</ol>
+<p>이 두 프로토콜은 communication overhead (updates) 와 idling (stalling in invalidates) 에서 절충해야 한다. 현재 추세는 무효화 프로토콜을 쓰므로 나머지 멀티프로세서 캐쉬 시스템은 무효화 프토콜로 가정한다.</p>
+<p>Invalidate Protocols 를 이용한 Cache Coherence 유지</p>
+<p>메모리에 있을때는 공유상태, 한 프로세서 p0가 변수를 로드 하면, 이 변수는 더티 혹은 수정 상태로 표시됨 (flag) 이 상황에서 p1이 변수를 받고 싶다하면, p0이 값을 보내주고 메모리에 새로운 값을 업데이트 함. 이후에 변수는 맨 처음과 같이 공유 상태로 됨.</p>
+<p>무효 상태의 값을 프로세서가 읽으면, 이 무효 블록은 값을 내려받고 공유상태로 돌아감. 비슷하게 프로세서가 공유 블록에 값을 적으면 무효 블록에 값을 줌. 이러면 다른 공유 블록들 모두 무효 블록이 되어버림.</p>
+<p><a href="https://en.wikipedia.org/wiki/MESI_protocol">MESI protocol</a></p>
+<p><img src="/image/Week%201%202%20Architect/Untitled%205.png" alt=""></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/page/64/">Previous</a>
+        </div>
+        <div class="pagination-next">
+            <a class="is-flex-grow has-text-black-ter" href="/page/66/">Next</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
+            
+            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/64/">64</a></li>
+            
+            <li><a class="pagination-link is-current" href="/page/65/">65</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            
+        </ul>
+    </nav>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="SK Lee">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        SK Lee
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        A Jobless Personnel
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Australia/ACT</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            67
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            8
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/lee-sk-qq" target="_blank" rel="noopener">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/qqskda">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Twitter" href="https://twitter.com/qqskda">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://medium.com/@poringpeco" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Medium</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">medium.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.linkedin.com/in/sungkwon-lee-089389145/" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Linkedin</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.linkedin.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">13</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">12</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">28</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/CPP/">
+            <span class="level-start">
+                <span class="level-item">CPP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Life/">
+            <span class="level-start">
+                <span class="level-item">Life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Machine-Learning/">
+            <span class="level-start">
+                <span class="level-item">Machine Learning</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Network/Lab/">
+            <span class="level-start">
+                <span class="level-item">Lab</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/OCSO/">
+            <span class="level-start">
+                <span class="level-item">OCSO</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Parallel-Computing/">
+            <span class="level-start">
+                <span class="level-item">Parallel Computing</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPP/">
+                        <span class="tag">CPP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keyboard/">
+                        <span class="tag">Keyboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Layer/">
+                        <span class="tag">Layer</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Summary/">
+                        <span class="tag">Summary</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Theory/">
+                        <span class="tag">Theory</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/CPP/">
+            <span class="level-start">
+                <span class="level-item">CPP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Life/">
+            <span class="level-start">
+                <span class="level-item">Life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Machine-Learning/">
+            <span class="level-start">
+                <span class="level-item">Machine Learning</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Network/Lab/">
+            <span class="level-start">
+                <span class="level-item">Lab</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/OCSO/">
+            <span class="level-start">
+                <span class="level-item">OCSO</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Parallel-Computing/">
+            <span class="level-start">
+                <span class="level-item">Parallel Computing</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPP/">
+                        <span class="tag">CPP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keyboard/">
+                        <span class="tag">Keyboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Layer/">
+                        <span class="tag">Layer</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Summary/">
+                        <span class="tag">Summary</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Theory/">
+                        <span class="tag">Theory</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/avatar.png" alt="SK Lee" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Sungkwon Lee&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://github.com/qqskda',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

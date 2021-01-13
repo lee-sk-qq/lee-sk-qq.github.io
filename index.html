@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/07/03/CPP/CPP%201.1/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+        <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 479 words)
+                    8 minutes read (About 1273 words)
                 </span>
                 
                 
@@ -156,39 +156,162 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/07/03/CPP/CPP%201.1/">CPP - 1.1</a>
+                <a class="has-link-black-ter" href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/">Very Simple File System (VSFS)</a>
             
         </h1>
         <div class="content">
-            <h2 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h2><p>Build goes through three steps:</p>
-<ol>
-<li>Preprocess : deals with source code meta data</li>
-<li>compile: turns source code into machine readable object files</li>
-<li>Link: Links objects into application</li>
-</ol>
-<p>:: → scope resolution operator</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Can use namepsace for a particular function</span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C++17 introduced new nested namespace syntax</span></span><br><span class="line"><span class="keyword">namespace</span> a::b::c::&#123;&#125;</span><br><span class="line"><span class="keyword">namespace</span> total = a::b::c; <span class="comment">// Namespace alias</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// literals can be divided into `</span></span><br><span class="line"><span class="keyword">int</span> bigNum = <span class="number">23</span>`<span class="number">456</span>`<span class="number">789</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C++ has type casting --&gt; Recommend to use the third one</span></span><br><span class="line"><span class="comment">// Type cast may result a coercion (lose decimals from float to int).</span></span><br><span class="line"><span class="keyword">float</span> myFloat = <span class="number">3.14f</span>;</span><br><span class="line"><span class="keyword">int</span> i1 = (<span class="keyword">int</span>) myFloat;</span><br><span class="line"><span class="keyword">int</span> i2 = <span class="keyword">int</span> (myFloat);</span><br><span class="line"><span class="keyword">int</span> i3 = <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(myFloat);</span><br><span class="line"><span class="comment">// Static cast is not necessary when casting into a broader type eg: short -&gt; long</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Strong type - type safe</span></span><br><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">PieceType</span>&#123;</span>king = <span class="number">1</span>&#125;;</span><br><span class="line">PieceType piece = PieceType::king; <span class="comment">// scope is necessary</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// C++17 has [[fallthrough]] in switch statement</span></span><br><span class="line"><span class="keyword">switch</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">	<span class="keyword">case</span> A:</span><br><span class="line">			[[fallthrough]]; </span><br><span class="line">	<span class="keyword">case</span> B:</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// function prototype = function header -&gt; where declare the function</span></span><br><span class="line"><span class="comment">// Function signature: function name and its variables</span></span><br><span class="line"><span class="comment">// C++14 has auto return type -&gt; compiler takes care of it</span></span><br><span class="line"><span class="comment">// auto function should have the same return types always</span></span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">addNumbers</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span></span>;</span><br><span class="line"><span class="comment">// __func__ in a function prints the function name</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p>In CPP, it is better to use std::array as it can…</p>
+            <h1 id="Very-Simple-File-System-VSFS"><a href="#Very-Simple-File-System-VSFS" class="headerlink" title="Very Simple File System (VSFS)"></a>Very Simple File System (VSFS)</h1><p>This is pure software that allows to study/experience the simplified version of UNIX file system.</p>
 <ul>
-<li>Know the accurate size</li>
-<li>Can prevent certain bugs due to non-dynamic casting into a pointer</li>
-<li>Easy to write an iterator.</li>
+<li>Key Question: How can we struct simple file system? What data structure is needed on top of disk, and how can it track certain data?</li>
 </ul>
-<p>The array size must be defined during compile step, hence size cannot be re-sized.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C style array</span></span><br><span class="line"><span class="keyword">int</span> myArray[<span class="number">3</span>] = &#123;&#125;; <span class="comment">// Initialize as 0</span></span><br><span class="line"><span class="keyword">int</span> myArray[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;; <span class="comment">// Compiler sets array size as 4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// C++17 array size</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> arraySize = <span class="built_in">std</span>::size(myArray); <span class="comment">// &lt;array&gt;</span></span><br><span class="line"><span class="comment">// Non C++17 array size</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> arraySize = <span class="keyword">sizeof</span>(myArray) / <span class="keyword">sizeof</span>(myArray[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Array</span></span><br><span class="line"><span class="built_in">array</span>&lt;<span class="keyword">int</span>, 3&gt; arr = &#123;<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>&#125;;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"Array Size"</span> &lt;&lt; arr.size() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"2nd element"</span> &lt;&lt; arr[<span class="number">1</span>] &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><p>CPP library that provides “UNFIXED” size-container —&gt; Dynamic Allocation</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Int vector</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; myVector = &#123;<span class="number">1</span>,<span class="number">2</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Push_back to add elements in a vector</span></span><br><span class="line">myVector.push_back(<span class="number">33</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Access to an element</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"1st elemest"</span> &lt;&lt; myVector[<span class="number">0</span>] &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-
-<p>Vector is a generic container —&gt; can put all kinds of types init. </p>
-<h2 id="Structured-Binding"><a href="#Structured-Binding" class="headerlink" title="Structured Binding"></a>Structured Binding</h2><ul>
-<li>Can initialize into different types when declare multiple variables</li>
+<h3 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h3><ol>
+<li>Data Structure: What kind of data structure is needed so that file system can handle its data and metadata?</li>
+<li>Access Method: How system calls are related to the data structure of file system? How efficient are they??? </li>
+</ol>
+<h3 id="Overall-Organization"><a href="#Overall-Organization" class="headerlink" title="Overall Organization"></a>Overall Organization</h3><p>Disk block - normally 4KB.<br>Data Region - Disk space where user data exist.<br>Allocation Structure: Indicate whether the blocks are being used or not.</p>
+<ul>
+<li>free list: Manages non-used blocks in a linked list form. Hence inode only remembers the head.</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// array</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="keyword">int</span>,3&gt; values = &#123;<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Structured Binding</span></span><br><span class="line"><span class="keyword">auto</span> [x,y,z] = values;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> &#123;</span><span class="keyword">double</span> mX, mY, mZ;&#125;;</span><br><span class="line">Point point;</span><br><span class="line">point.mX = <span class="number">1.0</span>; point.mY = <span class="number">2.0</span>, point.mZ = <span class="number">3.0</span>;</span><br><span class="line"><span class="keyword">auto</span> [x,y,z] = point;</span><br><span class="line"></span><br><span class="line"><span class="comment">// If the data is public-declared and non-static, </span></span><br><span class="line"><span class="comment">// it can be used as in structured binding.</span></span><br></pre></td></tr></table></figure>
+<p>Disk Space (assume 64 blocks):<br><img src="/image/os/inode_disk.png" alt=""></p>
+<ul>
+<li>Metadata: Information such as data blocks (data region), size of file, owner, access, access change time…. –&gt; usually saved in data structure called inode. </li>
+<li>Inode Table: disk space for saving inodes; saved in array format.</li>
+<li>Inode is usually size between 128 ~ 256 bytes -&gt; 16 inodes in 4KB block, 80 inodes in the file system (as we use 5 * 4KB blocks).</li>
+<li>Superblock: Contain information about the entire file system; how many inodes, data blocks we have, where the inode table starts…<ul>
+<li>When we say “file system is brokeb” means superblock is damaged.</li>
+<li>Usually, file system duplicates superblock for backups.</li>
+</ul>
+</li>
+</ul>
+<p>OS Reads superblock, initialize file system elements, paste each partition to system tree when mount the file system -&gt; by doing so, can know the location of required data structure when access the file.</p>
+<h3 id="File-Organization-inode"><a href="#File-Organization-inode" class="headerlink" title="File Organization: inode"></a>File Organization: inode</h3><p>Inode has:</p>
+<ul>
+<li>File type; normal, directory…</li>
+<li>Size, block allocation, protected info (owner, access), time.</li>
+<li>Location within the disk (as like ptr).<br>And these are called metadata.</li>
+</ul>
+<p>Important to consider within inode structure is way of expressing the data block location. Simple method could be include multipe direct pointer within the inode. Each pointer points on disk block.<br>-&gt; Has file size limitation: Size is limited to num of pointers * block size.</p>
+<h3 id="Multi-Level-Index"><a href="#Multi-Level-Index" class="headerlink" title="Multi Level Index"></a>Multi Level Index</h3><ul>
+<li>To support bigger file, needed to add one more data structure; indirect pointer.<ul>
+<li>Indirect pointer does not point data block. It points the pointer that points the data block. </li>
+<li>Inode has fixed number of direct pointer (i.e. 12) and one indirect pointer. </li>
+<li>Indirect block is allocated to a big file (within disk data block region), and inode indirect pointer points this indirect block.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/os/inode_prop.png" alt=""></p>
+<ul>
+<li><p>If bigger file wanted, then use <strong>double indirect pointer</strong> which points indirect pointer. If bigger then <strong>triple indirect pointer</strong>…</p>
+</li>
+<li><p>All together, disk block forms one-sided tree -&gt; multi level index.</p>
+</li>
+<li><p>Extent: </p>
+<ul>
+<li>consists of disk pointer and length of block -&gt; means it required continuous disk space for each extent. </li>
+<li>Therefore, use multipe extents to overcome this limitation which brings <strong>another limitation: metada gets bigger</strong>.</li>
+</ul>
+</li>
+<li><p>Linux use ext2, ext3 (multi level index), some OS use extent.</p>
+</li>
+</ul>
+<p><strong>Reason the tree (MLI) is biased -&gt; most files are small</strong><br>If most files are small, needs to construct file system to read small files fast -&gt; vsfs has inode that can read first (usually) 12 blocks fast (the direct pointers).</p>
+<h3 id="Directory-Organization"><a href="#Directory-Organization" class="headerlink" title="Directory Organization"></a>Directory Organization</h3><p>vsfs direcotry (like the other file system) has (entry name, inum).<br>In the directory data block, it has: inum | reclen | strlen | name.</p>
+<ul>
+<li>dot: current directory</li>
+<li>dot-dot: parent directory</li>
+<li>inmum = 0: unlinked; deleted -&gt; needs len in case create another object in the gap later.</li>
+</ul>
+<p>We should also note again that this simple linear list of directory entries is not the only way to store such information. As before, any data structure is possible.</p>
+<h3 id="Free-space-maintenance"><a href="#Free-space-maintenance" class="headerlink" title="Free space maintenance"></a>Free space maintenance</h3><p>File system must be able to track which inodes and data blocks are free or not -&gt; to allocate new space for file/directory -&gt; <strong>free space management</strong>.</p>
+<p>vsfs uses two bitmaps.</p>
+<ul>
+<li>File creation: <ol>
+<li>file system searches inode bitmap and allocates the empty inode to the file.</li>
+<li>Note the inode now is being used, and update disk bitmap accordingly.</li>
+<li>Similar steps for data block allocation.</li>
+</ol>
+</li>
+<li>Needs to consider…<ul>
+<li>ext2,ext3: If possible, find sequence of blocks so that future additional allocation request can have contiguous on the disk -&gt; performance improving (called <strong>pre-allocation</strong>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="Access-Paths-Reading-and-Writing"><a href="#Access-Paths-Reading-and-Writing" class="headerlink" title="Access Paths: Reading and Writing"></a>Access Paths: Reading and Writing</h3><p>So far has learned how to save file and directory in the disk. Now need to understand how to read and write.</p>
+<ul>
+<li>Reading file from disk</li>
+<li>Open systemcall -&gt; traverse the path name -&gt; find inode to get basic information (metadata)<ol>
+<li>Open Systemcall</li>
+<li>Traverse the path name<ul>
+<li>Filesystem will read root inode first, which gets decided when the filesystem is mounted (usually 2).</li>
+<li>Filesystem extract pointer of a data block which contains root directory information.</li>
+<li>Read this directory information to find the target file.</li>
+</ul>
+</li>
+<li>Find the block that has the inode of the target, and its inode.</li>
+<li>open() read the target’s inode number into the memory.</li>
+<li>Filesystem checks the acess authority.</li>
+<li>Get file descriptor from <strong>open file-table</strong> and return it to user.</li>
+</ol>
+</li>
+<li>Read() - After open(), read comes<ol>
+<li>By inode, know the location of the block in the disk, and read the block.</li>
+<li>Since it is the first read, will read the first block (if file offset is 0).</li>
+<li>After reading the file, record the time.</li>
+<li>Update offset of file descriptor (give by open-file-table).</li>
+<li>Next time, when read() happenes, it starts with the updated offset.</li>
+</ol>
+</li>
+<li>Close: deallocate the file descriptor.<br>In summary:</li>
+</ul>
+<ol>
+<li>Read Root inode -&gt; read Root data -&gt; read foo inode -&gt; read foo data -&gt; read bar inode.</li>
+<li>read bar inode -&gt; bar data[0] -&gt; write bar inode (the offset).</li>
+<li>read bar inode -&gt; bar data[1] -&gt; write bar inode (the offset)….</li>
+</ol>
+<p>As it could be checked, as the path gets longer, relevant inode and data must be read.<br>Hence, if the directory is big, then many data blocks must be read to find the targeted file.</p>
+<ul>
+<li>Write Disk</li>
+<li>Similar to read, it first uses open() and then write(), and deallocate the file descriptor.<ul>
+<li>Unlike read, write may need block allocation which needs to decide which blocks to allocate and write on the disk -&gt; required to update data structures of the disk (such as data bitmap and inode).</li>
+<li>Therofre, logically it makes 5 extra steps of I/O.<ul>
+<li>One for read data bitmap, one for to write bitmap (to apply the change of states at the disk).</li>
+<li>Two for inode read and write (to apply the change of location at the disk).</li>
+<li>One for write the actual block.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>File creation - Very complicated and needs many I/O.<ul>
+<li>One for reading inode bitmap (to find free inode), one to write on the inode bitmap (notice allocation)</li>
+<li>One for making new inode (reset), one for writing data block at directory (link inode name and parent name).</li>
+<li>Two for read and write directory inode (update)…..</li>
+</ul>
+</li>
+</ul>
+<h3 id="Caching-and-buffering"><a href="#Caching-and-buffering" class="headerlink" title="Caching and buffering"></a>Caching and buffering</h3><p>For performance matter, most of filesystem cache frequently used blocks to DRAM. </p>
+<ul>
+<li>If no cahce: At least needs two reads per directory (directory inode and its data).</li>
+<li>Usually, fixed cache occupies 10% of the total memory -&gt; static partitioning is wasteful.</li>
+<li>In the modern OS, use dynamic partitioning.<ul>
+<li>United virtual memory pages and filesystem pages -&gt; unified page cahce.</li>
+<li>Hence, can flexibly allocate between filesystem and virtual memory upon its need.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Cached Read: It will cause many I/O for reading directory inode data, but follow up directory (children) will be cached, hence no extra I/O is needed.</li>
+<li>Cached Write: Since the changed data must be written back to the disk –&gt; Called write buffering.<ul>
+<li>By storing/saving the number of write-works,<ol>
+<li>Multiple write processes can be <strong>batched</strong> with fewer I/Os.</li>
+<li>Can improve the performance by scheduling the multiple I/Os.</li>
+</ol>
+</li>
+<li>Of course, it system crashes before saving, cached data will be gone.</li>
+<li>To avoid this situation, use fsync() for jobs that must be written right away,</li>
+</ul>
+</li>
+</ul>
 
-<h2 id="Loop"><a href="#Loop" class="headerlink" title="Loop"></a>Loop</h2><p>Skipped While, do-while, for loops due to its similarity to C</p>
-<h3 id="Range-based-for"><a href="#Range-based-for" class="headerlink" title="Range-based for"></a>Range-based for</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">array</span> &lt;<span class="keyword">int</span>, 4&gt; arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i : arr)&#123; <span class="comment">// for element i in arr</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &lt;Initializer_list&gt;</span></span><br><span class="line"><span class="comment">// Easy to make a function that takes multiple inputs -&gt; class template</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;initializer_list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">makeSum</span> <span class="params">(<span class="built_in">initializer_list</span> &lt;<span class="keyword">int</span>&gt; lst)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> total = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> value : lst)&#123;</span><br><span class="line">		total += value;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> total;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a = makeSum (&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;);</span><br><span class="line"><span class="comment">// initializer_list is type-safe --&gt; compiler error for diff type inputs</span></span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -221,7 +344,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/54/">54</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
             
         </ul>
     </nav>
@@ -271,7 +394,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            54
+                            67
                         </p>
                     </a>
                 </div>
@@ -283,7 +406,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -375,6 +498,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">13</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/07/">
@@ -496,6 +630,14 @@
                 <span class="level-item tag">10</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Parallel-Computing/">
             <span class="level-start">
                 <span class="level-item">Parallel Computing</span>
@@ -526,18 +668,18 @@
         
         <article class="media">
             
-            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
-                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -545,18 +687,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -564,18 +706,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -583,18 +725,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -602,18 +744,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -738,6 +880,14 @@
                 <span class="level-item tag">10</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Parallel-Computing/">
             <span class="level-start">
                 <span class="level-item">Parallel Computing</span>
@@ -768,18 +918,18 @@
         
         <article class="media">
             
-            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
-                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -787,18 +937,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -806,18 +956,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -825,18 +975,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -844,18 +994,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>

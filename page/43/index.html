@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/15/OCSO/OCSO_Attacker%20Frictions/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/frictions.jpg" alt="Attacker Frictions">
+        <a href="/2020/03/24/Network/Lab%201/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 1">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-15T12:25:00.000Z">Mar 15, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-03-24T07:28:00.000Z">Mar 24, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/OCSO/">OCSO</a>
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 241 words)
+                    5 minutes read (About 765 words)
                 </span>
                 
                 
@@ -156,29 +156,79 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/15/OCSO/OCSO_Attacker%20Frictions/">Attacker Frictions</a>
+                <a class="has-link-black-ter" href="/2020/03/24/Network/Lab%201/">Network - Lab 1</a>
             
         </h1>
         <div class="content">
-            <p>Reference : Network Attacks and Exploitation by Matthew Monte</p>
-<p>If you can forsee its coming, it is not a friction but obstacles</p>
-<h3 id="Mistake"><a href="#Mistake" class="headerlink" title="Mistake"></a>Mistake</h3><p>No matter the effort expended, mistakes will remain a source of friction.</p>
-<h3 id="Complexity"><a href="#Complexity" class="headerlink" title="Complexity"></a>Complexity</h3><p>The complexity that makes a network harder to manage, also makes it harder to exploit.</p>
-<p>Implementing different systems in the network requires a diff set of tools and skills (Server: Linux. DB: Oracle. Router Huawei)</p>
-<p>Complexity requires more time, knowledge, and development to survey, understand, and circumvent. Because the<br>level of complexity is diffi cult to predict and can severely impact the effi ciency of an operation, it is a friction.</p>
-<h3 id="Flawed-Attack-Tools"><a href="#Flawed-Attack-Tools" class="headerlink" title="Flawed Attack Tools"></a>Flawed Attack Tools</h3><ol>
-<li>Best Flaw: Not function, but maintaining persistent access/command/control</li>
-<li>Loss of access: If not being noticed, it is recoverable if there is backup plan</li>
-<li>Worst Flaw: Noticeable Side Effect. ig. After the update, repeatedly crashed computer —&gt; drew the attention.</li>
-</ol>
-<h3 id="Upgrades-and-Updates"><a href="#Upgrades-and-Updates" class="headerlink" title="Upgrades and Updates"></a>Upgrades and Updates</h3><p>Upgrade: Introduces a new stuffs that replace an existing ones; may challenge the Attacker’s methods of persistence.</p>
-<p>Update: Improvement that leaves substantial portion of the original in place; consititute a substantial threat to maintaining access for the Attacker.</p>
-<h3 id="Other-Attackers"><a href="#Other-Attackers" class="headerlink" title="Other Attackers"></a>Other Attackers</h3><p>Other attackers may ruin the operation.</p>
-<h3 id="The-Security-Community"><a href="#The-Security-Community" class="headerlink" title="The Security Community"></a>The Security Community</h3><ol>
-<li>Strengthening Defense: sudden intro of new detection tech - only short period of time.</li>
-<li>Weakening Offense: Google Project Zero - find and fix the vulnerabilities. Or publication of offensive methods</li>
-</ol>
-<h3 id="Bad-Luck"><a href="#Bad-Luck" class="headerlink" title="Bad Luck"></a>Bad Luck</h3><h4 id="Unnamed-Frictions-anything-that-can-be-said-unfortunate"><a href="#Unnamed-Frictions-anything-that-can-be-said-unfortunate" class="headerlink" title="Unnamed Frictions - anything that can be said unfortunate."></a>Unnamed Frictions - anything that can be said unfortunate.</h4>
+            <p>Reference:</p>
+<ul>
+<li>The Australian National University CECS</li>
+</ul>
+<hr>
+<p>Q: Why frequency?</p>
+<p>A: 자연은 날카로운 엣지 (디지털) 를 좋아하지 않고 웨이브를 선호함. 빛, 전자, 소리, 액체등 파동</p>
+<p>(팍 하고 튀는거) 스위치는 순간적이지도, 지속적이지도 않음 (한번 킬때 팍 보내지도, 계속 보내지도 않음 짧은시간 유지임) 전구또한 확 켜지는게 아닌 밝아지고 어두워지는 형식. </p>
+<p>즉 아날로그 파동과 주파수들의 조합을 이용해서 디지털 엣지를 구현하는식.</p>
+<hr>
+<p>Q: Why FDM &gt; Frequent Shift Keying?</p>
+<p>A: Because electronics can be tuned to a frequency and use it as a dedicated channel with ASK/PSK. Hence better than using an idle frequencies and jumping between them. 즉 한 주파수 내에 정보를 담을수 있는데 주파수의 높낮이로 정보를 보내는것은 비효율적이다. </p>
+<hr>
+<p>Q: The benefit of the thicker coax, and what are the main downsides?</p>
+<p>A: Greater Shielding and noise protection, less resistance hence longer runs with same power. However; difficult to deplof (stiff) and expensive.</p>
+<hr>
+<p>Q: Diff betwenn cat5 and 7</p>
+<p>A: 7 has foil —&gt; shield, solid core wires. Hence good quality and performance but higher cost with hard to deploy as it is harder to bend around the corner.</p>
+<hr>
+<p>Q: Fiber. Diff between multimode and single mode.</p>
+<p>A: Wider MMF core gets a brighter and broader light out of the end and easy to line up with LEDs. SMF core narrower than MMF and gives you much greater and higher data rates but costs alot more as it is harder to terminate and light up with laser (MMF uses LED)</p>
+<p>SMF: 레이저, 두께에 따른 성능 차이 적음, 멀티모드보다 훨 빠름, 매우비쌈 (레이저라서)</p>
+<p>MMF: LED 광원, 두께에 따른 성능차이 있음, 광원이 확산되고 코어지름이 커서 많은 신호를 보낼수 있는데 이로인해 전송거리가 SMF에 비해 짧음.</p>
+<hr>
+<p><img src="/image/Lab%201/Untitled.png" alt=""></p>
+<p>Q: How 16 QAM works</p>
+<p>A: </p>
+<ul>
+<li>Each position represents a unique phase and amplitude shift of a signal wave.</li>
+<li>with 16 unique positions, can encode four bits per symbol (2^4 이니까 이진수로).</li>
+<li>Can arbitrarily allocate patterns to points (아무대나 배치해도 됨).</li>
+<li>Small bit pattern changes may result large changes in phase and amplitude ig. 0100 —&gt; 0101.</li>
+<li>Can have any QAM, but will be harder to separate n levels of ASK and PSK.</li>
+<li>Efficienfy = bits can encode per symbol. 35 = 5.1 bits —&gt; waste of spaces. Better to use power of 2.</li>
+</ul>
+<hr>
+<p>Q: Nyquist. 1Mhz wave with amp modulated to 8 levels.</p>
+<p>A: Potential datarate achievable = 2 * 1Mhz * lg(8) = 6 Mb/s. We multiply 2 as we can use 180 degree phase shift key = 2 bits into a single wave.</p>
+<hr>
+<p>Q: Why copper less useful in longer distance?</p>
+<p>A: </p>
+<ul>
+<li>It has too much attenuation (energy loss) as wire resistive especially with higher frequencies.</li>
+<li>Too Noisy as wire is an antenna</li>
+<li>Can be fixed with shield, twist, diff signaling, better connectors…</li>
+</ul>
+<hr>
+<p>Q: Why encoding bits into modulated signal important?</p>
+<p>A:</p>
+<ul>
+<li>It makes signal clear overall by ensuring a higher rate of transitions (easier to detect) to avoid same repeated bits like 1000000 hence solve “are you dead” problem.</li>
+<li>Provide a mechanism for clock-recovery hence able to know how wide a bit is. (data rate and clock sync - bit boundaries).</li>
+</ul>
+<hr>
+<p>Q: dB, dBm, and dBi mean.</p>
+<p>A:</p>
+<ul>
+<li>dB: signal/noise ratio. 20dB = 2B = 10^2. -20dB = -2B = 10^-2 = 0.01.</li>
+<li>dBm: zero point is 1mW (0dBm = 1mW, 20dBm = 100mW)</li>
+<li>dBi: measure gain of antenna relative to an isotropic antenna (transmitter or receiver).</li>
+</ul>
+<hr>
+<p>Q: How can make wireless transmission better?</p>
+<p>A: Shout louder or slower (clearer), frequency hopping to avoid noise (smarter), beam-shaping (focus), or higher/tailer antennas (terrain).</p>
+<hr>
+<p>Q: How can make signal go further?</p>
+<p>A: Repeater (regenerate signal), and amplifiers (both signal and noise). It costs money and power, and also may cause delay for unpack and repack process in repeater.</p>
+<hr>
+
         </div>
         
         
@@ -217,7 +267,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/54/">54</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
             
         </ul>
     </nav>
@@ -267,7 +317,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            54
+                            67
                         </p>
                     </a>
                 </div>
@@ -279,7 +329,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -371,6 +421,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">13</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/07/">
@@ -492,6 +553,14 @@
                 <span class="level-item tag">10</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Parallel-Computing/">
             <span class="level-start">
                 <span class="level-item">Parallel Computing</span>
@@ -522,18 +591,18 @@
         
         <article class="media">
             
-            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
-                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -541,18 +610,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -560,18 +629,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -579,18 +648,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -598,18 +667,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -734,6 +803,14 @@
                 <span class="level-item tag">10</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Parallel-Computing/">
             <span class="level-start">
                 <span class="level-item">Parallel Computing</span>
@@ -764,18 +841,18 @@
         
         <article class="media">
             
-            <a href="/2020/07/03/CPP/CPP%201.1/" class="media-left">
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time></div>
-                    <a href="/2020/07/03/CPP/CPP%201.1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CPP - 1.1</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -783,18 +860,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="media-left">
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 10</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -802,18 +879,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="media-left">
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 9">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-22T09:27:00.000Z">Jun 22, 2020</time></div>
-                    <a href="/2020/06/22/Network/Lab%209%205eaaddc5ddf14a00ac77433f761669e6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network - Lab 9</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a> / <a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -821,18 +898,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="media-left">
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/guard.jpg" alt="Network Security">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Security%2093e2f37c02fb467cb265b5700879f36f/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Security</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>
@@ -840,18 +917,18 @@
         
         <article class="media">
             
-            <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="media-left">
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/routing2.jpg" alt="Network Routing">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-20T07:57:00.000Z">Jun 20, 2020</time></div>
-                    <a href="/2020/06/20/Network/Week%209%20Routing%20a5df6418d68d46eda3b83a7c17f451a1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Network Routing</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
                     </p>
                 </div>
             </div>

@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.1" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Category: OperatingSystem - SK Lee</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="SK Lee">
+<meta property="og:url" content="https://github.com/qqskda/categories/OperatingSystem/index.html">
+<meta property="og:site_name" content="SK Lee">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/images/og_image.png">
+<meta property="article:author" content="Sungkwon Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/images/og_image.png">
+<meta name="twitter:creator" content="@qqskda">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/avatar.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/monokai-sublime.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/avatar.png" alt="SK Lee" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/qqskda">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">Categories</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">OperatingSystem</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 minutes read (About 1273 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/">Very Simple File System (VSFS)</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Very-Simple-File-System-VSFS"><a href="#Very-Simple-File-System-VSFS" class="headerlink" title="Very Simple File System (VSFS)"></a>Very Simple File System (VSFS)</h1><p>This is pure software that allows to study/experience the simplified version of UNIX file system.</p>
+<ul>
+<li>Key Question: How can we struct simple file system? What data structure is needed on top of disk, and how can it track certain data?</li>
+</ul>
+<h3 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h3><ol>
+<li>Data Structure: What kind of data structure is needed so that file system can handle its data and metadata?</li>
+<li>Access Method: How system calls are related to the data structure of file system? How efficient are they??? </li>
+</ol>
+<h3 id="Overall-Organization"><a href="#Overall-Organization" class="headerlink" title="Overall Organization"></a>Overall Organization</h3><p>Disk block - normally 4KB.<br>Data Region - Disk space where user data exist.<br>Allocation Structure: Indicate whether the blocks are being used or not.</p>
+<ul>
+<li>free list: Manages non-used blocks in a linked list form. Hence inode only remembers the head.</li>
+</ul>
+<p>Disk Space (assume 64 blocks):<br><img src="/image/os/inode_disk.png" alt=""></p>
+<ul>
+<li>Metadata: Information such as data blocks (data region), size of file, owner, access, access change time…. –&gt; usually saved in data structure called inode. </li>
+<li>Inode Table: disk space for saving inodes; saved in array format.</li>
+<li>Inode is usually size between 128 ~ 256 bytes -&gt; 16 inodes in 4KB block, 80 inodes in the file system (as we use 5 * 4KB blocks).</li>
+<li>Superblock: Contain information about the entire file system; how many inodes, data blocks we have, where the inode table starts…<ul>
+<li>When we say “file system is brokeb” means superblock is damaged.</li>
+<li>Usually, file system duplicates superblock for backups.</li>
+</ul>
+</li>
+</ul>
+<p>OS Reads superblock, initialize file system elements, paste each partition to system tree when mount the file system -&gt; by doing so, can know the location of required data structure when access the file.</p>
+<h3 id="File-Organization-inode"><a href="#File-Organization-inode" class="headerlink" title="File Organization: inode"></a>File Organization: inode</h3><p>Inode has:</p>
+<ul>
+<li>File type; normal, directory…</li>
+<li>Size, block allocation, protected info (owner, access), time.</li>
+<li>Location within the disk (as like ptr).<br>And these are called metadata.</li>
+</ul>
+<p>Important to consider within inode structure is way of expressing the data block location. Simple method could be include multipe direct pointer within the inode. Each pointer points on disk block.<br>-&gt; Has file size limitation: Size is limited to num of pointers * block size.</p>
+<h3 id="Multi-Level-Index"><a href="#Multi-Level-Index" class="headerlink" title="Multi Level Index"></a>Multi Level Index</h3><ul>
+<li>To support bigger file, needed to add one more data structure; indirect pointer.<ul>
+<li>Indirect pointer does not point data block. It points the pointer that points the data block. </li>
+<li>Inode has fixed number of direct pointer (i.e. 12) and one indirect pointer. </li>
+<li>Indirect block is allocated to a big file (within disk data block region), and inode indirect pointer points this indirect block.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/os/inode_prop.png" alt=""></p>
+<ul>
+<li><p>If bigger file wanted, then use <strong>double indirect pointer</strong> which points indirect pointer. If bigger then <strong>triple indirect pointer</strong>…</p>
+</li>
+<li><p>All together, disk block forms one-sided tree -&gt; multi level index.</p>
+</li>
+<li><p>Extent: </p>
+<ul>
+<li>consists of disk pointer and length of block -&gt; means it required continuous disk space for each extent. </li>
+<li>Therefore, use multipe extents to overcome this limitation which brings <strong>another limitation: metada gets bigger</strong>.</li>
+</ul>
+</li>
+<li><p>Linux use ext2, ext3 (multi level index), some OS use extent.</p>
+</li>
+</ul>
+<p><strong>Reason the tree (MLI) is biased -&gt; most files are small</strong><br>If most files are small, needs to construct file system to read small files fast -&gt; vsfs has inode that can read first (usually) 12 blocks fast (the direct pointers).</p>
+<h3 id="Directory-Organization"><a href="#Directory-Organization" class="headerlink" title="Directory Organization"></a>Directory Organization</h3><p>vsfs direcotry (like the other file system) has (entry name, inum).<br>In the directory data block, it has: inum | reclen | strlen | name.</p>
+<ul>
+<li>dot: current directory</li>
+<li>dot-dot: parent directory</li>
+<li>inmum = 0: unlinked; deleted -&gt; needs len in case create another object in the gap later.</li>
+</ul>
+<p>We should also note again that this simple linear list of directory entries is not the only way to store such information. As before, any data structure is possible.</p>
+<h3 id="Free-space-maintenance"><a href="#Free-space-maintenance" class="headerlink" title="Free space maintenance"></a>Free space maintenance</h3><p>File system must be able to track which inodes and data blocks are free or not -&gt; to allocate new space for file/directory -&gt; <strong>free space management</strong>.</p>
+<p>vsfs uses two bitmaps.</p>
+<ul>
+<li>File creation: <ol>
+<li>file system searches inode bitmap and allocates the empty inode to the file.</li>
+<li>Note the inode now is being used, and update disk bitmap accordingly.</li>
+<li>Similar steps for data block allocation.</li>
+</ol>
+</li>
+<li>Needs to consider…<ul>
+<li>ext2,ext3: If possible, find sequence of blocks so that future additional allocation request can have contiguous on the disk -&gt; performance improving (called <strong>pre-allocation</strong>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="Access-Paths-Reading-and-Writing"><a href="#Access-Paths-Reading-and-Writing" class="headerlink" title="Access Paths: Reading and Writing"></a>Access Paths: Reading and Writing</h3><p>So far has learned how to save file and directory in the disk. Now need to understand how to read and write.</p>
+<ul>
+<li>Reading file from disk</li>
+<li>Open systemcall -&gt; traverse the path name -&gt; find inode to get basic information (metadata)<ol>
+<li>Open Systemcall</li>
+<li>Traverse the path name<ul>
+<li>Filesystem will read root inode first, which gets decided when the filesystem is mounted (usually 2).</li>
+<li>Filesystem extract pointer of a data block which contains root directory information.</li>
+<li>Read this directory information to find the target file.</li>
+</ul>
+</li>
+<li>Find the block that has the inode of the target, and its inode.</li>
+<li>open() read the target’s inode number into the memory.</li>
+<li>Filesystem checks the acess authority.</li>
+<li>Get file descriptor from <strong>open file-table</strong> and return it to user.</li>
+</ol>
+</li>
+<li>Read() - After open(), read comes<ol>
+<li>By inode, know the location of the block in the disk, and read the block.</li>
+<li>Since it is the first read, will read the first block (if file offset is 0).</li>
+<li>After reading the file, record the time.</li>
+<li>Update offset of file descriptor (give by open-file-table).</li>
+<li>Next time, when read() happenes, it starts with the updated offset.</li>
+</ol>
+</li>
+<li>Close: deallocate the file descriptor.<br>In summary:</li>
+</ul>
+<ol>
+<li>Read Root inode -&gt; read Root data -&gt; read foo inode -&gt; read foo data -&gt; read bar inode.</li>
+<li>read bar inode -&gt; bar data[0] -&gt; write bar inode (the offset).</li>
+<li>read bar inode -&gt; bar data[1] -&gt; write bar inode (the offset)….</li>
+</ol>
+<p>As it could be checked, as the path gets longer, relevant inode and data must be read.<br>Hence, if the directory is big, then many data blocks must be read to find the targeted file.</p>
+<ul>
+<li>Write Disk</li>
+<li>Similar to read, it first uses open() and then write(), and deallocate the file descriptor.<ul>
+<li>Unlike read, write may need block allocation which needs to decide which blocks to allocate and write on the disk -&gt; required to update data structures of the disk (such as data bitmap and inode).</li>
+<li>Therofre, logically it makes 5 extra steps of I/O.<ul>
+<li>One for read data bitmap, one for to write bitmap (to apply the change of states at the disk).</li>
+<li>Two for inode read and write (to apply the change of location at the disk).</li>
+<li>One for write the actual block.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>File creation - Very complicated and needs many I/O.<ul>
+<li>One for reading inode bitmap (to find free inode), one to write on the inode bitmap (notice allocation)</li>
+<li>One for making new inode (reset), one for writing data block at directory (link inode name and parent name).</li>
+<li>Two for read and write directory inode (update)…..</li>
+</ul>
+</li>
+</ul>
+<h3 id="Caching-and-buffering"><a href="#Caching-and-buffering" class="headerlink" title="Caching and buffering"></a>Caching and buffering</h3><p>For performance matter, most of filesystem cache frequently used blocks to DRAM. </p>
+<ul>
+<li>If no cahce: At least needs two reads per directory (directory inode and its data).</li>
+<li>Usually, fixed cache occupies 10% of the total memory -&gt; static partitioning is wasteful.</li>
+<li>In the modern OS, use dynamic partitioning.<ul>
+<li>United virtual memory pages and filesystem pages -&gt; unified page cahce.</li>
+<li>Hence, can flexibly allocate between filesystem and virtual memory upon its need.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Cached Read: It will cause many I/O for reading directory inode data, but follow up directory (children) will be cached, hence no extra I/O is needed.</li>
+<li>Cached Write: Since the changed data must be written back to the disk –&gt; Called write buffering.<ul>
+<li>By storing/saving the number of write-works,<ol>
+<li>Multiple write processes can be <strong>batched</strong> with fewer I/Os.</li>
+<li>Can improve the performance by scheduling the multiple I/Os.</li>
+</ol>
+</li>
+<li>Of course, it system crashes before saving, cached data will be gone.</li>
+<li>To avoid this situation, use fsync() for jobs that must be written right away,</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 572 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/">Concurrency Bugs</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Concurrency-Bugs"><a href="#Concurrency-Bugs" class="headerlink" title="Concurrency Bugs"></a>Concurrency Bugs</h1><p>Key Question: How do we handle the common concurrency bugs?<br>    * Tend to have common patterns. Need to know what to avoid.</p>
+<h2 id="Types-of-bugs"><a href="#Types-of-bugs" class="headerlink" title="Types of bugs"></a>Types of bugs</h2><h3 id="Non-deadlock-Bugs"><a href="#Non-deadlock-Bugs" class="headerlink" title="Non-deadlock Bugs"></a>Non-deadlock Bugs</h3><p>There are two major types of bugs; Atomicity Violation and Order Violation.</p>
+<ul>
+<li>Atomicity Violation: “The desired serializability among multiple memory accesses is violated (i.e. a code region is intended to be atomic, but the atomicity is not enforced during execution).”<ul>
+<li>If code A needs B stays the same, do not interrupt A in the middle such as changing B.</li>
+<li>This violation, mostly, easily be fixed by implementing a lock (pthread_mutex_t)</li>
+</ul>
+</li>
+<li>Order Violation: “The desired order between two (groups of) memory accesses is flipped (i.e., A should always be executed before B, but the order is not enforced during execution)”<ul>
+<li>If A needs to be guaranteed before B, then keep the order.</li>
+<li>Can be fixed by forcing the order using condition varaibles (pthread_cond_t).</li>
+</ul>
+</li>
+</ul>
+<h3 id="Deadlock-Bugs"><a href="#Deadlock-Bugs" class="headerlink" title="Deadlock Bugs"></a>Deadlock Bugs</h3><p>The existence of cycle within a graph implies the possibility of deadlock.</p>
+<p>Why is this happening?</p>
+<ul>
+<li>Compelx dependency between components.<ul>
+<li>OS: Virtual memory system access file system for getting disk block. File system needs memory page to losad disk block on its memory, hence access virual memory system. –&gt; Cycle</li>
+</ul>
+</li>
+<li>Encapsulation property: Modularization and lock do not go well.</li>
+</ul>
+<p>Coditions to have deadlock:</p>
+<ul>
+<li>Mutex: Threads claim exclusive control of resources that they require (e.g., a thread grabs a lock) - 독자적인 제어권</li>
+<li>Hold-and-wait: Threads hold resources allocated to them (e.g., locks that they have already acquired) while waiting for additional resources e.g., locks that they wish to acquire). - 자원점유및 대기</li>
+<li>No preemption: Resources (e.g., locks) cannot be forcibly removed from threads that are holding them. - 자원을 강제적으로 가져오지 못함.</li>
+<li>Circular wait: There exists a circular chain of threads such that each thread holds one or more resources (e.g., locks) that are being requested by the next thread in the chain. - cycle</li>
+</ul>
+<p>All those four conditions are requried to have deadlock.</p>
+<p>Deadlock Prevention:</p>
+<ul>
+<li>Circular Wait: Most common and practical method to prevent a deadlock.<ul>
+<li>Easiest: Set total ordering of getting a lock.</li>
+<li>Partial Ordering in complex structures.</li>
+</ul>
+</li>
+<li>Hold and Wait: Allow getting necessary lock at one time.<ul>
+<li>Such as get a prevention lock which prevents context switch within the process of getting locks (critical section).</li>
+<li>It has problem with encapsulation - as it needs to know all the locks it need -&gt; Hence also lowers the performance.</li>
+</ul>
+</li>
+<li>No Preemption: trylock() - flexible interface<ul>
+<li>It causes livelock that attempts to get a lock infinitely without progress. </li>
+<li>It also has problem with encapsulation - if the lock call routine is complicated and expensive, the repetition will be very difficult to implement. </li>
+</ul>
+</li>
+<li>Mutex: Get rid of mutex by implementing wait-free data structures.<ul>
+<li>Instead of lock-fix-unlock, use compare-and-swap to repetitivelt try to fix the value (yet it has possibility of livelock).</li>
+</ul>
+</li>
+</ul>
+<p>Sometime it is better to “avoid” instead of “preven” the deadlock.<br>To do so, needs to know which threads will require which locks. Based on this info, schedule the threads to “AVOID” deadlock.<br>As it is really depends on situations, it is not generally used method.</p>
+<p>Deadlock Detection and Recovery</p>
+<ul>
+<li>Detection: Draw resource allocation graph to check the cycle.</li>
+<li>Recovery: Depends on the implementation; whether human based…</li>
+<li></li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 483 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/">Semaphore</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Semaphore"><a href="#Semaphore" class="headerlink" title="Semaphore"></a>Semaphore</h1><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>Semaphore is two integer object that can be controlled by two routines. Under POSIX, it is sem_wait() and sem_post().</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;semaphore.h&gt;</span></span></span><br><span class="line"><span class="keyword">sem_t</span> =s;</span><br><span class="line">sem_init (&amp;s, <span class="number">0</span>, <span class="number">1</span>); </span><br><span class="line"><span class="comment">// Initialise with value 1.</span></span><br><span class="line"><span class="comment">// Second parater 0 -&gt; shares among threads.</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>sem_wait() <ol>
+<li>Immediately reutrns (if &gt;= 1)</li>
+<li>Wait until it becomes &gt;= 1</li>
+<li>Remembet there are two methods of waiting;sleep, spin.</li>
+</ol>
+</li>
+<li>sem_post()<ol>
+<li>Does not wait like sem_wait()</li>
+<li>It increases semaphore and awake one thread.</li>
+</ol>
+</li>
+<li>If semaphore is negative<ol>
+<li>Thread waits only when semaphore is negative. </li>
+<li>It equals the num of threads waiting. User cannot know this number.</li>
+</ol>
+</li>
+</ol>
+<h3 id="Binary-Semaphore-lock"><a href="#Binary-Semaphore-lock" class="headerlink" title="Binary Semaphore (lock)"></a>Binary Semaphore (lock)</h3><p>Since there are two threads, the initial semaphore value must be 1. </p>
+<ol>
+<li>Thread A decrease semaphore to 0 (sem_wait)<ol>
+<li>since it is 0, it does not wait.</li>
+</ol>
+</li>
+<li>Thread B decrease semaphore to -1 (sem_wait)<ol>
+<li>Since it is negative, B waits.</li>
+</ol>
+</li>
+<li>A calls sem_post, and semaphore becomes 0<ol>
+<li>it awakes thread B.</li>
+</ol>
+</li>
+<li>B calls sem_post (after critical section), then semaphore becomes 1.</li>
+</ol>
+<h3 id="Semaphore-as-conditional-variable"><a href="#Semaphore-as-conditional-variable" class="headerlink" title="Semaphore as conditional variable"></a>Semaphore as conditional variable</h3><p>For example, in case where the parent process is waiting its child process to be finished, the communication (notation) can be done through the semaphore.</p>
+<ol>
+<li>Parent creates the child, and sem_wait.</li>
+<li>Child process sem_post once it finished its job.</li>
+<li>Then parent can notice child is done and then proceed.</li>
+</ol>
+<p>In this example, since there are only two processes, and parent has to wait after call sem_wait, the initial semaphore value should be 0 (of course).</p>
+<h3 id="Producer-consumer-Finite-Buffer"><a href="#Producer-consumer-Finite-Buffer" class="headerlink" title="Producer/consumer - Finite Buffer"></a>Producer/consumer - Finite Buffer</h3><ul>
+<li>Also called as Bounded-Buffer</li>
+</ul>
+<p>Assumption: Max = 1, empty = max, full = 0;<br>full is used by Consumer, empty is used by producer.<br>By setting values as above, there could be only one element within the queue, and producer&amp;consumer will always have the same tendency within the given code.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> consumer first -&gt; wait(full) -&gt; full = <span class="number">-1</span> -&gt; now wait.</span><br><span class="line"><span class="number">2.</span> producer second -&gt; wait(empty) -&gt; empty = <span class="number">0</span> so keep going -&gt; <span class="built_in">put</span> element in the <span class="built_in">queue</span> -&gt; post(full) -&gt; full = <span class="number">0.</span></span><br><span class="line"><span class="number">3.</span> consumer awake -&gt; <span class="built_in">get</span> the element -&gt; post (empty) -&gt; empty = <span class="number">1.</span></span><br><span class="line"><span class="comment">// Now empty = 1, full = 0 as the beginning</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Reader-Writer-Lock"><a href="#Reader-Writer-Lock" class="headerlink" title="Reader-Writer Lock"></a>Reader-Writer Lock</h3><ol>
+<li>Reader increase reader variable after have read-lock.<ol>
+<li>when havd read-lock, get write-lock together by calling sem_wait against writelock (semaphore).</li>
+<li>When release read-lock,. it released write lock with sem_post (if there is no reader left).<ol>
+<li>-&gt; This behaviour allows readers able to get read-lock.</li>
+<li>-&gt; Writer, on the other hand, needs wait until all the readers are done.</li>
+<li>-&gt; The last reader will release the write lock in the end.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>This is unfair to writers as it may cause starvation as well. -&gt; there is a implementation to fix it.</li>
+<li>Shoudl be cautious using it as it may have significant overheads.</li>
+</ol>
+<p>RCU : Read Copy Update - Lock free synchronization approach</p>
+<ul>
+<li>Can be used in Reader-Writer problem. </li>
+<li>Idea is that New readers are redirected to the modeifed data. </li>
+<li>Once old readers have finished the old data, can be reclaimed.</li>
+<li>Thid approach effectively splits the removal and reclamation up into two separate phases.</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 minutes read (About 1131 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/">Lock</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h1><h2 id="Basic-Concept"><a href="#Basic-Concept" class="headerlink" title="Basic Concept"></a>Basic Concept</h2><p>It is a traditional varaible change.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">lock_t</span> mutex;</span><br><span class="line">lock(&amp;mutex);</span><br><span class="line">balance = balance + <span class="number">1</span>; <span class="comment">// Critical Section</span></span><br><span class="line">unlock(&amp;mutex);</span><br></pre></td></tr></table></figure>
+
+<p>Since lock is a varaible, it must be initialised to be used.<br>Lock has status:</p>
+<ul>
+<li>Available/Unlock/free: no thread has the lock.</li>
+<li>Acquired: Excatly one thread has the lock (owner) within the critical section.</li>
+</ul>
+<p>Lock gives the least control at scheduling for programmer.<br>Generally, programmer creates the thread, and OS controls it. Lock gives partial control of thread to programmer.</p>
+<h2 id="Lock-Implementation"><a href="#Lock-Implementation" class="headerlink" title="Lock Implementation"></a>Lock Implementation</h2><p>Key Question: How can we make efficient lock? What hardware supports does it need? OS?</p>
+<h3 id="Lock-Evaluation"><a href="#Lock-Evaluation" class="headerlink" title="Lock Evaluation"></a>Lock Evaluation</h3><ol>
+<li>Does it support mutex well<ol>
+<li>Basic function that prevents multipe threads enter the critical section.</li>
+</ol>
+</li>
+<li>Performance: Especailly, lock overheads.<ol>
+<li>No race: Overheads when one thread lock/unlock?</li>
+<li>Race: multipe threads compete to achieve the lock within one cpu.</li>
+</ol>
+</li>
+</ol>
+<h3 id="Interrupt-Control"><a href="#Interrupt-Control" class="headerlink" title="Interrupt Control"></a>Interrupt Control</h3><p>Mutex Can be implemented by disabling interrupt within critical section.</p>
+<ol>
+<li>Pro: Very easy. Codes will be executed atomically.</li>
+<li>Cons:<ol>
+<li>Privileged Thread - enable/disable interrupt. <ol>
+<li>It must be trustable that thread will soley use the privilege for its inteneded purpose.</li>
+<li>i.e. Greedy program gets the lock and use all the process resource, infinite loop…</li>
+</ol>
+</li>
+<li>Can’t in multi-processors.<ol>
+<li>When multiple threads are running on multipe CPU, each thread may try to access the same critical section.</li>
+<li>In this case, interrupt disable on certain process has no influence on the other process; hence cannot guarantee the mutex.</li>
+</ol>
+</li>
+<li>May miss important interrupt.<ol>
+<li>What if CPU misses that reading request completed from the data storage? When can we awake the process waiting for the data reading?</li>
+</ol>
+</li>
+<li>Inefficient - Modern CPU tends to take more time to enable/disable the interrupt compares to regular instructions.</li>
+</ol>
+</li>
+<li>Usage:<ol>
+<li>Therefore, handling interrupt must be dealt within the limited area.</li>
+<li>i.e. OS disbales interrupt to atomic execution within internal data structures.</li>
+<li>Since internal OS has no such thing as trust/privilege, it is okay for letting OS does what it wants.</li>
+</ol>
+</li>
+</ol>
+<h1 id="Spin-Lock"><a href="#Spin-Lock" class="headerlink" title="Spin Lock"></a>Spin Lock</h1><h2 id="Test-And-Set-Atomic-Exchange"><a href="#Test-And-Set-Atomic-Exchange" class="headerlink" title="Test-And-Set (Atomic Exchange)"></a>Test-And-Set (Atomic Exchange)</h2><p>As we discussed, there is no point of disabling interrupt in multi-processors. Hence, multi-processors have hardware support.</p>
+<p>The simplest hardware support is Test-And-Set or atomic exchange.</p>
+<h3 id="Without-hardware-support"><a href="#Without-hardware-support" class="headerlink" title="Without hardware support"></a>Without hardware support</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> __<span class="title">lock_t</span> &#123;</span> </span><br><span class="line">    <span class="keyword">int</span> flag; </span><br><span class="line">&#125; <span class="keyword">lock_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">lock_t</span> *mutex)</span> </span>&#123;</span><br><span class="line"><span class="comment">// 0 -&gt; lock is available, 1 -&gt; held</span></span><br><span class="line">    mutex-&gt;flag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lock</span><span class="params">(<span class="keyword">lock_t</span> *mutex)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (mutex-&gt;flag == <span class="number">1</span>) <span class="comment">// TEST the flag</span></span><br><span class="line">        ; <span class="comment">// spin-wait (do nothing)</span></span><br><span class="line"><span class="comment">// Here can be interrupt after left the while loop</span></span><br><span class="line">    mutex-&gt;flag = <span class="number">1</span>; <span class="comment">// now SET it!</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unlock</span><span class="params">(<span class="keyword">lock_t</span> *mutex)</span> </span>&#123;</span><br><span class="line">    mutex-&gt;flag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Above code has two problems:</p>
+<ol>
+<li>Accuracy: If interrupt is called in the certain timing, the flag will be 1 for both of threads -&gt; Fail to have mutex.</li>
+<li>Performance: spin-wait is infinitely checking the flag value. It wastes the time until the lock is released by the other thread -&gt; Very wasteful especially within one processor.</li>
+</ol>
+<h3 id="With-hardware-support"><a href="#With-hardware-support" class="headerlink" title="With hardware support"></a>With hardware support</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TestAndSet is atomic</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">TestAndSet</span><span class="params">(<span class="keyword">int</span> *old_ptr, <span class="keyword">int</span> <span class="keyword">new</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> old = *old_ptr; <span class="comment">// fetch old value at old_ptr</span></span><br><span class="line">    *old_ptr = <span class="keyword">new</span>; <span class="comment">// store ’new’ into old_ptr</span></span><br><span class="line">    <span class="keyword">return</span> old; <span class="comment">// return the old value</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> __<span class="title">lock_t</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> flag;</span><br><span class="line">&#125; <span class="keyword">lock_t</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">lock_t</span> *lock)</span> </span>&#123;</span><br><span class="line"><span class="comment">// 0: lock is available, 1: lock is held</span></span><br><span class="line">    lock-&gt;flag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lock</span><span class="params">(<span class="keyword">lock_t</span> *lock)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (TestAndSet(&amp;lock-&gt;flag, <span class="number">1</span>) == <span class="number">1</span>) </span><br><span class="line"><span class="comment">// someone has the lock then wait for it</span></span><br><span class="line">    ; <span class="comment">// spin-wait (do nothing)</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unlock</span><span class="params">(<span class="keyword">lock_t</span> *lock)</span> </span>&#123;</span><br><span class="line">    lock-&gt;flag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>It is a spin-lock as it keeps wasting CPU cycles until getting the lock -&gt; Obviously it only works in preemptive scheduler which can trig the interrupt using timer.</p>
+<h3 id="Spin-Lock-Evaluation"><a href="#Spin-Lock-Evaluation" class="headerlink" title="Spin Lock Evaluation"></a>Spin Lock Evaluation</h3><ol>
+<li>Mutex - Works</li>
+<li>Fairness - Can it guarantee the opportunity for waiting threads? <ol>
+<li>No, Indeed, a thread spinning may spin forever,under contention. Simple spin locks (as discussed thus far) are not fair and may lead to starvation.</li>
+</ol>
+</li>
+<li>Performance <ol>
+<li>Case Single CPU: Overheads of spin-lock may be significant.</li>
+<li>Case Multiple CPU: It works reasoably well.</li>
+</ol>
+</li>
+</ol>
+<h2 id="Compare-And-Swap"><a href="#Compare-And-Swap" class="headerlink" title="Compare-And-Swap"></a>Compare-And-Swap</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CompareAndSwap</span> <span class="params">(<span class="keyword">int</span> *ptr, <span class="keyword">int</span> expected, <span class="keyword">int</span> <span class="keyword">new</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> actual = *ptr;</span><br><span class="line">    <span class="keyword">if</span> (actual == expected) *prt = <span class="keyword">new</span>;</span><br><span class="line">    <span class="keyword">return</span> actual;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>CompareAndSwap is stronger than TestAdnSet; wait-free synchronization.</p>
+<p>In spin-lock implementation, it works exactly the same as TestAndSet.</p>
+<h2 id="Load-Linked-amp-Store-Conditional"><a href="#Load-Linked-amp-Store-Conditional" class="headerlink" title="Load-Linked &amp; Store-Conditional"></a>Load-Linked &amp; Store-Conditional</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LoadLinked</span><span class="params">(<span class="keyword">int</span> *ptr)</span> <span class="keyword">return</span> *ptr</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">StoreConditional</span><span class="params">(<span class="keyword">int</span> *ptr, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">not</span> updated since LoadLinked)&#123;</span><br><span class="line">        *ptr = value;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">// Success</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// Fail to update</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Load-Linked works same as load instruction.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lock</span><span class="params">(<span class="keyword">lock_t</span> *lock)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (LoadLinked(&amp;lock-&gt;flag) || !StoreConditional(&amp;lock-&gt;flag,<span class="number">1</span>)) ;</span><br><span class="line">&#125;</span><br><span class="line">void unlock(lock_t *lock) lock-&gt;flag = 0;</span><br></pre></td></tr></table></figure>
+<p>As can be expected, StoreConditional may fail due to interrupt -&gt; But the if condition (not updated since) guarantees that one thread has the lock at a time.</p>
+<h2 id="Fetch-And-Add"><a href="#Fetch-And-Add" class="headerlink" title="Fetch-And-Add"></a>Fetch-And-Add</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">FetchAndAdd</span><span class="params">(<span class="keyword">int</span> *ptr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> old = *ptr;</span><br><span class="line">    *ptr = old + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> old;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Ticket-Turn lock method. Since FetchAndAdd is atomic, assign numbers in ticket and turn to decide which thread’s turn to have the lock.</p>
+<p>Once the thread is done with the lock, it increases the turn numnber, which allows one thread (the ticker holder) will exit the while loop and gets the lock.</p>
+<ul>
+<li>The important difference between the previous lock methods is that it executes in order, hence there is no starvation.</li>
+</ul>
+<h1 id="How-to-not-waste-CPU-time-in-a-spin"><a href="#How-to-not-waste-CPU-time-in-a-spin" class="headerlink" title="How to not waste CPU time in a spin?"></a>How to not waste CPU time in a spin?</h1><h2 id="First-Approach-Yield-양보"><a href="#First-Approach-Yield-양보" class="headerlink" title="First Approach: Yield (양보)"></a>First Approach: Yield (양보)</h2><p>Approach is simple: Yield its allocated CPU to the other thread while waiting for the lock (spin).</p>
+<ul>
+<li>It works fine when there are few threads.</li>
+<li>If many threads exist<ul>
+<li>let’s say the scheduling policy is round-robin, it needs to wait for n-1 strip time to do run-and-yield every time. </li>
+<li>It is better than wasting n-1 threads, but waste contect switch overheads (problematic when context switch is expensive).</li>
+<li>Starvation is possible - What if miss the time while waiting for the other threads to use the CPU?</li>
+</ul>
+</li>
+</ul>
+<h2 id="Secon-Approach-Queue-sleep-instead-of-spinning"><a href="#Secon-Approach-Queue-sleep-instead-of-spinning" class="headerlink" title="Secon Approach: Queue - sleep instead of spinning"></a>Secon Approach: Queue - sleep instead of spinning</h2><p>The fundamental problems of discussed methods are all on luck; either spinning or yield -&gt; wasteful, and cannot prevent starvation.</p>
+<p>Hence, it is required to explicitly control which threads get the next lock -&gt; support from OS and use of Queue.</p>
+<p>Implement two stage: guard and lock. Cases:</p>
+<ul>
+<li>Guard, no lock: Add itself to the queue (release guard) - Before critical</li>
+<li>Both lock and guard: critical section (release guard)</li>
+<li>Lock, guard: Wake up the next queue thread, release guard.</li>
+</ul>
+<p>Guard is still spinning implementation, but alot more efficient as it only deals with few instructions; no critical section parts at all. </p>
+<h1 id="Linux-Lock-Futex"><a href="#Linux-Lock-Futex" class="headerlink" title="Linux Lock - Futex"></a>Linux Lock - Futex</h1><p>Futex:</p>
+<ul>
+<li>Linked with particular physical memory address.</li>
+<li>Has its own internal kernel queue per each futex.</li>
+<li>Caller calls futex, and sleep/awake upon needs.<ul>
+<li>futex_wait(address, expected), futex_wake(address)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Two-Phase-lock"><a href="#Two-Phase-lock" class="headerlink" title="Two Phase lock"></a>Two Phase lock</h2><ul>
+<li>First Phase: wait in spinning with hope it will soon have the lock.</li>
+<li>Second Phase: Sleeps and awake after the lock is released.</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 508 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/">Concurrency</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Concurrency"><a href="#Concurrency" class="headerlink" title="Concurrency"></a>Concurrency</h1><p>So far, we have discussed what and how OS deals with…</p>
+<ul>
+<li>Expand a single CPU into multiple virtualized CPUs so that many programs run at the same time.</li>
+<li>Makes each process looks like it has its own independent memory (virtualized).</li>
+</ul>
+<p>Through the concept “address space” each program acts like it has its own memory, but OS uses the physical memory by switching the multipe address space. </p>
+<p>The difference between thread and process is that</p>
+<ul>
+<li>threads share the memory space –&gt; can access the same value.</li>
+</ul>
+<p>Thread:</p>
+<ul>
+<li>Each thread state is very similar to process states</li>
+<li>has PC, and registers</li>
+<li>If two threads run under one process, threads must be switched by the context switch.<ul>
+<li>Context switch of threads is similar to processes’</li>
+<li>As like process control block (PCB), there is thread control block (TCB).</li>
+<li>The biggest difference is that thread does not change the memory space (keep use the current page table).</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/os/screen-shot-2020-09-09-at-11-57-25-pm-kevg6idu.png" alt=""></p>
+<ul>
+<li>A single thread process has one stack at the bottom.</li>
+<li>In a multi thread process, each thread runs independently and mulitple routines can be called to run the thread. Hence, each thread has a stack.</li>
+</ul>
+<h2 id="Concurrency-Problems"><a href="#Concurrency-Problems" class="headerlink" title="Concurrency Problems"></a>Concurrency Problems</h2><p>Race Condition: Situation where the output changes depends on the order of instruction executions.</p>
+<ul>
+<li>In case the context switch triggered in the unfortunate timing, wrong (not what we expected) output comes out. <ul>
+<li>It is indeed indeterminate.</li>
+</ul>
+</li>
+<li>Critical section: where the multiple threads should not be executed<ul>
+<li>Therefore, we need mutex.</li>
+</ul>
+</li>
+<li>Waiting for another: Dependency where order must be followed.</li>
+</ul>
+<p>Concurreny must be dealt carefully so that most of kernel data structures, page table, process list, and file system… can work correctly.</p>
+<h1 id="Thread-API"><a href="#Thread-API" class="headerlink" title="Thread API"></a>Thread API</h1><h2 id="Thread-Creation"><a href="#Thread-Creation" class="headerlink" title="Thread Creation"></a>Thread Creation</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pthread_create(thread, attr, routine, arg);</span><br><span class="line"><span class="comment">// thread:type struct pointer. This struct communicates with thread.</span></span><br><span class="line"><span class="comment">// attr: size of stack, thread scheduling priority - most time NULL is enough</span></span><br><span class="line"><span class="comment">// routine: a function that thread will run</span></span><br><span class="line"><span class="comment">// arg: input parameters delivered to the routine.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Thread-Exit"><a href="#Thread-Exit" class="headerlink" title="Thread Exit"></a>Thread Exit</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pthread_join (thread, **value_ptr);</span><br><span class="line"><span class="comment">// thread: Which thread are you watiting for?</span></span><br><span class="line"><span class="comment">// value_ptr: pthread_join changes the value, hence need the pointer instead of val</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Key Points<ul>
+<li>Can deliver NULL when no parameter is needed</li>
+<li>Do not need to bind the parameters when only one is needed</li>
+<li>Needs to care about how the value changes within the thread. </li>
+</ul>
+</li>
+</ul>
+<h2 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pthread_mutex_t</span> lock = pthread_mutex_initializer;</span><br><span class="line"><span class="keyword">pthread_cond_t</span> cond = pthread_cond_initializer;</span><br><span class="line"><span class="keyword">int</span> rc = pthread_mutex_init (&amp;lock, <span class="literal">NULL</span>);</span><br><span class="line">assert (rc == <span class="number">0</span>);</span><br><span class="line">pthread_mutex_lock (&amp;lock); <span class="comment">// Wait if one thread has the lock</span></span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">ready</span> == <span class="number">0</span>) pthread_cond_wait (&amp;cond, &amp;lock); <span class="comment">// Waiting routine</span></span><br><span class="line"><span class="comment">// It awake, get the lock, and return -&gt; Ensures it always has the lock when executing.</span></span><br><span class="line">x = x + <span class="number">1</span>; <span class="comment">// Critical points</span></span><br><span class="line">pthread_mutex_unlock (&amp;lock);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Other thread gives the wake up call</span></span><br><span class="line">pthread_mutex_lock(&amp;lock);</span><br><span class="line"><span class="comment">// After send the signal, and fix the ready val, it must have the lock</span></span><br><span class="line"><span class="comment">// It guarantees the prevention of race condition.</span></span><br><span class="line"><span class="built_in">ready</span> = <span class="number">1</span>; </span><br><span class="line">pthread_cond_signal (&amp;cond); <span class="comment">// It release the lock and send the signal to awake the thread.</span></span><br><span class="line">pthread_mutex_unlock (&amp;lock);</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/08/10/OperatingSystem/OS%20-%20ch-15/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Address Translation">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-08-10T05:09:07.572Z">Aug 10, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 minutes read (About 700 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/08/10/OperatingSystem/OS%20-%20ch-15/">Address Translation</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Address-Translation"><a href="#Address-Translation" class="headerlink" title="Address Translation"></a>Address Translation</h1><p>Limited Direct Execution (LDE): When process, in certain times such as systemcalls and timer interrupt happens, OS interrupts process to prevent problems. OS gets little support from hardware to do its best to provide efficient virtualization and gets out of the process’s way.</p>
+<ul>
+<li><p>We want:</p>
+<ul>
+<li>efficiency: hence requires hardware support; using TLB, pagetable…</li>
+<li>control: OS guarantees no access to the memory of the application program -&gt; needs hardware support.</li>
+<li>flexibility: Ez to use address space and ez to program-system.</li>
+</ul>
+</li>
+<li><p>Address Translation = hardware-based address translation</p>
+<ul>
+<li>Can be thought as an additional function of LDE.</li>
+<li>Through address translation:<ul>
+<li>Hardware translate the virtual address (instruction, load, store) to the physical address.</li>
+<li>Hardware translates (changes) to relocate the memory reference of programs into the real ones.</li>
+<li>Of course, OS needs to know empty/used memory space, and control/manage the memory use -&gt; To setup the hardware to ensure the correct/translation of the memory address.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>From now on we assume that user address space is consecutive, not too big, smaller than the physical memory, and each address space is the same</strong></p>
+<h2 id="Dynamic-hardware-based-relocation-base-and-bound"><a href="#Dynamic-hardware-based-relocation-base-and-bound" class="headerlink" title="Dynamic (hardware-based) relocation = base and bound"></a>Dynamic (hardware-based) relocation = base and bound</h2><ol>
+<li>Each CPU needs two hardware register; one base, one bound (or limit) register.</li>
+<li>This base and bound pair allows us to allocate address space where we want.</li>
+<li>In this setupt, each program is written and compiled like address 0 (virtual).</li>
+<li>At the start of the program, OS decides the physical memory location, and set base register as of it.<ul>
+<li>physical address = virtual address + base (This is how address translation happens).</li>
+</ul>
+</li>
+<li>As reallocation is possible later </li>
+</ol>
+<p><em>Note: Static allocation has a main problem: has no protection at all -&gt; can have illegal access from other processes + hard to reallocate later.</em></p>
+<ol start="6">
+<li>Bound register is used for protection.<ul>
+<li>Process first checks if the memory reference is legal - by checking bound.</li>
+<li>If process reference out of base-bound region -&gt; CPU runs exception, kills the process.</li>
+<li>Meaning it literally indicates the <strong>bound</strong> of the region (as we already knows the start; base).</li>
+</ul>
+</li>
+</ol>
+<p><em>Note: Base and Bound registers are hardware structure that exists in CPU chip</em></p>
+<p><strong>Memory management unit (MMU)</strong>: Processes that help address translation; for more detailed memory management, more circuits are needed in MMU.</p>
+<h2 id="Hardware-support-summary"><a href="#Hardware-support-summary" class="headerlink" title="Hardware support: summary"></a>Hardware support: summary</h2><ol>
+<li>Needs two CPU modes:<ul>
+<li>Kernel (privileged): Has access to entire computer.</li>
+<li>User: Application program runs under this mode, has limitations to do something.</li>
+</ul>
+</li>
+<li>Process status word: One bit in a register represents the current execution state of CPU.</li>
+<li>Base and Bound registers; part of MMU<ul>
+<li>Physical address = virtual address + base.</li>
+<li>Hardware must be able to check if it is legal address; check is done using bound register and other CPU circuits (the other MMU).</li>
+<li>Hardware must provide instruction that changes base and bound register values (kernel instructinos).</li>
+<li>Hardware must be able to trigger the exceptions (its handler).</li>
+</ul>
+</li>
+</ol>
+<h2 id="OS-issues"><a href="#OS-issues" class="headerlink" title="OS issues"></a>OS issues</h2><p>To implement base-bound method virtualization memory, it needs three important points.</p>
+<ol>
+<li>At the process creation, OS needs to find memory space which will become address space.<ul>
+<li>OS memory sees memory as an array of slot, and manage each slot’s usage; finding the free list (the empty space).</li>
+</ul>
+</li>
+<li>At the process termination, deallocate the memory so that can be used later. OS puts the memory to <strong>free list</strong> and manage all the relavant data structures.</li>
+<li>OS needs to perform additional steps when context switch happens.<ul>
+<li>Each CPU has a pair of base and bound registers, and each program must have different physical memory address. Hence, OS needs to save and store the base-bound when context switch happens in the PCB.<br><em>Note: If process is not running state, OS can easily move the physical address space easily; copy into the new address, and update the base register in PCB -&gt; Hence program does not realize there was a change as it happens before the restore.</em></li>
+</ul>
+</li>
+<li>OS provides exception handler, or helper function.<ul>
+<li>OS installes handler during the boot through privilege instructions.<br><em>Note: memory translation is handled by hardware, no intervention from OS.</em></li>
+<li>We still follows the LDE, but OS interven only when process does illegal action.</li>
+</ul>
+</li>
+</ol>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Dynamic reallocation is inefficient -&gt; cause internal fragmentation (gapped-space is being wasted).<br>Internal fragmentation can be avoided by Generalizing base-bound; which is called segmentation.</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/08/09/OperatingSystem/OS%20-%20ch-9-Proportional%20Share/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Proportional Share">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-08-09T05:09:07.572Z">Aug 09, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 423 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/08/09/OperatingSystem/OS%20-%20ch-9-Proportional%20Share/">Proportional Share</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Proportional-Fair-share"><a href="#Proportional-Fair-share" class="headerlink" title="Proportional = Fair share"></a>Proportional = Fair share</h1><p>Instead of optimizing turnaround and response time, scheduler guarantee fair amount of CPU share.</p>
+<h2 id="Lottery-Scheduling-Randomness"><a href="#Lottery-Scheduling-Randomness" class="headerlink" title="Lottery Scheduling - Randomness"></a>Lottery Scheduling - Randomness</h2><p>Each lottery tickets gives the different share per job.<br>It does not guarantee the perfect share that the ticket represents, but as the job takes more time, it approximates.</p>
+<ul>
+<li>Randomness:</li>
+</ul>
+<ol>
+<li>Oftern avoids strange corner-case behaviours that a more traditional algorithm may have trouble handling.</li>
+<li>Lightweight: It does not have to tract how much CPU the job used; but track how many tickets left.</li>
+<li>Very fast: Since the decision is simply made by the ticket.</li>
+</ol>
+<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><ul>
+<li>Ticket Currency: User can freely slice up the given tickets into its own currency. If user A has 100 tickets, it can gives 300 tickets to its programs…</li>
+<li>Ticket Transfer: Process can temporarily transfer the tickets to the another process. It is beneficial to client/server situation. </li>
+<li>Ticket Inflation: It is non-sense in the race condition, but between trusted processes, asks system it needs more tickets.</li>
+</ul>
+<h3 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h3><p>It is very easy to implement - needs randommizer, data structures, total number of tickets.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> counter = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> winner = getrandom(<span class="number">0</span>, totaltickets);</span><br><span class="line"><span class="keyword">node_t</span> *current = head; <span class="comment">// To Search job list</span></span><br><span class="line"><span class="keyword">while</span> (current)&#123;</span><br><span class="line">    counter += current-&gt;tickets;</span><br><span class="line">    <span class="keyword">if</span> (counter &gt; winner) <span class="keyword">break</span>; </span><br><span class="line">    current = current-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// current is now the winner. So ready to run the winner process.</span></span><br><span class="line"><span class="comment">// If the list is descending order of ticekts, it can minimze the search process.</span></span><br></pre></td></tr></table></figure>
+<h3 id="Stride-Scheduling-deterministic"><a href="#Stride-Scheduling-deterministic" class="headerlink" title="Stride Scheduling - deterministic"></a>Stride Scheduling - deterministic</h3><p>As can be seen, randomness can simplify the scheduler but it does not guarantee the exact proportions especially over short time scales.</p>
+<ul>
+<li>Stride Scheduling: a deterministic fair-share scheduler<ul>
+<li>Each job has a stride; inverse in proportion to the number of tickets it has.</li>
+<li>Each time process runs, increment counter (called pass value) by its stride; track the total CPU usage.</li>
+<li>Scheduler decides which process to run based on stride and pass values. <ul>
+<li>run the process has the lowest pass values, and increase by its stride.<br>Then why do we use the lottery scheduling then?</li>
+</ul>
+</li>
+<li>Imagine if there is a new job assigned. </li>
+<li>What the pass value should be?</li>
+<li>Lotter scheduling does not have to care about process state (CPU usage, pass values). Only consider tickets.</li>
+<li>Therefore, it is easier to add a new process in the list.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>For these reasons, Proportional and stride scheduling are not widely used:</p>
+<ol>
+<li>These approaches do not get along well with IO.</li>
+<li>Hard to implement tickets allocation; how many to which?</li>
+</ol>
+<p>In case of virtualization environment, say I would like to use 25% of system to run the virtual machine, proprotional scheduling might be useful.</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/08/08/OperatingSystem/OS%20-%20ch-8-MLFQ/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Multi Level Feedback Queue">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-08-08T05:09:07.572Z">Aug 08, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 395 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/08/08/OperatingSystem/OS%20-%20ch-8-MLFQ/">Multi Level Feedback Queue</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Multi-Level-Feedback-Queue"><a href="#Multi-Level-Feedback-Queue" class="headerlink" title="Multi Level Feedback Queue"></a>Multi Level Feedback Queue</h1><ul>
+<li>Key Question: How can struct the scheduling that minimizes response time and turnaround time without having any prior information of the job.</li>
+</ul>
+<h2 id="MLFQ-Basic-Rules"><a href="#MLFQ-Basic-Rules" class="headerlink" title="MLFQ Basic Rules"></a>MLFQ Basic Rules</h2><p>MLFQ is consist of multiple queues which has its own priority level.</p>
+<ol>
+<li>If priority(A) &gt; priority (B) then execute A</li>
+<li>If prior(A) == prior(B) then do RR for A and B.</li>
+</ol>
+<ul>
+<li>MLFQ assigns the priority depends on the characteristics of the job; keyboard input waiting…</li>
+<li>If one job maintains the high priority for a long time, lower the level.</li>
+</ul>
+<ol start="3">
+<li>When a job enters the system, it has the highest priority.</li>
+<li><ol>
+<li>a: After use all of its time slice, priority goes lower.</li>
+<li>b: Maintain the priority level if it gives up the CPU before the end of its time slice.</li>
+</ol>
+</li>
+</ol>
+<p>Key Points:<br>    * Scheduler do not know if the job is short or not<br>    * So assume it is the short one at first (assign high prior level).<br>    * Therefore, if the job is the short one, it will be finished fast.<br>    * If not, it will slowly move down to the lower prior queue which proves it is a time consuming job.<br>    * By doing so, MLFQ approximates SJF without having prior info.</p>
+<p>Problems:</p>
+<ol>
+<li>Starvation: if there are too many conversational job (which gives up the time slice earlier), lower prior queue tasks will not have a chance to use CPU.</li>
+<li>Can trick the scheduler: Can program the code intentionally to trick the scheduler, and seize the CPU for a longer time. </li>
+<li>The job may alter its characteristics later; but not able to have the higher priority disregard to its change.</li>
+</ol>
+<ol>
+<li>After certain time, system moves all the tasks to the highest queue.<ol>
+<li>Non starvation is guaranteed.</li>
+<li>Altered Jobs (characteristics into interactive) can be treated as intended.</li>
+</ol>
+</li>
+</ol>
+<p>Redefine 4a 4b into one rule to prevent the second problem; gaming of the scheduler.<br>4. Once a job uses up its time allotment at a given level (regardless of how many times it has given up the CPU), its priority is reduced (i.e., it moves down one queue).</p>
+<h2 id="Other-problems-concerns"><a href="#Other-problems-concerns" class="headerlink" title="Other problems/concerns"></a>Other problems/concerns</h2><ol>
+<li>How many queues should there be?</li>
+<li>How big should the time slice be per queue?</li>
+<li>How often priority must be reset to avoid starvation?<br>There are no definite answer to these concerns.<br>There could be different implementation such as alloting different time slice per each priority queue (longer for lower level…).</li>
+</ol>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/08/07/OperatingSystem/OS%20-%20ch-7-scheduling/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Scheduling">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-08-07T05:09:07.572Z">Aug 07, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 293 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/08/07/OperatingSystem/OS%20-%20ch-7-scheduling/">Scheduling</a>
+            
+        </h1>
+        <div class="content">
+            <p>Sheduling policy = discipline</p>
+<h2 id="Workload-Assumptions"><a href="#Workload-Assumptions" class="headerlink" title="Workload Assumptions"></a>Workload Assumptions</h2><p>let us first make a number of simplifying assumptions about the processes running in the system, sometimes collectively called the workload.</p>
+<ul>
+<li>Assumptions are:<ol>
+<li>Each job runs for the same amount of time.</li>
+<li>All jobs arrive at the same time.</li>
+<li>Once started, each job runs to completion.</li>
+<li>All jobs only use the CPU (i.e., they perform no I/O)</li>
+<li>The run-time of each job is known.</li>
+</ol>
+</li>
+</ul>
+<h3 id="Scheduling-Metric"><a href="#Scheduling-Metric" class="headerlink" title="Scheduling Metric"></a>Scheduling Metric</h3><ul>
+<li><p>Turnaround time = Completion - Arrival.</p>
+<ul>
+<li>Since we assume that all jobs arrive at the same time, T_Arrival = 0. Therefore, turnaround time = completion time.</li>
+</ul>
+</li>
+<li><p>Fariness: Performane and fairness are often at odds in scheduling.</p>
+</li>
+<li><p>FIFO</p>
+<ul>
+<li>Convoy Effect: Short-time required process waits for the long-time process to be completed.</li>
+</ul>
+</li>
+<li><p>Shorted Job First</p>
+<ul>
+<li>Same convoy effect possible as the process (jobs) might be arrived differently; the shortest job arrives at the last, hence still need to wait.</li>
+</ul>
+</li>
+<li><p>Shortest Time to Completion First (STCF)</p>
+<ul>
+<li>Compare the remainer completion time whenever new job arrives, and pick the shortest one. </li>
+<li>It is non-preemptive that the job can be stopped in the middle.</li>
+</ul>
+</li>
+</ul>
+<h3 id="New-scheduling-metric-response-time"><a href="#New-scheduling-metric-response-time" class="headerlink" title="New scheduling metric: response time"></a>New scheduling metric: response time</h3><p>Response Time = Firstrun - Arrival = Time gap between arrival and first run of job.<br>Can intuitively knows the policy such as STCF, FIFO has bad response time.</p>
+<ul>
+<li>Round Robin<ul>
+<li>Time slice/Scheduling quantum –&gt; slice must be multiples of interrupt period.</li>
+<li>If time slice too short –&gt; context switch costs becomes significant.</li>
+<li>In general, the fair policy like Round Robin do bad when the metric is turnaround time. </li>
+</ul>
+</li>
+</ul>
+<h3 id="Incorporating-IO"><a href="#Incorporating-IO" class="headerlink" title="Incorporating IO"></a>Incorporating IO</h3><p><img src="/image/os/4-kf6u2v1r.PNG" alt=""><br>During the IO process, the current process will not use the CPU and in the wait state.<br>To avoid the waste of resource, scheduler utilizes the resource executing the other waiting jobs.</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/08/06/OperatingSystem/OS%20-%20ch-6-limited-direct-execution/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Limited Direct Execution">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-08-06T05:09:07.572Z">Aug 06, 2020</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 838 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/08/06/OperatingSystem/OS%20-%20ch-6-limited-direct-execution/">Limited Direct Execution</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li>Virtualization through CPU time sharing methods. Need to overcome/consider:<ul>
+<li>Performance: Virtualization without giving too much of overhead.</li>
+<li>Control: Efficient execution of process with control over CPU.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Basic-Concept-Limited-Direct-Execution"><a href="#Basic-Concept-Limited-Direct-Execution" class="headerlink" title="Basic Concept: Limited Direct Execution"></a>Basic Concept: Limited Direct Execution</h2><ul>
+<li>Direct Execution:<ul>
+<li>Just execute the program on CPU. </li>
+<li>OS creates process object in the process list when execute.</li>
+<li>Alloscate the memory, load it on a disk, branch to magin point to run the code.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/os/1-kf6o3d43.PNG" alt=""><br>Above figure shows no limited direct execution.<br>It creates several problems:</p>
+<ol>
+<li>How can ensure it does not execute the program that OS does not want?</li>
+<li>How can we stop the execution and switch to the other process during the execution?<br>--&gt; How can we implement Time Sharing Method?</li>
+</ol>
+<p>This is why we need “Limited” Direct Execution.</p>
+<h2 id="Problem-1-Limited-Execution"><a href="#Problem-1-Limited-Execution" class="headerlink" title="Problem 1 : Limited Execution"></a>Problem 1 : Limited Execution</h2><p>What if the program requires to executr privileged instructions such as IO/additional memory allocation? –&gt; Introduce two different modes</p>
+<ul>
+<li>User Mode: Limited access such as no request for IO.</li>
+<li>Kernel Mode: Non limited access</li>
+</ul>
+<p>To allow privileged instructions, modern OS provides systemcall to user process. </p>
+<ul>
+<li>Filesystem access, process creationa and deletion, communication and allocation…</li>
+</ul>
+<p>To call systemcall, a program needs to execute trap command. </p>
+<ul>
+<li>It elevates the the privilege level from user to Kernel when the instruction branches to the kernel. </li>
+<li>Once elevated to the kernel mode, OS can execute every instructions, and can handle all the requested instructions by the process. </li>
+<li>Once completed, OS calls “return-from-trap” which de-elevates the privilege down to user mode. </li>
+</ul>
+<p>When calls the trap command, hardware needs to store necessary register of the process.<br>It is to return properly to the user process when “return-from-trap” is executed.</p>
+<pre><code>* x86 has PC, flags, and other registers are stored in kernel stack of each process.
+* &quot;return-from-trap&quot; pops these info to re-run the user mode process (from sleep).</code></pre><p>A process cannot state the “branch address” where “trap” gets executed as it means the process has access to the kernel.</p>
+<ul>
+<li>Kernel creates trap table during the boot, and controls the system with it. </li>
+<li>Booting is instructed within kernel mode, hence hardware can be managed as wanted. </li>
+</ul>
+<p>OS uses privileged instructions to deliver the trap handler location to the hardwares.<br>Trap Handler: When some interruptors, or systemcalls happen, which code hardware should execute?</p>
+<p><img src="/image/os/2-kf6palrw.PNG" alt=""><br>In the booting:</p>
+<pre><code>1. Kernel creates/resets trap table
+2. OS lets hardware knows the location of trap handler. </code></pre><p>After the boot:</p>
+<ol>
+<li>User calls trap to OS</li>
+<li>Hardware saves the stack and branch to trap handler.</li>
+<li>Kernel handles the trap, branch back to hardware.</li>
+<li>Restore the registers from kernel stack, branch to user program.</li>
+<li>User program moves on. </li>
+</ol>
+<h2 id="Problem-2-Process-Switch"><a href="#Problem-2-Process-Switch" class="headerlink" title="Problem 2: Process Switch"></a>Problem 2: Process Switch</h2><p>How OS gets CPU back to switch the process?</p>
+<h3 id="A-Cooperative-Approach-Wait-For-System-Calls"><a href="#A-Cooperative-Approach-Wait-For-System-Calls" class="headerlink" title="A Cooperative Approach: Wait For System Calls"></a>A Cooperative Approach: Wait For System Calls</h3><ul>
+<li>OS assumes that process will behave reasonably; process gives up CPU periodically so that other processes get the chance. </li>
+<li>Process often calls systemcall to handover the control of CPU to OS such as while reading files… –&gt; yield systemcall.</li>
+<li>If the application behaves abnormal –&gt; it triggers trap –&gt; OS gets CPU control.</li>
+</ul>
+<h3 id="A-Non-Cooperative-Approach-The-OS-Takes-Control"><a href="#A-Non-Cooperative-Approach-The-OS-Takes-Control" class="headerlink" title="A Non-Cooperative Approach: The OS Takes Control"></a>A Non-Cooperative Approach: The OS Takes Control</h3><p>Timer Interrupt - trigs the interrupt periodically and executes the interrupt handler.<br>OS needs to decide whether to proceed the current process or do the switch; decision is made by sheduler policy.<br><img src="/image/os/3-kf6rf0nk.PNG" alt=""></p>
+<ul>
+<li>Context Save and Store<ul>
+<li>OS saves the current state of the process in the kernel stack, and restore the stack of the next process.</li>
+<li>By doing so, return-from-trap returns to the next process (not the current process).</li>
+<li>Once the next process (current) calls return-from-trap, it calls the previous process to proceed where it stopped.</li>
+</ul>
+</li>
+</ul>
+<h3 id="ASIDE-KEY-CPU-VIRTUALIZATION-TERMS-MECHANISMS"><a href="#ASIDE-KEY-CPU-VIRTUALIZATION-TERMS-MECHANISMS" class="headerlink" title="ASIDE: KEY CPU VIRTUALIZATION TERMS (MECHANISMS)"></a>ASIDE: KEY CPU VIRTUALIZATION TERMS (MECHANISMS)</h3><ul>
+<li>The CPU should support at least two modes of execution: a restricted user mode and a privileged (non-restricted) kernel mode.</li>
+<li>Typical user applications run in user mode, and use a system call to trap into the kernel to request operating system services.</li>
+<li>The trap instruction saves register state carefully, changes the hardware status to kernel mode, and jumps into the OS to a pre-specified destination: the trap table.</li>
+<li>When the OS finishes servicing a system call, it returns to the user program via another specialreturn-from-trap instruction, which reduces privilege and returns control to the instruction after the trap that jumped into the OS.</li>
+<li>The trap tables must be set up by the OS at boot time, and make sure that they cannot be readily modified by user programs. All of this is part of the limited direct execution protocol which runs programs efficiently but without loss of OS control.</li>
+<li>Once a program is running, the OS must use hardware mechanisms to ensure the user program does not run forever, namely the timer interrupt. This approach is a non-cooperative approach to CPU scheduling.</li>
+<li>Sometimes the OS, during a timer interrupt or system call, might wish to switch from running the current process to a different one, a low-level technique known as a context switch</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/categories/OperatingSystem/page/0/">Previous</a>
+        </div>
+        <div class="pagination-next">
+            <a class="is-flex-grow has-text-black-ter" href="/categories/OperatingSystem/page/2/">Next</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link is-current" href="/categories/OperatingSystem/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/categories/OperatingSystem/page/2/">2</a></li>
+            
+        </ul>
+    </nav>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="SK Lee">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        SK Lee
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        A Jobless Personnel
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Australia/ACT</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            67
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            8
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/lee-sk-qq" target="_blank" rel="noopener">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/qqskda">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Twitter" href="https://twitter.com/qqskda">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://medium.com/@poringpeco" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Medium</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">medium.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.linkedin.com/in/sungkwon-lee-089389145/" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Linkedin</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.linkedin.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">13</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">12</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">28</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/CPP/">
+            <span class="level-start">
+                <span class="level-item">CPP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Life/">
+            <span class="level-start">
+                <span class="level-item">Life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Machine-Learning/">
+            <span class="level-start">
+                <span class="level-item">Machine Learning</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Network/Lab/">
+            <span class="level-start">
+                <span class="level-item">Lab</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/OCSO/">
+            <span class="level-start">
+                <span class="level-item">OCSO</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Parallel-Computing/">
+            <span class="level-start">
+                <span class="level-item">Parallel Computing</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPP/">
+                        <span class="tag">CPP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keyboard/">
+                        <span class="tag">Keyboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Layer/">
+                        <span class="tag">Layer</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Summary/">
+                        <span class="tag">Summary</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Theory/">
+                        <span class="tag">Theory</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/CPP/">
+            <span class="level-start">
+                <span class="level-item">CPP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Life/">
+            <span class="level-start">
+                <span class="level-item">Life</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Machine-Learning/">
+            <span class="level-start">
+                <span class="level-item">Machine Learning</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Network/Lab/">
+            <span class="level-start">
+                <span class="level-item">Lab</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/OCSO/">
+            <span class="level-start">
+                <span class="level-item">OCSO</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Parallel-Computing/">
+            <span class="level-start">
+                <span class="level-item">Parallel Computing</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
+                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
+                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
+                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
+                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CPP/">
+                        <span class="tag">CPP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keyboard/">
+                        <span class="tag">Keyboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Layer/">
+                        <span class="tag">Layer</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Summary/">
+                        <span class="tag">Summary</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Theory/">
+                        <span class="tag">Theory</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/avatar.png" alt="SK Lee" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Sungkwon Lee&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://github.com/qqskda',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
