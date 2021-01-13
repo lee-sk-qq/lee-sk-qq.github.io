@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/25/Parallel/Week%202%206%20PerfModels/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/perf.jpg" alt="Perfectly Parallel Models">
+        <a href="/2020/03/24/Network/Lab%201/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 1">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-25T08:06:00.000Z">Mar 25, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-03-24T07:28:00.000Z">Mar 24, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 474 words)
+                    5 minutes read (About 765 words)
                 </span>
                 
                 
@@ -156,79 +156,78 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/25/Parallel/Week%202%206%20PerfModels/">Perfectly Parallel Models</a>
+                <a class="has-link-black-ter" href="/2020/03/24/Network/Lab%201/">Network - Lab 1</a>
             
         </h1>
         <div class="content">
-            <p>Reference : </p>
+            <p>Reference:</p>
 <ul>
-<li>Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</li>
 <li>The Australian National University CECS</li>
 </ul>
-<h2 id="Granularity"><a href="#Granularity" class="headerlink" title="Granularity"></a>Granularity</h2><ul>
-<li>Granularity: size of the tasks<ul>
-<li>Coarse grain: large tasks/many instructions</li>
-<li>Fine grain: small tasks/few instructions</li>
-</ul>
-</li>
-<li>Metric = t_compute / t_communication</li>
-<li>It may depend on number of processors.</li>
-</ul>
-<h2 id="Speedup"><a href="#Speedup" class="headerlink" title="Speedup"></a>Speedup</h2><ul>
-<li>the relative performance between single and multiple processors<ul>
-<li>⇒ S(n) = exe time on single / exe time on p = t_seq / t_par</li>
-</ul>
-</li>
-<li>t_seq should be the fastest known sequential algo; best parallel algo may be differernt</li>
-<li>S_operation(p) = operation count rate with p / operation count rate on single</li>
-<li>Linear speedup = max possible S(n) = p</li>
-<li>if S(P) &gt; P then<ul>
-<li>May imply the algo is not the best one, go and check the seq algo</li>
-<li>May arise due to the unique feature of architecture.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Parallel-Overhead"><a href="#Parallel-Overhead" class="headerlink" title="Parallel Overhead"></a>Parallel Overhead</h2><ul>
-<li>Factors that limit parallel scalability:<ul>
-<li>periods that not all p works + time when one p is active on seq parts</li>
-<li>load imbalance</li>
-<li>extra computations not in the seq code —&gt; seq code in one p might be faster some cases</li>
-<li>communication times</li>
-</ul>
-</li>
-</ul>
-<p><img src="/image/Week%202%206%20PerfModels/Untitled.png" alt=""></p>
-<p><img src="/image/Week%202%206%20PerfModels/Untitled%201.png" alt=""></p>
-<p><img src="/image/Week%202%206%20PerfModels/Untitled%202.png" alt=""></p>
-<h2 id="Efficiency-and-Cost"><a href="#Efficiency-and-Cost" class="headerlink" title="Efficiency and Cost"></a>Efficiency and Cost</h2><ul>
-<li>Efficiency: How well using the processors</li>
-</ul>
-<p>$$E = t_{seq} / t_{par} / p = S(p)/p * 100%$$</p>
+<hr>
+<p>Q: Why frequency?</p>
+<p>A: 자연은 날카로운 엣지 (디지털) 를 좋아하지 않고 웨이브를 선호함. 빛, 전자, 소리, 액체등 파동</p>
+<p>(팍 하고 튀는거) 스위치는 순간적이지도, 지속적이지도 않음 (한번 킬때 팍 보내지도, 계속 보내지도 않음 짧은시간 유지임) 전구또한 확 켜지는게 아닌 밝아지고 어두워지는 형식. </p>
+<p>즉 아날로그 파동과 주파수들의 조합을 이용해서 디지털 엣지를 구현하는식.</p>
+<hr>
+<p>Q: Why FDM &gt; Frequent Shift Keying?</p>
+<p>A: Because electronics can be tuned to a frequency and use it as a dedicated channel with ASK/PSK. Hence better than using an idle frequencies and jumping between them. 즉 한 주파수 내에 정보를 담을수 있는데 주파수의 높낮이로 정보를 보내는것은 비효율적이다. </p>
+<hr>
+<p>Q: The benefit of the thicker coax, and what are the main downsides?</p>
+<p>A: Greater Shielding and noise protection, less resistance hence longer runs with same power. However; difficult to deplof (stiff) and expensive.</p>
+<hr>
+<p>Q: Diff betwenn cat5 and 7</p>
+<p>A: 7 has foil —&gt; shield, solid core wires. Hence good quality and performance but higher cost with hard to deploy as it is harder to bend around the corner.</p>
+<hr>
+<p>Q: Fiber. Diff between multimode and single mode.</p>
+<p>A: Wider MMF core gets a brighter and broader light out of the end and easy to line up with LEDs. SMF core narrower than MMF and gives you much greater and higher data rates but costs alot more as it is harder to terminate and light up with laser (MMF uses LED)</p>
+<p>SMF: 레이저, 두께에 따른 성능 차이 적음, 멀티모드보다 훨 빠름, 매우비쌈 (레이저라서)</p>
+<p>MMF: LED 광원, 두께에 따른 성능차이 있음, 광원이 확산되고 코어지름이 커서 많은 신호를 보낼수 있는데 이로인해 전송거리가 SMF에 비해 짧음.</p>
+<hr>
+<p><img src="/image/Lab%201/Untitled.png" alt=""></p>
+<p>Q: How 16 QAM works</p>
+<p>A: </p>
 <ul>
-<li>Cost: parallel execution time * total num of p<ul>
-<li>Cost optimal = cost has same asymptotic growth as a func of input size as the fastest seq algo on a single processor</li>
+<li>Each position represents a unique phase and amplitude shift of a signal wave.</li>
+<li>with 16 unique positions, can encode four bits per symbol (2^4 이니까 이진수로).</li>
+<li>Can arbitrarily allocate patterns to points (아무대나 배치해도 됨).</li>
+<li>Small bit pattern changes may result large changes in phase and amplitude ig. 0100 —&gt; 0101.</li>
+<li>Can have any QAM, but will be harder to separate n levels of ASK and PSK.</li>
+<li>Efficienfy = bits can encode per symbol. 35 = 5.1 bits —&gt; waste of spaces. Better to use power of 2.</li>
 </ul>
-</li>
-</ul>
-<p>$$cost = t_{par} * p = (t_{seq}*p)/S(p) = t_{seq} / E$$</p>
-<h2 id="Adding-n-num-on-n-processors"><a href="#Adding-n-num-on-n-processors" class="headerlink" title="Adding n num on n processors"></a>Adding n num on n processors</h2><p>Adding n in a single core = n; adding n in n processor = lg(n). Therefore speedup = O(n/lg(n))</p>
-<p>cost = number of p * time of execution = n * lg(n) = O(n lg(n))</p>
-<p>Hence it is not cost-optimal</p>
-<p><img src="/image/Week%202%206%20PerfModels/Untitled%203.png" alt=""></p>
-<h2 id="Scalability"><a href="#Scalability" class="headerlink" title="Scalability"></a>Scalability</h2><p>Imprecise measure:</p>
+<hr>
+<p>Q: Nyquist. 1Mhz wave with amp modulated to 8 levels.</p>
+<p>A: Potential datarate achievable = 2 * 1Mhz * lg(8) = 6 Mb/s. We multiply 2 as we can use 180 degree phase shift key = 2 bits into a single wave.</p>
+<hr>
+<p>Q: Why copper less useful in longer distance?</p>
+<p>A: </p>
 <ul>
-<li>hardware: 하드웨어를 늘리면 퍼포먼스가 좋아지나?<ul>
-<li>링, 크로스바, 하이퍼큐브 위상을 고려하고 프로세서에 무슨 변화를 줘야 하는지 고려</li>
+<li>It has too much attenuation (energy loss) as wire resistive especially with higher frequencies.</li>
+<li>Too Noisy as wire is an antenna</li>
+<li>Can be fixed with shield, twist, diff signaling, better connectors…</li>
 </ul>
-</li>
-<li>Algorithm: 사용하고 있는 알고리즘이 더 많은 프로세서와 accomodate 가능 한가?</li>
-<li>Combined: 문제 크기 증가를 프로세서를 증가함으로써 accomodate 가능 한가?</li>
-<li>계산 사이즈를 배로 늘렸을때의 변화를 고려<ul>
-<li>N*N 매트릭스의 N사이즈를 두배로 늘리면, 더하기 계산의 비용은 4배지만 곱하기 비용은 8배로 늘어난다</li>
+<hr>
+<p>Q: Why encoding bits into modulated signal important?</p>
+<p>A:</p>
+<ul>
+<li>It makes signal clear overall by ensuring a higher rate of transitions (easier to detect) to avoid same repeated bits like 1000000 hence solve “are you dead” problem.</li>
+<li>Provide a mechanism for clock-recovery hence able to know how wide a bit is. (data rate and clock sync - bit boundaries).</li>
 </ul>
-</li>
+<hr>
+<p>Q: dB, dBm, and dBi mean.</p>
+<p>A:</p>
+<ul>
+<li>dB: signal/noise ratio. 20dB = 2B = 10^2. -20dB = -2B = 10^-2 = 0.01.</li>
+<li>dBm: zero point is 1mW (0dBm = 1mW, 20dBm = 100mW)</li>
+<li>dBi: measure gain of antenna relative to an isotropic antenna (transmitter or receiver).</li>
 </ul>
-<p><img src="/image/Week%202%206%20PerfModels/Untitled%204.png" alt=""></p>
+<hr>
+<p>Q: How can make wireless transmission better?</p>
+<p>A: Shout louder or slower (clearer), frequency hopping to avoid noise (smarter), beam-shaping (focus), or higher/tailer antennas (terrain).</p>
+<hr>
+<p>Q: How can make signal go further?</p>
+<p>A: Repeater (regenerate signal), and amplifiers (both signal and noise). It costs money and power, and also may cause delay for unpack and repack process in repeater.</p>
+<hr>
 
         </div>
         
@@ -268,7 +267,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -318,7 +317,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -330,7 +329,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -342,7 +341,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -435,17 +434,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -506,14 +494,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -580,7 +560,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -695,13 +675,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -756,14 +729,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -830,7 +795,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -945,13 +910,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

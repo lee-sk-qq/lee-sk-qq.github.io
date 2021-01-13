@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/05/26/Network/Week%207%202%20IoT%20MQTT%20Protocol%20e98c41771d4440b2ad0141c5037ae2ed/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/mqtt.jpg" alt="IoT/MQTT Protocol">
+        <a href="/2020/05/20/MSL/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/local.jpg" alt="Local Regression">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-05-26T02:01:00.000Z">May 26, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-05-20T05:26:00.000Z">May 20, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                <a class="has-link-grey -link" href="/categories/Machine-Learning/">Machine Learning</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    11 minutes read (About 1586 words)
+                    20 minutes read (About 2939 words)
                 </span>
                 
                 
@@ -156,205 +156,87 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/05/26/Network/Week%207%202%20IoT%20MQTT%20Protocol%20e98c41771d4440b2ad0141c5037ae2ed/">IoT/MQTT Protocol</a>
+                <a class="has-link-black-ter" href="/2020/05/20/MSL/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/">Local Regression</a>
             
         </h1>
         <div class="content">
-            <p><a href="https://aqwerf.tistory.com/22">MQTT Protocol</a></p>
-<h2 id="Applications-Use-Transport"><a href="#Applications-Use-Transport" class="headerlink" title="Applications Use Transport"></a>Applications Use Transport</h2><p>UDP based</p>
-<ul>
-<li>Short messages, simple request/response trasactions</li>
-<li>Light server touch, ARQ suffices</li>
-<li>Real Time Protocol (RTP): Low delays, ARJ, short messages, weak client/server relationship</li>
-</ul>
-<p>TCP based</p>
-<ul>
-<li>Larger contents, longer, more complex sessions</li>
-<li>Reliaibility, Packaging and presentation important (as it is bytestream)</li>
-<li>HTTP: Strong client/server relationship, exchange messages.</li>
-</ul>
-<h2 id="Internet-of-Things-Why-different"><a href="#Internet-of-Things-Why-different" class="headerlink" title="Internet of Things - Why different?"></a>Internet of Things - Why different?</h2><ol>
-<li>Scale: 기기의 숫자<ol>
-<li>No limits on addresses and connections</li>
-<li>Limit messages to avoid network swamp - 숫자가 너무 많아서 메세지 크기를 줄여야함</li>
-</ol>
-</li>
-<li>Power: <ol>
-<li>Minimal powers; solar, batteries, RF<ol>
-<li>Reduce/turnoff transmission power</li>
-</ol>
-</li>
-<li>Do the smart things somewhere (which consums powers alot) - 즉 IoT는 수집 모니터링 과 같은 역할만 수행하고 분석은 다른 컴퓨터에서 하는것</li>
-</ol>
-</li>
-<li>Networking: 저전력, 원격 위치, 넓게 분포<ol>
-<li>Limit transmission needs - 메세지 보내는것도 에너지/트래픽이 요구됨<ol>
-<li>Reduce bandwidth/distance/targets - 스스로 제한을 걸어서 통신횟수를 줄이던지; </li>
-<li>Get/give helps from the neighbours - 주위와 연계해서 전체적인 통신횟수를 줄이던지; 대신 이러면 항상 깨어 있어야함</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>Timeliness: 빠른 지시와 반응이 필요 할 수 있음<ol>
-<li>다음과 같은 사항을 고려하여 디자인 한다<ul>
-<li>Exceptions vs Regular Reports - 언제 리포트 하는지</li>
-<li>Transmitter vs Receiver Req - 송수신기 필요성</li>
-<li>Short msg, prioritised msg  - 메세지</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>Reliability: 조그맣기에 어렵다 <ol>
-<li>필요할떄만 의존성 사용, 최대한 가볍게 (ARQ push/pull 이라던지)</li>
-</ol>
-</li>
-</ol>
-<h2 id="Design-PubSub"><a href="#Design-PubSub" class="headerlink" title="Design - PubSub"></a>Design - PubSub</h2><ul>
-<li>데이터와 상태의 “announcement” 는 “consumption”과 분리되어 있다.<ul>
-<li>모든 종류, 숫자의 소비자들이 subscribe 할수 있어야 하고</li>
-<li>모든 종류, 숫자의 소스들이 publish 될 수 있어야 한다</li>
-<li>Avoid “connection” - 5번과 연계됨</li>
-</ul>
-</li>
-<li>위의 사항들을 만족하기 위해 “broker” (server) is needed<ul>
-<li>가볍고, 빠르고, 유연하며, open된 브로커 (당연히 웹서버는 이에 해당안됨)</li>
-<li>각각의 기기들은 브로커에게 퍼블리시 할 뿐이고, 브로커가 소비자들의 요구를 감당한다. 이로 인해 각각의 기기들은 위의 조건들을 만족할 수 있는것.</li>
-</ul>
-</li>
-</ul>
-<h3 id="MQTT-브로커"><a href="#MQTT-브로커" class="headerlink" title="MQTT (브로커)"></a>MQTT (브로커)</h3><ul>
-<li><p>Messeage Queuing Telemetry Transport: 많은 IOT기기들에 최적화된 가벼운 메세징 프로토콜.  낮은 전력 낮은 대역폭 낮은 성능의 환경에서도 사용이 가능하다.</p>
-<ul>
-<li>TCP와 높은 버전의 UDP 등등 여러 프로토콜에 의해 사용된다.</li>
-</ul>
-</li>
-<li><p>통신 과정</p>
+            <p>Reference:</p>
 <ol>
-<li>Publisher (센서 장치)가 데이터를 Topic을 정해서 브로커에게 전달.</li>
-<li>이 Topic을 sub 하는 subscriber (출력, 처리 장치) 가 브로커에게서 데이터를 받아온다<ol>
-<li>만약 해당 토픽을 구독하고 있지 않으면, 데이터는 받지 못한다.</li>
+<li>An Introduction To Statistical Learning with Applications in R (ISLR Sixth Printing)</li>
+<li><a href="https://godongyoung.github.io/category/ML.html">https://godongyoung.github.io/category/ML.html</a></li>
 </ol>
-</li>
+<p>선형 모델: 모델의 단순성으로 해석과 추론이 쉽다는 장점. 하지만 이러한 가정한 현실적인 문제에 대한 예측을 하기에는 터무니 없는 가정.</p>
+<p>따라서 이와 같은 선형가정을 완화시키되, 해석과 추론력을 최대한 잃지 않는선에서 예측력을 증가 시키는 방법들에대해 배워본다.</p>
+<ol>
+<li>Polynomial Regreisson: 다차항을 이용하여 선형 모델을 확장</li>
+<li>Step function: K부분으로 변수를 나누어서 constant를 생성하는 방법</li>
+<li>Regression splines: 위 1,2 방식의 확장으로 K부분으로 나누어 각 부분에 다차항을 적합하는 형식이다. 각 부분은 양 옆의 범주에 대해 매끄럽게 만들어야 한다는 제약이 있지만, 적당한 범주로 나눈다면 유연한 적합이 가능하다</li>
+<li>Smoothing penalty: 위 3번과 비슷하지만 매끄럽게 한다는 제약을 최소화 시키는 방식</li>
+<li>Local Regression: 3,4 번과 비슷하지만, 각 범주가 겹칠수 있다. 이로 인해 유연한 적합이 가능한것</li>
+<li>Generalized additive model: 여러개의 예측 변수들에 적용하는 방법</li>
 </ol>
-</li>
-<li><p>특징</p>
-<ul>
-<li>Pub - any vaule type to a specific (key).</li>
-<li>Sub - subs to particual topic (which may not exist now, but in the future), or to a fitered set of topics (such as Pizza, instead of Hawaiian pizza)</li>
-<li>Broker -<ul>
-<li>$sys/# - special topic</li>
-<li>Holds info about the broker itself<ul>
-<li>로드, 대역폭, 저장, 클라이언트 등등</li>
-<li>하지만 브로커간에 정형화된 필드가 존재 하지 않음 (각 브로커마다 다름)</li>
-<li>또한 resolution 이 다름 (즉 각 브로커마다 메세지 퍼블리시 텀이 다름)</li>
-</ul>
-</li>
-<li>TCP 와 UDP (버전에 따라) 모두 사용가능하다</li>
-<li>매우 비트단위인데, 압축된 메세지, 그리고 퍼블리셔와 네트워크의 부담을 줄이기 위해서이다.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>메세지</p>
-<ul>
-<li>16 Messages Types<ul>
-<li>Connect and disconnect and ACK<ul>
-<li>채널과 서버 상태 확립, 그리고 스스로를 identify (lighweight security).</li>
-</ul>
-</li>
-<li>Ping req and response - Server level; 어플리케이션 계층 (not ICMP - network layer)</li>
-<li>Pub, sub, unsub: 퍼블리시의 경우 양쪽 다 쓰임 소스 → 서버, 서버 → 구독자</li>
-<li>다양한 Quality of Service</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Minimalism (main MQTT rule)</p>
-<ul>
-<li>서버는 최대한 적은 amount of state를 유지하기를 원한다.<ul>
-<li>구독자: “잠시동안 불가능” “더이상 흥미없음” 등등?</li>
-</ul>
-</li>
-<li>서버는 메세지를 queue 하지 않음 - mostly<ul>
-<li>구독자들에게 메세지가 배포되면, 그 메세지는 삭제된다</li>
-<li>구독자가 없는 메세지 또한 삭제된다</li>
-</ul>
-</li>
-<li>서버가 데이터베이스를 청소할 수 있는 기회를 제공한다 (최대한 가볍게 유지)</li>
-</ul>
-</li>
-<li><p>QoS</p>
-<ul>
-<li><p>어플리케이션 레벨에서 가지고 있는데 이는</p>
-<ul>
-<li>몇 구독자의 경우에 “확정 - sure” 이 필요하고</li>
-<li>모든 구독자는 어느때나 참여 할 수 있어야 하고</li>
-<li>전원, 게이트, 버퍼 여유분 등등 여러 사항을 고려할 수 있어야 하기 때문</li>
-</ul>
-</li>
-<li><p>다음과 같이 세가지 레벨을 가지고 있다.</p>
-<p>  <img src="/image/Week%207%202%20IoT%20MQTT%20Protocol%20e98c41771d4440b2ad0141c5037ae2ed/Untitled.png" alt=""></p>
-<ul>
-<li><p>0: 메세지를 푸시하고 바로 삭제해 버림 (Fire and Forget)</p>
-</li>
-<li><p>1: 전달을 보장한다. 따라서 확인 절차가 필요하다 (At least once)</p>
-</li>
-<li><p>2: 전달을 보장하고, 4단계의 핸드셰이크를 이용한다 (Exactly once)</p>
-</li>
-<li><p>다음과 같은 상황도 가능하다.</p>
-<p><img src="/image/Week%207%202%20IoT%20MQTT%20Protocol%20e98c41771d4440b2ad0141c5037ae2ed/Untitled%201.png" alt=""></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Last Known Good</p>
-<ul>
-<li>드물게 보고하는 센서들</li>
-<li>새 구독자에게 뭘 줘야함 (드물게 pub 되서 마지막이 어느 상태인지 알려줘야지)</li>
-<li>Retain: 메세지를 삭제할지 유지할지 정하는 플래그<ul>
-<li>서버에 저장되며, 리붓되어도 존재한다. 구독자에게서 처음으로 요청 받을때 보내진다.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Last Will and Testament</p>
-<ul>
-<li><p>어느 토픽이던 소스는 초기 메세지를 배포할수 있다  - retained 메세지, 바로 보내지는 않는다</p>
-</li>
-<li><p>만약 서버가</p>
-<ul>
-<li><p>배포된 메세지를 keepalive 구간 후에 받지 못하거나</p>
-</li>
-<li><p>TCP 연결이 MQTT 종료 메세지 없이 끊기거나</p>
-<p>한다면 연결을 잃었으며 Soruce는 실패했다고 판단한다.</p>
-</li>
-</ul>
-</li>
-<li><p>이후 각 구독자에게 알린다 (현재 서비스 불가능 등등)</p>
-</li>
-</ul>
-</li>
-<li><p>Clean Session</p>
-<ul>
-<li>연결시에 플래그 됨</li>
-<li>Clean: Pretend Ima new one</li>
-<li>Not clean: Persistent Session - Ask server to remember you.</li>
-<li>Plain for the server:<ul>
-<li>너의 모든 구독된 토픽을 저장한다</li>
-<li>모든 메세지들을 저장한다 (QoS 1 and 2)</li>
-<li>재연결 되었을때 놓친 모든 메세지를 전달한다.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>MQTT의 경우 어느정도의 보안이 존재하나 IoT의 경우 없다고 봐도 무방하다</p>
-<ul>
-<li>아이디 비번</li>
-<li>페이로드 시그네쳐, 무결성 검사</li>
-<li>암호화된 연결 등등</li>
-</ul>
+<h2 id="Polynomial-Regression"><a href="#Polynomial-Regression" class="headerlink" title="Polynomial Regression"></a>Polynomial Regression</h2><h3 id="예측변수의-전체-구간에-non-linear-형태를-부여하는-방식"><a href="#예측변수의-전체-구간에-non-linear-형태를-부여하는-방식" class="headerlink" title="예측변수의 전체 구간에 non-linear 형태를 부여하는 방식"></a><strong>예측변수의 전체 구간에 non-linear 형태를 부여하는 방식</strong></h3><p>단순하게 각 변수를 다차항의 형식으로 넣어준 방법이다. X2 = X1 ^ 2 과 같은 형식.</p>
+<p>일반적으로 3,4차 이상으로 포함시키지는 않는다.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled.png" alt=""></p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%201.png" alt=""></p>
+<p>왼쪽: Least Square 4차 적합. 오른쪽: 왼쪽의 250이상의 고소득자에 대한 Logistic 4차 적합. 점선들은 예측값의 분산을 통해 구한95%의 confidence interval </p>
+<p>예측값의 분산은 다음과 같이 구할 수 있다</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%202.png" alt=""></p>
+<p>Logistic의 경우 확률을 반환한다는것을 기억하자. 고소득층에 대한 데이터는 79개에 불과하여 신뢰구간이 매우 넓게 나옴을 확인할 수 있다.</p>
+<h2 id="Step-Functions"><a href="#Step-Functions" class="headerlink" title="Step Functions"></a>Step Functions</h2><h3 id="전체-X를-몇개의-구간으로-나누고-일정한-상수를-부여하는-방식"><a href="#전체-X를-몇개의-구간으로-나누고-일정한-상수를-부여하는-방식" class="headerlink" title="전체 X를 몇개의 구간으로 나누고 일정한 상수를 부여하는 방식"></a><strong>전체 X를 몇개의 구간으로 나누고 일정한 상수를 부여하는 방식</strong></h3><p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%203.png" alt=""></p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%204.png" alt=""></p>
+<p>절편인 b0 는 Y값의 평균이고, 나머지 b 들은 각 구간에 속한 데이터의 평균과 b0와의 차이를 의미하게 된다.  C1 ≤ X ≤ C2의 평균값 - b0 = b1. 이러한 각각의 계수들은 마찬가지로 least square로 적합하여 구한다. 각 더미 변수에 대한 (C들은 더미 변수이다) 분산/신뢰구간은 3장 참조</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%205.png" alt=""></p>
+<p>예측값에 자연적으로 부분을 나눌수 있는 지점이 존재 하지 않는다면, 이 방식은 옳지 못한 방향을 나타낼 수 있는데, 명확하게 증가 추세인 구간을 제대로 구분지어주지 않는다면, 이 증가 추세를 반영하지 못하기 때문이다. 위 그래프에서 나이가 들수록 월급이 올라가는 증가 추세를 반영해주지 못한 상황이다.</p>
+<h1 id="Basis-Functions"><a href="#Basis-Functions" class="headerlink" title="Basis Functions"></a>Basis Functions</h1><p>앞의 두 방식은 Bisis funciton의 특별한 형태라고 볼 수도 있다. </p>
+<p>앞선 두 방식과 다르게, 선형 모델로 X를 적합하지 않고 다음과 같은 모델에 적합한다.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%206.png" alt=""></p>
+<p>각 b의 값은 이미 정해져 있으면 알려진 상태임을 명시하자. 이 말인 즉, 우리는 사용할 함수를 미리 선택해 놓는다는 의미이다.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%207.png" alt=""></p>
+<h2 id="Regression-Spines"><a href="#Regression-Spines" class="headerlink" title="Regression Spines"></a>Regression Spines</h2><h3 id="Piecewise-Polynomials"><a href="#Piecewise-Polynomials" class="headerlink" title="Piecewise Polynomials"></a>Piecewise Polynomials</h3><p>맨 위 1번 Polynomial regression 처럼 전체 X에 대한 다항적합을 하는 형식이 아닌 몇개의 범주에 대해 비교적 낮은 차수의 적합을 따로따로 하는것을 piecewise polynomial regression 이라 한다. </p>
+<p>계수가 바뀌는 지점을 knots 라고 하는데 (서로 다른 부분을 묶는거니까) 삼차 다항식에 이 knots가 없다면 결국 그건 그냥 보통의 평범한 삼차항이다. 다음은 knots가 한개 존재할때의 3차항이다.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%208.png" alt=""></p>
+<p>즉 c를 기준으로 2개의 부분으로 나누어 각각의 부분에 다항적합을 한것이다. 이 모델의 degreef of freedom = 8 이다 (각각 4개씩)</p>
+<p>하지만 이 형식은 중간의 knots 들을 부드럽게 연결하는 제약이 없기때문에 다음과 같은 말도 안되는 모델이 탄생하게 된다 (1번).</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%209.png" alt=""></p>
+<h3 id="Constraints-and-Splines"><a href="#Constraints-and-Splines" class="headerlink" title="Constraints and Splines"></a>Constraints and Splines</h3><p>1번의 그래프에서 나이가 50일때 갑자기 월급이 폭등하는 것은 말이 안된다. 이에 50부근의 선들을 연결해 준 그래프가 2번이다 (continuous piecewise cubic). 하지만 이 또한 꺽인듯한 부분을 볼 수 있는데 이러한 약한 제약을 (50 부근 이어준것) 가지고는 다른 그래프에서 v자 형태로 나올수 있기에 고쳐주어야 한다. 이 부분을 부드럽게 해주기 위해 1,2차 미분을 해주어야 한다. 즉 50부분에서 continuous + smooth (1차 2차 미분) 라는 세 가지의 제약을 적용한것이 3번 그래프.</p>
+<p>이러한 제약은, 자유도를 하나씩 잃음을 의미한다. 따라서 1번에서는 자유도가 8, 2번에서는 7, 3번에서는 5이다.  보통 cubic spline uses 4 + K df (K = num of knots).</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2010.png" alt=""></p>
+<h3 id="Splines-Basis-Representation"><a href="#Splines-Basis-Representation" class="headerlink" title="Splines Basis Representation"></a>Splines Basis Representation</h3><p>d차 적합을 하면서 d-1차 까지의 미분을 달성하기 위해서는 basis function 을 올바르게 선택해야 하는데, 이는 trucated power basis funciton 을 이용하면 된다.</p>
+<p>다음은 cubic spline을 cubic regression에서 만드는 방법이다.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2011.png" alt=""></p>
+<p>위의 뱀처럼 생긴것이 knot을 의미한다. 위의 식을 각 knot마다 추가하는것이다.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2012.png" alt=""></p>
+<p>하지만 위와 같은 방식으로 구할 경우, 양 끝에서의 예측 신뢰구간이 넓어지므로 예측의 정확도가 떨어지는 현상이 나타난다. 원래 모든 모델의 분산은 양 끝에서 커지지만 non-linear 적합을 시도한 이 경우에 (which has more flexibility) 분산이 더 커지게 된다. </p>
+<p>이러한 현상을 고치기 위해 맨 양쪽의 knot 이후에 있는 부분의 경우 선형 적합을 하여서 문제를 완화시키는데 이를 Natural Cubic Spline이라 한다. </p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2013.png" alt=""></p>
+<p>위의 그래프를 보면 수직 점선 (knot) 이후에 빨간 점선이 분산을 적게 가지고 있음을 볼 수 있다. 이러한 양끝쪽에 3차 적합이 아닌 1차 적합을 하기에 자유도를 2씩 잃어서 K+4-(2*2) = K df.를 가지게 된다.</p>
+<h3 id="Num-and-Location-of-the-knots"><a href="#Num-and-Location-of-the-knots" class="headerlink" title="Num and Location of the knots"></a>Num and Location of the knots</h3><p>이제 knot를 어떻게 사용하는지 알았으니 몇개를 어디에 사용해야 하는지를 알아야 한다. </p>
+<p>적정한 df를 설정하고, 이에 따른 균등한 quantile에 knot를 배정하는 형식.</p>
+<p>결국 df (자유도)를 몇으로 설정하지가 문제인데, Cross-validation을 이용하여 CV-error 값이 가장 낮은 자유도의 갯수를 사용한다</p>
+<h3 id="Comparison-to-Polynomial-Regression"><a href="#Comparison-to-Polynomial-Regression" class="headerlink" title="Comparison to Polynomial Regression"></a>Comparison to Polynomial Regression</h3><p>보통 Polynomial Regression의 경우 flexible 하기 위해 차수를 엄청나게 높이고는 하는데, 반대로 regression spline의 경우 차수는 유지하되, knots를 늘리는것으로 유연해진다. 따라서 대부분의 경우 regression spline이 produces more stable estimates. 또한 급변하게 변하는 부분에 대해서 우리가 따로 더 많은 knots를 부여함으로써 (반대로 원만하면 knots 수 줄이고) 유연성을 적절하게 조절 할 수 있기에 더 좋다.</p>
+<p><img src="Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2014.png" alt="Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2014.png"></p>
+<p>위의 polynomial의 경우 15차 항인데, 이로 인해 끝쪽이 매우 요동친다. </p>
+<h2 id="Smoothing-Splines"><a href="#Smoothing-Splines" class="headerlink" title="Smoothing Splines"></a>Smoothing Splines</h2><h3 id="Overview-of-Smoothing-Splines"><a href="#Overview-of-Smoothing-Splines" class="headerlink" title="Overview of Smoothing Splines"></a>Overview of Smoothing Splines</h3><p><strong>Regression과 다르게 Smoothing은 모든 x에 knots를 두기에 갯수나 위치 지정의 문제가 없다!</strong></p>
+<p>결국 우리가 원하는 사항은 RSS를 작게 만들면서, 부드러운 함수를 찾는것.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2015.png" alt=""></p>
+<p>위 식의 왼쪽 부분이 RSS이다. 이러한 형태는 Loss (잘 적합) + Penalty (변동이 크지 않게) 식인데, Lassor and Ridge에서 사용되었던 형태와 비슷하다. </p>
+<p>오른쪽의 식은 t부분에서의 변화도를 나타내주는데, 변화도가 음수일 경우도 있으니 제곱을 해준다. 람다 값이 커질수록 더 부드러워질것이다. </p>
+<p>람다가 0이면 모든 데이터를 지나가고, 무한하다면 선형 (굴곡이 없는 직선 - 선형회귀와 같다). 결국 람다 = bias variance trade off 정도를 조정하는 값인것이다. </p>
+<p>이 람다가 3차에서 최소화 될때는 위에서 이야기 했던 2차 미분이 가능한 knot를 가지고 양 끝이 linear 한 natural cubic spline이다. 물론 이와 정확히 같은 값의 식이 나오는게 아니라, 비슷한 형식의 shrink된 함수</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2016.png" alt=""></p>
+<h3 id="Choosing-lambda"><a href="#Choosing-lambda" class="headerlink" title="Choosing lambda"></a>Choosing lambda</h3><p>In smoothing spline, lambda controls the smoothness. Hence, the effective degrees of freedom changes depending on the value of lambda. 람다가 0에서 무한까지 변할때 effective df는 n에서 2까지 변한다. </p>
+<p>기존의 자유도는 pramater의 갯수로 계수의 수를 뜻했다. 따라서 smoothing spline은 명목상 n개의 자유도를 가지고 있지만, 이들인 이미 shrink 되도록 constrain (제약)을 받고 있기에, 이 제약의 정도에 따라 flexibility가 다르다. 따라서 정확히 어느정도의 자유도를 실질적으로 가지고 있는지를 나타내주는것.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2017.png" alt=""></p>
+<p>Regression 과는 다르게 람다를 어느 값으로 할지가 남아있다 (RSS를 최소화 하는). 물론 Cross-validation 을 이용한다. </p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2018.png" alt=""></p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2019.png" alt=""></p>
+<p>임의로 정한 effective df 인 16에 비해 계산으로 나온 6.8 이 거의 유사한 형태를 보여주고 있다. </p>
+<h2 id="Local-Regression"><a href="#Local-Regression" class="headerlink" title="Local Regression"></a>Local Regression</h2><p><strong>각 특정 타겟 포인트 근처의 관측 자료들만을 토대로 적합시켜 flexbile하게 하는 방식</strong></p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2020.png" alt=""></p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2021.png" alt=""></p>
+<p>위에서 중요한 사항은 얼마나 많은 이웃들을 볼것인지 즉 s를 몇퍼센트로 설정할지이다. s가 작을수록 더 지역적인 (조그만) 부분으로 꾸불한 선이 나올것이다 물론 이 s 또한 cross-validation 을 통해 찾는다. </p>
+<p>Local Regression은 p-차원에서 p가 3이나 4보다 훨씬 클 경우, 굉장히 안좋은데 이는 대체로 트레이닝 데이터가 굉장히 적음을 의미하기 때문이다. Nearest Neighbour Regression의 경우도 같은 단점을 지니고 있다.</p>
 
         </div>
         
@@ -394,7 +276,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -444,7 +326,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -456,7 +338,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -468,7 +350,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -561,17 +443,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -632,14 +503,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -706,7 +569,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -821,13 +684,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -882,14 +738,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -956,7 +804,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -1071,13 +919,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

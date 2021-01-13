@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/05/26/Network/Lab%206%2087131c3cc15447ffab50ef9be9e40b93/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 6">
+        <a href="/2020/05/26/Network/Lab%205%20b6548719daad4143ab78c5edc0d51241/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 5">
         </a>
     </div>
     
@@ -137,7 +137,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-05-26T09:49:00.000Z">May 26, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-05-26T09:44:00.000Z">May 26, 2020</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1228 words)
+                    4 minutes read (About 660 words)
                 </span>
                 
                 
@@ -156,48 +156,52 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/05/26/Network/Lab%206%2087131c3cc15447ffab50ef9be9e40b93/">Network - Lab 6</a>
+                <a class="has-link-black-ter" href="/2020/05/26/Network/Lab%205%20b6548719daad4143ab78c5edc0d51241/">Network - Lab 5</a>
             
         </h1>
         <div class="content">
-            <ol>
-<li><p><img src="/image/Lab%206%2087131c3cc15447ffab50ef9be9e40b93/Untitled.png" alt=""></p>
-</li>
-</ol>
-<p>Q_1: What causes the ‘latency’ on the left? </p>
-<p>A_1: sender/receiver transmission 딜레이로 피할수 없는 딜레이 이다.</p>
-<p>Q_2: What causes the long tail at the far right?</p>
-<p>A_2: 도착하기 까지 여러 구간에서 다양한 이유로 멈춰진 패킷들의 도착</p>
-<p>Q_3: What would cause jitter to become very large?</p>
-<p>A_3: 지터는 다양한 넓이의/종류의 딜레이를 나타낸다. 아마도 이와 같은 경우는 중간에 경로가 다양하게 바뀌었거나, 해당 경로의 라우터들의 load가 갑자기 바빠지거나 한듯하다</p>
+            <p>Q: What is the ‘root’ of the Domain Name System? i.e. what is at the very top?</p>
+<p>A: “,” is the root of the DNS. It is to refer the root DNS server </p>
 <hr>
-<p><img src="/image/Lab%206%2087131c3cc15447ffab50ef9be9e40b93/Untitled%201.png" alt=""></p>
-<p>Q:  Why is packet 4 not able to be played out, since it was received? How could we fix that? What problem does that cause?</p>
-<p>A: 수신 버퍼의 길이가 패킷 4를 수신하기에 너무 짧았음. 이를 고치기 위해 버퍼의 길이를 더 늘릴수 있지만, 그렇게 하면 송신과 플레이 시간의 지연이 더 커질것임. 따라서 실시간이라 부르기 애매해진다 (내가 말하고 몇초뒤에 상대방이 답한다던가 하는것).</p>
+<p>Let’s look at some Fully Qualified Domain Names (FQDN) with different Top Level Domains (TLD). Consider: <a href="http://www.anu.edu.au/">www.anu.edu.au</a>. and <a href="http://www.gov/">www.gov</a>.au </p>
+<p>Q: Which part is the ‘genericTLD’ (gTLD)? </p>
+<p>A: Edu, gov. </p>
 <hr>
-<p>Q:  Why is retransmission (except in multicast) generally a bad idea? Why is it ok in multicast?</p>
-<p>A: 잃어버린 패킷을 감지하고, 재요청하고 (그 잃어버린 패킷을 아직 가지고 있길 희망하면서), 패킷을 받는과정이 너무 오래걸리기 때문. 물론 재요청해서 바로 받는다는 보장도 없다. 멀티캐스트에서는 retransmission 해주는 위치가 가까울수 있어서 지연이 줄어들기 떄문. </p>
+<p>Q: Which part is the ‘countrycodeTLD’ (ccTLD)?</p>
+<p>A: au 다만 미국의 경우 us 를 사용하지 않음. </p>
 <hr>
-<p>Q: Why are the performance problems reduced in streaming applications?</p>
-<p>A: 문제는 여전히 존재하나, 이는 단방향 트래픽이기 때문에 딜레이를 알아차리지 못한다 (화상 통화가 아닌 트위치 같은거 말하는거). 이 뜻은 내가 받은 버퍼의 크기를 키워서 안정적인 (reliable) 프토토콜을 사용 가능하다는것. → 내가 트위치 볼때 안끊기기만 하면 되니까 이에 맞춰 버퍼만 키우면됨</p>
+<p>Q: Which part is the hostname?</p>
+<p>A: www 가 이에 해당한다. DNS에서 해당 주소 (<a href="http://www.anu.edu.au">www.anu.edu.au</a>) 의 A가 이 호스트 주소에 해당된다. </p>
+<p>호스트 네임은 종단 기기에 지정된 이름 (DNS를 통해 식별)</p>
+<p>도메인 네임은 네트워크에 지정된 이름 (네트워크에 연결되야함)</p>
+<p><img src="/image/Lab%205%20b6548719daad4143ab78c5edc0d51241/Untitled.png" alt=""></p>
 <hr>
-<p>Q: What are the main network and device issues for IoT? Why is it different to other devices connecting to the internet?</p>
-<p>A: Scale, Power, Network, Timeliness, Reliability → 해당 자료 읽어볼것. </p>
-<hr>
-<p>Q: As an application model, how is PubSub different to Client/Server? Why is it better suited to large-scale IoT applications?</p>
-<p>A: 클라이언트와 서버는 1:1 관계를 가진다 반면에 PubSub은 데이터 진원지 (소스)와 publishing 하는것이 나뉘어져 있기 때문에 서버/브로커를 통해 구독자들이 정보를 얻을수 있다. 또한 확장성과 관련해서 n 개의 생산자와 m의 소비자들이 있다면, n*m 대신 n+m의 직접적인 관계를 유지 할 수 있다 (중간에 브로커 하나). 또한 이러한 관계는 오직 해당 토픽에 관심있는 구독자들에게만 정보를 push 하기 때문에 reducing load for producers and brokers.</p>
-<hr>
-<p>Q: Why are MQTT packets so compact and simple? (compared to HTTP say)</p>
-<p>A: 성능과 부하를 위해서 이다. 짧은 메세지는 대역폭을 거의 소모하지 않고 간단함은 패킷 구성에 관한 CPU 소모량을 줄일수 있다.</p>
-<hr>
-<p>Q: Why does MQTT offer multiple levels of QoS (quality of service)? Why is there separate, potentially different, QoS on both sides of the broker (producer-&gt;broker, broker-&gt;consumer)?</p>
-<p>A: 상황에 따라 해당 메세지가 반드시 ensure 해야 할지, 혹은 가끔 업데이트로 충분한지, 혹은 메세지를 놓치더라도 다음까지 기다릴수 있는지 등 요구조건이 다르기 때문이다. 해당 소비자가 그 정보에 대한 중요도가 다르기 때문에, 중요하게 여기는 소비자는 높은 QoS를 이용할것이고 아니면 낮은 레벨을 사용할 것이다. 이로 인하여 데이터 소모량에 대한 유연성을 가질수 있다 (QoS 레벨에 따라 데이터 필요량이 다르니까 - 커뮤니케이션 횟수가 다름)</p>
+<p>Q: In the case of <a href="http://cbs.anu.edu.au/">cbs.anu.edu.au</a> is the ‘cbs’ a hostname or a domain name, or both? How can you tell the difference? What’s the benefit/downsides of this approach?</p>
+<p>A:</p>
 <ul>
-<li>QoS 0 을 선호하는 사람들은 굳이 복잡한 QoS 2 안 써도 되니까.</li>
+<li>모두 가능하다. (host and domain)</li>
+<li><a href="http://www.cbs.anu.edu.au">www.cbs.anu.edu.au</a> 혹은 <a href="http://mail.cbs.anu.edu.au">mail.cbs.anu.edu.au</a> 와 같은 호스트네임을 가질수도 있다 (www, mail)</li>
+<li>아니면 <a href="http://cbs.anu.edu.au">cbs.anu.edu.au</a> 라는 cbs 호스트 네임을 anu.edu.au 라는 도메인에 가질수 있을수도 있음</li>
+<li>어차피 DNS를 통해 확인후 전달 하기 때문에 길다면 줄일 수도 있는거. 대신 커넥션을 만들기전에 확인해야 한다.</li>
 </ul>
+<p>만약 종단의 이름이 a 이고 도메인이 x 라면</p>
+<p>해당 종단에 대한 주소는 a.x 가 되는 형식</p>
 <hr>
-<p>Q: In what circumstances is it useful for a server to ‘retain’ an MQTT-published message?</p>
-<p>A: 소스가 가끔 메세지를 주던지, 소비자가 언제던지 들어올수 있던지, 혹은 비안정적으로 연결되어 있던지 할때 좋음. 서버에 리테인 함으로써 위와 같은 상황에 현재 which state (메세지) 가 있는지 빠르게 배울수 있음. 즉 서버가 정보를 가지고 있으면 소비자가 재부팅하고 (그 사이에 정보를 못받았던, 정보가 초기화 되서 아무것도 모른다던지) 다시 들어와도 빠르게 “응 지금 메세지 이 상태임” 하고 알려줄수 있는거.</p>
+<hr>
+<p>Q: In HTTP, how does the application handle the ‘session’ and ‘presentation’ layers?</p>
+<p>A: 세션은 쿠키로 관리된다. 또한 URL-Referenced tokens 들로 관리 되기도 하는데 이때는 쿼리 필드의 어느 부분을 공유하는 식을 이용한다.</p>
+<ul>
+<li>세션 기반의 문제점은 이 기록을 서버에 저장을 해야 하는데, 이로 인해 확장성이 좋지 않음<ul>
+<li>세션을 유지 할 수 록 더 많은 트래픽을 감당하기 위해 프로세서, 서버등을 추가해야함</li>
+<li>이 과정이 매우 복잡하다</li>
+</ul>
+</li>
+<li>토큰의 경우 상태 유지를 하지 않아 (stateless) 고로 확장성이 좋다<ul>
+<li>클라이언트 쪽에서 정보를 저장하기 때문에 서버 확장에 용이하다.</li>
+<li>또한 클라이언트가 서버에게 쿠키를 전달하지 않음으로 쿠키로 인한 보안 취약점이 사라짐 (대신 토큰 보안 취약점 존재)</li>
+</ul>
+</li>
+</ul>
 
         </div>
         
@@ -237,7 +241,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -287,7 +291,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -299,7 +303,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -311,7 +315,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -404,17 +408,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -475,14 +468,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -549,7 +534,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -664,13 +649,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -725,14 +703,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -799,7 +769,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -914,13 +884,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/08/Network/Congestion%20add6356566344a51ab188da187eac9bf/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/traffic.jpg" alt="Congestion">
+        <a href="/2020/03/08/MSL/MSL_Statistical%20Learning/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/MSL.jpeg" alt="Statistical Learning">
         </a>
     </div>
     
@@ -140,14 +140,14 @@
                 <time class="level-item has-text-grey" datetime="2020-03-08T11:46:00.000Z">Mar 08, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                <a class="has-link-grey -link" href="/categories/Machine-Learning/">Machine Learning</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    19 minutes read (About 2892 words)
+                    6 minutes read (About 869 words)
                 </span>
                 
                 
@@ -156,238 +156,106 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/08/Network/Congestion%20add6356566344a51ab188da187eac9bf/">Congestion</a>
+                <a class="has-link-black-ter" href="/2020/03/08/MSL/MSL_Statistical%20Learning/">Statistical Learning</a>
             
         </h1>
         <div class="content">
-            <h3 id="Sliding-Windows"><a href="#Sliding-Windows" class="headerlink" title="Sliding Windows"></a>Sliding Windows</h3><ul>
-<li>For reliability and throughput</li>
-</ul>
-<p>만약 단방향 딜레이가 50ms 라고 한다면, Round-trip-time (RTT) 는 100ms</p>
-<p>따라서 single segment (윈도우에서의 한 segment를 말한다) per RTT 라고 한다면 </p>
-<p>⇒ 10 packets/s (한 패킷 RTT = 100ms) - 10개의 segment 가 1초에 진행됨</p>
-<p>이 상황에서는 대역폭이 증가해도 늘어나지가 않음, 왜냐면 이건 딜레이랑 관계된거니까</p>
-<p>1 s = 1000 ms</p>
-<p>Per connection 당 W 개의 segments-window 를 만든다고 가정해보자</p>
-<p>다음과 같은 공식을 따른다 W = 2 * bandwdith * delay </p>
-<p>예를들어 100 Mb/s, delay = 50ms 라면</p>
-<ul>
-<li>W = 2 * 100 Mb/s * 50ms = 200 Mb/s * 0.05 S = 10 Mb (윈도우 사이즈가 10메가 피트인거)</li>
-<li>따라서 만약 한 segments 가 10kb 라면, W has 1000 segments</li>
-<li>윈도우는 양방향 이므로 한 방향으로 500개의 segments가 있는것.</li>
-</ul>
-<p>즉 윈도우는 양방향을 의미하며, 10Mb  사이즈의 윈도우라면, 각 방향으로 5Mb 씩 사용이 가능한것.</p>
-<p>5Mb 양이 가는중이거나 오는중인것.</p>
-<p>윈도우 Ack 하는 방식에는 여러가지가 존재한다</p>
-<h2 id="Go-back-N"><a href="#Go-back-N" class="headerlink" title="Go back N"></a>Go back N</h2><p>Receiver: 단 한가지만 버퍼 한다 (1,2 이후에 3만 기다리는거)</p>
-<ul>
-<li>만약 도착한 sequence 가 내가 기다린거면 오케이</li>
-<li>만약 아니라면 뭐든 상관없이 싹다 버리고 내가 원하는거 올때까지 기다린다<ul>
-<li>시간제한이 지나면 해당 세그먼트를 재전송 하라고 송신자에게 요구한다</li>
-</ul>
-</li>
-</ul>
-<p>Sender</p>
-<ul>
-<li>만약 일정시간내에 ACK를 받지 못하면 알아서 다시 보낸다</li>
-</ul>
-<p>문제는 이 방식이 1 부터 100까지 보냈는데 수신자가 10 못받았다고 기다리면 10 부터 다시 보내야함</p>
-<p>당연히 효율적이지 못함</p>
-<h2 id="Selective-Repeat"><a href="#Selective-Repeat" class="headerlink" title="Selective Repeat"></a>Selective Repeat</h2><p>Receiver: 여러가지를 버퍼한다 (예를들어 1,2, [], 4, []) </p>
-<ul>
-<li>받은 순서대로 ACK 한다 (즉 내가 원하던게 순서대로이지 않아도 일단 ACK 보냄)</li>
-<li>받지 못한것도 ACK (못 받았다고 알려주는거)<ul>
-<li>이 행위를 SACK (selective ACK) 라고 한다</li>
-</ul>
-</li>
-</ul>
-<p>Sender: 각 segment 별로 타이머가 따로 존재한다 </p>
-<ul>
-<li>시간내에 ACK 못받으면 알아서 보냄 (각  segment별로 타이머가 존재하는것을 상기하자)</li>
-</ul>
-<p>훨씬 효율적이며 요즈음은 대중화됨</p>
-<h2 id="매우-송신자-네트워크-위주이다"><a href="#매우-송신자-네트워크-위주이다" class="headerlink" title="매우 송신자/네트워크 위주이다"></a>매우 송신자/네트워크 위주이다</h2><ul>
-<li>송신자가 transmssion 을 담당한다<ul>
-<li>UDP - 보내고 잊는다 (컨트롤 없음)</li>
-<li>TCP - 천천히 ACK를 기다린다 (메세지 전달을 보장함)</li>
-<li>네트워크를 full로 쓸수 있게 optimize 한다</li>
-</ul>
-</li>
-</ul>
-<p>수신자가 송신자의 속도를 따라가지 못할 경우를 대비해서 flow control 이 필요하다</p>
-<h3 id="Flow-Control-Receiver-쪽의-sliding-windows"><a href="#Flow-Control-Receiver-쪽의-sliding-windows" class="headerlink" title="Flow Control: Receiver 쪽의 sliding windows"></a>Flow Control: Receiver 쪽의 sliding windows</h3><ul>
-<li>Transport Layer:<ul>
-<li>네트워크로 부터 segment 를 받고, 어플리케이션 버퍼에 넣는다</li>
-</ul>
-</li>
-<li>Application 은 recv(N-bytes) 를 이용해 버퍼로부터 읽는다</li>
-</ul>
-<p>SYN 과 ACK 를 통해서 송수신자는 서로 어디까지 읽었는지 보내지만, 수신자가 flow control window (WIN)의 크기또한 송신자에게 같이 보낼수 있음</p>
-<p>즉 WIN의 크기를 송신자에게 보내서 송신자는 지금 수신자가 어느 상태인지 알수 있는거. </p>
-<ul>
-<li>더많이 읽을수 있는데 보내는 속도가 느린지, 아니면 거의 꽉차서 조금 위험해서 속도를 줄여야 하는지.</li>
-</ul>
-<h1 id="Congestion"><a href="#Congestion" class="headerlink" title="Congestion"></a>Congestion</h1><ul>
-<li>교통체증: 뭔가 막혀서 지금 나머지 다 기다리는중<ul>
-<li>여러가지 이유로 존재 가능하며</li>
-<li>어디서 무슨 이유로 이러는지 알 수 없음</li>
-</ul>
-</li>
-<li>송신자는 계속 보낸다<ul>
-<li>이는 상태를 개인이던 모두에게던 악화시킨다</li>
-<li>혼잡은 곧 손실을 의미한다</li>
-</ul>
-</li>
-</ul>
-<h2 id="Router-Buffers-Queues"><a href="#Router-Buffers-Queues" class="headerlink" title="Router Buffers: Queues"></a>Router Buffers: Queues</h2><ul>
-<li>FIFO on every interface</li>
-<li>빠른 속도로 트래픽을 감당할 수 있다</li>
-<li>문제는 이 큐가 오버플로우가 발생하면 패킷이 드롭되는것</li>
-<li>보통 트래픽 패턴에 따라 좌지우지 된다</li>
-</ul>
-<p>이렇게 패킷이 드랍되면, 수신자는 다시 보내라고 할거고, 송신자는 다시 보내고 결국 악순환이 이어짐</p>
-<p>따라서 이러한 상황을 피하기 위해서 이 사태가 일어나기 직전까지 아슬아슬하게 성능을 최대한 유지하는게 관건 (물론 네트워크 상황은 변화기에 상황에 따라 알아서 변하는 알고리즘이어야 한다)</p>
-<p>요점은 효율성 (최대한 네트워크 최대치를 사용) 그리고 공평하게 (모두가 비슷한 사용량) </p>
-<p>Network layer 가 혼잡을 see 할수 있다 (IP - ICMP 말하는듯) 따라서 피드백을 줌</p>
-<p>Transport layer 에서 혼잡이 일어난다 (큐 오버플로우 등) 따라서 송신자의 행동을 수정함</p>
-<ul>
-<li>TCP 윈도우 사이즈를 다이나믹 하게 조정한다</li>
-</ul>
-<h3 id="Statistical-multiplexing-하면-안됨"><a href="#Statistical-multiplexing-하면-안됨" class="headerlink" title="Statistical multiplexing 하면 안됨?"></a>Statistical multiplexing 하면 안됨?</h3><ul>
-<li>매우 어렵다<ul>
-<li>모든 어플리케이션은 다른 양상을 띄고 있고</li>
-<li>로드는 항상 변하며</li>
-<li>다양한 장소에서 혼잡이 발생 할 수 있고</li>
-<li>한곳에서 전체적인 상황을 볼 수가 없다</li>
-</ul>
-</li>
-<li>따라서 이를 해결하기 위해서는<ul>
-<li>송신자가 지속적으로, 병행적으로 적응할수 있어야 한다</li>
-</ul>
-</li>
-</ul>
-<p>효율성과 공평성에서 가장 중요한것은 그 누구도 starvation을 겪으면 안되는것</p>
-<p>그럼 송신자는 어떻게 “ADAPT” 할 수 있는가</p>
+            <p>Reference:</p>
 <ol>
-<li>OPEN/CLOSE loop<ul>
-<li>Open: 서킷을 미리 예약해 두는것</li>
-<li>Close: 피드백에 따라 적응하는거</li>
+<li>An Introduction To Statistical Learning with Applications in R (ISLR Sixth Printing)</li>
+<li><a href="https://godongyoung.github.io/category/ML.html">https://godongyoung.github.io/category/ML.html</a></li>
+</ol>
+<h2 id="Why-Estimate-f"><a href="#Why-Estimate-f" class="headerlink" title="Why Estimate f?"></a>Why Estimate f?</h2><ol>
+<li>Prediction: hat(y) represents prediction of y.<ol>
+<li>reducible error: imperfect estimate of hat(f) of f - can be fixed by using SL to estimate f. </li>
+<li>irreducible error: error introduced by random error term cannot be reducible no matter how well estimate the f. larger than zero:<ol>
+<li>as there are some useful variables not considered in predicting y.</li>
+<li>There are unmeasurable variation that may change day by day.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><img src="/image/Ch%202%20Statistical%20Learning/Untitled.png" alt=""></p>
+<h3 id="Parametric-Methods"><a href="#Parametric-Methods" class="headerlink" title="Parametric Methods"></a>Parametric Methods</h3><ul>
+<li>make an assumption about the functional form.<ol>
+<li>stick to esitmating the chosen form instead of testing all of the others; know what u need.</li>
+<li>Uses the training data to fit or train the model. For linear → least squares.</li>
+</ol>
+</li>
+</ul>
+<p>Assuming a parametric ease the entire process compares to trying to fit the model into arbitrary forms. It may not match the true form of the function, which can be fixed by flexible model (it requires far more parameters though). But this flexible model can also be overfitting (follw the errors or noise too closely).</p>
+<h3 id="Non-parametric-Methods"><a href="#Non-parametric-Methods" class="headerlink" title="Non-parametric Methods"></a>Non-parametric Methods</h3><ul>
+<li>Do not make explicit assumptions about the f form. seek an estimate of f that gets as close to the data points as possible.<ul>
+<li>Pros: potential to accurately fit a wider range of possible shapes for f (모양을 가정하지 않기떄문에)</li>
+<li>Cons: large # of observations is required.</li>
 </ul>
 </li>
-<li>Host or Network driven<ul>
-<li>Host: 얼마나 사용할지 호스트가 정하는거</li>
-<li>Network: 네트워크가 규약으로 정해둔거 (유동적이지 못함)</li>
 </ul>
-</li>
-<li>Allocate bandwidth via<ul>
-<li>Rate Based : 어플리케이션에게 어느 속도로 보낼지 알려줌</li>
-<li>Widows size : 윈도우 사이즈 (control flow)로 보고 정함</li>
+<p>Wrong amount of smoothness may result in overfitting - as it does not yield accurate estimates.</p>
+<h3 id="Tread-offs-in-flexi-and-interpreta"><a href="#Tread-offs-in-flexi-and-interpreta" class="headerlink" title="Tread offs in flexi and interpreta"></a>Tread offs in flexi and interpreta</h3><ul>
+<li>IF interested in inference → more restrictive model is more interpretable. ⇒ difficult to understand how individual predictor is associted with the response.</li>
+<li>Interested in prediction: moderate flex and interpret is better due to the possibility of overfitting.</li>
+</ul>
+<h3 id="Supervised-vs-Unsupervised-Learning"><a href="#Supervised-vs-Unsupervised-Learning" class="headerlink" title="Supervised vs Unsupervised Learning"></a>Supervised vs Unsupervised Learning</h3><ul>
+<li>Unsupervised: lack a response variable that can supervise our analysis.<ol>
+<li>Cluster Analysis: whether the observations fall into relatively distinct groups → each group may differ.<ul>
+<li>Not be expected to assign all of the overlapping to their correct group (too crowded).</li>
 </ul>
 </li>
 </ol>
-<p>TCP의 경우 Closed, host, window based 이다. </p>
-<h2 id="Additive-Increase-Multiplicative-Decrease-AIMD"><a href="#Additive-Increase-Multiplicative-Decrease-AIMD" class="headerlink" title="Additive Increase, Multiplicative Decrease (AIMD)"></a>Additive Increase, Multiplicative Decrease (AIMD)</h2><ul>
-<li>송신자는 천천히 송신율을 올린다<ul>
-<li>혼잡을 일으키는 숫자를 줄이니,결국 더 많이 보내는것</li>
-</ul>
-</li>
-<li>혼잡이 발생하는 순간 배수적으로 송신율을 줄인다<ul>
-<li>빨리 줄여서 혼잡을 최소화 시키는것</li>
-</ul>
-</li>
-<li>장점:<ul>
-<li>모든 호스트가 이 방법을 쓰면 모두 공평하고 효율적으로 대역폭을 사용할 수 있음<ul>
-<li>위상을 알 필요가 없음 (왜냐면 피드백 위주니까)</li>
-<li>모두가 (조금씩 다른 방법으로 ) 한다</li>
-</ul>
-</li>
-<li>다른 control law 에 비해 효과적으로 작동함</li>
-<li>네트워크로부터 단 한가지의 신호만을 필요로함 (사실 리시버로부터)<ul>
-<li>왜냐면 수신자가 혼잡 상황에 대해 알려주기만 하면됨 밑의 표를 참조</li>
-</ul>
 </li>
 </ul>
-</li>
-</ul>
-<p><a href="/image/Congestion%20add6356566344a51ab188da187eac9bf/How%20network%20signal%20the%20sender%20494b8b92a4e24aef8d3cd60d5aa20bcc.csv">How network signal the sender</a></p>
-<h2 id="AIMD-implementation"><a href="#AIMD-implementation" class="headerlink" title="AIMD implementation"></a>AIMD implementation</h2><h3 id="ACK-Clocking"><a href="#ACK-Clocking" class="headerlink" title="ACK Clocking"></a>ACK Clocking</h3><ul>
-<li>ACK가 돌아오는 속도를 보고 송신자가 이에 맞추는것<ul>
-<li>보낸 속도보다 ACK 돌아오는 속도가 적다면, 중간에 무슨 이유던간 라우터가 buffer 에 저장되어 있는 상태를 의미하기에, 이 라우터 버퍼 오버플로우를 방지하기 위해 속도를 줄이는거</li>
+<p>Will be covered in the different chapter.</p>
+<h3 id="Regression-vs-Classification"><a href="#Regression-vs-Classification" class="headerlink" title="Regression vs Classification"></a>Regression vs Classification</h3><ol>
+<li>Quantitative - Numerical Values<ul>
+<li>regression Problems</li>
 </ul>
 </li>
-<li>이 돌아오는 속도로 Congestion Window (CWND) 를 계산 할 수 있다<ul>
-<li>W (window size) 보다 작다, 또한 CWND 는 WIN 과 전혀 관계없다<ul>
-<li>WIN 은 수신자 컨트롤 플로우 사이즈이고, 혼잡 CWND는 라우터에 관한거 (혹은 네트워크 전반)</li>
+<li>Qualitative - K different classes or categories.<ul>
+<li>Classification Problems</li>
 </ul>
 </li>
-</ul>
-</li>
-<li>적은 손실과 딜레이를 네트워크상에 가능하게 한다.<ul>
-<li>Clocking 을 통해, burst 를 smooth 하게 바꾸면서도 같은 송신율을 유지한다<ul>
-<li>중간 라우터에서 queue up 하지 않으니까</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>그렇다면 이 CWND를 처음에 어떻게 알 수 있을까?</p>
-<p>처음 1 패킷 부터 보내기 시작해서, 손실 없이 ACK가 돌아오면 CWND 를 1씩 더한다</p>
-<p>⇒ 이 방식은 매우 안전하지만 동시에 매우 느리다 (이는 곧 비효율성을 의미한다)</p>
-<p>따라서 이 CWND의 효율적인 증가및 감소를 위한 알고리즘이 바로</p>
-<h3 id="TCP-Slow-Start"><a href="#TCP-Slow-Start" class="headerlink" title="TCP Slow Start"></a>TCP Slow Start</h3><ul>
-<li>극 초기에 (1부터 시작할때) 1씩 더하지 말고 ACK 가 올떄마다 2씩 증가시키는거<ul>
-<li>첫 시작은 slow (1이니까) 대신 빠르게 속도를 올림</li>
-</ul>
-</li>
-<li>배수로 증가시키기에 어느 한순간 급작스럽게 congestion을 만들어 패킷 손실/피드백을 받을것이다<ul>
-<li>이럴 경우 multiplicative 하게 감소한다. 이 감소 방법에는 여러가지 버전이 있지만 초기버전의 경우</li>
-<li>Threshold: ss-thresh = 0.5 * CWND (@ loss) (Reno 방식이다)</li>
-<li>이 순간부터는 배수가 아닌 더하기 형식으로 증가한다.</li>
-</ul>
-</li>
-</ul>
-<p><img src="/image/Congestion%20add6356566344a51ab188da187eac9bf/Untitled.png" alt=""></p>
-<h3 id="Fast-retransmit-빠른-재전송"><a href="#Fast-retransmit-빠른-재전송" class="headerlink" title="Fast retransmit (빠른 재전송)"></a>Fast retransmit (빠른 재전송)</h3><ul>
-<li>Pre-SACK: 만약 기다리던 segment 가 아닌 다른 세그먼트가 도착한다면<ul>
-<li>예를들어 92 108 116 124 가 도착했다고 하자</li>
-<li>ACK는 기다리는 넘버를 의미하니 수신자가 송신자에게 ACK 100 을 보내야 한다</li>
-<li>108 이 도착하면 ACK 100, 116 이 도착하면 ACK 100, 124 가 도착해도 ACK 100 을 보낸다</li>
-<li>이 ACK 100 이 세번 도착하면 해당 100 데이터를 (타이머가 되기전에) 빠르게 다시 보낸다</li>
-<li>만약 잘 도착했다면, 현재 내가 보낸 데이터들 다음 번호인 132 (124+8) 이 도착할것이고</li>
-<li>만약 100 이후에 잃어버린 세그먼트가 있다면 그 세그먼트에 대해서 ACK를 보낼것이다</li>
-</ul>
-</li>
-</ul>
-<p>따라서 타임아웃 되기전에 빠르게 고치려고 하는것. </p>
-<p>주의 해야 하는점은 빠른 재전송의 경우 같은 ACK를 세번 받았을때 행해진다. 이 빠른 재전송이 일어나면 CWND 를 반으로 줄여야 한다.  타임아웃이 일어나면 1부터 다시 시작하는것</p>
-<p>초기 모델은 이 타임아웃과 ACK 3번 중복을 받으면 (둘중 하나) 그럼 바로 1부터 시작했음</p>
-<p>현 Reno의 경우 타임아웃은 심각하게 (1부터) 3-중복은 덜 심각하게 (* 0.5) 받아 들인다. </p>
-<h3 id="Fast-Recovery-빠른-회복"><a href="#Fast-Recovery-빠른-회복" class="headerlink" title="Fast Recovery (빠른 회복)"></a>Fast Recovery (빠른 회복)</h3><p>빠른 재전송이 일어났으면 일단 cwnd 는 반으로 줄이고, </p>
+</ol>
+<p>The differene is vague. Both can be co-used in various methods. Although tend to select via type of response varaible (패러미터의 타입은 중요하지 않음).</p>
+<h2 id="Measuring-the-Quality-of-fit"><a href="#Measuring-the-Quality-of-fit" class="headerlink" title="Measuring the Quality of fit"></a>Measuring the Quality of fit</h2><p>Measure of how well its predictions actually match the observed data. In the regression setting, it is MSE.</p>
+<p><img src="/image/Ch%202%20Statistical%20Learning/Untitled%201.png" alt=""></p>
+<p>Interested in predicting unseen test observation (whether it is future event or not) which is not used to train the model. Consider Degree of freedom and MSE results for finding suitable methods.</p>
 <ul>
-<li>빠른 재전송이후 seq number 가 어디에 있는지 기다린다 (즉 이 기간동안 기다린다 패킷 보내지 않고)<ul>
-<li>기다리는 동안 해당 100 ACK 이 오면 cwnd 1씩 증가</li>
-<li>만약 그 다음 segment 들이 모두 성공적으로 도착했다면 (catch up 헀다면), 반으로 감소시킨 CWND 로부터 증가시켜 간다 (ACK Clock 을 유지한다)</li>
-<li>안고쳐지면 타임아웃이 일어날거임, 그럼 cwnd = 1, ACK clock 또한 초기화 한다.</li>
+<li>we observe a monotone decrease in the training MSE and a U-shape in the test MSE. This is a fundamental property of statistical learning that holds regardless of the particular data set at hand and regardless of the statistical method being used.</li>
+<li>As model flexibility increases, training MSE will decrease, but the test MSE may not. When a given method yields a small training MSE but a large test MSE, we are said to be overfitting the data.</li>
 </ul>
-</li>
+<h3 id="Bias-Variance-Trade-off"><a href="#Bias-Variance-Trade-off" class="headerlink" title="Bias-Variance Trade off"></a>Bias-Variance Trade off</h3><ul>
+<li>Variance: amount by hat(f) would change if we used different training data set to estimate it. x의 변화에 민감하게 그래프가 꺾임. Least Square (straight line) has inflex, low variance.In general, more flexible methods have higher variance.</li>
+<li>Bias: error that is introduced by approximating a real-life problem. Linear regression (straight line cannot explain real life) results in high bias but also could estimate accurately via cases.Generally, flexible → less bias.</li>
 </ul>
-<p>여러가지 방식들이 존재한다</p>
-<p>TCP Reno</p>
+<p><img src="/image/Ch%202%20Statistical%20Learning/Untitled%202.png" alt=""></p>
+<h2 id="Classification-Setting"><a href="#Classification-Setting" class="headerlink" title="Classification Setting"></a>Classification Setting</h2><p>equal = 1, inequal = 0</p>
+<p><img src="/image/Ch%202%20Statistical%20Learning/Untitled%203.png" alt=""></p>
 <ul>
-<li>위의 얘기한 0.5를 곱하는 방식이다. 이 방식은 한 손실을 고칠수 있다 per RTT<ul>
-<li>즉 하나 손실하면, 보내고 기다리고 (고쳐진지 확인)</li>
+<li>Above equation computes fraction of incorrect classification = training error rate as computed based on our training data for the classification.</li>
 </ul>
-</li>
-<li>만약 여러 손실이 발생하면 CWND 를 반으로 감소시킨다</li>
-</ul>
-<p>TCP New Reno</p>
+<p><img src="/image/Ch%202%20Statistical%20Learning/Untitled%204.png" alt=""></p>
 <ul>
-<li>ACK 분석이 더 좋으며, 이로 인해 여러 손실들을 고칠수 있다 per RTT</li>
+<li>Test error rate. A good classifier = one has small test error rate. = Misclassification error rate.</li>
 </ul>
-<p>TCP SACK</p>
+<p><img src="/image/Ch%202%20Statistical%20Learning/Untitled%205.png" alt=""></p>
 <ul>
-<li>훨씬 좋다, 수신자가 ACK를 범위 단계로 보내기 때문에 송신자가 필요한것만 여러개 딱딱 보낼수 있음.</li>
+<li><strong>Bayes Decision Boundary: line that assign each test data sets into categories it belongs to.</strong></li>
+<li>It has the smallest error (in the population).</li>
+<li>In real life, not know the conditional distribution of Y given X. so impossible to use.</li>
 </ul>
+<h3 id="K-Nearest-Negihbors"><a href="#K-Nearest-Negihbors" class="headerlink" title="K-Nearest Negihbors"></a>K-Nearest Negihbors</h3><p><a href="https://ko.wikipedia.org/wiki/K-%EC%B5%9C%EA%B7%BC%EC%A0%91_%EC%9D%B4%EC%9B%83_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">k-최근접 이웃 알고리즘</a></p>
+<ul>
+<li>attempt to estimate the conditional distribution then classify to get highest estimated probability.</li>
+</ul>
+<ol>
+<li>Identify K points in Tr that are closed to x_0 represented by N_0.</li>
+<li>Estimates conditional prob for class j as the fraction of points in N_0 whose response values eq j.</li>
+<li>Applies Bayes Rule and classifies with the largest prob.</li>
+</ol>
+<p>As K grows, the method becomes less flexible and produces a decision boundary that is close to linear. This corresponds to a low-variance but high-bias classifier.</p>
+<p><img src="/image/Ch%202%20Statistical%20Learning/Untitled%206.png" alt=""></p>
 
         </div>
         
@@ -427,7 +295,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -477,7 +345,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -489,7 +357,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -501,7 +369,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -594,17 +462,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -665,14 +522,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -739,7 +588,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -854,13 +703,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -915,14 +757,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -989,7 +823,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -1104,13 +938,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

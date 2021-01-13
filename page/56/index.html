@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/15/OCSO/OCSO_Attacker%20Frictions/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/frictions.jpg" alt="Attacker Frictions">
+        <a href="/2020/03/15/Parallel/Parallel_embParallel/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/embParallel.jpg" alt="embParallel">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-15T12:25:00.000Z">Mar 15, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-03-15T10:31:00.000Z">Mar 15, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/OCSO/">OCSO</a>
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 241 words)
+                    2 minutes read (About 320 words)
                 </span>
                 
                 
@@ -156,29 +156,39 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/15/OCSO/OCSO_Attacker%20Frictions/">Attacker Frictions</a>
+                <a class="has-link-black-ter" href="/2020/03/15/Parallel/Parallel_embParallel/">embParallel</a>
             
         </h1>
         <div class="content">
-            <p>Reference : Network Attacks and Exploitation by Matthew Monte</p>
-<p>If you can forsee its coming, it is not a friction but obstacles</p>
-<h3 id="Mistake"><a href="#Mistake" class="headerlink" title="Mistake"></a>Mistake</h3><p>No matter the effort expended, mistakes will remain a source of friction.</p>
-<h3 id="Complexity"><a href="#Complexity" class="headerlink" title="Complexity"></a>Complexity</h3><p>The complexity that makes a network harder to manage, also makes it harder to exploit.</p>
-<p>Implementing different systems in the network requires a diff set of tools and skills (Server: Linux. DB: Oracle. Router Huawei)</p>
-<p>Complexity requires more time, knowledge, and development to survey, understand, and circumvent. Because the<br>level of complexity is diffi cult to predict and can severely impact the effi ciency of an operation, it is a friction.</p>
-<h3 id="Flawed-Attack-Tools"><a href="#Flawed-Attack-Tools" class="headerlink" title="Flawed Attack Tools"></a>Flawed Attack Tools</h3><ol>
-<li>Best Flaw: Not function, but maintaining persistent access/command/control</li>
-<li>Loss of access: If not being noticed, it is recoverable if there is backup plan</li>
-<li>Worst Flaw: Noticeable Side Effect. ig. After the update, repeatedly crashed computer —&gt; drew the attention.</li>
-</ol>
-<h3 id="Upgrades-and-Updates"><a href="#Upgrades-and-Updates" class="headerlink" title="Upgrades and Updates"></a>Upgrades and Updates</h3><p>Upgrade: Introduces a new stuffs that replace an existing ones; may challenge the Attacker’s methods of persistence.</p>
-<p>Update: Improvement that leaves substantial portion of the original in place; consititute a substantial threat to maintaining access for the Attacker.</p>
-<h3 id="Other-Attackers"><a href="#Other-Attackers" class="headerlink" title="Other Attackers"></a>Other Attackers</h3><p>Other attackers may ruin the operation.</p>
-<h3 id="The-Security-Community"><a href="#The-Security-Community" class="headerlink" title="The Security Community"></a>The Security Community</h3><ol>
-<li>Strengthening Defense: sudden intro of new detection tech - only short period of time.</li>
-<li>Weakening Offense: Google Project Zero - find and fix the vulnerabilities. Or publication of offensive methods</li>
-</ol>
-<h3 id="Bad-Luck"><a href="#Bad-Luck" class="headerlink" title="Bad Luck"></a>Bad Luck</h3><h4 id="Unnamed-Frictions-anything-that-can-be-said-unfortunate"><a href="#Unnamed-Frictions-anything-that-can-be-said-unfortunate" class="headerlink" title="Unnamed Frictions - anything that can be said unfortunate."></a>Unnamed Frictions - anything that can be said unfortunate.</h4>
+            <p>Reference : </p>
+<ul>
+<li>Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</li>
+<li>The Australian National University CECS</li>
+</ul>
+<hr>
+<h2 id="Embarrassingly-Parallel-Problems"><a href="#Embarrassingly-Parallel-Problems" class="headerlink" title="Embarrassingly Parallel Problems"></a>Embarrassingly Parallel Problems</h2><ul>
+<li>계산은 각각의 프로세서들에 의한 완전하게 독립전인 실행 부분으로 나뉘어질수 있다</li>
+<li>각각의 어플리케이션은 처치 곤란 병렬적이다</li>
+<li>데이터의 분포와 모음이 중요 이슈이다 - 비용이 많이 들거나, 중요하다</li>
+<li>대부분 마스터/슬레이브 접근방식을 사용한다 (p-1 speedup)</li>
+</ul>
+<p><img src="/image/Week%203%207%20embParallel/Untitled.png" alt=""></p>
+<p><a href="https://ko.wikipedia.org/wiki/%EC%B2%98%EC%B9%98_%EA%B3%A4%EB%9E%80_%EB%B3%91%EB%A0%AC">처치 곤란 병렬</a></p>
+<p><a href="https://ko.wikipedia.org/wiki/%EB%A7%9D%EB%8D%B8%EB%B8%8C%EB%A1%9C_%EC%A7%91%ED%95%A9">망델브로 집합</a></p>
+<h3 id="Static-Task-Assignment"><a href="#Static-Task-Assignment" class="headerlink" title="Static Task Assignment"></a>Static Task Assignment</h3><p>Each process needs to execute the procedure after being given the coordinates of the pixels to compute. Slave sends results back in  groups which reduces the number of communication stratup times (for each message).  — Note that master receives messages in any order.</p>
+<h3 id="Dynamic-Task-Assignment"><a href="#Dynamic-Task-Assignment" class="headerlink" title="Dynamic Task Assignment"></a>Dynamic Task Assignment</h3><p>Ideally, all processes must be busy; but we do not know the speed of each. Dynamic load-balancing can be achieved by a work-pool which get the works supplied when the process is idle. Each processors request a job when it finished its.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li>tasks do not need to communicate</li>
+<li>non-tirvial but. providing input, aseemble the results, load-balance, scheduling, costing…<ul>
+<li>Static (low communication) vs dynamic + overdecomp (better load balance)</li>
+</ul>
+</li>
+<li>Monte carlo or ensumble simulations are a big use of computational power.<ul>
+<li>grid computing arose to solve this issue.</li>
+</ul>
+</li>
+</ul>
+
         </div>
         
         
@@ -217,7 +227,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -267,7 +277,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -279,7 +289,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -291,7 +301,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -384,17 +394,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -455,14 +454,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -529,7 +520,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -644,13 +635,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -705,14 +689,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -779,7 +755,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -894,13 +870,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

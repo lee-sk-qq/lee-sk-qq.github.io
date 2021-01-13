@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/15/OCSO/Ch%208%20Defensive%20Strategy/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/strategy.jpg" alt="Defensive Strategy">
+        <a href="/2020/03/15/OCSO/OCSO_Attacker%20Frictions/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/frictions.jpg" alt="Attacker Frictions">
         </a>
     </div>
     
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 387 words)
+                    2 minutes read (About 241 words)
                 </span>
                 
                 
@@ -156,50 +156,29 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/15/OCSO/Ch%208%20Defensive%20Strategy/">Defensive Strategy</a>
+                <a class="has-link-black-ter" href="/2020/03/15/OCSO/OCSO_Attacker%20Frictions/">Attacker Frictions</a>
             
         </h1>
         <div class="content">
             <p>Reference : Network Attacks and Exploitation by Matthew Monte</p>
-<h2 id="Failed-Tactics"><a href="#Failed-Tactics" class="headerlink" title="Failed Tactics"></a>Failed Tactics</h2><h3 id="Antivirus-and-Signature-Based-Detection"><a href="#Antivirus-and-Signature-Based-Detection" class="headerlink" title="Antivirus and Signature Based Detection"></a>Antivirus and Signature Based Detection</h3><p>Antivirus: Attacker can buy and test against it.</p>
-<ol>
-<li>Don’t be on the bad list: if the program not on the antivirus list, theres no code signature.</li>
-<li>Can avoid doing bad behavioul: thhrough trial and error or reverse engineering.</li>
-<li>Be stealthy</li>
+<p>If you can forsee its coming, it is not a friction but obstacles</p>
+<h3 id="Mistake"><a href="#Mistake" class="headerlink" title="Mistake"></a>Mistake</h3><p>No matter the effort expended, mistakes will remain a source of friction.</p>
+<h3 id="Complexity"><a href="#Complexity" class="headerlink" title="Complexity"></a>Complexity</h3><p>The complexity that makes a network harder to manage, also makes it harder to exploit.</p>
+<p>Implementing different systems in the network requires a diff set of tools and skills (Server: Linux. DB: Oracle. Router Huawei)</p>
+<p>Complexity requires more time, knowledge, and development to survey, understand, and circumvent. Because the<br>level of complexity is diffi cult to predict and can severely impact the effi ciency of an operation, it is a friction.</p>
+<h3 id="Flawed-Attack-Tools"><a href="#Flawed-Attack-Tools" class="headerlink" title="Flawed Attack Tools"></a>Flawed Attack Tools</h3><ol>
+<li>Best Flaw: Not function, but maintaining persistent access/command/control</li>
+<li>Loss of access: If not being noticed, it is recoverable if there is backup plan</li>
+<li>Worst Flaw: Noticeable Side Effect. ig. After the update, repeatedly crashed computer —&gt; drew the attention.</li>
 </ol>
-<p>Signature Based Detection: it does not encounter any strategic principle</p>
-<ol>
-<li>Information of product Defender use can be obtained easily; by release of partnership companies, or through the access,  posititon recruiting.</li>
-<li>Predictable schedule of updates sequenece (once a year…)</li>
+<h3 id="Upgrades-and-Updates"><a href="#Upgrades-and-Updates" class="headerlink" title="Upgrades and Updates"></a>Upgrades and Updates</h3><p>Upgrade: Introduces a new stuffs that replace an existing ones; may challenge the Attacker’s methods of persistence.</p>
+<p>Update: Improvement that leaves substantial portion of the original in place; consititute a substantial threat to maintaining access for the Attacker.</p>
+<h3 id="Other-Attackers"><a href="#Other-Attackers" class="headerlink" title="Other Attackers"></a>Other Attackers</h3><p>Other attackers may ruin the operation.</p>
+<h3 id="The-Security-Community"><a href="#The-Security-Community" class="headerlink" title="The Security Community"></a>The Security Community</h3><ol>
+<li>Strengthening Defense: sudden intro of new detection tech - only short period of time.</li>
+<li>Weakening Offense: Google Project Zero - find and fix the vulnerabilities. Or publication of offensive methods</li>
 </ol>
-<h3 id="Password-Policies"><a href="#Password-Policies" class="headerlink" title="Password Policies"></a>Password Policies</h3><p>Both ignore the foundational principle of humanity.</p>
-<ol>
-<li>Choos a strong password - humans are terrible at choosing random passwords (predictable)</li>
-<li>Avoid reusing passwords - no way to enforce and check among users.</li>
-</ol>
-<h3 id="User-Training"><a href="#User-Training" class="headerlink" title="User Training"></a>User Training</h3><p>Unless there are real consequnces to user mistakes, it wont work.</p>
-<h3 id="Crafting-a-Defensive-Strategy"><a href="#Crafting-a-Defensive-Strategy" class="headerlink" title="Crafting a Defensive Strategy"></a>Crafting a Defensive Strategy</h3><ol>
-<li>Avoid recreating the wheel - Start with following the guides</li>
-<li>Know yourself - what is truly essential.</li>
-<li>Develp data classification system - apply rist management mentality to what is important (determine value, how much worth to spend on it…)</li>
-<li>Prioritize the user base by the sensitivity of the a data they can access. </li>
-<li>Prioritize systems according to how they interact on the network.</li>
-</ol>
-<h3 id="Application-Whitelisting"><a href="#Application-Whitelisting" class="headerlink" title="Application Whitelisting"></a>Application Whitelisting</h3><p>Only allowed can play the party </p>
-<h3 id="Network-Segmentation-and-Segregation"><a href="#Network-Segmentation-and-Segregation" class="headerlink" title="Network Segmentation and Segregation"></a>Network Segmentation and Segregation</h3><p>Segmentation :  For attacker has two choices</p>
-<ol>
-<li>Treat as a single network: sucks resources of attacker as it takes great amount of work by treating each segment as a network. It also dramatically increase the exposure of attacker.</li>
-<li>Jump between segments: When cross the segements —&gt; creates perfect choke point. Constraints the ability to move and obstructs attackers ability to communicate. Counters Operational security.</li>
-</ol>
-<h3 id="Log-Analysis"><a href="#Log-Analysis" class="headerlink" title="Log Analysis"></a>Log Analysis</h3><p>Questionable for preventing. And attacker will sacrifice one and collect the data. And able to do sidestepping. It is good for Defender after a compromise.</p>
-<h3 id="Web-Domain-Whitelisting-for-All-Domains"><a href="#Web-Domain-Whitelisting-for-All-Domains" class="headerlink" title="Web Domain Whitelisting for All Domains"></a>Web Domain Whitelisting for All Domains</h3><p>Only allowed domain can be visited</p>
-<ol>
-<li>Limits the avenues of infiltration - less vulnerable.</li>
-<li>Limits Attaker’s option for communication after establish the access.</li>
-</ol>
-<p>It is against the foundational principle of humanity.</p>
-<h3 id="Deny-Direct-Accees-form-Workstation"><a href="#Deny-Direct-Accees-form-Workstation" class="headerlink" title="Deny Direct Accees form Workstation"></a>Deny Direct Accees form Workstation</h3><p>Needs all outbound access through an authenticating choke point. Great for limiting attacker’s access without limiting uesrs much. It needs innovation, but once set it is <a href="http://good.It">good.</a> It dircetly encounter attackers strategy on almost every level.</p>
-
+<h3 id="Bad-Luck"><a href="#Bad-Luck" class="headerlink" title="Bad Luck"></a>Bad Luck</h3><h4 id="Unnamed-Frictions-anything-that-can-be-said-unfortunate"><a href="#Unnamed-Frictions-anything-that-can-be-said-unfortunate" class="headerlink" title="Unnamed Frictions - anything that can be said unfortunate."></a>Unnamed Frictions - anything that can be said unfortunate.</h4>
         </div>
         
         
@@ -238,7 +217,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -288,7 +267,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -300,7 +279,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -312,7 +291,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -405,17 +384,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -476,14 +444,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -550,7 +510,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -665,13 +625,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -726,14 +679,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -800,7 +745,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -915,13 +860,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

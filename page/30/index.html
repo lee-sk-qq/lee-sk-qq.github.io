@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/05/19/MSL/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/pcr.jpg" alt="PCR, PLS">
+        <a href="/2020/05/01/Parallel/Week%206%20SMP%20Hardware/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/SMP.jpg" alt="Shared Memory Address">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-05-19T10:35:00.000Z">May 19, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-05-01T10:23:00.000Z">May 01, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Machine-Learning/">Machine Learning</a>
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    12 minutes read (About 1800 words)
+                    21 minutes read (About 3124 words)
                 </span>
                 
                 
@@ -156,49 +156,163 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/05/19/MSL/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/">PCR, PLS</a>
+                <a class="has-link-black-ter" href="/2020/05/01/Parallel/Week%206%20SMP%20Hardware/">Shared Memory Address</a>
             
         </h1>
         <div class="content">
-            <p>Reference:</p>
-<ol>
-<li>An Introduction To Statistical Learning with Applications in R (ISLR Sixth Printing)</li>
-<li><a href="https://godongyoung.github.io/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D/2018/02/07/ISL-Linear-Model-Selection-and-Regularization_ch6.html">[ISL] 6장 -Lasso, Ridge, PCR이해하기</a></li>
-</ol>
-<h2 id="Dimension-Reduction-Methods"><a href="#Dimension-Reduction-Methods" class="headerlink" title="Dimension Reduction Methods"></a>Dimension Reduction Methods</h2><p>앞서 공부했던 방법들은 몇 변수만 선택하거나, 계수들을 0으로 줄이는 방법과 같은 variance를 줄이기 위함이었다. 차원축소 방법은 변수 자체를 변환하여 분산을 줄이는 방식이다</p>
-<p>기존 p개의 변수들에서 m의 변수들을 이용한 Least Square 를 이용한 적합을 하는것 (M&lt;P)</p>
-<p>이처럼 제약이 있는 상태에서 계수를 정하면 bisa가 생기나, 이로 인해 variance가 눈에 띄게 감소 되므로 결과적으로는 더 좋은 모델들이 만들어지는것이다. </p>
-<h2 id="Principle-Components-Regression"><a href="#Principle-Components-Regression" class="headerlink" title="Principle Components Regression"></a>Principle Components Regression</h2><h3 id="Principal-Components-Analysis-PCA"><a href="#Principal-Components-Analysis-PCA" class="headerlink" title="Principal Components Analysis (PCA)"></a>Principal Components Analysis (PCA)</h3><p>n*p의 크기를 가지고 있는 x를 줄이기 위해 데이터들의 변동(분산)을 가장 잘 나타낼수 있는 first principal component direction을 찾는다 (이 선이 분산의 크기가 가장 크다)</p>
-<p>이 계산 과정에서 데이터 중심에 축을 두고자 centering을 하게 되는데, 이 방식은 분산에 영향을 미치지 않아 결과는 같게 된다. </p>
-<p><img src="/image/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/Untitled.png" alt=""></p>
-<p>물론 분산의 무한함을 방지하기 위해 두 계수의 제곱합은 1과 같다라는 제약을 걸어 두었다</p>
-<p>이렇게 만들어진 Z1 = principal component score라고 불린다.</p>
-<p><img src="/image/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/Untitled%201.png" alt=""></p>
-<p>왼쪽의 초록선은 데이터가 가장 큰 분산을 가짐과 동시에, 모든 n개의 관측값에 가장 가까운 선이기도 하다 (즉 수직 점선들의 거리가 가장 짧게). 파란점은 (pop,ad) 의 평균 값을 의미한다. 오른쪽의 그림은 2차원으로 표현된 왼쪽 그림은 회전시켜서 1st PC의 방향이 x축과 같아지게 만들은것. 이 1st PC의 값은 결국 저 파란점과의 거리를 의미하며, 음수이면 두 평균값보다 낮고, 양수일수록 두 평균값보다 높은것이라고 해석을 할 수 있는것.</p>
-<p>위의 왼쪽 그래프에서 볼 수 있듯, 두 변수는 선형관계를 가지고 있는데, 이를 파악하여 정보를 압축한 1st PC는 각각의 변수에 대해 강력한 선형 관계를 보여준다.</p>
-<p>p개의 변수는 곧 최대 p개의 다른 component를 만들 수 있음을 의미하는데, </p>
-<p>2nd PC의 경우</p>
-<ol>
-<li>1st PC와 uncorrelated</li>
-<li>1st PC가 미처 설명하지 못한 부분</li>
-</ol>
-<p>에 대해 설명 할 수 있는 방향, 즉 1st PC의 제약 하에 가장 분산이 큰 방향으로 linear combination이 결정된다. 위 오른쪽 그림에서 수직선들에 대해 2nd PC가 사용된것이 </p>
-<p><img src="/image/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/Untitled%202.png" alt=""></p>
-<p>왼쪽 그림에서 이와 같이 표현될수 있다. 초록색이 첫번째, 파랑이 두번째 PC</p>
-<p>이 두 PC는 (두 선은) 직교 (90도)를 유지하는데, 이는 두 관계가 zero correlation임을 의미한다. 현재는 변수가 2개여서 2개만 있지만, 더 높은 다차원은 여러 방향의 선으로 분산이 가장 높은 방향의 선을 긋는다.</p>
-<p>저 위의 오른쪽 그림에서 보이듯, 1st 에 비해 2nd의 값의 수치가 훨씬 적다는 것을 확인 가능하다 (1st는 -25 ~ 20, 2nd는 -10~10). 지금은 변수가 두개여서 불가능하지만, 여러 변수가 있는 상황에서 이와 같은 형태는 차원을 축소 할 수 있다는 것을 의미한다 (1st가 대부분의 정보를 포함하니까 굳이 2nd까지 가지고 있을 의미가 없지). 따라서 차원을 축소함에 따라 이전 compnent에 비해 uncorrelate하면서도 variance가 가장 큰 방향으로 component를 결정 가능하다.</p>
-<h3 id="Principal-Components-Regression-Approach-PCR"><a href="#Principal-Components-Regression-Approach-PCR" class="headerlink" title="Principal Components Regression Approach (PCR)"></a>Principal Components Regression Approach (PCR)</h3><p>PCR은 PCA를 통해 만들어진 M개의 예측변수들을 통해 Least Square적합을 하는것.</p>
-<p>“p개의 변수를 가장 큰 variation으로 나타낼수 있는 direction 은 Y와 연관이 있을것이다” 라는 가정하에 이루어지는 분석이므로, 이 가정이 항상 참일수는 없으나 대게의 경우 좋은 적합을 보여준다. 또한 가정이 맞을 경우, 전의 p개의 변수보다 더 적은 m개의 변수를 사용하므로 overfitting을 완화할 수 있다. (n이 p보다 크지 않다면 - 데이터가 변수갯수보다 일정이상 크지 않다면 least square의 변동성이 큰 결과를 내고 overfitting이 커짐을 다시 기억하자)</p>
-<p><img src="/image/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/Untitled%203.png" alt=""></p>
-<p>저번 블로그에서 마지막에 나왔던 데이터에 관한 PCR결과이다. 왼쪽의 경우 45개의 변수중 45개 모두가 유의미한 데이터인 경우, 오른쪽의 경우 2개의 변수만 중요할 때이다. 더 많은 component를 사용할 수록 bias decreases, but variance increases </p>
-<p>45개의 component 사용한 값은 단순히 Leaner Square에 모든 변수들을 사용한 것과 같은 값을 보여준다. 왼쪽의 경우 15개 정도의 component에서 성능 증가를 보인경우에 비해 오른쪽은 훨씬 더 많은 component를 가져야 TEST MSE가 낮아졌다.</p>
-<p>이는 PCR의 가정, 몇몇의 component로 데이터의 분산을 잘 나타낼 수 있고 Y의 관계가 있을것이다, 이 충족될때 큰 성능을 발휘하기 때문이다.</p>
-<p>PCR은 변수 선택법이 아니고, 모든 기존의 p개의 변수가 선형결합으로 포함된 변수이다. 이는 PCR이 Ridge의 continuous version이라고 할 수 있다.</p>
-<p><img src="/image/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/Untitled%204.png" alt=""></p>
-<h3 id="Partial-Least-Squares-PLS"><a href="#Partial-Least-Squares-PLS" class="headerlink" title="Partial Least Squares (PLS)"></a>Partial Least Squares (PLS)</h3><p>앞의 PCA는 unsupervised 방식으로 Y값을 전혀 고려하지 않았다. 이 방식은 PCR의 단점을 곧 의미하는데 (PCA를 이용했으니까 PCR이) 예측 변수들의 관계를 가장 잘 설명하는 방향이, 반응변수 (Y)를 설명하는 예측 변수들의 관계를 가장 잘 설명하는 방향이 아닐수도 있다는것.</p>
-<p>PLS는 이 방식을 보완했는데, 같은 방식이지만 M개의 변수들을 supervised해서 만들어 내는데, 이로 인해 반응변수와 관계된 변수들의 관계를 더 잘 나타낼수 있는것.</p>
-<p><img src="/image/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/Untitled%205.png" alt=""></p>
-<p>PCR과 마찬가지로, PLS역시 변수들을 표준화한 후 계산해야하고, 몇개의 direction을 만들것인지는 cross-validation을 통해 알아본다. 그러나 실제에선 PLS는 supervised라는 점에서 bias는 줄여주지만 그에 상응하여 variance가 높아지기에 PCR이나 Ridge만큼의 성능을 보이지 못하는 경우가 많다.</p>
+            <p>Reference : </p>
+<ul>
+<li>Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</li>
+<li>The Australian National University CECS</li>
+</ul>
+<h1 id="Shared-Memory-Hardware"><a href="#Shared-Memory-Hardware" class="headerlink" title="Shared Memory Hardware"></a>Shared Memory Hardware</h1><p>Uniform Memory Acccess Shared Address Space with cache: 보통 UMA와 같지만 로컬 캐시를 가지고 있음</p>
+<p>NUMA with cache: 보통 NUMA와 비슷함. 프로세서, 캐시, 메모리 한그룹이 묶여있고 이 그룹이 Interconnection Network을 통해서 연결되어 있음.</p>
+<h2 id="Shared-Address-Space-Systems"><a href="#Shared-Address-Space-Systems" class="headerlink" title="Shared Address Space Systems"></a>Shared Address Space Systems</h2><ul>
+<li>만약 로컬 메모리에 대한 접근이 원격 접근보다 가격이 싸다면  (즉 NUMA) 보다 싸다면 Shared Address Space Systems가 알고리즘에 포함되어야 함.<ul>
+<li>어떻게, 운영체제가 호환되는지는 다른 문제임</li>
+</ul>
+</li>
+<li>보통 공유 주소 공간을 가지고 있는게 프로그래밍 하기 쉬운이유가, 읽기 전용의 시스템은 그냥 순차적 프로그램 짜듯이 짜면됨. 다란 읽기/쓰기 같은경우, 병행적 접근때문에 MUTEX 가 필요함.</li>
+<li>주요 프로그래밍 모델들은 쓰레드와 directive based (컴파일러에 해당 인풋을 어떻게 처리할지 지시하는 언어적 구조) 이다. (Pthreads and OpenMP)</li>
+<li>동기화는 락과 관련된 메카니즘을 사용한다.</li>
+</ul>
+<h3 id="SASS-with-Shared-memory-computers"><a href="#SASS-with-Shared-memory-computers" class="headerlink" title="SASS with Shared memory computers"></a>SASS with Shared memory computers</h3><ul>
+<li>공유 메모리는 전통적으로 메모리가 물질적으로 여러 프로세서들에게 연결되고, 모든 프로세서가 해당 메모리에 동일한 접근 권한을 가진곳에 사용되어 왔다.<ul>
+<li>해당 방식은 UMA 라고 한다.</li>
+<li>SMP는 원래 Symmetric Multi-Processor라 하여 모든 CPU들이 동일한 운영체제 성능을 (인터럽트나 다른 시스템콜 등) 가진것을 칭했는데, 요즘은 Shared Memory Processor의 축약어이다.</li>
+</ul>
+</li>
+<li>분산 메모리 컴퓨터는 각 메모리의 다른 부분이 물질적으로 다른 프로세서와 연결되어 있음에 차이점이 존재한다. 이 distributed momory shared address space computer를 NUMA 시스템이라 한다.</li>
+</ul>
+<h3 id="멀티프로세서에서의-캐시"><a href="#멀티프로세서에서의-캐시" class="headerlink" title="멀티프로세서에서의 캐시"></a>멀티프로세서에서의 캐시</h3><p>여러장의 데이터들이 여러 프로세서들에 의해 값이 변화된다.</p>
+<ul>
+<li>시스템 안의 각각의 물리적인 메모리 워드를 찾아낼 수 있는 주소변환 메카니즘, 그리고 여러 데이터들의 병행적 수행들이 잘 정의된 세만틱들을 가지고 있어야 한다.</li>
+<li>여러 프로세서들의 접근에 의한 캐시값의 일관성유지가 필요함.</li>
+<li>몇 기기들은 공유 주소 공간 메커니즘까지만 관여하고 일관성은 시스템이나 유저레벨의 소프트웨어에 일임한다.</li>
+</ul>
+<h3 id="Cache-memory-Coherency"><a href="#Cache-memory-Coherency" class="headerlink" title="Cache/memory Coherency"></a>Cache/memory Coherency</h3><ul>
+<li>매모리 시스템은 다음 사항들을 지키면 일관적이다<ul>
+<li>실행된 순서대로 (Ordered as Issued) : 즉 한 프로세서가 읽고 수정하는동안, 다른 프로세서가 해당 값은 수정하지 않을때 (읽기는 가능)</li>
+<li>쓰기 전달 (Write Propagation): p1 reads, p2 writes, then p1 should have value of p2.</li>
+<li>Write Serialization: 다른 프로세서들이 볼때 두 프로세서가 두 쓰기를 실행한 순서를 정확히 알고 있다면.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Cache-Coherency-Proctocol"><a href="#Cache-Coherency-Proctocol" class="headerlink" title="Cache Coherency Proctocol"></a>Cache Coherency Proctocol</h3><p><a href="https://goodgid.github.io/Cache-Coherence/#%EC%BA%90%EC%8B%9C-%EA%B4%80%EB%A0%A8-%EC%9A%A9%EC%96%B4">캐시 일관성(Cache Coherence)</a></p>
+<p>Invalidate Protocol: P0 P1이 같은 값을 읽었는데 P0가 값을 바꾸면, 해당 메모리와 이 값을 읽은 P1에게 이 값은 Invalidate되었음을 알려주는 방식 (이 값 쓰지마라) - 보통 이 방식을 사용 </p>
+<p>Update Protocol: P0 P1이 같은 값을 읽었는데 P0가 값을 바꾸면, 메모리와 P1이 가지고 있는 해당값을 업데이트 해줌.</p>
+<p>비교:</p>
+<ul>
+<li>업데이트 프로토콜의 경우 같은 단어에 대한 여러 쓰기는 (거의 동시 읽기) 여러 쓰기 브로드캐스트s 를 필요로 한다. 이에 비해 Invalidate는 단 하나의 initial invalidation을 필요로 함.</li>
+<li>업데이트 프로토콜의 경우 여러 복수단어들의 캐시 블록들에게 각각의 캐시 블록 (라인)에 쓰여진 각각의 값들은 브로드캐스트 되어야 한다. 즉 한 블록에 한 단어만 보낼수 있음 (즉 여러 n 값들은 n번 보내져야 함). 반대로 invalidate only require one line.</li>
+<li>업데이트 프로토콜의 경우 한 프로세서가 한 값을 쓰고, 이 쓰여진 값이 다른곳에서 읽혀지는데 걸리는 지연시간이 더 적다. (즉 invalidate에 비해 값이 쓰여지고 읽혀지는 지연이 짧다는말)</li>
+</ul>
+<h3 id="False-Sharing"><a href="#False-Sharing" class="headerlink" title="False Sharing"></a>False Sharing</h3><p>두 프로세서는 같은 캐쉬라인에서 다른 부분을 수정함.</p>
+<p>Invalidate의 경우 핑퐁된 캐시 라인들을 이용한다.</p>
+<p>Update의 경우 로컬로 읽지만, 프로세서간의 업데이트 트래픽을 많이 발생시킨다.</p>
+<p>다음 사항들을 병력 프로그래밍이나 시스템을 디자인 할때 항상 염두해야한다</p>
+<ul>
+<li>캐시라인 사이즈, 길수록 좋다</li>
+<li>캐시 라인 사이즈를 고려한 데이터 구조의 alignment</li>
+</ul>
+<h3 id="Implementation-of-Cache-Coherency"><a href="#Implementation-of-Cache-Coherency" class="headerlink" title="Implementation of Cache Coherency"></a>Implementation of Cache Coherency</h3><ul>
+<li>조그만 스케일의 버스 기반 기기들의 경우<ul>
+<li>한 프로세서는 반드시 쓰기 invalidation을 브로드캐스트 할 수 있도록 버스에 대한 접근 할 수 있어야 한다.</li>
+<li>경쟁하는 두 프로세서들의 경우, 먼저 버스에 접근을 얻는 프로세서가 해당 데이터를 invalidate 한다 (즉 먼저 오는 프로세서의 값을 사용하는것)</li>
+</ul>
+</li>
+<li>캐시 미스의 경우 데이터의 최신 카피를 위치해야 한다.<ul>
+<li>write-through cache 의 경우 쉬움</li>
+<li>Write-back cache의 경우, 각 프로세서들의 캐시는 버스를 감시하며 데이터의 최신 카피가 있다면 반응한다 (snoop - 감시)</li>
+</ul>
+</li>
+<li>읽기의 경우 다른 카피들이 해당 블록을 캐시했는지 알고싶어한다 (즉 해당 블록이 사용중인지)<ul>
+<li>write-back cache가 버스에 detail을 넣을지 말지 결정하기 위해서라던지</li>
+<li>태그를 이용해서 공유 status를 통해 관리한다</li>
+</ul>
+</li>
+<li>프로세서 멈춤을 최소화하기<ul>
+<li>태그들의 복사나, 혹은 inclusive cache 를 여러개 갖던지 하는 방식으로</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/Week%206%20SMP%20Hardware/Untitled.png" alt=""></p>
+<p>위 그래프와 아래 값들의 변화를 주의해서 살펴본다.</p>
+<p><img src="/image/Week%206%20SMP%20Hardware/Untitled%201.png" alt=""></p>
+<h3 id="스누피-캐시-시스템"><a href="#스누피-캐시-시스템" class="headerlink" title="스누피 캐시 시스템"></a>스누피 캐시 시스템</h3><ul>
+<li>모든 캐시들은 모든 변화를 브로드캐스트 한다<ul>
+<li>버스나 링 위상의 interconnects에 쉽게 적합할수 있다 (implement)</li>
+<li>그러나 확장성이 재한되어 있다 (8개 이하).</li>
+</ul>
+</li>
+<li>모든 프로세서들의 캐시들은 interconnect port의 변화를 감지한다 (관심있는 부분만)<ul>
+<li>관련 프로토콜의 상태 다이어그램을 통해 태그들이 업데이트 된다.</li>
+</ul>
+</li>
+<li>하드웨어 감시는 읽기가 한 더러운 카피를 가지고 있는 캐시블록에 대해 읽기가 실행되었으며, 이 행위가 버스 컨트롤에서 데이터를 빼내고, 관련 태그를 S로 바꾸었음을 알아차릴 수 있다. (예를 들어)</li>
+</ul>
+<p><img src="/image/Week%206%20SMP%20Hardware/Untitled%202.png" alt=""></p>
+<h3 id="Directory-Cache-Based-Systems"><a href="#Directory-Cache-Based-Systems" class="headerlink" title="Directory Cache-Based Systems"></a>Directory Cache-Based Systems</h3><p>디렉터리 기반 일관성 구조는 <strong>캐시 블록의 공유 상태, 노드 등을 기록하는 저장 공간인 디렉터리를 이용</strong>하여 관리하는 구조이다 - presence bitmap을 전역 메모리와 함깨 이용하여 각각의 메모리 블락이 어느 캐시에 위치하고 있는지를 디렉터리에 저장하는 방식.</p>
+<p>이에 반해 디렉터리 기반 구조는 어떤 노드에서 해당 캐시 블록의 복사본을 가지고 있는지를 알고 있기 때문에 <strong>특정 노드</strong>에만 요청을 하게 된다. 따라서 브로드캐스트가 불필요하게 되어 대역폭이 상대적으로 작아도 된다. 이 때문에 64개 이상의 프로세서를 가지는 대규모 시스템에서는 디렉터리 기반의 캐시 일관성 프로토콜을 사용하는 경우가 많다.</p>
+<p>이 디렉터리는 메모리와 붙어 있는데 공유 메모리의 경우 디렉터리가 따로, 로컬 메모리를 이용하는 경우 각각의 로컬 디렉터리를 사용한다.</p>
+<ul>
+<li>쉬운 프로토콜은 다음과 같을것이다<ul>
+<li>shared: 프로세서들은 블락 캐시를 가지고 있고, 메모리 값은 최신화를 유지한다</li>
+<li>Uncached: 어느 프로세서도 카피를 가지고 있지 않는다 (즉 뺴서 저장하고 하지 않음)</li>
+<li>Exclusive: 오직 한 프로세서만 (주인) 카피를 가지고 있고, 메모리에 있는 값은 옛날 값이다.</li>
+</ul>
+</li>
+<li>공유되고 깨끗한 캐시 블록에대해 쓰기/읽기 미스와 쓰기는 다음과 같은 사항을 반드시 지켜야 한다<ul>
+<li>이 블록에 대한 현 상태를 체크하기 위해 디렉터리 주소를 처음에 참조해야한다 (즉 directory entry를 먼저 refernce해서 상태 체크 해야함)</li>
+<li>그후에 entry의 상태와 presence bitmap을 업데이트한다</li>
+<li>presence bitmap에 있는 해당 프로세서들에게 적절한 상태 업데이트 소식을 전달한다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="디렉터리-기반-시스템의-문제점"><a href="#디렉터리-기반-시스템의-문제점" class="headerlink" title="디렉터리 기반 시스템의 문제점"></a>디렉터리 기반 시스템의 문제점</h3><p>디렉터리 저장의 메모리 요구량</p>
+<p>특정 데이터 접근 방법에 따른 퍼포먼스 차이</p>
+<p>presence bitmap을 어떻게 관리할것인지 (복사? 꼭?)</p>
+<p>어떻게 presence bitmap에 존재하는 모든 프로세서들에게 invalidation을 보낼것인지</p>
+<ul>
+<li>MESI 프로토콜 <a href="https://goodgid.github.io/Cache-Coherence/#%EC%BA%90%EC%8B%9C-%EA%B4%80%EB%A0%A8-%EC%9A%A9%EC%96%B4">출처</a><ul>
+<li>캐시 메모리의 일관성을 유지하기 위해서 <strong>별도의 플래그(flag)</strong>를 할당한 후 플래그의 상태를 통해 데이터의 유효성 여부를 판단하는 프로토콜이다.</li>
+<li>데이터 캐시는 태그 당 <strong>두 개의 상태 비트</strong>를 <strong>포함</strong>한다.</li>
+<li>멀티프로세서 시스템에서 캐시 메모리의 일관성을 유지하기 위해 메모리가 가질 수 있는 <strong>4가지 상태</strong>를 정의한다.<ul>
+<li>Modified(수정) 상태 : 데이터가 수정된 상태</li>
+<li>Exclusive(배타) 상태 : 유일한 복사복이며, 주기억장치의 내용과 동일한 상태</li>
+<li>Shared(공유) 상태 : 데이터가 두 개 이상의 프로세서 캐쉬에 적재되어 있는 상태</li>
+<li>Invalid(무효) 상태 : 데이터가 다른 프로세스에 의해 수정되어 무효화된 상태</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Coherency-Wall-캐시-일관성의-한계및-단점"><a href="#Coherency-Wall-캐시-일관성의-한계및-단점" class="headerlink" title="Coherency Wall - 캐시 일관성의 한계및 단점"></a>Coherency Wall - 캐시 일관성의 한계및 단점</h2><ul>
+<li>인터커넥트는 로직 서킷들에 비해 50배나 넘는 에너지를 소모함</li>
+<li>각각의 invalidation을 위해 브로드캐스트 메세지를 필요로 하는 프로토콜의 경우<ul>
+<li>에너지 소비는 O(p), overall cost = O(P^2)</li>
+<li>네트워크의 지연을 일으키기도 하다</li>
+</ul>
+</li>
+<li>디렉터리 기반 프로토콜은 같은 데이터를 들고 있는 곳에만 메세지를 보낸다<ul>
+<li>훨씬 확장성이 높으며 가벼운 데이터 공유를 가진다 (가진 애들끼리만 대화 하니까)</li>
+<li>이외는 모두 안좋다 잘못된 direction으로 인한 오버헤드도 발생함</li>
+<li>한 캐시 라인당, 비트 벡터의 길이가 a 라 하면 O(a^2) 의 공간 소모</li>
+</ul>
+</li>
+<li>false sharing은 어느 경우라고 트래픽을 낭비하는 모습을 보여줌</li>
+<li>Atomic instructions 메모리 시스템의 동기화를 LLC (Last level cache) 까지 낮추는데 비용이 각각 O(p)</li>
+</ul>
+<h2 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h2><ul>
+<li>캐시 일관성은 실행 순서, 쓰기 전달, 쓰기 순차 세개의 요소를 가지고 있다</li>
+<li>두가지 방식을 가지고 있는데<ul>
+<li>브로드캐스트/스눕: 중소 규모의 인트라 칩, 그리고 작은 인터 소켓시스템에 적합</li>
+<li>디렉터리 기반: 대중 규모의 인터 소켓 시스템에 적합</li>
+</ul>
+</li>
+<li>False sharing: 잠재적인 퍼포먼스 문제가 있음 (특히 캐시 라인이 길어질수록)</li>
+<li>대규모의 인트라 칩 시스템의 경우 일관성은 보통 운영체제나, Message Passing 프로그래밍 모델을 이용한다.</li>
+</ul>
 
         </div>
         
@@ -238,7 +352,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -288,7 +402,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -300,7 +414,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -312,7 +426,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -405,17 +519,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -476,14 +579,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -550,7 +645,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -665,13 +760,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -726,14 +814,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -800,7 +880,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -915,13 +995,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

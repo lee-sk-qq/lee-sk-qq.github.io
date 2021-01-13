@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/05/26/Network/Lab%208%201aac84c9f9ee44ff894faa1f52943dd2/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 8">
+        <a href="/2020/05/26/Network/Lab%207%2073662f91a456426d96a6c0328115ddcb/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 7">
         </a>
     </div>
     
@@ -137,7 +137,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-05-26T11:07:00.000Z">May 26, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-05-26T10:42:00.000Z">May 26, 2020</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 794 words)
+                    6 minutes read (About 895 words)
                 </span>
                 
                 
@@ -156,62 +156,63 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/05/26/Network/Lab%208%201aac84c9f9ee44ff894faa1f52943dd2/">Network - Lab 8</a>
+                <a class="has-link-black-ter" href="/2020/05/26/Network/Lab%207%2073662f91a456426d96a6c0328115ddcb/">Network - Lab 7</a>
             
         </h1>
         <div class="content">
-            <p>Q: On congestion, where does that actually happen on a network path?</p>
-<p>A: 어느 특정 아웃바운드 연결/경료에 대해 너무 많은 트래픽이 올시에 라우터의 버퍼에서 발생함</p>
+            <p>Q: Can you explain the difference between unicast routing, broadcast routing and multicast routing? i.e. what are they trying to achieve?</p>
+<p>A:</p>
 <ul>
-<li>특정 아웃바운드 연결/경로가 중요하다. 각각의 연결/경로는 다른 버퍼를 가질수 있으니까.</li>
-<li>라우터 버퍼가 가득참 → 패킷이 드롭됨 → 손실 발생</li>
-<li>라우터 버퍼가 거의 가득참 → 패킷이 보내지는데 시간 걸림 → 지연 발생</li>
+<li>Unicast: 호스트간의 전달을 기반으로 다른 호스트에 부하는 주지 않는다. 다만 동일한 정보를 많은 호스트에게 전달할시에는 비효율적임</li>
+<li>Broadcast: 단일 호스트가 세그먼트의 모든 호스트를 대상으로 전달. 여기서 세그먼트는 브로드캐스트 도메인, 즉 자신의 네트워크를 지칭함</li>
+<li>Multicast: 흥미 있는 구독자와 그룹멤버들에게 예약된 주소를 통해 수신 (즉 유니캐스트 같은 브로드캐스트) 224/8</li>
 </ul>
 <hr>
-<p>Q: What’s the difference between ‘throughput’ and ‘goodput’?</p>
+<p>Q: Why does routing tackle fixed parameters about links, and ignore dynamic things like<br>congestion and load?</p>
+<p>A: 라우팅 알고리즘은 각각의 모든 라우터들이 포워딩 테이블을 만드는데 사용된다 (시간과 에너지) 이러한 알고리즘들은 congestion/load 와 같은 변화들에 빠르게 반응하지 못하며, 할 생각도 없다.</p>
+<ul>
+<li>라우팅 알고리즘에서 가장 중요한것은, 해당 링크의 존재 유무 (크게는 위상)와 비용이다.</li>
+<li>혼잡과 로드는 알고리즘의 부가적인 요소에 불과함 (먼저 라우팅 테이블이 있어야 혼잡이던 뭐던 해결책을 제시할수 있으니까)</li>
+</ul>
+<hr>
+<p>Q: What is a sink tree, and how does it differ from a source tree?</p>
 <p>A: </p>
 <ul>
-<li>throughput은 통과하는 데이터의 볼륨 (크기)를 말한다 (그게 무슨 데이터간에).</li>
-<li>Goodput은 통과하는 “새로운” 데이터의 볼륨을 칭한다 (이게 어플리케이션에서 말하는 “effective transmission rate” 과 관계되어 있음). 즉 재전송이 아닌 새로운 데이터의 볼륨.</li>
+<li>sink tree = soure tree일때는 양 방향의 비용이 같을때이다. 즉 A부터 B가 3, B 부터 A가 2라면 싱크 트리와 소스트리는 다르다.</li>
+<li>싱크트리: A에 대한 shortest paths의 조합 (모든 노드로부터) 즉 A로 싱크</li>
+<li>소스트리: A로 부터 shortest paths의 조합 (모든 노드에 대해) 즉 A가 소스</li>
 </ul>
 <hr>
-<p>Q: Why do we get a collapse in goodput as we approach congestion?</p>
-<p>A: 혼잡해질수록 새로운 데이터가 통과하는 볼륨은 줄어들고 대신 retransmission 과 이에 대한 requests만 늘어날테니까.</p>
+<p>Q: Can you explain the path optimality property?</p>
+<p>A: 어느 최단 경로의 부분 경로는 그 부분 경로간의 최단경로임</p>
 <hr>
-<p>Q: Why does TCP traffic (often) have a sawtooth pattern?</p>
-<p>A: 네트워크를 정찰 (probe) 하면서 혼잡을 일으키지 않을떄 까지 점점 증가하다가, 혼잡이 발생하자마자 바로 줄여버리니까</p>
-<ul>
-<li>Additive Increase, Multiplicative Decrease (AIMD)</li>
-</ul>
-<hr>
-<p>Q: How can we detect congestion? (3 ways, at least)</p>
+<p>Q: What’s the downside of using Dijkstra’s algorithm? Why is Distance-Vector (Bellman-<br>Ford) better?</p>
 <p>A: </p>
 <ul>
-<li>패킷 손실 증가: 명확하게 혼잡 감지, 대신 혼잡이 생긴후에 감지</li>
-<li>패킷 지연 증가: 혼잡이 생김을 예상 (추론), 혼잡을 미리 감지함</li>
-<li>ECN: 혼잡을 감지 (라우터가 알랴줌), 대신 라우터와 호스트간에 협조 필요<ul>
-<li>IP header에 플래그를 설정한다.</li>
+<li>다익스트라의 경우 전체 위상을 미리 알아야 하고, 모든 노드들을 알아야 함</li>
+<li>DV는 음의 가중치일때도 사용 가능하며, 위상을 몰라도 되지만 시간 복잡도가 더 높음<ul>
+<li>Distributed algorithm</li>
 </ul>
 </li>
+<li>Likn-satet: 링크 스테이트 라우터를 이용하여 서로 네트워크 위상을 배울수 있도록 메세지를 교환함.</li>
 </ul>
 <hr>
-<p>Q: How does Selective Acknowledgement (SACK) greatly help TCP performance?</p>
+<p>Q: What’s the benefit of regional route aggregation? What’s the downside?</p>
 <p>A: </p>
 <ul>
-<li>송신자에게 수신가자 무엇을 받았는지 정확하게 알려줌으로써 놓친 부분만 다시 보내게 되니 보내는 양이 줄어들고 성능에 도움이됨</li>
+<li>장점은 네트워크의 포워딩/라우팅 테이블이 유의미하게 짧아지고 라우터들의 테이블 업데이트 유지에 관한 processing load를 줄여줌. (테이블이 짧으니 유지보수 할것도 적지)</li>
+<li>단점은 해당 경로가 최단 경로가 아닐수 있음</li>
 </ul>
 <hr>
-<p>Q: What’s the difference between ‘fairness’ and ‘efficiency’ in networking terms?</p>
-<p>A: 공평성은 네트워크 접근에 공평하게 (비슷한 송신율) 처리되는지. 효율성은 전체적인 네트워크를 보면서 가능한 최대한 성능을 끌어 올리고 있는지</p>
-<hr>
-<p>Q: TCP has (at least) 3 types of “windows” for managing the transmission of segments (over<br>packets). Explain their key roles: SendWindow, ReceiveWindow, and CongestionWindow</p>
+<p>Q: Why do we use different routing algorithms internally versus globally?</p>
 <p>A: </p>
-<ol>
-<li>SendWindow: 네트워크 효율성을 최대한 높이기 위해서</li>
-<li>RecvWindow: 송수신자 간의 성능 밸런싱을 위해서 (수신자가 송신자보다 빠르면 문제가 발생함)</li>
-<li>CongestionWindow: 송수신자간의 네트워크의 capacity 를 (거의 즉각적으로) 계산해서 흐름간의 공평성을 보장함.  혼잡 윈도우는 그냥 전송가능한 버퍼크기라고 생각하면 되는데 송신자는 최대 자신의 혼잡윈도우 크기만큼 트래픽을 전송가능하다. 이 혼잡윈도우는 네트워크의 혼잡도에 따라 커지기도하고 작아지기도 한다.</li>
-</ol>
+<ul>
+<li>내부적으로 (지역) 정확한 지식을 가지고, 짧은 네트워크 반경을 가짐. 따라서 DV나 다익스트라, link-state 모두 가능하고 (다양한 라우팅 알고리즘 가능), reasonable 한 시간내에 완료 가능함.</li>
+<li>외부 네트워크에 대해서 불완전한 지식을 가지고 있기에, 그냥 바깥 지역으로 던지고 걔네가 알아서 해결하게 두는게 편함.</li>
+</ul>
 <hr>
+<p>Q: What is the difference between a transit and a peering arrangement?</p>
+<p>A: transit: 나를 통해 다른 네트워크 갈 수 있음 (유료). Peering: 내 네트워크 내의 기기에 접근 할 수 있음 (대부분 공짜).</p>
 
         </div>
         
@@ -251,7 +252,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -301,7 +302,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -313,7 +314,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -325,7 +326,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -418,17 +419,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -489,14 +479,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -563,7 +545,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -678,13 +660,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -739,14 +714,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -813,7 +780,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -928,13 +895,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

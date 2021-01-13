@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/24/Parallel/Week%204%209%20Pipelining/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/pipelining.jpg" alt="Pipelining">
+        <a href="/2020/03/24/Parallel/Week%204%208%20Partition/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/partition.jpg" alt="Partition">
         </a>
     </div>
     
@@ -137,7 +137,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-24T05:35:00.000Z">Mar 24, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-03-24T04:15:00.000Z">Mar 24, 2020</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 207 words)
+                    2 minutes read (About 365 words)
                 </span>
                 
                 
@@ -156,40 +156,65 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/24/Parallel/Week%204%209%20Pipelining/">Pipelining</a>
+                <a class="has-link-black-ter" href="/2020/03/24/Parallel/Week%204%208%20Partition/">Partition</a>
             
         </h1>
         <div class="content">
             <p>Reference : Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</p>
-<h1 id="Pipelinig"><a href="#Pipelinig" class="headerlink" title="Pipelinig"></a>Pipelinig</h1><ul>
-<li>There are three types of pipelining;<ol>
-<li>Adding numbers (type 1)</li>
-<li>Insertion Sort (type 2)</li>
-<li>Linear System back substitution (type 3)</li>
+<h1 id="Partitioning-Strategies"><a href="#Partitioning-Strategies" class="headerlink" title="Partitioning Strategies"></a>Partitioning Strategies</h1><ul>
+<li>Replicated Data Approach (No partitioning)<ul>
+<li>Each has the entire data but does a subset of computation.</li>
+</ul>
+</li>
+<li>Partition to different process (Most Common)<ul>
+<li>Domain Decomposition</li>
+<li>Divide and Conquer</li>
+</ul>
+</li>
+<li>Partition of program func (Less Common)<ul>
+<li>Functional Decomposition</li>
+</ul>
+</li>
+</ul>
+<h2 id="Partition-to-Diff-Process"><a href="#Partition-to-Diff-Process" class="headerlink" title="Partition to Diff Process"></a>Partition to Diff Process</h2><h3 id="Use-MPI-Scatter-and-MPI-reduce-for-Vector-Addition"><a href="#Use-MPI-Scatter-and-MPI-reduce-for-Vector-Addition" class="headerlink" title="Use MPI_Scatter and MPI_reduce for Vector Addition"></a>Use MPI_Scatter and MPI_reduce for Vector Addition</h3><p><img src="Week%204%208%20Partition/Untitled.png" alt=""></p>
+<ul>
+<li>Root sends data to all processes (including itself)</li>
+<li>MPI_Scatterv() —&gt; scatters variable lengths. MPI_Allreduce() —&gt; returns result to all processors</li>
+</ul>
+<p><img src="Week%204%208%20Partition/Untitled%201.png" alt=""></p>
+<h3 id="Domain-Decomp-via-Divide-and-Conquer"><a href="#Domain-Decomp-via-Divide-and-Conquer" class="headerlink" title="Domain Decomp via Divide-and-Conquer"></a>Domain Decomp via Divide-and-Conquer</h3><ul>
+<li>For problems that can be recursively divided into smaller probs of the same type; such as summation.</li>
+<li>The analysis for simple binary tree is as following</li>
+</ul>
+<p><img src="Week%204%208%20Partition/Untitled%202.png" alt=""></p>
+<h3 id="The-Reduce-and-Scan-Abstractions"><a href="#The-Reduce-and-Scan-Abstractions" class="headerlink" title="The Reduce and Scan Abstractions"></a>The Reduce and Scan Abstractions</h3><ul>
+<li>이미 프로세서들에게 파티션된 벡터들의 합이 이에 해당한다.</li>
+<li>Reduce: Combines a set of val to produce a single value; mapping a binary tree communication pattern between processors.</li>
+<li>Scan: performs a seq opreation in parts and carries along the intermediate results.</li>
+</ul>
+<h3 id="Scans"><a href="#Scans" class="headerlink" title="Scans"></a>Scans</h3><ul>
+<li><p>Replacs each element with the cumulative sum of all preceding elements (inclusive or exclusive)</p>
+<p>  <a href="https://en.wikipedia.org/wiki/Parallel_random-access_machine">Parallel random-access machine</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">X = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</span><br><span class="line">Inc_Scan = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">21</span>,<span class="number">28</span>]</span><br><span class="line">Exc_Scan = [<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">21</span>]</span><br><span class="line"><span class="comment">//EX #1 - 8 val on 8 nodes.</span></span><br><span class="line"><span class="keyword">for</span> (d=<span class="number">1</span>; d &lt; N; d ∗= <span class="number">2</span>)</span><br><span class="line">	FORALL (k=<span class="number">0</span>; k &lt; N; k ++) IN PARALLEL</span><br><span class="line">		<span class="keyword">if</span> (k &gt;= d)</span><br><span class="line">			X[k] = X[k−d] + X[k];</span><br><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment">Ex #2 - Bucket Sort</span></span><br><span class="line"><span class="comment">1. Assign one bucket to each processors</span></span><br><span class="line"><span class="comment">2. Assign p small buckets to each processors --&gt; can ues MPI_Alltoall()</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Ex #3 - Integraton (SPMD model using static distribution)</span></span><br><span class="line"><span class="comment">--&gt; Uneven workload, terminating point for small division is an issue.</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The analysis for parallel bucket sort.</p>
+</li>
+</ul>
+<p><img src="Week%204%208%20Partition/Untitled%203.png" alt=""></p>
+<ul>
+<li>The worst case scenario: data is chunked at certain value —&gt; same as the bucket sort problem?</li>
+</ul>
+<h3 id="Barnes-Hut-Algorithm"><a href="#Barnes-Hut-Algorithm" class="headerlink" title="Barnes Hut Algorithm"></a>Barnes Hut Algorithm</h3><ul>
+<li>Algorithm —&gt; It creates oct-tree<ol>
+<li>Divide one cube into 8</li>
+<li>Delete if no needed</li>
+<li>sub-cube with more than 1 divided into 8 again.</li>
+<li>Continue untill each one has only one particle.</li>
 </ol>
 </li>
-<li>Prblems that can be divided into a series of seq tasks that can be completed one after another.</li>
-<li>Typical Scenario<ol>
-<li>독립된 문제가 한 개 이상 계산 될 예정일때 (Instruction)</li>
-<li>각각 여러 계산을 필요로 하는 연결된 데이터들을 계산되어야 할때 (Graphics)</li>
-<li>다른 계산에 필요한 작업이 그 계산이 필요로 하기전에 작업을 마칠수 있을때 (Software)</li>
-</ol>
-</li>
+<li>Scaling is O(n lg n)</li>
+<li>Load balancing is likely be an issue for parallel code.</li>
 </ul>
-<h3 id="Type-1-Adding-number"><a href="#Type-1-Adding-number" class="headerlink" title="Type 1 - Adding number"></a>Type 1 - Adding number</h3><p><img src="/image/Week%204%209%20Pipelining/Untitled.png" alt=""></p>
-<ul>
-<li>Single Intance:</li>
-</ul>
-<p><img src="/image/Week%204%209%20Pipelining/Untitled%201.png" alt=""></p>
-<ul>
-<li>Multiple Instance:</li>
-</ul>
-<p><img src="/image/Week%204%209%20Pipelining/Untitled%202.png" alt=""></p>
-<h3 id="Type-2-Insertion-Sort"><a href="#Type-2-Insertion-Sort" class="headerlink" title="Type 2 - Insertion Sort"></a>Type 2 - Insertion Sort</h3><p><img src="/image/Week%204%209%20Pipelining/Untitled%203.png" alt=""></p>
-<h3 id="Type-3-Linear-Equations"><a href="#Type-3-Linear-Equations" class="headerlink" title="Type 3 - Linear Equations"></a>Type 3 - Linear Equations</h3><p>Back substitution —&gt; passes calculated value to solve the other ones (like fibonacci).</p>
-<p><img src="/image/Week%204%209%20Pipelining/Untitled%204.png" alt=""></p>
-<p>Process i performs i sends and receives, i multiply/adds, one division/subtract and one final send</p>
-<p>t_comm = (2i + 1) * (t_s +t_w) and t_comp =  2i + 2</p>
 
         </div>
         
@@ -229,7 +254,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -279,7 +304,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -291,7 +316,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -303,7 +328,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -396,17 +421,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -467,14 +481,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -541,7 +547,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -656,13 +662,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -717,14 +716,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -791,7 +782,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -906,13 +897,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

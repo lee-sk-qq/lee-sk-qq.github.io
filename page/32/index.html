@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/05/01/Network/Week%207%201%20Realtime/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/realtime.jpg" alt="Realtime">
+        <a href="/2020/04/26/Network/Network_DHCP%20DNS/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/DNS.jpg" alt="DHCP/DNS">
         </a>
     </div>
     
@@ -137,7 +137,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-05-01T03:28:00.000Z">May 01, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-04-26T04:47:00.000Z">Apr 26, 2020</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Network/">Network</a>
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    16 minutes read (About 2422 words)
+                    13 minutes read (About 1882 words)
                 </span>
                 
                 
@@ -156,185 +156,126 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/05/01/Network/Week%207%201%20Realtime/">Realtime</a>
+                <a class="has-link-black-ter" href="/2020/04/26/Network/Network_DHCP%20DNS/">DHCP/DNS</a>
             
         </h1>
         <div class="content">
             <p>Reference: </p>
 <ul>
-<li><p>Computer Networks, Fifth Edition by by Andrew S et al.</p>
-</li>
-<li><p>The Australian National University CECS</p>
-<h2 id="Real-time"><a href="#Real-time" class="headerlink" title="Real-time?"></a>Real-time?</h2></li>
-<li><p>한 패킷 손실을 어느정도 감당할 수 있는가</p>
-</li>
-<li><p>한 지연된 패킷을 어느정도 감당할 수 있는가</p>
-</li>
-<li><p>한 지연을 얼마나 알아차릴 수 있는가</p>
+<li>Computer Networks, Fifth Edition by by Andrew S et al.</li>
+<li>The Australian National University CECS</li>
+</ul>
+<hr>
+<p>어플리케이션의 디자인은 확장성, 권한, 그리고 신뢰성을 위주로 한다. </p>
+<p>보통의 클라이언트/서버 관계부터, P2P, 그리고 Publication/Subsription 등이 존재한다. </p>
+<p>steteless network (비 안정적인) 에서 세션을 만드는데</p>
 <ul>
-<li>비디오컨퍼런스와 스트리밍, 비디오와 오디오의 싱크</li>
+<li>쿠키, URL 토큰, 특정 종단과의 비디오 컨퍼런스 (줌 같이), 그리고 패킷 플로우 등을 이용한다</li>
+<li>보통 TCP/UDP 등을 이용하여 세션이 만들어진다.</li>
 </ul>
-</li>
-<li><p>TCP를 Contend Delivery Network (CDN)을 이용하여 스트리밍</p>
+<p>어플리케이션 계층의 경우 프레젠테이션 계층 또한 같이 관여 하는데,</p>
 <ul>
-<li>이로 인해 지연의 심각성을 낮추고, 신뢰성을 얻을 수 있다. (빠르게, 그리고 확실하게 스트리밍)</li>
-<li>CDN은 ISP와 User 사이에 있으며, ISP에 서비스 비용을 지불하고, 유저로 부터 비용을 받는다. CDN은 유저의 트래픽을 받아서 저장하고, 시청자에게 같은 데이터를 보냄으로써, 유저의 부담을 덜하며, 다수의 유저에게 같은 데이터를 보내준다.</li>
-<li>즉 트위치, 아프리카등의 플랫폼은 CDN을 이용한다고 봐야한다.</li>
+<li>컨텐츠 패키징 (파일 확장자), 타입 (이미지, 비디오, 텍스트), 인코딩, 셀렉션 (상대방이 사용 가능한걸 보내야 하니까)</li>
+<li>종단간의 명령어와 조종을 관여한다 (나는 무엇을 원하고, 너는 무엇을 받을것이며, 나는 끝났다 와 같은 것들)</li>
+<li>영어와 같은 프로토콜을 사용하기에 디버깅이 쉽고, 오버헤드가 타 계층에 비해 적다.</li>
 </ul>
-</li>
-<li><p>UDP for two way (interactive), real-time</p>
+<p>알려진 도움 프로토콜의 경우 (물론 어플리케이션이기도 하다)</p>
 <ul>
-<li>UDP의 특성상 낮은 지연과 낮은 오버헤드를 가지고 있음.</li>
+<li>ARP: 2.5 layer (MAC &amp; IP)</li>
+<li>ICMP, IGMP: network control and feedback.</li>
+<li>즉 어떻게 IP를 찾고 어떻게 주소들을 찾을것인지 등등 방법을 정하는 계층이 어플리케이션 계층이다 (DHCP, DNS)</li>
 </ul>
-</li>
-</ul>
-<h2 id="Why-is-it-hard"><a href="#Why-is-it-hard" class="headerlink" title="Why is it hard?"></a>Why is it hard?</h2><p>인터넷은 best-effort (서킷을 가지고 있지 않는한) 의 형식을 띄고 있어서 패킷 손실, 지연 등을 100% 보장할 수 없다. 다양한 종류의 원인으로 인한 손실도 존재한다.</p>
-<h3 id="Network-Delays"><a href="#Network-Delays" class="headerlink" title="Network Delays"></a>Network Delays</h3><ul>
-<li>송신자는 지속적인 흐름의 오디오/비디오 샘플들을 보낸다 (대역폭은 코덱에 따라 다르다)<ul>
-<li>물론 수신자는 지속적인 스트림을 받기를 기대한다 (끊김없이)</li>
-</ul>
-</li>
-<li>이를 위해 라우터의 경로, 대역폭, 용량 (capacity) 등을 모두 필요로 한다. 물론 종단까지의 모든 라우터와 경로가 송신자것이 아니니 불가능하다.</li>
-<li>이상적으로 레이턴시 이후에 100%의 패킷을 받는게 좋지만 (constant delay and everything at once) 현실은 다양하게 변화한다.</li>
-</ul>
-<p><img src="/image/Week%207%201%20Realtime/Untitled.png" alt=""></p>
-<p>Jitter: 처리 시간 및 결과물의 도달 시간의 변동폭 등 (패킷 지연 변동폭)</p>
-<p>즉 위의 패킷 전달 마찰은 밑의 그림과 같은 상황을 야기한다.</p>
-<p><img src="/image/Week%207%201%20Realtime/Untitled%201.png" alt=""></p>
-<p>각 패킷에 대한 지터가 다르기때문에 보낸 순서와 상관없이 도착하는 패킷 순서및 타이밍이 다른것. </p>
-<h3 id="버퍼링-TCP-lite"><a href="#버퍼링-TCP-lite" class="headerlink" title="버퍼링 (TCP - lite)"></a>버퍼링 (TCP - lite)</h3><p>송신자는 당연히 지속적인 오디오/비디오 샘플 (패킷)을 보낸다. 당연하게도 수신자는 끊김없는 스트리밍을 받기를 원한다. </p>
-<p>이와 같은 효과를 내기 위하여 수신자는 playout buffer을 만들어 지연등을 부드럽게 만든다 (보통 바이트 단위로 만들지만, 효과적이기 위해서는 시간 단위로 만들어야 한다)</p>
+<p>하위 계층은 상위 계층에게 서비스를 제공하는 종속된 관계임을 잊지말자.</p>
+<h3 id="DHCP-Application"><a href="#DHCP-Application" class="headerlink" title="DHCP Application"></a>DHCP Application</h3><p>Client/Server 관계의 어플리케이션이다. </p>
 <ul>
-<li>지연 시간 (playout)을 일정 단위를 추가해서, 그 시간/단위 기간동안 패킷들을 더 기다린후, 유저에게 보여주는 형식이다.</li>
-<li>내가 아는 하두리? 버퍼링은 바이트 단위의 버퍼링이다 (시간 관계없이 영상 바이트들을 어느정도 받고 나서야 시작이 됬으니까).</li>
-<li>밑의 그림처럼, 어느 선까지 받고서 그 이후의 패킷들은 버린다. (물론 예상컨데 버퍼링 implementation 마다 다를것이다.)</li>
+<li>Bootstrap Protocol 은 BOOTP로 불리며 TCP/IP 즉 트랜스포트 계층의 프로토콜로써 어플리케이션 계층에 속한다. 우리가 DHCP에서 자동으로 구성되는 기능이 이 프로토콜을 기반으로 만들어진것이다.<ul>
+<li>보통 UDP의 경우 클라이언트 포트는 68, 서버 포트는 67이며 모르면 ARQ 하면 된다.</li>
+<li>처음으로 부팅된 기기에 IP등 구성정보를 제공한다</li>
+<li>정적인 클라이언트 서버 형태의 구성정보 (configuration) 제공 프로토콜이다<ul>
+<li>3가지 정보를 제공하는데 IP, boot file server name, boot file name.</li>
 </ul>
-<p><img src="/image/Week%207%201%20Realtime/Untitled%202.png" alt=""></p>
-<p>물론 위와 같은 버퍼링은 trade-off가 존재한다.</p>
+</li>
+<li>지금은 거의 사용안한다</li>
+<li>DHCP의 하휘호환 버전이며 완벽하게 호환 가능하다.</li>
+<li>요청 메세지는 브로드캐스트로 소스 주소는 0.0.0.0, 목적 주소는 브로드캐스트이다.</li>
+<li>UDP 유실에 대비해서 ARQ 와 Time out 정책을 사용한다.</li>
+</ul>
+</li>
+<li>Discover Offer Request Ack로 4단계로 구성되어 있다.</li>
+<li>Lease Renewal 하는 것은 유니캐스트로 50, 87.5, 100% 사용시마다 요청한다.<ul>
+<li>만약 리뉴얼에 실패를 한다면 혹은 처음 할당 받았으면 gratuitous ARP를 통해 겹치는 아이피가 없는지, 그리고 자신의 새 아이피를 남들에게 알리기 위해 발송한다<ul>
+<li>이러한 일이 일어나는 이유는 DHCP가 여러개 존재 할 수 있기 떄문이다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DHCP Relays: 만약 DHCP 서버가 있고 라우터가 릴레이 역할을 할당 받으면, 라우터가 DHCP와의 연결을 단독으로 진행한다. 이로 인해 당연히 네트워크내 트래픽이 줄어들고, 해당 서버가 한 네트워크를 담당하니 깔끔하기도 하다.</li>
+<li>DHCP reservation 은 한 클라이언트가 항상 같은 아이피를 사용하기 원하는 경우 (연결 할때마다 같은 아이피 할당 받음), static은 프린터와 같이 특별한 목적으로 만들어진 경우이다 (즉 이 기기의 아이피는 변하지 않는다).</li>
+<li>요즘 나오는 라우터들은 DHCP and DNS and router 역할을 모두 한다 보통 192.168.1.0/24 subnet을 사용함.</li>
+</ul>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><ul>
+<li>Redirection, load balance, dynamic allocation.<ul>
+<li>즉 관리 하기 쉬워야하고 (여러개의 협조로) 효율적이어야 한다 (높은 요청/답변 양으로 딜레이자 짧고 로드가 적어야 한다)</li>
+<li>이를 위해 분산 디렉토리, 계층적 namespace (존), 자동적인 프토토콜/프로세스 을 이용한다.</li>
+</ul>
+</li>
+<li>Service metadata</li>
+<li>Names for humans, Addresses for protcocls, and resolution for mapping between the first two.<ul>
+<li>Resolution: 분명하고 깔끔하게, 보통 names to addresses 반대로도 가능하긴함</li>
+<li>튜플 형식으로 (Names, value (addresses), type, TTL) 로 이루어져 있다.</li>
+</ul>
+</li>
+<li>Root starts from .</li>
+<li>TLD: Top level domain<ul>
+<li>ccTLD: two letter country code; jp, kr, de. It has sub domain as well;  edu.au…</li>
+</ul>
+</li>
+<li>Types:<ul>
+<li>SOA: Start of authority - who is the owner</li>
+<li>A, AAAA: IPv4, IPv6</li>
+<li>CNAME: canonical name (alias) 한 아이피 주소는 여러가지의 DN을 가질수 있다</li>
+<li>MX: eMail exchange for domain. 같은 foo.bar여도 호스트와, 메일 주소로 쓰일수 있다. 네이버처럼</li>
+<li>NS: Nameserver for the delegated domain.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/image/Week%206%201%20DHCP%20DNS/Untitled.png" alt=""></p>
 <ol>
-<li>큰 버퍼: <ol>
-<li>지연으로 인한 패킷 손실이 줄어든다. 이는 곧 지터/PDV (Packet Delay Variation) 에 대한 tolerant가 늘어난다.</li>
-<li>다만 transmission 과 playout 간의 지연이 늘어난다. 즉 영상을 시작하면 부드럽게 진행되지만, 처음 시작하기까지 오래걸림. </li>
+<li>이 도메인의 주인은 ns1.anu.edu.au</li>
+<li>이 도메인의 메일 서버는 mail.anu…</li>
+<li><a href="http://www.anu.edu.au는">www.anu.edu.au는</a> gaia-proxy…. 도메인의 캐노니얼 네임 (alias임)</li>
+<li>gaia-proxy의 주소는 130…</li>
 </ol>
-</li>
-<li>작은 버퍼:<ol>
-<li>transmission and playout 의 delay가 적다</li>
-<li>여유 기간이 짧은 만큼 (큰 버퍼에 비해) 더 많은 패킷들이 지연으로 인해 손실된다. 지터/PDV에 대한 tolerant가 더 적음.</li>
-</ol>
-</li>
-</ol>
-<p>바라는 지연이 짧을수록 손실을 방지하기가 더 어려워진다 - 이로 인해 glitch 가 생성되는데. 흔한 예로는 비디오와 오디오 싱크가 안 맞는등..</p>
-<h3 id="Fixes"><a href="#Fixes" class="headerlink" title="Fixes?"></a>Fixes?</h3><ul>
-<li><p>재전송:</p>
 <ul>
-<li><p>패킷 손실을 알아차리면, ARQ (TCP-like) 를 이용해서 재전송을 요청한다.</p>
+<li>여러개의 루트 서버가 존재하지만, 네임서버들은 보통 모든 루트 서버를 알고 있음.<ul>
+<li>이 루트서버는 보통 anycast (구독자와의 연결)로 이루어짐.</li>
+<li>내 네임서버가 먼저 루트서버에게 물어보고 (캐쉬 없으면) 루트서버로 부터 받은 정보로 해당 서버에 물어보기 시작함 (DNS)</li>
+<li>Iterative: 내가 가야할 다음 장소가 어디니? 하고 물어보는것<ul>
+<li>높은 성능, 낮은 딜레이</li>
+</ul>
 </li>
-<li><p>이로 인해 round-trip-time + latency + Queue 딜레이 만큼 더 걸린다</p>
+<li>Recursive: 내 목적지 장소를 니가 찾아서 알려줘.<ul>
+<li>낮은 성능, 하지만 편함.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>보통 ZONE 서버들의 주소는 바뀌지 않음, 그래서 네임서버는 (처음에는 루트서버에서) 받아서 캐쉬를 함. 그러면 덜 물어보니까 네트워크 혼잡도가 줄어듬.</li>
+</ul>
+<p>메세지의 경우 UDP port 53 을 이용하며 가볍다. ARQ를 사용한다. 메세지 패킷의 플래그는 메세지의 상황마다 변화며 이로 구별한다.</p>
+<p>다른 기능들:</p>
 <ul>
-<li>이는 곧 큰 수신 버퍼와 지연을 의미하며, 송신자 또한 버퍼 도구가 필요하다 (아마 원하는 패킷을 저장해두고 다시 보낼수 있어야 하니까).</li>
+<li>여러 이름이 한 아이피를 가지는 경우 (한 서버가 여러 웹서버 지원하는경우)</li>
+<li>한 이름이 여러 아이피를 가지는 경우 (실패 혹은 부담을 줄이기 위해서)</li>
+<li>Reverse Lookup: 안전성을 확인하는 작업 (이메일 스푸핑, 사이트 확인 절차등)<ul>
+<li>질문: 이 아이피 도메인 이름이 뭐에요? 답변: 구글이요</li>
+<li>이 작업은 PTR을 이용하며 (A 가 도메인에서 아이피 인것처럼 PTR은 반대이다)</li>
 </ul>
 </li>
-<li><p>멀티캐스트 (UDP) 방식에서는 반드시 송신자가 다시 보내는것은 아니다</p>
-<ul>
-<li>아래와 같이 주위의 다른 수신자가 있으면 걔가 보내줌</li>
-</ul>
-<p><img src="/image/Week%207%201%20Realtime/Untitled%203.png" alt=""></p>
-</li>
-</ul>
-</li>
-<li><p>탄력적 버퍼 (Elastic):</p>
-<ul>
-<li>상황에 맞게 버퍼의 크기를 조정함</li>
-<li>이를 위해 playout을 느리게 함</li>
-<li>상황이 나아지면 버퍼의 크기를 다시 줄여서 (지연/손실이 줄어드니) 빠르게 진행한다 (실시간일 수록 좋으니까 상황이 괜찮으면).</li>
-</ul>
-</li>
-<li><p>Error Correction:</p>
-<ul>
-<li>패킷간의 보간법을 위한 미디어 인코드 - 보간법을 이용해 뭐를 놓쳤는지 알 수 있음<ul>
-<li>Forward Error Correction - 고장난게 있으면 직접 고칠수 있음. 신뢰성이 필요한곳이나 재전송이 비싼 경우에 사용되곤 한다.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>병렬 전송</p>
-<ul>
-<li>다양한 카피들을 같은 시간에 보내는것 - 동영상 화질에 종류가 있는것들. 즉 1080으로 보다가 멈추는것보단 360으로라도 끊김없이 보는게 나으니까. 즉 결국 내용을 볼 수 있다는것 자체로 신뢰성이 필요한곳에 사용될 수 있다.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Realtime-Transport-Protocol-RTP"><a href="#Realtime-Transport-Protocol-RTP" class="headerlink" title="Realtime Transport Protocol (RTP)"></a>Realtime Transport Protocol (RTP)</h2><p>UDP, TCP냐에 따라 연결성이 달라짐. 다양한 미디어 인코딩을 지원하며, 다양한 자원들이 병합, 동기화, 선택 될 수 있다. (비디오 따로 오디오 따로 보내서 두게를 합치거나, 언어와 자막을 선택하는등의)</p>
-<ul>
-<li>송신자는 여러가지들을 고려하여 RTP를 어떻게 보낼것인지 조정할 수 있다. 현재 스트리밍이 어떻게 되고 있는지 (비율, 인코딩, 에러 수정, 재전송 등등), 혹은 얼마나 많은 그리고 어느 종단들이 받고, 보내고 있는지 (멀티캐스트).</li>
-<li>RTP Control Proctocol (RTCP)<ul>
-<li>양방향, Out-of-Band 시그널링 (독립된 채널을 통해 시그널링 하는것) (RTP는 짝수 포트, RTCP는 홀수 포트) - 대역폭을 제한해야한다.</li>
-<li>송수신자 모두 보고를 한다. (통계: 패킷의 수신/손실, 지연, 지연 변동폭등)</li>
-<li>자원 설명, 송수신 시작/완료 (Hello Goodbye)</li>
-<li>존재 알리기 (heartbeat pulse), 거리 (홉), 재전송 요청 채널 등등 다양하게 지원함</li>
-</ul>
-</li>
-</ul>
-<h1 id="ALL-together"><a href="#ALL-together" class="headerlink" title="ALL together"></a>ALL together</h1><p>여러 사이트에 여러 미디어 스트림을 보내기.</p>
-<p>다음과 같은것들을 필요로 한다.</p>
-<ol>
-<li>Establish a call: Session Initiation Protocol (SIP) - 세션 시작</li>
-<li>Negotiate the details: Session Description Protocol (SDP) - 세션 정보 협상 (뭐로 할건지)</li>
-<li>Deliver the media: RTP and RTCP - 협의 바탕으로 결정한 프로토콜로 정보 교환</li>
-<li>Playout as reliable and quickly as you can: (buffer) - 알아서 </li>
-</ol>
-<h3 id="Session-Initiation-Protocol-SIP"><a href="#Session-Initiation-Protocol-SIP" class="headerlink" title="Session Initiation Protocol (SIP)"></a>Session Initiation Protocol (SIP)</h3><ul>
-<li>Open with IETF protocol to establish and close the call with RFC.<ul>
-<li>어느 방식으로 전달 하던 상관없음.</li>
-<li>이 세션 프로토콜은 스카이프, 메센저, 줌등에 사용되지 않음</li>
-<li>라이벌로는 ITU H.323 이 존재함</li>
-</ul>
-</li>
-<li>Voice over IP (VOIP)에 주로 쓰임</li>
-<li>프록시,registrars, redirectors, border controller, gateway 등등을 포함하하며 PSTN 연결이나, NATs등에 유용하다.</li>
-</ul>
-<p><img src="/image/Week%207%201%20Realtime/Untitled%204.png" alt=""></p>
-<h3 id="Non-realtime-realtime"><a href="#Non-realtime-realtime" class="headerlink" title="Non-realtime realtime?"></a>Non-realtime realtime?</h3><ul>
-<li>단 방향 미디어 전송: 스트리밍<ul>
-<li>less interactive, 지연에 덜 민감하며 (almost live), 대역폭이나 지터에 문제를 아직 가지고 있음.</li>
-</ul>
-</li>
-<li>Sliding windows을 통한 playout buffer 관리 (나중에 다시 한번 읽을것)<ul>
-<li>수신자는 컨텐츠를 빼내고, 버퍼를 played out 된것처럼 채운다</li>
-</ul>
-</li>
-</ul>
-<h3 id="Real-Time-streaming-Protocol-RTSP"><a href="#Real-Time-streaming-Protocol-RTSP" class="headerlink" title="Real Time streaming Protocol (RTSP)"></a>Real Time streaming Protocol (RTSP)</h3><ul>
-<li>스트리밍 세션을 만들고 미디어 전송을 협의한다 (프로토콜등)</li>
-<li>HTTP 와 SIP와 비슷하다<ul>
-<li>옵션 (무엇을 할 수 있는지) 설명 (무엇을 줄 수 있는지)</li>
-<li>셋업 (스트림(들)을 프로토콜을 통해 수신할 준비</li>
-<li>플레이 (play from time 1 to 2)</li>
-</ul>
-</li>
-<li>RTP/RTCP 등을 통해 대역폭, 인코딩을 적용함</li>
-</ul>
-<h3 id="최후의-수단-HTTP-이용"><a href="#최후의-수단-HTTP-이용" class="headerlink" title="최후의 수단: HTTP 이용"></a>최후의 수단: HTTP 이용</h3><ul>
-<li>방화벽을 통과 할 수 있으니까</li>
-<li>다양한 extensions을 지원하니까 (어플리케이션, 전송 프로토콜등)</li>
-<li>Head Request를 통한 미디어와 옵션들 요구</li>
-<li>Get with Range Get을 통한 요구<ul>
-<li>playout 버퍼를 위한 조각들을 다운, 서버에게 인코딩 부탁하기</li>
-</ul>
-</li>
-<li>HTML 5 has bulit in vidoe player. (to kill flash)</li>
-<li>이득: 서버 state 필요없음, HTTP 프록시, 캐쉬, CDNs 등을 물려 받음</li>
-</ul>
-<h3 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h3><ul>
-<li>완벽하고, 적은 지연, 실시간등은 best effort 네트워크에서 하기 정말 힘들다<ul>
-<li>Very application specific - 유통성이 없음</li>
-</ul>
-</li>
-<li>특별한 서킷을 이용해서 경로를 만드는게 아닌이상, 힘듬</li>
-<li>오디오 비디오는 괜찮음 (기술의 발달로 화질이 올라감) - 괜찮음의 정의가 시대상을 따라감</li>
-<li>기기 조종을 위한 실시간 트래픽이 늘어나는 추세임<ul>
-<li>인터넷이 최선의 선택은 아니더라도, 유일한 선택일지도 모름</li>
-</ul>
-</li>
+<li>Sort-list: 답변에 우선순위를 부여할 수 있다. 즉 가까운 서버나 멀티인터페이스 서버에 유용하다</li>
+<li>Geopolitical-sensitives - split DNS: 너가 어디서 물어보는지에 따라 결과가 달라짐 (우리나라 야동 막은것처럼)</li>
+<li>Round-Robin / Load Balancing: 리스트를 보낼때마다 다른 순서로 보냄, 즉 한 이름이 여러 아이피를 가지고 있으면 그 아이피 순서가 바뀌어져서 보내지는것 (그래야 하나만 쓰고 그러는거 방지하니까)</li>
+<li>DDNS: 보통 개인 사용자는 유동 아이피인데, DNS 주소를 새로 할당해버리면 얘랑 주고받던 메세지가 다른곳에 도착할 수 있으니, 이른 해결하기 위한 실시간 DNS 갱신 방법이다.</li>
 </ul>
 
         </div>
@@ -375,7 +316,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -425,7 +366,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -437,7 +378,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -449,7 +390,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -542,17 +483,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -613,14 +543,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -687,7 +609,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -802,13 +724,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -863,14 +778,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -937,7 +844,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -1052,13 +959,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/05/19/MSL/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/pca.jpg" alt="Unsupervised Learning">
+        <a href="/2020/05/19/MSL/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/pcr.jpg" alt="PCR, PLS">
         </a>
     </div>
     
@@ -137,7 +137,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-05-19T10:36:00.000Z">May 19, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-05-19T10:35:00.000Z">May 19, 2020</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Machine-Learning/">Machine Learning</a>
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    15 minutes read (About 2316 words)
+                    12 minutes read (About 1800 words)
                 </span>
                 
                 
@@ -156,48 +156,49 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/05/19/MSL/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/">Unsupervised Learning</a>
+                <a class="has-link-black-ter" href="/2020/05/19/MSL/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/">PCR, PLS</a>
             
         </h1>
         <div class="content">
             <p>Reference:</p>
 <ol>
 <li>An Introduction To Statistical Learning with Applications in R (ISLR Sixth Printing)</li>
-<li><a href="https://bkshin.tistory.com/">https://bkshin.tistory.com/</a></li>
+<li><a href="https://godongyoung.github.io/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D/2018/02/07/ISL-Linear-Model-Selection-and-Regularization_ch6.html">[ISL] 6장 -Lasso, Ridge, PCR이해하기</a></li>
 </ol>
-<h2 id="Unsupervised-Learning"><a href="#Unsupervised-Learning" class="headerlink" title="Unsupervised Learning"></a>Unsupervised Learning</h2><h2 id="The-challenge"><a href="#The-challenge" class="headerlink" title="The challenge"></a>The challenge</h2><p>이전 챕터들에서 supervised Learning 에 관해서 여러가지들을 배웠다. 만약 이진 결과값을 데이터로 부터 도출하여 추측하여야 한다면, 로지스틱, LDA, classification Trees 등을 이용하여 값을 도출하고, 이 결과값에 대하여 어떻게 접근해야 할지에 대한 명료한 지식들을 배웠다 (CV, validaton…)</p>
-<p>반면에 unsupervised learning 의 경우 조금더 어려운데 이는 대부분의 실험들이 주관적이고, 분석 (예측)과 같은 간단한 목표를 가지고 있지 않기 때문이다. 대신 unsupervised learning은 exploratory data analysis 에 대한 부분으로 행해진다. 또한 결과값을 도출하는데도 어려움이 있을수 밖에 없는 이유가 이 모델이 맞는지에 대해 테스트 할 수 있는지에 대한 방식이 존재하지 않기 때문이다 (예를 들어 예측하는데에 대해 예측할 값이 존재하지 않는다던가)</p>
-<h3 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h3><p>correlated variables가 많은 데이터를 마주 하였을때 principle component (PC)를 이용하여 더 적은 변수들로 대부분의 variability를 summarize 하여 설명할 수 있게 해준다. 챕터 6에서 이야기 하였듯, PC directions는 본래의 데이터에서 highly varaibla한 방향을 보여줌과 동시에 데이터 클라우드에 대해 가장 가까운 선과 부분 공간을 보여준다.</p>
-<p>PCR을 사용하기 위해서, 우리는 PC를 예측 변수로 사용한다. 이 PC를 이용해 supervised 한 방법이 (PLS)</p>
-<p>PCA는 또한 데이터 비율어화에 대한 도구로써 사용되고 한다 </p>
-<h3 id="Principal-Component란-무엇인가"><a href="#Principal-Component란-무엇인가" class="headerlink" title="Principal Component란 무엇인가"></a>Principal Component란 무엇인가</h3><p>2차원의 scatter plot을 이용하여 데이터간의 관계를 보통 확인하는데 p=10일 경우, 그려지는 그래프만 45개에 달한다. 또한 각각의 그래프 또한 딱히 중요하지는 않을텐데 이는 각각의 그래프가 나타내는것이 총 데이터에서 일부분에 지나지 않기 때문이다. 즉 우리가 2차원의 그래프를 그릴때, 해당 변수가 데이터에 대해 가장 영양가 있는 (informative) 상황이라면 우리는 큰 데이터를 더 낮은 차원의 공간에서 관찰할 수 있게 되는것이다. (즉 데이터에 대해 가장 잘 나타내는 변수만 관찰하면 파악하기 쉬우니까)</p>
-<p>PCA provides a tool to do just this. It finds a low-dimensional representation of a data set that contains as much as possible of the variation. 여러개의 변수중에 흥미로운 변수 (차원들)을 파악하려고 노력하는데 이는 관련 변수의 observations가 각 차원에서 얼마나 vary하는가를 기준으로 한다. </p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled.png" alt=""></p>
-<p>계수로 인한 분산이 무한이 커지는것을 막기위해 합을 1로 제한한다.</p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%201.png" alt=""></p>
-<p>기존의 데이터셋에 공분산 행렬을 생성하고 (괄호 안), 고유의 Vector와 값을 계산 (대괄호). 그런 다음에 고유 값이 큰 순서대로 정렬 후 변환해야할 차원의 수 만큼 고유 값을 정한 뒤. 고유 Vector에 투영하여 차원을 축소한다.</p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%202.png" alt=""></p>
-<p><a href="https://bkshin.tistory.com/entry/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-9-PCA-Principal-Components-Analysis">머신러닝 - 9. 차원 축소와 PCA (Principal Components Analysis)</a></p>
-<p>variance가 maxmized 될때 데이터 클라우드에 가장 가까운 이유가 이 때문. variance가 maxmized 되어야 information loss를 최소화 할 수 있다.</p>
-<p>1st Principal Component (PC1) 은 주어진 변수들 중에서 데이터를 강 잘 설명하는 성분이다. 만약 PC1의 기울기가 0.25라면,  feature 1 increases 4 then feature 2 increases 1 의 선형 결합이 (Linear Combinaito) 해당 데이터를 가장 잘 설명하는 요소라는 의미가 된다.</p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%203.png" alt=""></p>
-<p>위의 그래프에서 PC1은 Rape Assault Murder에 가중치를 더 부여하고, PC2는 UrbanPop에 더 가중치를 주는것을 볼 수 있다. 따라서 UrbanPop은 변수들이 설명하고자 하는 도시화에 대해 roughly corresponding 한다고 볼 수 있다. 전체적으로, 범죄와 관련된 변수들이 서로 가까이 있으며, 인구수는 이들과 동떨어져있다. 이는 범죄와 관련된 변수들은 서로 correlated되어 있음을 의미한다.</p>
-<p>위의 그래프로부터 다음과 같이 해석될 수 있다. 버지니아와 인디애나 같은 주들은 평균치에 가까운 범죄율과 도시화를 가지고 있고, 캘리포니아는 높은 범죄율과 높은 도시율을 가지고 있다고 본다. 이에 비해 하와이는 낮은 범죄율을 가지면서 높은 도시율을 가졌다.</p>
-<h3 id="Another-Interpretation-of-Principal-Components"><a href="#Another-Interpretation-of-Principal-Components" class="headerlink" title="Another Interpretation of Principal Components"></a>Another Interpretation of Principal Components</h3><p>위 섹션에서는 PCA를 이용한 시각화 그래프에 대해 variance 최대화에 초점을 맞추었는데. PC1의 로딩 벡터는 또다른 특별한 특징을 가지고 있다: p 차원의 공간에서 n개의 관측점에 대해 가장 가까운 선이라는것. 이 해석이 말하고자 하는것은 매우 분명한데 이는 “모든 데이터에 대해 가장 가깝게 그려진 일 차원 데이터를 찾는데, 이는 이 선이 모든 데이터에 대해 좋은 요약을 해줄것이기 때문” 물론 반드시 일 차원 데이터를 찾는것은 아니다 (적을수록 좋다는것)</p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%204.png" alt=""></p>
-<p>90개의 샘플에 대하여 왼쪽은 삼차원, 오른쪽은 이차원으로 나타낸것이다. 즉 오른쪽에 대해 한 차원을 더 포함한 (third PC) 상태.</p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%205.png" alt=""></p>
-<h3 id="More-on-PCA"><a href="#More-on-PCA" class="headerlink" title="More on PCA"></a>More on PCA</h3><p>변수들 스케일링 하기.</p>
-<p>위에서 우리는 PCA를 하기전에 변수들의 평균이 0이 되도록 센터링 시켜야 한다고 하였다. 이에 더불어서 우리가 PCA를 통해 도출한 결과값은 변수들이 각각 얼마나 스케일 되었는지에 대하여 dependant 하다. 이는 다른 supervised &amp; unsupervised 와 차이점으로 존재한다 (다른 방법들은 스케일링으로 인한 결과값이 변하지 않는다).  </p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%206.png" alt=""></p>
-<p>왼쪽의 경우 위와 같이 SD의 총합이 1이 되도록 scaling 한 상태. 오른쪽에서 Assault가 PC1에서 가장 큰 로딩을 가지고 있는데 이는 다른 변수들에 비해 가장 높은 분산을 가지고 있기때문이다. 또한 각 변수들의 unit 또한 각기 다르기 때문에 (100명당 하나, 1000명당 하나, 돈의 경우 1000달러 등등) 그냥 기본적으로 SD를 1로 설정하는 방식이 추천된다.</p>
-<p>These four variables have variance 18.97, 87.73, <strong>6945.16</strong>, and 209.5, respectively. Consequently, if we perform PCA on the unscaled variables, then the first principal component loading vector will have a very large loading for Assault , since that variable has by far the highest variance.</p>
-<p><strong>만약, 모든 변수들이 같은 unit으로 측정되었다면, SD를 1로 하지 않는게 좋다.</strong></p>
-<h3 id="Uniqueness-of-the-Principal-Components"><a href="#Uniqueness-of-the-Principal-Components" class="headerlink" title="Uniqueness of the Principal Components"></a>Uniqueness of the Principal Components</h3><p>Each PC loading vector는 고유하다. 이 로딩 벡터의 사인 (플마)는 바뀔지 언정 값 자체는 어느 소프트웨어 패키지에서 실행하던지 같다. 또한 이 사인의 변동또한 의미가 없는것이 결국 방향을 이용하여 분석하기 때문. 따라서 loading vector, and score vector 가 동시에 사인이 바뀌는 이상 최종 결론에는 문제가 없다. (하나만 바뀌고 그러면 안됨)</p>
-<h3 id="Proportion-of-Variance-Explained"><a href="#Proportion-of-Variance-Explained" class="headerlink" title="Proportion of Variance Explained"></a>Proportion of Variance Explained</h3><p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%207.png" alt=""></p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%208.png" alt=""></p>
-<p>위와 같은 방식으로 각각의 PC가 얼마만큼의 분산을 설명하는지에 대하여 알 수 있지만, 어느선에서 얼마정도의 PC가 필요한가? 에 대한 사항은 특별히 정해진게 없다. scree plot (각각의 PC의 분산 설명도 그래프) 을 이용하여 elbow 를 이용하여 정할수도 있긴 하다. 현실적으로, 혹은 실증적으로는, 우리는 첫 몇몇의 PC를 시각화해서 특이한 패턴이 있는지 확인 하는 식으로 결정한다. 당연하게도, 이러한 방식의 접근은 매우 주관적이며 이로 인해 우리는 PCA는 exploratory data analysis를 위한 시각화 도구로 사용하는 이유중 하나다. </p>
-<p>물론 PCA를 supervised에 사용한다면, CV와 같은 방법을 이용하여 score vectors 를 regresisson 튜닝 패러미터로 사용된다면, 몇개의 PC가 사용되어야 하는지 알 수 있다 (왜냐면 이걸 지금 어디에 쓰는지 우리가 분명하게 알고있으니까)</p>
+<h2 id="Dimension-Reduction-Methods"><a href="#Dimension-Reduction-Methods" class="headerlink" title="Dimension Reduction Methods"></a>Dimension Reduction Methods</h2><p>앞서 공부했던 방법들은 몇 변수만 선택하거나, 계수들을 0으로 줄이는 방법과 같은 variance를 줄이기 위함이었다. 차원축소 방법은 변수 자체를 변환하여 분산을 줄이는 방식이다</p>
+<p>기존 p개의 변수들에서 m의 변수들을 이용한 Least Square 를 이용한 적합을 하는것 (M&lt;P)</p>
+<p>이처럼 제약이 있는 상태에서 계수를 정하면 bisa가 생기나, 이로 인해 variance가 눈에 띄게 감소 되므로 결과적으로는 더 좋은 모델들이 만들어지는것이다. </p>
+<h2 id="Principle-Components-Regression"><a href="#Principle-Components-Regression" class="headerlink" title="Principle Components Regression"></a>Principle Components Regression</h2><h3 id="Principal-Components-Analysis-PCA"><a href="#Principal-Components-Analysis-PCA" class="headerlink" title="Principal Components Analysis (PCA)"></a>Principal Components Analysis (PCA)</h3><p>n*p의 크기를 가지고 있는 x를 줄이기 위해 데이터들의 변동(분산)을 가장 잘 나타낼수 있는 first principal component direction을 찾는다 (이 선이 분산의 크기가 가장 크다)</p>
+<p>이 계산 과정에서 데이터 중심에 축을 두고자 centering을 하게 되는데, 이 방식은 분산에 영향을 미치지 않아 결과는 같게 된다. </p>
+<p><img src="/image/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/Untitled.png" alt=""></p>
+<p>물론 분산의 무한함을 방지하기 위해 두 계수의 제곱합은 1과 같다라는 제약을 걸어 두었다</p>
+<p>이렇게 만들어진 Z1 = principal component score라고 불린다.</p>
+<p><img src="/image/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/Untitled%201.png" alt=""></p>
+<p>왼쪽의 초록선은 데이터가 가장 큰 분산을 가짐과 동시에, 모든 n개의 관측값에 가장 가까운 선이기도 하다 (즉 수직 점선들의 거리가 가장 짧게). 파란점은 (pop,ad) 의 평균 값을 의미한다. 오른쪽의 그림은 2차원으로 표현된 왼쪽 그림은 회전시켜서 1st PC의 방향이 x축과 같아지게 만들은것. 이 1st PC의 값은 결국 저 파란점과의 거리를 의미하며, 음수이면 두 평균값보다 낮고, 양수일수록 두 평균값보다 높은것이라고 해석을 할 수 있는것.</p>
+<p>위의 왼쪽 그래프에서 볼 수 있듯, 두 변수는 선형관계를 가지고 있는데, 이를 파악하여 정보를 압축한 1st PC는 각각의 변수에 대해 강력한 선형 관계를 보여준다.</p>
+<p>p개의 변수는 곧 최대 p개의 다른 component를 만들 수 있음을 의미하는데, </p>
+<p>2nd PC의 경우</p>
+<ol>
+<li>1st PC와 uncorrelated</li>
+<li>1st PC가 미처 설명하지 못한 부분</li>
+</ol>
+<p>에 대해 설명 할 수 있는 방향, 즉 1st PC의 제약 하에 가장 분산이 큰 방향으로 linear combination이 결정된다. 위 오른쪽 그림에서 수직선들에 대해 2nd PC가 사용된것이 </p>
+<p><img src="/image/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/Untitled%202.png" alt=""></p>
+<p>왼쪽 그림에서 이와 같이 표현될수 있다. 초록색이 첫번째, 파랑이 두번째 PC</p>
+<p>이 두 PC는 (두 선은) 직교 (90도)를 유지하는데, 이는 두 관계가 zero correlation임을 의미한다. 현재는 변수가 2개여서 2개만 있지만, 더 높은 다차원은 여러 방향의 선으로 분산이 가장 높은 방향의 선을 긋는다.</p>
+<p>저 위의 오른쪽 그림에서 보이듯, 1st 에 비해 2nd의 값의 수치가 훨씬 적다는 것을 확인 가능하다 (1st는 -25 ~ 20, 2nd는 -10~10). 지금은 변수가 두개여서 불가능하지만, 여러 변수가 있는 상황에서 이와 같은 형태는 차원을 축소 할 수 있다는 것을 의미한다 (1st가 대부분의 정보를 포함하니까 굳이 2nd까지 가지고 있을 의미가 없지). 따라서 차원을 축소함에 따라 이전 compnent에 비해 uncorrelate하면서도 variance가 가장 큰 방향으로 component를 결정 가능하다.</p>
+<h3 id="Principal-Components-Regression-Approach-PCR"><a href="#Principal-Components-Regression-Approach-PCR" class="headerlink" title="Principal Components Regression Approach (PCR)"></a>Principal Components Regression Approach (PCR)</h3><p>PCR은 PCA를 통해 만들어진 M개의 예측변수들을 통해 Least Square적합을 하는것.</p>
+<p>“p개의 변수를 가장 큰 variation으로 나타낼수 있는 direction 은 Y와 연관이 있을것이다” 라는 가정하에 이루어지는 분석이므로, 이 가정이 항상 참일수는 없으나 대게의 경우 좋은 적합을 보여준다. 또한 가정이 맞을 경우, 전의 p개의 변수보다 더 적은 m개의 변수를 사용하므로 overfitting을 완화할 수 있다. (n이 p보다 크지 않다면 - 데이터가 변수갯수보다 일정이상 크지 않다면 least square의 변동성이 큰 결과를 내고 overfitting이 커짐을 다시 기억하자)</p>
+<p><img src="/image/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/Untitled%203.png" alt=""></p>
+<p>저번 블로그에서 마지막에 나왔던 데이터에 관한 PCR결과이다. 왼쪽의 경우 45개의 변수중 45개 모두가 유의미한 데이터인 경우, 오른쪽의 경우 2개의 변수만 중요할 때이다. 더 많은 component를 사용할 수록 bias decreases, but variance increases </p>
+<p>45개의 component 사용한 값은 단순히 Leaner Square에 모든 변수들을 사용한 것과 같은 값을 보여준다. 왼쪽의 경우 15개 정도의 component에서 성능 증가를 보인경우에 비해 오른쪽은 훨씬 더 많은 component를 가져야 TEST MSE가 낮아졌다.</p>
+<p>이는 PCR의 가정, 몇몇의 component로 데이터의 분산을 잘 나타낼 수 있고 Y의 관계가 있을것이다, 이 충족될때 큰 성능을 발휘하기 때문이다.</p>
+<p>PCR은 변수 선택법이 아니고, 모든 기존의 p개의 변수가 선형결합으로 포함된 변수이다. 이는 PCR이 Ridge의 continuous version이라고 할 수 있다.</p>
+<p><img src="/image/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/Untitled%204.png" alt=""></p>
+<h3 id="Partial-Least-Squares-PLS"><a href="#Partial-Least-Squares-PLS" class="headerlink" title="Partial Least Squares (PLS)"></a>Partial Least Squares (PLS)</h3><p>앞의 PCA는 unsupervised 방식으로 Y값을 전혀 고려하지 않았다. 이 방식은 PCR의 단점을 곧 의미하는데 (PCA를 이용했으니까 PCR이) 예측 변수들의 관계를 가장 잘 설명하는 방향이, 반응변수 (Y)를 설명하는 예측 변수들의 관계를 가장 잘 설명하는 방향이 아닐수도 있다는것.</p>
+<p>PLS는 이 방식을 보완했는데, 같은 방식이지만 M개의 변수들을 supervised해서 만들어 내는데, 이로 인해 반응변수와 관계된 변수들의 관계를 더 잘 나타낼수 있는것.</p>
+<p><img src="/image/Ch%206%202%20PCR%20PLS%205b81cc2f4cb340ecbb20a81c959ae0d5/Untitled%205.png" alt=""></p>
+<p>PCR과 마찬가지로, PLS역시 변수들을 표준화한 후 계산해야하고, 몇개의 direction을 만들것인지는 cross-validation을 통해 알아본다. 그러나 실제에선 PLS는 supervised라는 점에서 bias는 줄여주지만 그에 상응하여 variance가 높아지기에 PCR이나 Ridge만큼의 성능을 보이지 못하는 경우가 많다.</p>
 
         </div>
         
@@ -237,7 +238,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -287,7 +288,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -299,7 +300,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -311,7 +312,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -404,17 +405,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -475,14 +465,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -549,7 +531,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -664,13 +646,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -725,14 +700,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -799,7 +766,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -914,13 +881,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

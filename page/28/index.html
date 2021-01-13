@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/05/20/MSL/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/local.jpg" alt="Local Regression">
+        <a href="/2020/05/19/MSL/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/pca.jpg" alt="Unsupervised Learning">
         </a>
     </div>
     
@@ -137,7 +137,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-05-20T05:26:00.000Z">May 20, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-05-19T10:36:00.000Z">May 19, 2020</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Machine-Learning/">Machine Learning</a>
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    20 minutes read (About 2939 words)
+                    15 minutes read (About 2316 words)
                 </span>
                 
                 
@@ -156,87 +156,48 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/05/20/MSL/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/">Local Regression</a>
+                <a class="has-link-black-ter" href="/2020/05/19/MSL/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/">Unsupervised Learning</a>
             
         </h1>
         <div class="content">
             <p>Reference:</p>
 <ol>
 <li>An Introduction To Statistical Learning with Applications in R (ISLR Sixth Printing)</li>
-<li><a href="https://godongyoung.github.io/category/ML.html">https://godongyoung.github.io/category/ML.html</a></li>
+<li><a href="https://bkshin.tistory.com/">https://bkshin.tistory.com/</a></li>
 </ol>
-<p>선형 모델: 모델의 단순성으로 해석과 추론이 쉽다는 장점. 하지만 이러한 가정한 현실적인 문제에 대한 예측을 하기에는 터무니 없는 가정.</p>
-<p>따라서 이와 같은 선형가정을 완화시키되, 해석과 추론력을 최대한 잃지 않는선에서 예측력을 증가 시키는 방법들에대해 배워본다.</p>
-<ol>
-<li>Polynomial Regreisson: 다차항을 이용하여 선형 모델을 확장</li>
-<li>Step function: K부분으로 변수를 나누어서 constant를 생성하는 방법</li>
-<li>Regression splines: 위 1,2 방식의 확장으로 K부분으로 나누어 각 부분에 다차항을 적합하는 형식이다. 각 부분은 양 옆의 범주에 대해 매끄럽게 만들어야 한다는 제약이 있지만, 적당한 범주로 나눈다면 유연한 적합이 가능하다</li>
-<li>Smoothing penalty: 위 3번과 비슷하지만 매끄럽게 한다는 제약을 최소화 시키는 방식</li>
-<li>Local Regression: 3,4 번과 비슷하지만, 각 범주가 겹칠수 있다. 이로 인해 유연한 적합이 가능한것</li>
-<li>Generalized additive model: 여러개의 예측 변수들에 적용하는 방법</li>
-</ol>
-<h2 id="Polynomial-Regression"><a href="#Polynomial-Regression" class="headerlink" title="Polynomial Regression"></a>Polynomial Regression</h2><h3 id="예측변수의-전체-구간에-non-linear-형태를-부여하는-방식"><a href="#예측변수의-전체-구간에-non-linear-형태를-부여하는-방식" class="headerlink" title="예측변수의 전체 구간에 non-linear 형태를 부여하는 방식"></a><strong>예측변수의 전체 구간에 non-linear 형태를 부여하는 방식</strong></h3><p>단순하게 각 변수를 다차항의 형식으로 넣어준 방법이다. X2 = X1 ^ 2 과 같은 형식.</p>
-<p>일반적으로 3,4차 이상으로 포함시키지는 않는다.</p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled.png" alt=""></p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%201.png" alt=""></p>
-<p>왼쪽: Least Square 4차 적합. 오른쪽: 왼쪽의 250이상의 고소득자에 대한 Logistic 4차 적합. 점선들은 예측값의 분산을 통해 구한95%의 confidence interval </p>
-<p>예측값의 분산은 다음과 같이 구할 수 있다</p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%202.png" alt=""></p>
-<p>Logistic의 경우 확률을 반환한다는것을 기억하자. 고소득층에 대한 데이터는 79개에 불과하여 신뢰구간이 매우 넓게 나옴을 확인할 수 있다.</p>
-<h2 id="Step-Functions"><a href="#Step-Functions" class="headerlink" title="Step Functions"></a>Step Functions</h2><h3 id="전체-X를-몇개의-구간으로-나누고-일정한-상수를-부여하는-방식"><a href="#전체-X를-몇개의-구간으로-나누고-일정한-상수를-부여하는-방식" class="headerlink" title="전체 X를 몇개의 구간으로 나누고 일정한 상수를 부여하는 방식"></a><strong>전체 X를 몇개의 구간으로 나누고 일정한 상수를 부여하는 방식</strong></h3><p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%203.png" alt=""></p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%204.png" alt=""></p>
-<p>절편인 b0 는 Y값의 평균이고, 나머지 b 들은 각 구간에 속한 데이터의 평균과 b0와의 차이를 의미하게 된다.  C1 ≤ X ≤ C2의 평균값 - b0 = b1. 이러한 각각의 계수들은 마찬가지로 least square로 적합하여 구한다. 각 더미 변수에 대한 (C들은 더미 변수이다) 분산/신뢰구간은 3장 참조</p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%205.png" alt=""></p>
-<p>예측값에 자연적으로 부분을 나눌수 있는 지점이 존재 하지 않는다면, 이 방식은 옳지 못한 방향을 나타낼 수 있는데, 명확하게 증가 추세인 구간을 제대로 구분지어주지 않는다면, 이 증가 추세를 반영하지 못하기 때문이다. 위 그래프에서 나이가 들수록 월급이 올라가는 증가 추세를 반영해주지 못한 상황이다.</p>
-<h1 id="Basis-Functions"><a href="#Basis-Functions" class="headerlink" title="Basis Functions"></a>Basis Functions</h1><p>앞의 두 방식은 Bisis funciton의 특별한 형태라고 볼 수도 있다. </p>
-<p>앞선 두 방식과 다르게, 선형 모델로 X를 적합하지 않고 다음과 같은 모델에 적합한다.</p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%206.png" alt=""></p>
-<p>각 b의 값은 이미 정해져 있으면 알려진 상태임을 명시하자. 이 말인 즉, 우리는 사용할 함수를 미리 선택해 놓는다는 의미이다.</p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%207.png" alt=""></p>
-<h2 id="Regression-Spines"><a href="#Regression-Spines" class="headerlink" title="Regression Spines"></a>Regression Spines</h2><h3 id="Piecewise-Polynomials"><a href="#Piecewise-Polynomials" class="headerlink" title="Piecewise Polynomials"></a>Piecewise Polynomials</h3><p>맨 위 1번 Polynomial regression 처럼 전체 X에 대한 다항적합을 하는 형식이 아닌 몇개의 범주에 대해 비교적 낮은 차수의 적합을 따로따로 하는것을 piecewise polynomial regression 이라 한다. </p>
-<p>계수가 바뀌는 지점을 knots 라고 하는데 (서로 다른 부분을 묶는거니까) 삼차 다항식에 이 knots가 없다면 결국 그건 그냥 보통의 평범한 삼차항이다. 다음은 knots가 한개 존재할때의 3차항이다.</p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%208.png" alt=""></p>
-<p>즉 c를 기준으로 2개의 부분으로 나누어 각각의 부분에 다항적합을 한것이다. 이 모델의 degreef of freedom = 8 이다 (각각 4개씩)</p>
-<p>하지만 이 형식은 중간의 knots 들을 부드럽게 연결하는 제약이 없기때문에 다음과 같은 말도 안되는 모델이 탄생하게 된다 (1번).</p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%209.png" alt=""></p>
-<h3 id="Constraints-and-Splines"><a href="#Constraints-and-Splines" class="headerlink" title="Constraints and Splines"></a>Constraints and Splines</h3><p>1번의 그래프에서 나이가 50일때 갑자기 월급이 폭등하는 것은 말이 안된다. 이에 50부근의 선들을 연결해 준 그래프가 2번이다 (continuous piecewise cubic). 하지만 이 또한 꺽인듯한 부분을 볼 수 있는데 이러한 약한 제약을 (50 부근 이어준것) 가지고는 다른 그래프에서 v자 형태로 나올수 있기에 고쳐주어야 한다. 이 부분을 부드럽게 해주기 위해 1,2차 미분을 해주어야 한다. 즉 50부분에서 continuous + smooth (1차 2차 미분) 라는 세 가지의 제약을 적용한것이 3번 그래프.</p>
-<p>이러한 제약은, 자유도를 하나씩 잃음을 의미한다. 따라서 1번에서는 자유도가 8, 2번에서는 7, 3번에서는 5이다.  보통 cubic spline uses 4 + K df (K = num of knots).</p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2010.png" alt=""></p>
-<h3 id="Splines-Basis-Representation"><a href="#Splines-Basis-Representation" class="headerlink" title="Splines Basis Representation"></a>Splines Basis Representation</h3><p>d차 적합을 하면서 d-1차 까지의 미분을 달성하기 위해서는 basis function 을 올바르게 선택해야 하는데, 이는 trucated power basis funciton 을 이용하면 된다.</p>
-<p>다음은 cubic spline을 cubic regression에서 만드는 방법이다.</p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2011.png" alt=""></p>
-<p>위의 뱀처럼 생긴것이 knot을 의미한다. 위의 식을 각 knot마다 추가하는것이다.</p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2012.png" alt=""></p>
-<p>하지만 위와 같은 방식으로 구할 경우, 양 끝에서의 예측 신뢰구간이 넓어지므로 예측의 정확도가 떨어지는 현상이 나타난다. 원래 모든 모델의 분산은 양 끝에서 커지지만 non-linear 적합을 시도한 이 경우에 (which has more flexibility) 분산이 더 커지게 된다. </p>
-<p>이러한 현상을 고치기 위해 맨 양쪽의 knot 이후에 있는 부분의 경우 선형 적합을 하여서 문제를 완화시키는데 이를 Natural Cubic Spline이라 한다. </p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2013.png" alt=""></p>
-<p>위의 그래프를 보면 수직 점선 (knot) 이후에 빨간 점선이 분산을 적게 가지고 있음을 볼 수 있다. 이러한 양끝쪽에 3차 적합이 아닌 1차 적합을 하기에 자유도를 2씩 잃어서 K+4-(2*2) = K df.를 가지게 된다.</p>
-<h3 id="Num-and-Location-of-the-knots"><a href="#Num-and-Location-of-the-knots" class="headerlink" title="Num and Location of the knots"></a>Num and Location of the knots</h3><p>이제 knot를 어떻게 사용하는지 알았으니 몇개를 어디에 사용해야 하는지를 알아야 한다. </p>
-<p>적정한 df를 설정하고, 이에 따른 균등한 quantile에 knot를 배정하는 형식.</p>
-<p>결국 df (자유도)를 몇으로 설정하지가 문제인데, Cross-validation을 이용하여 CV-error 값이 가장 낮은 자유도의 갯수를 사용한다</p>
-<h3 id="Comparison-to-Polynomial-Regression"><a href="#Comparison-to-Polynomial-Regression" class="headerlink" title="Comparison to Polynomial Regression"></a>Comparison to Polynomial Regression</h3><p>보통 Polynomial Regression의 경우 flexible 하기 위해 차수를 엄청나게 높이고는 하는데, 반대로 regression spline의 경우 차수는 유지하되, knots를 늘리는것으로 유연해진다. 따라서 대부분의 경우 regression spline이 produces more stable estimates. 또한 급변하게 변하는 부분에 대해서 우리가 따로 더 많은 knots를 부여함으로써 (반대로 원만하면 knots 수 줄이고) 유연성을 적절하게 조절 할 수 있기에 더 좋다.</p>
-<p><img src="Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2014.png" alt="Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2014.png"></p>
-<p>위의 polynomial의 경우 15차 항인데, 이로 인해 끝쪽이 매우 요동친다. </p>
-<h2 id="Smoothing-Splines"><a href="#Smoothing-Splines" class="headerlink" title="Smoothing Splines"></a>Smoothing Splines</h2><h3 id="Overview-of-Smoothing-Splines"><a href="#Overview-of-Smoothing-Splines" class="headerlink" title="Overview of Smoothing Splines"></a>Overview of Smoothing Splines</h3><p><strong>Regression과 다르게 Smoothing은 모든 x에 knots를 두기에 갯수나 위치 지정의 문제가 없다!</strong></p>
-<p>결국 우리가 원하는 사항은 RSS를 작게 만들면서, 부드러운 함수를 찾는것.</p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2015.png" alt=""></p>
-<p>위 식의 왼쪽 부분이 RSS이다. 이러한 형태는 Loss (잘 적합) + Penalty (변동이 크지 않게) 식인데, Lassor and Ridge에서 사용되었던 형태와 비슷하다. </p>
-<p>오른쪽의 식은 t부분에서의 변화도를 나타내주는데, 변화도가 음수일 경우도 있으니 제곱을 해준다. 람다 값이 커질수록 더 부드러워질것이다. </p>
-<p>람다가 0이면 모든 데이터를 지나가고, 무한하다면 선형 (굴곡이 없는 직선 - 선형회귀와 같다). 결국 람다 = bias variance trade off 정도를 조정하는 값인것이다. </p>
-<p>이 람다가 3차에서 최소화 될때는 위에서 이야기 했던 2차 미분이 가능한 knot를 가지고 양 끝이 linear 한 natural cubic spline이다. 물론 이와 정확히 같은 값의 식이 나오는게 아니라, 비슷한 형식의 shrink된 함수</p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2016.png" alt=""></p>
-<h3 id="Choosing-lambda"><a href="#Choosing-lambda" class="headerlink" title="Choosing lambda"></a>Choosing lambda</h3><p>In smoothing spline, lambda controls the smoothness. Hence, the effective degrees of freedom changes depending on the value of lambda. 람다가 0에서 무한까지 변할때 effective df는 n에서 2까지 변한다. </p>
-<p>기존의 자유도는 pramater의 갯수로 계수의 수를 뜻했다. 따라서 smoothing spline은 명목상 n개의 자유도를 가지고 있지만, 이들인 이미 shrink 되도록 constrain (제약)을 받고 있기에, 이 제약의 정도에 따라 flexibility가 다르다. 따라서 정확히 어느정도의 자유도를 실질적으로 가지고 있는지를 나타내주는것.</p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2017.png" alt=""></p>
-<p>Regression 과는 다르게 람다를 어느 값으로 할지가 남아있다 (RSS를 최소화 하는). 물론 Cross-validation 을 이용한다. </p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2018.png" alt=""></p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2019.png" alt=""></p>
-<p>임의로 정한 effective df 인 16에 비해 계산으로 나온 6.8 이 거의 유사한 형태를 보여주고 있다. </p>
-<h2 id="Local-Regression"><a href="#Local-Regression" class="headerlink" title="Local Regression"></a>Local Regression</h2><p><strong>각 특정 타겟 포인트 근처의 관측 자료들만을 토대로 적합시켜 flexbile하게 하는 방식</strong></p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2020.png" alt=""></p>
-<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2021.png" alt=""></p>
-<p>위에서 중요한 사항은 얼마나 많은 이웃들을 볼것인지 즉 s를 몇퍼센트로 설정할지이다. s가 작을수록 더 지역적인 (조그만) 부분으로 꾸불한 선이 나올것이다 물론 이 s 또한 cross-validation 을 통해 찾는다. </p>
-<p>Local Regression은 p-차원에서 p가 3이나 4보다 훨씬 클 경우, 굉장히 안좋은데 이는 대체로 트레이닝 데이터가 굉장히 적음을 의미하기 때문이다. Nearest Neighbour Regression의 경우도 같은 단점을 지니고 있다.</p>
+<h2 id="Unsupervised-Learning"><a href="#Unsupervised-Learning" class="headerlink" title="Unsupervised Learning"></a>Unsupervised Learning</h2><h2 id="The-challenge"><a href="#The-challenge" class="headerlink" title="The challenge"></a>The challenge</h2><p>이전 챕터들에서 supervised Learning 에 관해서 여러가지들을 배웠다. 만약 이진 결과값을 데이터로 부터 도출하여 추측하여야 한다면, 로지스틱, LDA, classification Trees 등을 이용하여 값을 도출하고, 이 결과값에 대하여 어떻게 접근해야 할지에 대한 명료한 지식들을 배웠다 (CV, validaton…)</p>
+<p>반면에 unsupervised learning 의 경우 조금더 어려운데 이는 대부분의 실험들이 주관적이고, 분석 (예측)과 같은 간단한 목표를 가지고 있지 않기 때문이다. 대신 unsupervised learning은 exploratory data analysis 에 대한 부분으로 행해진다. 또한 결과값을 도출하는데도 어려움이 있을수 밖에 없는 이유가 이 모델이 맞는지에 대해 테스트 할 수 있는지에 대한 방식이 존재하지 않기 때문이다 (예를 들어 예측하는데에 대해 예측할 값이 존재하지 않는다던가)</p>
+<h3 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h3><p>correlated variables가 많은 데이터를 마주 하였을때 principle component (PC)를 이용하여 더 적은 변수들로 대부분의 variability를 summarize 하여 설명할 수 있게 해준다. 챕터 6에서 이야기 하였듯, PC directions는 본래의 데이터에서 highly varaibla한 방향을 보여줌과 동시에 데이터 클라우드에 대해 가장 가까운 선과 부분 공간을 보여준다.</p>
+<p>PCR을 사용하기 위해서, 우리는 PC를 예측 변수로 사용한다. 이 PC를 이용해 supervised 한 방법이 (PLS)</p>
+<p>PCA는 또한 데이터 비율어화에 대한 도구로써 사용되고 한다 </p>
+<h3 id="Principal-Component란-무엇인가"><a href="#Principal-Component란-무엇인가" class="headerlink" title="Principal Component란 무엇인가"></a>Principal Component란 무엇인가</h3><p>2차원의 scatter plot을 이용하여 데이터간의 관계를 보통 확인하는데 p=10일 경우, 그려지는 그래프만 45개에 달한다. 또한 각각의 그래프 또한 딱히 중요하지는 않을텐데 이는 각각의 그래프가 나타내는것이 총 데이터에서 일부분에 지나지 않기 때문이다. 즉 우리가 2차원의 그래프를 그릴때, 해당 변수가 데이터에 대해 가장 영양가 있는 (informative) 상황이라면 우리는 큰 데이터를 더 낮은 차원의 공간에서 관찰할 수 있게 되는것이다. (즉 데이터에 대해 가장 잘 나타내는 변수만 관찰하면 파악하기 쉬우니까)</p>
+<p>PCA provides a tool to do just this. It finds a low-dimensional representation of a data set that contains as much as possible of the variation. 여러개의 변수중에 흥미로운 변수 (차원들)을 파악하려고 노력하는데 이는 관련 변수의 observations가 각 차원에서 얼마나 vary하는가를 기준으로 한다. </p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled.png" alt=""></p>
+<p>계수로 인한 분산이 무한이 커지는것을 막기위해 합을 1로 제한한다.</p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%201.png" alt=""></p>
+<p>기존의 데이터셋에 공분산 행렬을 생성하고 (괄호 안), 고유의 Vector와 값을 계산 (대괄호). 그런 다음에 고유 값이 큰 순서대로 정렬 후 변환해야할 차원의 수 만큼 고유 값을 정한 뒤. 고유 Vector에 투영하여 차원을 축소한다.</p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%202.png" alt=""></p>
+<p><a href="https://bkshin.tistory.com/entry/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-9-PCA-Principal-Components-Analysis">머신러닝 - 9. 차원 축소와 PCA (Principal Components Analysis)</a></p>
+<p>variance가 maxmized 될때 데이터 클라우드에 가장 가까운 이유가 이 때문. variance가 maxmized 되어야 information loss를 최소화 할 수 있다.</p>
+<p>1st Principal Component (PC1) 은 주어진 변수들 중에서 데이터를 강 잘 설명하는 성분이다. 만약 PC1의 기울기가 0.25라면,  feature 1 increases 4 then feature 2 increases 1 의 선형 결합이 (Linear Combinaito) 해당 데이터를 가장 잘 설명하는 요소라는 의미가 된다.</p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%203.png" alt=""></p>
+<p>위의 그래프에서 PC1은 Rape Assault Murder에 가중치를 더 부여하고, PC2는 UrbanPop에 더 가중치를 주는것을 볼 수 있다. 따라서 UrbanPop은 변수들이 설명하고자 하는 도시화에 대해 roughly corresponding 한다고 볼 수 있다. 전체적으로, 범죄와 관련된 변수들이 서로 가까이 있으며, 인구수는 이들과 동떨어져있다. 이는 범죄와 관련된 변수들은 서로 correlated되어 있음을 의미한다.</p>
+<p>위의 그래프로부터 다음과 같이 해석될 수 있다. 버지니아와 인디애나 같은 주들은 평균치에 가까운 범죄율과 도시화를 가지고 있고, 캘리포니아는 높은 범죄율과 높은 도시율을 가지고 있다고 본다. 이에 비해 하와이는 낮은 범죄율을 가지면서 높은 도시율을 가졌다.</p>
+<h3 id="Another-Interpretation-of-Principal-Components"><a href="#Another-Interpretation-of-Principal-Components" class="headerlink" title="Another Interpretation of Principal Components"></a>Another Interpretation of Principal Components</h3><p>위 섹션에서는 PCA를 이용한 시각화 그래프에 대해 variance 최대화에 초점을 맞추었는데. PC1의 로딩 벡터는 또다른 특별한 특징을 가지고 있다: p 차원의 공간에서 n개의 관측점에 대해 가장 가까운 선이라는것. 이 해석이 말하고자 하는것은 매우 분명한데 이는 “모든 데이터에 대해 가장 가깝게 그려진 일 차원 데이터를 찾는데, 이는 이 선이 모든 데이터에 대해 좋은 요약을 해줄것이기 때문” 물론 반드시 일 차원 데이터를 찾는것은 아니다 (적을수록 좋다는것)</p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%204.png" alt=""></p>
+<p>90개의 샘플에 대하여 왼쪽은 삼차원, 오른쪽은 이차원으로 나타낸것이다. 즉 오른쪽에 대해 한 차원을 더 포함한 (third PC) 상태.</p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%205.png" alt=""></p>
+<h3 id="More-on-PCA"><a href="#More-on-PCA" class="headerlink" title="More on PCA"></a>More on PCA</h3><p>변수들 스케일링 하기.</p>
+<p>위에서 우리는 PCA를 하기전에 변수들의 평균이 0이 되도록 센터링 시켜야 한다고 하였다. 이에 더불어서 우리가 PCA를 통해 도출한 결과값은 변수들이 각각 얼마나 스케일 되었는지에 대하여 dependant 하다. 이는 다른 supervised &amp; unsupervised 와 차이점으로 존재한다 (다른 방법들은 스케일링으로 인한 결과값이 변하지 않는다).  </p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%206.png" alt=""></p>
+<p>왼쪽의 경우 위와 같이 SD의 총합이 1이 되도록 scaling 한 상태. 오른쪽에서 Assault가 PC1에서 가장 큰 로딩을 가지고 있는데 이는 다른 변수들에 비해 가장 높은 분산을 가지고 있기때문이다. 또한 각 변수들의 unit 또한 각기 다르기 때문에 (100명당 하나, 1000명당 하나, 돈의 경우 1000달러 등등) 그냥 기본적으로 SD를 1로 설정하는 방식이 추천된다.</p>
+<p>These four variables have variance 18.97, 87.73, <strong>6945.16</strong>, and 209.5, respectively. Consequently, if we perform PCA on the unscaled variables, then the first principal component loading vector will have a very large loading for Assault , since that variable has by far the highest variance.</p>
+<p><strong>만약, 모든 변수들이 같은 unit으로 측정되었다면, SD를 1로 하지 않는게 좋다.</strong></p>
+<h3 id="Uniqueness-of-the-Principal-Components"><a href="#Uniqueness-of-the-Principal-Components" class="headerlink" title="Uniqueness of the Principal Components"></a>Uniqueness of the Principal Components</h3><p>Each PC loading vector는 고유하다. 이 로딩 벡터의 사인 (플마)는 바뀔지 언정 값 자체는 어느 소프트웨어 패키지에서 실행하던지 같다. 또한 이 사인의 변동또한 의미가 없는것이 결국 방향을 이용하여 분석하기 때문. 따라서 loading vector, and score vector 가 동시에 사인이 바뀌는 이상 최종 결론에는 문제가 없다. (하나만 바뀌고 그러면 안됨)</p>
+<h3 id="Proportion-of-Variance-Explained"><a href="#Proportion-of-Variance-Explained" class="headerlink" title="Proportion of Variance Explained"></a>Proportion of Variance Explained</h3><p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%207.png" alt=""></p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%208.png" alt=""></p>
+<p>위와 같은 방식으로 각각의 PC가 얼마만큼의 분산을 설명하는지에 대하여 알 수 있지만, 어느선에서 얼마정도의 PC가 필요한가? 에 대한 사항은 특별히 정해진게 없다. scree plot (각각의 PC의 분산 설명도 그래프) 을 이용하여 elbow 를 이용하여 정할수도 있긴 하다. 현실적으로, 혹은 실증적으로는, 우리는 첫 몇몇의 PC를 시각화해서 특이한 패턴이 있는지 확인 하는 식으로 결정한다. 당연하게도, 이러한 방식의 접근은 매우 주관적이며 이로 인해 우리는 PCA는 exploratory data analysis를 위한 시각화 도구로 사용하는 이유중 하나다. </p>
+<p>물론 PCA를 supervised에 사용한다면, CV와 같은 방법을 이용하여 score vectors 를 regresisson 튜닝 패러미터로 사용된다면, 몇개의 PC가 사용되어야 하는지 알 수 있다 (왜냐면 이걸 지금 어디에 쓰는지 우리가 분명하게 알고있으니까)</p>
 
         </div>
         
@@ -276,7 +237,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -326,7 +287,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -338,7 +299,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -350,7 +311,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -443,17 +404,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -514,14 +464,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -588,7 +530,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -703,13 +645,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -764,14 +699,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -838,7 +765,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -953,13 +880,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

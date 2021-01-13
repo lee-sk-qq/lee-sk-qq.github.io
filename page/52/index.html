@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/19/MSL/MSL_Linear%20Regression/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/stat2.jpeg" alt="Linear Regression">
+        <a href="/2020/03/15/Parallel/Week%202%204%20Routing/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/routing.jpg" alt="Routing">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-19T02:52:00.000Z">Mar 19, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-03-15T12:26:00.000Z">Mar 15, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Machine-Learning/">Machine Learning</a>
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    10 minutes read (About 1432 words)
+                    3 minutes read (About 456 words)
                 </span>
                 
                 
@@ -156,180 +156,64 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/19/MSL/MSL_Linear%20Regression/">Linear Regression</a>
+                <a class="has-link-black-ter" href="/2020/03/15/Parallel/Week%202%204%20Routing/">Routing</a>
             
         </h1>
         <div class="content">
-            <p>Reference:</p>
-<ol>
-<li>An Introduction To Statistical Learning with Applications in R (ISLR Sixth Printing)</li>
-<li><a href="https://godongyoung.github.io/category/ML.html">https://godongyoung.github.io/category/ML.html</a></li>
-</ol>
-<p><strong>Linear Regerssion is uesful tool for predicting a quantitative response. It is a good jumping-off point for newer approaches.</strong></p>
-<h3 id="SLR"><a href="#SLR" class="headerlink" title="SLR"></a>SLR</h3><ul>
-<li>It assumes there is a approximately a linear relationship between X and Y.</li>
-<li>hat denote the estimated value for an unknown parameter or coefficient or to denote the predicted value of the response.</li>
+            <p>Reference : Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</p>
+<h1 id="Routing-and-Communication-Costs"><a href="#Routing-and-Communication-Costs" class="headerlink" title="Routing and Communication Costs"></a>Routing and Communication Costs</h1><h2 id="Routing-Mechanism-path-msg-takes"><a href="#Routing-Mechanism-path-msg-takes" class="headerlink" title="Routing Mechanism - path msg takes"></a>Routing Mechanism - path msg takes</h2><ul>
+<li>minimal: shortest path, Non-minimal: not shortest, for avoid network congestion.</li>
+<li>Deterministic Routing: Unique path determined solely on the source and destination processor - ignore the state of the network.</li>
+<li>Adaptive Routing : use information on the state of the network.</li>
 </ul>
-<h3 id="Estimating-the-Coefficients"><a href="#Estimating-the-Coefficients" class="headerlink" title="Estimating the Coefficients"></a>Estimating the Coefficients</h3><ul>
-<li>Wants to find parameter and coefficient as close as possible → use Least Squares</li>
+<h2 id="Review-of-SF-and-CT"><a href="#Review-of-SF-and-CT" class="headerlink" title="Review of SF and CT"></a>Review of SF and CT</h2><h3 id="Store-and-Forward-SF"><a href="#Store-and-Forward-SF" class="headerlink" title="Store and Forward (SF)"></a>Store and Forward (SF)</h3><ul>
+<li>Common on early parallel</li>
+<li>Forwards msg after the entire msg has been received and stored.</li>
+<li>t_h is substantially less.</li>
 </ul>
-<p><img src="/image/Ch%203%20Linear%20Regression/Untitled.png" alt=""></p>
-<h3 id="Assessing-the-accruacy-od-the-Coeff-Ests"><a href="#Assessing-the-accruacy-od-the-Coeff-Ests" class="headerlink" title="Assessing the accruacy od the Coeff Ests."></a>Assessing the accruacy od the Coeff Ests.</h3><p>Population Regression Line: Generally not known.</p>
+<p>$$t_c = t_s + (m * t_w + t_h) * l \approx t_s * mt_w * l$$</p>
+<h3 id="Cut-Through-Routing"><a href="#Cut-Through-Routing" class="headerlink" title="Cut-Through Routing"></a>Cut-Through Routing</h3><ul>
+<li>msg is sent in fixed-length  segments called flow-control digits or flits</li>
+<li>Wormhole routing pipelines the flits through the network.</li>
+<li>Uses less memory at the intermediate processor</li>
+<li>msg header = l * t_h to arrive.</li>
+</ul>
+<p>$$t_c = t_s + l * t_h * tw$$</p>
 <ul>
-<li>best linear approximation to the true relationship between X and Y.</li>
-<li>Each regression line may differ from this as the models are based on a separate random set of observations.</li>
+<li>cost is O(m+l) while O(m*l) for SF.</li>
 </ul>
-<p>The purpose of using least square is to estimate caharacteristics of a large population. </p>
-<p>If we estimate certain parameter based on a particular data set, it may overestimate or underestimate. However, observing huge amount of data and average will give us the exact value of it. Hence, treat the estimates as unbiased (such as hat values).</p>
-<p><img src="/image/Ch%203%20Linear%20Regression/Untitled%201.png" alt=""></p>
-<p>Stadarad Errors </p>
-<ul>
-<li>tells us the average amount that this estimate hat(mean) differs from the actual value of mean.</li>
-<li>can be used to conduct the confidence interval.</li>
-<li>can be used to perform hypothesis tests on the coeff.<ul>
-<li>t = hat(b1) - 0 / SE(hat b1)</li>
-<li>if SE(hat b1) is small, it means the strong enough to reject null hypothesis</li>
-<li>t  measures the num of SD that hat(b1) is away from 0.</li>
-<li>if no relationship, will have t-distrib with n-2 degrees of freedom.</li>
+<h2 id="One-To-All-Broadcast-OTAB-All-To-One-Reduction-ATOR"><a href="#One-To-All-Broadcast-OTAB-All-To-One-Reduction-ATOR" class="headerlink" title="One-To-All Broadcast (OTAB) All-To-One Reduction (ATOR)"></a>One-To-All Broadcast (OTAB) All-To-One Reduction (ATOR)</h2><h3 id="Ring-or-Linear-Array"><a href="#Ring-or-Linear-Array" class="headerlink" title="Ring or Linear Array"></a>Ring or Linear Array</h3><p>Recursive Doubling = 한곳으로 보내고 2명 2명이 2명에게 4명 4명이 4명에게….</p>
+<p>Hence msg cab be broadcast in lg(p)</p>
+<p>The destination node to each step to be sent must be carefully chosen to utilise the resources (avoid congestion on the network).</p>
+<p>Reduction can be performed by reversing the direction and the sequence of communication —&gt; will lead to the beginning node 0.</p>
+<h3 id="Mesh"><a href="#Mesh" class="headerlink" title="Mesh"></a>Mesh</h3><ul>
+<li>Can regard each row and col of a square mesh of p nodes as a linear array or sqrt(p) nodes.</li>
+<li>Perform like linear array on rows first, and do the same thing on the cols.</li>
+<li>Hence 16 nodes (4*4) will be sqrt(16) = 4 phases in one-to-all broadcast. In 3D —&gt; p^(1/3)</li>
+<li>Reduction = same as linear array.</li>
 </ul>
-</li>
+<h3 id="HyperCube"><a href="#HyperCube" class="headerlink" title="HyperCube"></a>HyperCube</h3><ul>
+<li>2^d hypercube = d-dimension mesh with two nodes in each d.</li>
+<li>Steps: d steps. 8 nodes (2<em>2</em>2) —&gt; 3 steps.</li>
+<li>The dimension is identified by the MSB, while the order of visiting dimension does not affect the communication —&gt; Means no congestion.</li>
 </ul>
-<p>p-value: indicates the unlikeness to observe the association between predictor and the response. Therefore, small p implies the associtaion.</p>
-<h3 id="The-accuracy-of-the-model"><a href="#The-accuracy-of-the-model" class="headerlink" title="The accuracy of the model"></a>The accuracy of the model</h3><p>After we performs the hypothesis tests, want to quantify the extent to which the model fits the data by using: residual SE, and R^2 statistic.</p>
-<ol>
-<li><p>Residual Standard Error (RSE): </p>
-<p> <img src="/image/Ch%203%20Linear%20Regression/Untitled%202.png" alt=""></p>
-<ul>
-<li>is an estimate of the standard deviation of error.</li>
-<li>is the average amount that the response will deviate from the true regression line.</li>
-<li>measure of lack of fit —&gt; Small RES : well fit of data.</li>
+<h3 id="Balanced-Binary-Tree"><a href="#Balanced-Binary-Tree" class="headerlink" title="Balanced Binary Tree"></a>Balanced Binary Tree</h3><ul>
+<li>Hypercube OTA broadcast maps naturally onto it.</li>
 </ul>
-</li>
-<li><p>R squared: takes the form of proportion.</p>
-<p> <img src="/image/Ch%203%20Linear%20Regression/Untitled%203.png" alt=""></p>
-<ul>
-<li>TSS measures the total variance in the Y and can be thought of as the amount of variability inherent in the response before the regression is performed.</li>
-<li>RSS measures the amount of variability that is left unexplained after performing the regression.</li>
-<li>Therefore TSS-RSS : var explained after the regression.</li>
-<li>Hence, R-squared measures the proportion of var in Y that can be explained using X.</li>
-<li>R-squared  = correlation.</li>
+<h2 id="All-to-All-Broadcast-ATAB-and-Reduction-ATAR"><a href="#All-to-All-Broadcast-ATAB-and-Reduction-ATAR" class="headerlink" title="All-to-All Broadcast (ATAB) and Reduction (ATAR)"></a>All-to-All Broadcast (ATAB) and Reduction (ATAR)</h2><ul>
+<li>Used in matrix operations.</li>
+<li>can be performed by p * OTAB or can be concatenated into one large message while traversing the network.</li>
 </ul>
-</li>
-</ol>
-<h3 id="MLR"><a href="#MLR" class="headerlink" title="MLR"></a>MLR</h3><h3 id="Important-Qs"><a href="#Important-Qs" class="headerlink" title="Important Qs"></a>Important Qs</h3><ol>
-<li>Is at least one of the predictors useful?</li>
-<li>Do all the predictors help to explain Y, or is only a subset of the predictors useful?</li>
-<li>How well does the model fit the data?</li>
-<li>Given a set of predictor values, what response value should we predict, and how accurate is our prediction? </li>
-</ol>
-<h2 id="Relationship-between-Y-and-Xs"><a href="#Relationship-between-Y-and-Xs" class="headerlink" title="Relationship between Y and Xs"></a>Relationship between Y and Xs</h2><p><img src="/image/Ch%203%20Linear%20Regression/Untitled%204.png" alt=""></p>
-<p><img src="/image/Ch%203%20Linear%20Regression/Untitled%205.png" alt=""></p>
-<p>When n is large, F close to 1 might still provide evidence against null hypo.</p>
-<p>Given these individual p-values for each variable, why do we need to look<br>at the overall F-statistic? After all, it seems likely that if any one of the<br>p-values for the individual variables is very small, then at least one of the<br>predictors is related to the response. However, this logic is flawed, especially<br>when the number of predictors p is large.</p>
-<p>Hence, if H_0 is true, there is only a 5 % chance that the F-statistic will result in a p-value below 0.05, regardless of the number of predictors or the number of observations.</p>
-<h2 id="Decide-on-important-variables"><a href="#Decide-on-important-variables" class="headerlink" title="Decide on important variables"></a>Decide on important variables</h2><p>Variable Selection: AIC and BIC and Adjusted R-squared.</p>
-<ul>
-<li>Forward Selection: Start from Null. Fit p SLR and add to null model the variable that results in the lowest RSS.</li>
-<li>Backward Selection: Start from all. Remove the variable with the largest p-value (the least significant).</li>
-<li>Mixed Selection: p-values can become larger as more predictors. Hence. at some point conduct backward selection.</li>
+<h3 id="Linear-Array-and-Ring"><a href="#Linear-Array-and-Ring" class="headerlink" title="Linear Array and Ring"></a>Linear Array and Ring</h3><ul>
+<li>Each node = initial node. Use one way and pass it to the neighbour. First send urs then start to send the latest msg u got from the neighbour. Hence takes p-1 steps (need to receive 7 info in 8 nodes)</li>
 </ul>
-<h3 id="Model-Fit"><a href="#Model-Fit" class="headerlink" title="Model Fit"></a>Model Fit</h3><p>RSE and R-squared : the fraction of variance explained. </p>
-<ol>
-<li>R-squared<ul>
-<li>In MLR, = Cor (y,hat(y))^2</li>
-<li>In SLR, = Cor(y,x)</li>
-<li>Will always increase with more variables - as it increase the accuracy of the model by adding more training data.</li>
-<li>If the variable significant, it will bring substantial increase in the R-sq.</li>
+<h3 id="Mesh-1"><a href="#Mesh-1" class="headerlink" title="Mesh"></a>Mesh</h3><ul>
+<li>Same as linear. Perform linear ATAB for rows and do cols.</li>
 </ul>
-</li>
-<li>RSE<ul>
-<li>more variables can have higher RSE if RSS is small relative to the increase in p</li>
+<h3 id="Hypercube"><a href="#Hypercube" class="headerlink" title="Hypercube"></a>Hypercube</h3><ul>
+<li>hypercube = extension of mesh to log(p) dimensions. takes log (p) steps.</li>
 </ul>
-</li>
-</ol>
-<h3 id="Predictions"><a href="#Predictions" class="headerlink" title="Predictions"></a>Predictions</h3><p>Uncertainty associated with prediction:</p>
-<ol>
-<li>The inaccuracy in the coeff est. is related to the reducible error. Use confidence interval to determine the closness to true population regression plane.</li>
-<li>Model Bias: potential reducible error that may come from the model. But we ignore and operate as if the model is correct.</li>
-<li>Even if knows the TPRP, irreducible error makes impossible to accurately estimate the response value. Hence use prediction interval. It is always wider than CI as it both covers the irreducible and reducible.</li>
-</ol>
-<p>Use CI for Y over a large num of cities. While use PI for Y over a particular city.</p>
-<hr>
-<p>The coefficients and their p-values do depend on the choice of dummy variable coding —&gt; use F-test.</p>
-<h3 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h3><p>Important assumptions betwenn predictor and response are</p>
-<ol>
-<li>Additive Assumption: the effect of changes in a predictor on the Y is independent of the values of the other predictors<ul>
-<li>Synergy Effect = Interaction Effect : spend newspaper and TV half can be better than putting all money in one place.</li>
-<li>Use interaction term —&gt; if X1X2 term has low p-val, then it means X1 and X2 (the main effects) are not additive each other (share the effect)</li>
-<li><strong>if we include an interaction in a model, we should also include the main effects, even if the p-val associated with their coeff are not significant.</strong></li>
-</ul>
-</li>
-<li>Linear Relationship: using polynomid regression to accommodate non-linear relationship which still allows to use linear system.<ul>
-<li>Include polynomial functions of the prdecitors in the model to improve the fit</li>
-<li>Unnecessary predictor makes the model wiggely, which casts doubt whether that additional variable makes the model more accurate.</li>
-</ul>
-</li>
-</ol>
-<h3 id="Potential-Problem"><a href="#Potential-Problem" class="headerlink" title="Potential Problem"></a>Potential Problem</h3><ol>
-<li><p>Non-linearity of the response-predictor relationships</p>
-<ul>
-<li>Residual Plot - tool to identify non-linearity. Due to multiple predictors, plot residuals vs predicted (or fitted) y.</li>
-<li>The presence of a pattern —&gt; some aspect of the linear model.</li>
-<li>If non-linear association, use non-linear transformations of the predictors such as log X, sqrt(X), and X^2</li>
-</ul>
-</li>
-<li><p>Correlation of error terms</p>
-<ul>
-<li>If correlation exists, estimated SE will tend to underestimate the true SE. Hence, PI gets narrower, p-val is lower which could cause errorneously conclude that a parameter is statistically significant.</li>
-<li>In short, lead unwarranted sense of CI in the model.</li>
-<li>Time series data: Residual plot, if error terms are positively correlated, tracking in the residuals - adjacent resi may have similar valuse.</li>
-</ul>
-</li>
-<li><p>Non-constant variance of error terms</p>
-<ul>
-<li><p>SD, CI, Hypothesis test rely upon this</p>
-</li>
-<li><p>heteroscedasticity: funnel shape in the residual plot.</p>
-</li>
-<li><p>Solution: transform results in a greater amount of shrinkage of the larger responses, leading to a reduction in heteroscedasticity.</p>
-<p><img src="/image/Ch%203%20Linear%20Regression/Untitled%206.png" alt=""></p>
-</li>
-</ul>
-</li>
-<li><p>Outliers</p>
-<ul>
-<li>Usually has no effect on the least square fit. But has significant effect on RSE which is used for CI and p-values —&gt; important for the interpretation of the fit. + R-sq declines as well.</li>
-<li>Use studentized residuals: each residual / ESE. ≥ 3 is outlier</li>
-<li>It may imply missing predictor, so be aware.</li>
-</ul>
-</li>
-<li><p>High-leverage points</p>
-<ul>
-<li><p>Removing high leverage has more substantial impact on the least squares line than removing an outlier.</p>
-</li>
-<li><p>It may invalidate the entire fit —&gt; better remove it.</p>
-</li>
-<li><p>Leverage Stat: ≥ (p+1)/n —&gt; suspect</p>
-<p><img src="/image/Ch%203%20Linear%20Regression/Untitled%207.png" alt=""></p>
-</li>
-</ul>
-</li>
-<li><p>Collinearity</p>
-<ul>
-<li><p>predictors are closely related. Use Contour plot of RSS for visual.</p>
-</li>
-<li><p>Small change in the data could cause the pair of coeff values that yield the smallest RSS, the smallest LSE, to move anywhere along the valley. It is a great deal of uncertainty in the coeff est.</p>
-</li>
-<li><p>It reduces the accuracy of the esitimates of the regression coefficients, hence, increases the SE of hat(predictor).</p>
-</li>
-<li><p>It reduces the t-stat hence affect the hypothesis test weak (the probability of detecting a non-zero coeff).</p>
-</li>
-<li><p>Use Variance inflation factor (VIF): value of 1 indicates the absence of collinearity. Exceeds 5 or 10 —&gt; problematic amount of collinearity.</p>
-<p><img src="/image/Ch%203%20Linear%20Regression/Untitled%208.png" alt=""></p>
-</li>
-</ul>
-</li>
-</ol>
+<p><img src="/image/Week%202%204%20Routing/Untitled.png" alt=""></p>
 
         </div>
         
@@ -369,7 +253,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -419,7 +303,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -431,7 +315,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -443,7 +327,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -536,17 +420,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -607,14 +480,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -681,7 +546,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -796,13 +661,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -857,14 +715,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -931,7 +781,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -1046,13 +896,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

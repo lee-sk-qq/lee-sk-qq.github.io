@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/07/03/CPP/CPP%201.1/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/cpp.png" alt="CPP - 1.1">
+        <a href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 10">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-07-03T11:47:00.000Z">Jul 03, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-06-22T10:31:00.000Z">Jun 22, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 479 words)
+                    5 minutes read (About 686 words)
                 </span>
                 
                 
@@ -156,39 +156,66 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/07/03/CPP/CPP%201.1/">CPP - 1.1</a>
+                <a class="has-link-black-ter" href="/2020/06/22/Network/Lab%2010%201c6b99b66e024efa94f783010dbce271/">Network - Lab 10</a>
             
         </h1>
         <div class="content">
-            <h2 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h2><p>Build goes through three steps:</p>
-<ol>
-<li>Preprocess : deals with source code meta data</li>
-<li>compile: turns source code into machine readable object files</li>
-<li>Link: Links objects into application</li>
-</ol>
-<p>:: → scope resolution operator</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Can use namepsace for a particular function</span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C++17 introduced new nested namespace syntax</span></span><br><span class="line"><span class="keyword">namespace</span> a::b::c::&#123;&#125;</span><br><span class="line"><span class="keyword">namespace</span> total = a::b::c; <span class="comment">// Namespace alias</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// literals can be divided into `</span></span><br><span class="line"><span class="keyword">int</span> bigNum = <span class="number">23</span>`<span class="number">456</span>`<span class="number">789</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C++ has type casting --&gt; Recommend to use the third one</span></span><br><span class="line"><span class="comment">// Type cast may result a coercion (lose decimals from float to int).</span></span><br><span class="line"><span class="keyword">float</span> myFloat = <span class="number">3.14f</span>;</span><br><span class="line"><span class="keyword">int</span> i1 = (<span class="keyword">int</span>) myFloat;</span><br><span class="line"><span class="keyword">int</span> i2 = <span class="keyword">int</span> (myFloat);</span><br><span class="line"><span class="keyword">int</span> i3 = <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(myFloat);</span><br><span class="line"><span class="comment">// Static cast is not necessary when casting into a broader type eg: short -&gt; long</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Strong type - type safe</span></span><br><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">PieceType</span>&#123;</span>king = <span class="number">1</span>&#125;;</span><br><span class="line">PieceType piece = PieceType::king; <span class="comment">// scope is necessary</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// C++17 has [[fallthrough]] in switch statement</span></span><br><span class="line"><span class="keyword">switch</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">	<span class="keyword">case</span> A:</span><br><span class="line">			[[fallthrough]]; </span><br><span class="line">	<span class="keyword">case</span> B:</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// function prototype = function header -&gt; where declare the function</span></span><br><span class="line"><span class="comment">// Function signature: function name and its variables</span></span><br><span class="line"><span class="comment">// C++14 has auto return type -&gt; compiler takes care of it</span></span><br><span class="line"><span class="comment">// auto function should have the same return types always</span></span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">addNumbers</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span></span>;</span><br><span class="line"><span class="comment">// __func__ in a function prints the function name</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p>In CPP, it is better to use std::array as it can…</p>
+            <p>Q: In the 7 layer model, what are some security ‘opportunities’ at each layer?</p>
+<p>A:</p>
 <ul>
-<li>Know the accurate size</li>
-<li>Can prevent certain bugs due to non-dynamic casting into a pointer</li>
-<li>Easy to write an iterator.</li>
+<li>Physical: Tapping (도청)</li>
+<li>Link: break in and listen/interfere 와이파이, 이더넷</li>
+<li>Network: break in and listen/interfere 라우터, 게이트웨이, 모뎀, 방화벽</li>
+<li>Transport: see/modify 어플리케이션 대화</li>
+<li>Applications: for access to content or to interfere</li>
 </ul>
-<p>The array size must be defined during compile step, hence size cannot be re-sized.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C style array</span></span><br><span class="line"><span class="keyword">int</span> myArray[<span class="number">3</span>] = &#123;&#125;; <span class="comment">// Initialize as 0</span></span><br><span class="line"><span class="keyword">int</span> myArray[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;; <span class="comment">// Compiler sets array size as 4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// C++17 array size</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> arraySize = <span class="built_in">std</span>::size(myArray); <span class="comment">// &lt;array&gt;</span></span><br><span class="line"><span class="comment">// Non C++17 array size</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> arraySize = <span class="keyword">sizeof</span>(myArray) / <span class="keyword">sizeof</span>(myArray[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Array</span></span><br><span class="line"><span class="built_in">array</span>&lt;<span class="keyword">int</span>, 3&gt; arr = &#123;<span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>&#125;;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"Array Size"</span> &lt;&lt; arr.size() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"2nd element"</span> &lt;&lt; arr[<span class="number">1</span>] &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><p>CPP library that provides “UNFIXED” size-container —&gt; Dynamic Allocation</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Int vector</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; myVector = &#123;<span class="number">1</span>,<span class="number">2</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Push_back to add elements in a vector</span></span><br><span class="line">myVector.push_back(<span class="number">33</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Access to an element</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"1st elemest"</span> &lt;&lt; myVector[<span class="number">0</span>] &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-
-<p>Vector is a generic container —&gt; can put all kinds of types init. </p>
-<h2 id="Structured-Binding"><a href="#Structured-Binding" class="headerlink" title="Structured Binding"></a>Structured Binding</h2><ul>
-<li>Can initialize into different types when declare multiple variables</li>
+<hr>
+<p>Q: The idea behind encryption is mainly seen as providing confidentiality. Why do we have both SSL/TLS and IPSec, if they do pretty much the same thing?</p>
+<p>A:</p>
+<ul>
+<li>SSL/TLS 와 IPSec 은 서로 다른 계층에서 실행된다 (트랜스포트, 네트워크) 따라서 다른 특징을 지님</li>
+<li>TLS는 어플리케이션의 기밀성을 책임지지만, 여전히 출발지, 목적지, 포트 등의 정보를 드러낸다</li>
+<li>IPSec 의 경우 본래 패킷에 대한 모든것을 숨기며, 터널을 제공함으로써 src / dest 에 대한 정보를 숨김<ul>
+<li>또한 IPSec의 경우 어플리케이션 계층을 커버하는 반면, TLS는 오직 어플리케이션만을 책임짐</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// array</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="keyword">int</span>,3&gt; values = &#123;<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Structured Binding</span></span><br><span class="line"><span class="keyword">auto</span> [x,y,z] = values;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> &#123;</span><span class="keyword">double</span> mX, mY, mZ;&#125;;</span><br><span class="line">Point point;</span><br><span class="line">point.mX = <span class="number">1.0</span>; point.mY = <span class="number">2.0</span>, point.mZ = <span class="number">3.0</span>;</span><br><span class="line"><span class="keyword">auto</span> [x,y,z] = point;</span><br><span class="line"></span><br><span class="line"><span class="comment">// If the data is public-declared and non-static, </span></span><br><span class="line"><span class="comment">// it can be used as in structured binding.</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p>Q: What does it mean to have ‘confidentiality’, ‘authenticity’ and ‘integrity’ of packets traversing the network? What about ‘freshness’?</p>
+<p>A:</p>
+<ul>
+<li>Confidentiality: 아무도 듣지 못함</li>
+<li>Authentication: 상대방이 주장하는 신원이 확실하다고 믿음  (즉 본인확인)</li>
+<li>Integrity: 패킷이 중간에 변질되지 않았음</li>
+<li>Freshness: 패킷이 새로운것이며, 재사용되지 않음</li>
+</ul>
+<hr>
+<p>Q: Why does TOR (onion routing) use 3 routers for passing traffic through?</p>
+<p>A: 아무도 한번에 어디서 어디로 향하는지 알게 하지 못하게 src &amp; dest. 이로 인해 그 누구도 양 종단에 대한 정보를 알지 못함. </p>
+<ul>
+<li>Guard: Knows src</li>
+<li>Middle: Knows nothing</li>
+<li>Exit: Knows dest</li>
+</ul>
+<hr>
+<p>Q: Why would a worker on the road use a ‘mixed-mode’ VPN connection to their office? What’s the benefit, compared to say a ‘transport-mode’ VPN?</p>
+<p>A:</p>
+<ul>
+<li>Mixed-mode 란 호스트와 라우터 같이 다른 기기가 연결된 모드를 말한다</li>
+<li>이로 인해 이 호스트는 라우터에 속한 다른 기기들에게 마치 같은 LAN에 속한 기기처럼 보여질것</li>
+<li>Transport Mode 는 호스트와 호스트를 직접적으로 바로 연결한다.</li>
+<li>차이점은, 만약 해당 대화가 (communication) 이 point to point 형식이라면 Transport 모드를, 여러명과 대화해야 한다면 mixed-mode 가 더 적절하다.</li>
+</ul>
+<hr>
+<p>Q: How does ingress filtering prevent (most) spoofing?</p>
+<p>A:</p>
+<ul>
+<li>라우터의 경우 해당 패킷이 어디서 온건지 알 수 있다.</li>
+<li>예를 들어, 어느 패킷이 항상 어느 네트워크에서 오는지 알고 있다면, 다른 곳에서 오는 (특이하게도) 패킷의 경우 필터링이 가능한것.</li>
+<li>이전과 다르게 다른 네트워크에서 온 패킷을 마치 spoofing 처럼 고려해서 그냥 드롭해버림.</li>
+</ul>
+<hr>
 
-<h2 id="Loop"><a href="#Loop" class="headerlink" title="Loop"></a>Loop</h2><p>Skipped While, do-while, for loops due to its similarity to C</p>
-<h3 id="Range-based-for"><a href="#Range-based-for" class="headerlink" title="Range-based for"></a>Range-based for</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">array</span> &lt;<span class="keyword">int</span>, 4&gt; arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i : arr)&#123; <span class="comment">// for element i in arr</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// &lt;Initializer_list&gt;</span></span><br><span class="line"><span class="comment">// Easy to make a function that takes multiple inputs -&gt; class template</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;initializer_list&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">makeSum</span> <span class="params">(<span class="built_in">initializer_list</span> &lt;<span class="keyword">int</span>&gt; lst)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> total = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> value : lst)&#123;</span><br><span class="line">		total += value;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> total;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a = makeSum (&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;);</span><br><span class="line"><span class="comment">// initializer_list is type-safe --&gt; compiler error for diff type inputs</span></span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -227,7 +254,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -277,7 +304,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -289,7 +316,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -301,7 +328,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -394,17 +421,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -465,14 +481,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -539,7 +547,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -654,13 +662,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -715,14 +716,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -789,7 +782,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -904,13 +897,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

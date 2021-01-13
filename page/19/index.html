@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/06/20/Network/Monitoring%20and%20SNMP%20cfdc2c9571204c9cb9efd4b1b62e92c3/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/monitoring.jpg" alt="Monitoring/SNMP">
+        <a href="/2020/06/08/MSL/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/unsu.jpg" alt="Unsupervised Learning Clustering">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-06-20T00:27:00.000Z">Jun 20, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-06-08T03:53:00.000Z">Jun 08, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                <a class="has-link-grey -link" href="/categories/Machine-Learning/">Machine Learning</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    16 minutes read (About 2348 words)
+                    14 minutes read (About 2094 words)
                 </span>
                 
                 
@@ -156,199 +156,65 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/06/20/Network/Monitoring%20and%20SNMP%20cfdc2c9571204c9cb9efd4b1b62e92c3/">Monitoring/SNMP</a>
+                <a class="has-link-black-ter" href="/2020/06/08/MSL/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/">Unsupervised Learning Clustering</a>
             
         </h1>
         <div class="content">
-            <h1 id="Monitoring"><a href="#Monitoring" class="headerlink" title="Monitoring"></a>Monitoring</h1><h3 id="Network-Feedback"><a href="#Network-Feedback" class="headerlink" title="Network Feedback"></a>Network Feedback</h3><ul>
-<li>ECN (Explicit Congestion Notification): Router set up ECN flag</li>
-<li>ICMP (Internet Control Management Protocols):  ping/traceroute 등으로 사용</li>
-<li>TCP ACK: sequence number 로 알아차리는거</li>
-</ul>
-<p><a href="https://m.blog.naver.com/koromoon/120183340921">SNMP</a></p>
-<h3 id="Simple-Network-Management-Protocol-SNMP"><a href="#Simple-Network-Management-Protocol-SNMP" class="headerlink" title="Simple Network Management Protocol (SNMP)"></a>Simple Network Management Protocol (SNMP)</h3><p>We want to….</p>
-<ul>
-<li>Reach everywhere: 모든 타입, 종료의 기기들 (스위치, 라우터, ap, IoT 등등)</li>
-<li>Lightweight: 기기의 성능에 영향 가지 않도록 (no interference on device)<ul>
-<li>No rates, no calculation, no history</li>
-<li>No absolute clock: 정해진 클록이 존재하지 않음 (즉 다양한 클록 스피드로 통화가능)</li>
-<li>단지 Counters/gauage, Time since start-up, strings/identifiers 만 존재</li>
-<li>시간은 1/100 sec 단위이다</li>
-<li>command/control 은 변수 셋팅을 통해 이루어진다</li>
-</ul>
-</li>
-<li>Operate when under stress: 부하가 걸린 상태에서도 작동 가능하게<ul>
-<li>뭐가 문제인지 알아내고 고칠수 있도록 도움을 주기위해서</li>
-</ul>
-</li>
-<li>Scale to large num of device: 글로벌 네이밍, delegated, 제조사-독립적, 추가적<ul>
-<li>즉 누가 만들고 이런거를 떠나서 다양하게 많은 수의 기기들을 포함할수 있도록</li>
-</ul>
-</li>
-<li>Provide both queries/response and command/control: 질문/답변, 명령/조종 모두 가능하게</li>
-<li>security and upgrade later</li>
-</ul>
-<p>말 그대로 간단한 네트워크 조절 프로토콜로, 네트워크에 수많이 존재하는 모든 기기들 (무슨 타입 종류건 상관없이) 에 대해 문제가 생기면 고칠수 있고, 해당 기기와 교류 할 수 있는 (질문답변…) 것을 제공하는 것.</p>
-<p>이는 곧 해당 네트워크 기기에 문제가 생기면 경로를 탐색할 필요 없이 걔만 고치면됨.</p>
-<p>따라서 부담을 줄이기 위해 UDP 161 (서버), 162 (에이전트) 포트를 사용한다. </p>
-<p>여기서 에이전트는 (서버) 클라이언트는 (매니저) 이다. </p>
-<h3 id="SNMP"><a href="#SNMP" class="headerlink" title="SNMP"></a>SNMP</h3><ul>
-<li>어플리케이션 프레임워크</li>
-<li>네트워크 리소스의 관리 및 모니터링 담당</li>
-<li>SNMP 구성요소로는 다음과 같다<ul>
-<li>SNMP agents: 각 기기에 존재하는 소프트웨어<ul>
-<li>설정및 데이터베이스 상태 관리</li>
-<li>Proxies: 혹은 non-SNMP (IoT 등등 얘를 거쳐야만 그 기기랑 대화 가능) 기기와 대화 가능한 프록시 역할해주는 agent<ul>
-<li>Proxy agent 와 Proxied Agent가 존재한다.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>SNMP managers: agent와 대화하는 어플리케이션<ul>
-<li>해당 에이전트의 데이터베이스를 쿼리 혹은 수정하는 역할</li>
-<li>또한 네트워크 장치의 이벤트를 인식함 (에이전트가 전송함)</li>
-<li>Network management system 의 일부이다</li>
-</ul>
-</li>
-<li>Management Information Bases (MIB)<ul>
-<li>다양한 데이터 베이스 구조가 존재함</li>
-<li>Structure of management Information (SMI) 는 MIB에 존재하는 관련된 오브젝트를 정의함</li>
-<li>즉 관리 장치에 대한 정보가 집합되어 있는 데이터베이스</li>
-</ul>
-</li>
-<li>SNMP protocol<ul>
-<li>여러 버전 존재함 1, 2, 3</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="SNMP-Messages"><a href="#SNMP-Messages" class="headerlink" title="SNMP Messages"></a>SNMP Messages</h3><ul>
-<li>SNMP/UDP is connectionless<ul>
-<li>request ID 를 이용하여 세션을 유지한다</li>
-</ul>
-</li>
-<li>SNMP messages use “protocol data units” - PDUs<ul>
-<li>다양한 버전의 SNMP는 같은 PDU를 다른 메세지로 사용한다 (그래서 지금 문제되고 있음)</li>
-<li>또한 각 다양한 메세지 form은 이 PDU의 전체 맥락에서 조금씩 바꿔서 사용하는것</li>
-</ul>
-</li>
-</ul>
-<p><img src="/image/Monitoring%20and%20SNMP%20cfdc2c9571204c9cb9efd4b1b62e92c3/Untitled.png" alt=""></p>
-<p>Trap : 에이전트가 무슨일이 있다고 (이벤트) 매니저에게 알리는것  (비동기적 - 일방적으로 알리는것)</p>
-<ul>
-<li>링크 다운/업, 스타트 콜드/웜 (급작스러운 재시작 혹은 예정된 재시작)</li>
-<li>인증실패, egpNeighbourLoss (링크는 켜졌는데 이웃이 사라짐)</li>
-</ul>
-<p>과 같은 6가지 기본 상태와 벤더에 따른 여러 trap 상태가 존재한다 2^32 개수까지 존재 가능</p>
-<h3 id="SNMP-Community-어디-소속인지"><a href="#SNMP-Community-어디-소속인지" class="headerlink" title="SNMP Community - 어디 소속인지"></a>SNMP Community - 어디 소속인지</h3><ul>
-<li>SNMP1 의 경우<ul>
-<li>특정 변수 셋트에 대해 특정한 액세스를 정의함</li>
-<li>read-write, read only, none 등의 세가지 타입이 있음</li>
-</ul>
-</li>
-<li>각각의 SNMP 는 community name 이<ul>
-<li>패스워드 같고, 암호화 되어 있지 않음</li>
-<li>이게 무슨말이냐면 read-only: Public, read-write: Private 가 비밀번호임 ㅋㅋㅋㅋ<ul>
-<li>따라서 보안적으로 하나하나 새로 설정해 주지 않으면 위가 기본 비밀번호</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>에이전트가 특정 IP 주소를 저장해서 해당 아이피의 매니저만 데이터베이스 건드릴수 있도록 하는것도 가능</li>
-</ul>
-<h3 id="SNMP-Versions"><a href="#SNMP-Versions" class="headerlink" title="SNMP Versions"></a>SNMP Versions</h3><ul>
-<li>v2c<ul>
-<li>벌크 기능 추가, 매니저간 대화 기능 추가, TCP 기능 추가, 64 비트 카운터 추가</li>
-</ul>
-</li>
-<li>v3<ul>
-<li>보안 추가 (v2c 의 기능은 없음)</li>
-</ul>
-</li>
-</ul>
-<p>보통 다들 v1,2,3 모두 지원함</p>
-<h3 id="SNMP-Security"><a href="#SNMP-Security" class="headerlink" title="SNMP Security"></a>SNMP Security</h3><ul>
-<li>v1 - community string 을 인증 방법으로 이용함 (아까 그 public, private) - 암호화 전무</li>
-<li>v2 - 위 문제 고쳤어야 하는데 안고침 ㅋㅋ</li>
-<li>v3<ul>
-<li>Integrity - 패킷이 tampered 되지 않음을 분명히 함</li>
-<li>authentication - 정당한 소스로부터 해당 메세지가 왔음을 분명히 함</li>
-<li>privacy -  메세지가 읽히지 않음을 분명히 함</li>
-<li>다향한 보안 단계를 가지고 있으며, 단계에 따라 접근 권한이 다르다<ul>
-<li>noAuthNoPriv: 유저네임 매칭을 통한 인증 방법</li>
-<li>authNoPriv: 메세지 digest를 이용한 인증 방법</li>
-<li>authPriv: message digest 를 통한 인증과 암호화 사용</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>MIB 안에 값들이 저장되어 있는데, SMI 를 통해 정보가 수집된다 (통계 자료 등등)</p>
-<p>예를 들어 값들이 어느 디렉토리 안에 저장되면, 해당 디렉토리까지 가는데 SMI 을 통해서 지나간다. 이 지나가는 와중에 해당 정보들을 structure 하게 수집해서, 몇개의 패킷이 지나갔는지, 지금 전송율이 어떤지 등등을 모집하는것이 바로 Structure for Management Information (SMI) 이다.</p>
-<p>물론 에이전트가 직접 계산하는게 아니라, 단지 자료를 모음으로써 위의 계산들을 가능하게 해주는 형식</p>
-<h3 id="Counter-Gauages"><a href="#Counter-Gauages" class="headerlink" title="Counter / Gauages"></a>Counter / Gauages</h3><ul>
-<li>위 두가지가 현재를 가장 잘 알려줌<ul>
-<li>Counter: 현 인터페이스에 존재하는 패킷들 (can wrap)</li>
-<li>Gauge: 메모리/디스크 공간 (0부터 맥시멈까지)</li>
-</ul>
-</li>
-<li>에이전트는, 다시 말하지만, history를 가지지 않으며 계산도 하지 않음<ul>
-<li>단지 켜진 순간부터 얼마나 시간이 지났나만 알고 있음</li>
-</ul>
-</li>
-<li>따라서 매니저는 계속해서 물어보면 다음과 같은 가정들을 세워야함<ul>
-<li>Counter 가 바뀌지 않았다 (패킷 수가 똑같다) → 이전과 같은 상태</li>
-<li>Gauge가 바뀌지 않았다 → 이전과 같을수도 다를수도 있다 (메모리/디스크 소비량은 같은데 값은 바뀔수 있으니까)</li>
-<li>MIB 디자이너는 해당 정보를 위해 여러 필드/타입이 필요 할 수 있다 (즉 어느 정보를 유추하기 위해서는 여러가지 필드들을 참조해야 할 수 있다)</li>
-</ul>
-</li>
-</ul>
-<h2 id="ASN"><a href="#ASN" class="headerlink" title="ASN"></a>ASN</h2><p>데이터들은 ASN 이라는 Abstract Syntax Notation One 규격에 따라서 저장된다 </p>
-<p>string 예시로는</p>
-<ul>
-<li>Access: Read only, read-write, write-only, not-accessible</li>
-<li>Status: mandatory, current, optional, obsolete</li>
-</ul>
-<p>이 존재한다</p>
-<p>가장 중요한것은 Object Identifier 이다</p>
-<ul>
-<li>정보 오브젝트와 레퍼런스를 알려주는 identifier로 international 한 수준에서 관리된다.</li>
-<li>globally unique → MIB에서 무조건 unique 함</li>
-</ul>
-<h3 id="OID-Object-Identifier"><a href="#OID-Object-Identifier" class="headerlink" title="OID (Object Identifier)"></a>OID (Object Identifier)</h3><ul>
-<li>나무 계층적이다 (DNS처럼) - 각 OID 는 나무의 노드에 해당한다<ul>
-<li>1.3.6.1.2.1 의 경우 루트에서부터 각 계층의 OID를 타고 내려오는것</li>
-<li>제조사는 각자 이 OID에 특정한 object를 만들수 있음</li>
-</ul>
-</li>
-</ul>
-<p><img src="/image/Monitoring%20and%20SNMP%20cfdc2c9571204c9cb9efd4b1b62e92c3/Untitled%201.png" alt=""></p>
-<p>즉 MIB 1.3.6.1.2.1.2 의 디렉토리에 ifNumber 라는 오브젝트를 만드는것. 해당 오브젝트는 Integer를 (읽기만 가능하며) 값으로 가지며 필수적인 오브젝트. </p>
-<p><img src="/image/Monitoring%20and%20SNMP%20cfdc2c9571204c9cb9efd4b1b62e92c3/Untitled%202.png" alt=""></p>
-<h3 id="OID-의-필요성"><a href="#OID-의-필요성" class="headerlink" title="OID 의 필요성?"></a>OID 의 필요성?</h3><p>OID 가 왜 필요하느냐 하면</p>
-<ul>
-<li>gloabl uniqueness 와 extensibility를 가지고 있다</li>
-<li>human-readable-names를 나무-위치-identifier 형식으로 가지고 있다</li>
-<li>ASN1 은 테이블 (사람이 쉽게 읽을수 있는) 을 제공하지 않는데, 사람이 관리상 필요함</li>
-</ul>
-<h3 id="Table-and-GetNext"><a href="#Table-and-GetNext" class="headerlink" title="Table and GetNext"></a>Table and GetNext</h3><p>Get-Next : 예를 들어 IP 관련 데이터를 받으려면, 하나 받고 그다음꺼로 계속 요청해야함</p>
-<p>즉 같은 형식의 정보를 얻으려면 GetNext를 계속 반복해야 하는거 → 당연히 GetNext를 반복하면 트래픽도 생기고, 관리하기도 힘들다</p>
-<p>버전2 에서 이를 위한 벌크 형식이 등장했는데 다음과 같이 작동한다</p>
+            <p>Reference:</p>
 <ol>
-<li>Get bulkt(“interface”) - every row every column 을 넘기는 형식</li>
-<li>ONLY ONE UDP 로만 반응한다. 만약 이 64kb의 UDP 제한을 넘기면 tooBig 이라는 오류가 발생한다.<ol>
-<li>즉 트래픽 최소화를 위해 한 UDP로 교환이 가능하도록 만들어둔것.</li>
+<li>An Introduction To Statistical Learning with Applications in R (ISLR Sixth Printing)</li>
+<li><a href="https://godongyoung.github.io/category/ML.html">https://godongyoung.github.io/category/ML.html</a></li>
 </ol>
+<h2 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h2><p>관측치들을 각 그룹별로 나누는데. 해당 그룹내의 관측치들은 유사하게, 다른 그룹의 관측치와는 상이하게 나누는것. 이 유사/상이 하다를 정의를 domain-specific (도메인 특정) 을 기반으로 한다 </p>
+<p>클러스터링이 비지도 (unsupervised) 방식인 이유는, 자료를 기반으로한 구조 (structure)를 발견, 그룹을 나누는것인데 비해, 지도 방식의 경우 어떠한 결과를 유추/예측 하고자 하는것. </p>
+<p>Clustering AND PCA 모두 summary를 통해 데이터를 간단하게 하려 하지만</p>
+<ul>
+<li>PCA:  분산의 많은 비율을 설명하는 관측치들을 저차원 표현으로 찾으려 함</li>
+<li>Clustering:  관측치들중 같은 서브그룹을 찾으려 함.</li>
+</ul>
+<p>즉 클러스터링은 사람들 (관측치)들중 이 제품을 잘 살것같은 그룹을 찾아내는 형식 -  market segmentation 이라고도 한다. </p>
+<h2 id="K-mean-clustering"><a href="#K-mean-clustering" class="headerlink" title="K - mean clustering"></a>K - mean clustering</h2><p>미리 지정한 수의 클러스터로 나누는것.</p>
+<p>이 k 개의 클러스터간 서로 절대 겹치지 않으며 모든 관측치들은 어느 한 클러스터에 속해있다.   </p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/Untitled.png" alt=""></p>
+<p>위의 식에서 유추할수 있듯, 한 클러스터 내에서의 변동이 가장 적은 클러스터링을 목표로 하고 있다. </p>
+<p>이 변동 W(Ck) 를 정의 하는 방법은 여러가지 이지만 가장 일반적으로 유클리드 거리 제곱 (squared Euclidean distance)를 사용한다.  이를 적용하면 위의 식이 다음과 같이 변한다. </p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/Untitled%201.png" alt=""></p>
+<p>Ck = 클러스터내 관측치들의 수. 관측치들 사이의 pairwise한 거리의 제곱의 합을 관측수로 나눈것. </p>
+<p>물론 위의 모든 방식을 사용하려면 K ** n 개의 분할 방법이 존재하기에 다음과 같은 알고리즘을 사용한다. </p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/Untitled%202.png" alt=""></p>
+<p>즉 랜덤하게 클러스터를 분배하고, 각 클러스터의 관측치들의 centeroid 를 벡터 중간값으로 정한후, 가까운 클러스터로 다시 재분배, 반복하는것. 해당 재분배가 (클러스터의 변화가) 없을때가지 반복하는것. </p>
+<p>물론 이러한 방식은 초기 클러스터가 어떻게 분배 되느냐에 따라 달라지는 국소 최적 (local optimum) 이다 따라서 이를 피하기 위해 랜덤 할당을 다르게 해서 여러번 실행해보고, 위의 식의 값이 가장 작은것을 선택한다 ( = gloabl optimum) K 숫자 선택은 이후에 다뤄진다. </p>
+<h2 id="Hierarchical-clustering"><a href="#Hierarchical-clustering" class="headerlink" title="Hierarchical clustering"></a>Hierarchical clustering</h2><p>K-mean clustering 이 가지고 있는 단점: K 를 미리 지정해야 한다 이 없는 방식이며, dendrogram 이라고 하는 tree-based 로 표현한다</p>
+<p>bottom-up (위로) and agglomerative (융합) 클러스터링을 설명하는데 이들은 가장 보편적인 계층적 클러스터링 ‘방식이다. </p>
+<h3 id="해석"><a href="#해석" class="headerlink" title="해석"></a>해석</h3><p><img src="/image/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/Untitled%203.png" alt=""></p>
+<p>밑의 (잎) 이 위로 올라가며 가지로 융합되는 모습이다. 이 융합되는 트리의 높이가 낮을수록 관측치간의 유사성이 더 높음을 뜻한다. 또한 그림으로 한눈에 다른 색 (다른 그룹)이 서로 융합되는 높이를 알수도 있다. . 위의 그래프의 경우 초록 노랑의 융합이 빨강보다 더 빠르기에 초록 노랑이 더 유사함을 알 수 있다. </p>
+<p>주의할 점은 이 관측치의 유사성은 수평 (즉 옆에 가까이 있냐) 수준이 아닌 수직 (융합이 언제 일어나느냐) 로 판단해야 한다. 덴드로그램을 절단하는 수평선이 곧 k의 수이다. 위의 그래프는 5에서 절단함으로써 3개의 클러스터링을 얻는다. </p>
+<p>다만 덴드로그램은 TREE 이기때문에 2개씩으로 밖에 나눌수가 없음. 즉 프랑스미국영국을 나눌때 프랑스 | 미국영국 이후 프랑스 미국 영국 과 같이 두번에 걸쳐 3번에 나눈다. 결국 각각의 다른 그룹이 2번에 걸쳐 나눠지는 이러한 형태때문에 가끔 k-mean clustering 보다 정확도가 낮은 결과를 나타낼수 있다. </p>
+<h3 id="알고리즘"><a href="#알고리즘" class="headerlink" title="알고리즘"></a>알고리즘</h3><p>각 관측지의 페어마다 비유사성 (dissimilarity)를 정의한다 (유클리드 거리를 가장 많이 사용). </p>
+<p>덴드로그램 바닥의 n 개의 관측치에 n 개의 클러스터를 주고, 가장 가까운것끼리 합쳐서 결국 1개의 클러스터가 될때까지 진행한다. </p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/Untitled%204.png" alt=""></p>
+<p>위의 알고리즘은 문제를 가지고 있는데, 여러 관측치를 가지고 있는 클러스터간에 비유사성은 어떻게 정의 하는가 이다. 이를 해결하기 위해 완전연결 평균연결 단일연결 무게중심연결을 사용하는데 보통 평균,완전. 단일을 많이 사용한다.  평균,완전 연결이 균형잡힌 덴드로그램을 제공하는 경향이 있어 더 선호된다. </p>
+<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20Clustering%2018eb77352ee34926a8504c6f510b2cdf/Untitled%205.png" alt=""></p>
+<h3 id="비유사성-측도"><a href="#비유사성-측도" class="headerlink" title="비유사성 측도"></a>비유사성 측도</h3><p>현재까지 유클리드 거리를 사용했으나, correlation-based distance 같은 방법은 상관성만 높다면 거리가 떨어져있어도 유사하다고 간주하는 방법이다. 즉 유클리드는 소비자가 구매한 양끼리 묶어서 클러스터링을, 상관 기반 거리는 비슷한 물품을 구매한 소매자끼리 묶는 방식이다. </p>
+<p>또한 비유사성의 경우 표준편차가 1이 되도록 스케일링을 고려해야 할 수 있다 (단위차이를 없애기 위해)</p>
+<h3 id="이슈"><a href="#이슈" class="headerlink" title="이슈"></a>이슈</h3><p>클러스터링은 매우 유용하지만 여러 이슈도 존재한다.</p>
+<p>큰 결과 작은 결정 (small decision with big consequences)</p>
+<ul>
+<li>표준화과 진행되어야 하는가? 평균 = 0, 표준편차 = 1 이 되도록 스케일링 되어야 한다등등</li>
+<li>계층적 클러스터링의 경우<ul>
+<li>어떤 비유사성 측도를 사용할것인가</li>
+<li>어떤 연결을 사용해야 하는가</li>
+<li>어디서 덴드로그램을 절단해야 하는가</li>
+</ul>
 </li>
-</ol>
-<p>SNMP를 내 도메인 이후로 넓히는것은 현명하지 않은 선택이다.</p>
-<ol>
-<li>에이전트들을 바깥에 보여주는것은 옳지 않으며 (보안상인듯) - 특히 보안이 약한 1,2</li>
-<li>이로 인해 많은 트래픽이 생성되고</li>
-<li>남들이 해당 네트워크를 쉽게 스캔, 맵핑할수 있기 때문.</li>
-</ol>
-<p>이로 인해 타 도메인과의 확장은 사람간의 문제가 된다.</p>
+<li>K-평균 클러스터링의 경우 몇개의 클러스터를 사용해야 하는가</li>
+</ul>
+<p>이러한 작은 결정들은 결과에 큰 영향을 미친다. </p>
+<h3 id="검증"><a href="#검증" class="headerlink" title="검증"></a>검증</h3><p>찾은 클러스터들이 단지 아웃라이어 (노이즈)의 결과인지 아니면 진정 어느 한 부분그룹을 대표하는 (나타내는)  클러스터인지 검증해야 한다. 이를 위해 p값을 할당하는 기법들이 존재하지만 무엇이 딱 좋다 말할수는 없다</p>
+<h3 id="다른-고려사항"><a href="#다른-고려사항" class="headerlink" title="다른 고려사항"></a>다른 고려사항</h3><p>k-mean clustering and 계층적 클러스터링 모두 각 관측치에 하나의 클러스터를 할당한다. 이러한 행동은 outlier 들의 존재로 클러스터가 심하게 왜곡될수 있다. mixture model 은 이러한 특이점을 수용하는 방법인데 k-mean clustering 의 soft 버전이라고 할 수 있다. </p>
+<p>또한 클러스터링 방법은 작은 변동 (perturbations)에 robust 하지 않다. 이는 n개의 관측치에서 몇개를 제외하고 클러스터링을 다시 진행하면 보통 그 전의 클러스터링과 유사하지 않다. </p>
+<h3 id="결과-해석및-접근-방법"><a href="#결과-해석및-접근-방법" class="headerlink" title="결과 해석및 접근 방법"></a>결과 해석및 접근 방법</h3><p>위의 이유들로 인해 여러번 클러스터링을 하고, 지속되는 패턴을 찾는것이 좋다. 클러스터링이 얼마나 robust 한지 감을 잡기 위해 부분관측치에 대해 클러스터링을 수행하는것도 좋다. </p>
+<p>중요한점은 분석결과인데, 이러한 결과로 인한 결과는 절대적으로 신뢰해서는 안되며, 단지 가설 개발에 이용되어야 한다.</p>
 
         </div>
         
@@ -388,7 +254,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -438,7 +304,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -450,7 +316,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -462,7 +328,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -555,17 +421,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -626,14 +481,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -700,7 +547,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -815,13 +662,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -876,14 +716,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -950,7 +782,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -1065,13 +897,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">

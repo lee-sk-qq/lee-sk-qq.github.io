@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/30/Parallel/Week%205%202%20Message%20Passing%20Interface%202/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/mpisecond.jpg" alt="Message Passing Interface 2">
+        <a href="/2020/03/29/Parallel/Week5%201%20SynchComp/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/barrier.jpg" alt="Synchronous Computations">
         </a>
     </div>
     
@@ -137,7 +137,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-30T03:41:00.000Z">Mar 30, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-03-29T10:07:00.000Z">Mar 29, 2020</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 870 words)
+                    5 minutes read (About 750 words)
                 </span>
                 
                 
@@ -156,126 +156,82 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/30/Parallel/Week%205%202%20Message%20Passing%20Interface%202/">Message Passing Interface 2</a>
+                <a class="has-link-black-ter" href="/2020/03/29/Parallel/Week5%201%20SynchComp/">Synchronous Computations</a>
             
         </h1>
         <div class="content">
-            <h3 id="MPI-1"><a href="#MPI-1" class="headerlink" title="MPI-1"></a>MPI-1</h3><ol>
-<li>Fixed process model</li>
-<li>point-to-point communications</li>
-<li>collective operations.</li>
-<li>communicators for safe library writing</li>
-<li>utility routines</li>
-</ol>
-<h3 id="MPI-2"><a href="#MPI-2" class="headerlink" title="MPI-2"></a>MPI-2</h3><ol>
-<li>Dynamic process management.</li>
-<li>one-sided communications</li>
-<li>cooperative I/O</li>
-</ol>
-<h3 id="Dynamic-Process-Management"><a href="#Dynamic-Process-Management" class="headerlink" title="Dynamic Process Management"></a>Dynamic Process Management</h3><ul>
-<li>MPI - 1 had a static or fixed number of processes<ul>
-<li>Cannot add nor delete processes</li>
-<li>The cost of having idle processes may be large.</li>
+            <p>Reference: Barry Wilkinson, Michael Allen - Parallel Programming_ Techniques and Applications Using Networked Workstations and Parallel Computers (2nd Edition)  -Prentice Hall (2004)</p>
+<h1 id="Barrier"><a href="#Barrier" class="headerlink" title="Barrier"></a>Barrier</h1><ul>
+<li>A particular reference point for processors which no one can proceed until every processors (or stated number) get to the point.</li>
+<li>Commonly when processes need to exchange data and then continue.</li>
+<li>Once the last one has arrived, inactive processes are awakened.</li>
+<li>Apply both shared memory, and message-passing systemss</li>
 </ul>
-</li>
-<li>Some applications favour dynamic spawning<ul>
-<li>run-time assessment of environment</li>
-<li>serial applications with parallel modules</li>
-<li>scavenger applications.</li>
+<h2 id="Barrier-MPI"><a href="#Barrier-MPI" class="headerlink" title="Barrier - MPI"></a>Barrier - MPI</h2><ul>
+<li>MPI_Barrier(MPI_Comm comm) is called by each process and return once everyone arrives.</li>
+<li>Naturally synchronus, and message tags are not used.</li>
+</ul>
+<h3 id="Counter-Implementation"><a href="#Counter-Implementation" class="headerlink" title="Counter Implementation"></a>Counter Implementation</h3><p>Called a linear barrier as well. Counting the number of processes is handled by a single counter.</p>
+<ul>
+<li>Implementations must handle possible time delays for eg. two barriers in quick succession.</li>
+<li>There are two phases:<ul>
+<li>Arrival Phase : Send msg to master and stay inactive or idle as not all are arrived.</li>
+<li>Departure Phase : Receive from master and released.</li>
 </ul>
 </li>
 </ul>
-<p><strong>CAUTION: process initiation is expensive, hence requires careful thought.</strong></p>
-<h3 id="MPI-2-Process-Management"><a href="#MPI-2-Process-Management" class="headerlink" title="MPI-2 Process Management"></a>MPI-2 Process Management</h3><ol>
-<li>Parents spawn children</li>
-<li>Existing MPI applications can connect</li>
-<li>Formerly independent sub-applications can tear down communications and become independent. </li>
-</ol>
-<p>Task Spawning  - MPI_spawn();</p>
+<p>— Remember Send() is not the blocking (depend on the buffer size), but Receive() always do the blocking. Cost = O(p) for time and computation complexity</p>
+<h3 id="Tree-Based-Implementation"><a href="#Tree-Based-Implementation" class="headerlink" title="Tree-Based Implementation"></a>Tree-Based Implementation</h3><ul>
+<li>Use of decentralized tree construction.</li>
+<li>Arrival and Depature order is reversal as it supposed to be.</li>
+<li>Since it is up and down, O(2 lg p) = O(lg p) for communication time.</li>
+</ul>
+<p><strong>Note: broadcast does not ensure synch in terms of a global time</strong></p>
+<h3 id="Butterfly-Omega-Barrier"><a href="#Butterfly-Omega-Barrier" class="headerlink" title="Butterfly (Omega) Barrier"></a>Butterfly (Omega) Barrier</h3><p>Pairs of processes sync at each stage as following</p>
 <ol>
-<li>It is a collective operation over the parent process’ communicator.</li>
-<li>info <em>parameter</em>: how to start the new processes (host, architecture, work dir, path).</li>
-<li><em>intercomm</em> and <em>errcodes</em> are returned values.</li>
+<li>01 23 45 67 (4 has 4,5)</li>
+<li>02 13 46 57 (4 has 4,5,6,7)</li>
+<li>04 15 26 37 (4 has 0,1,2,3,4,5,6,7)</li>
 </ol>
-<h3 id="Communicators"><a href="#Communicators" class="headerlink" title="Communicators"></a>Communicators</h3><ul>
-<li>MPI processes are identified by (group, rank) pairs.</li>
-<li>Communicators are either infra group,  or<ul>
-<li>inter group : ranks refer to processes in the remote group.</li>
+<p>After the stages, every processes are synchronized and can continue. O(2 lg p) = O(lg p) for communication time.</p>
+<h3 id="Local-Synchronization"><a href="#Local-Synchronization" class="headerlink" title="Local Synchronization"></a>Local Synchronization</h3><p>It can be formulated for only essential synchronization among few processes, instead of being “wastefully” idle — In a mesh or a pipeline and only neighbours sync. Not using barriers, but ues Receive to communicate and idle certian processes to exchange its data.</p>
+<h3 id="DeadLock"><a href="#DeadLock" class="headerlink" title="DeadLock"></a>DeadLock</h3><p>It will occur using synchronous routines (or blocking routines without sufficient buffering) if both performs the send first to each other. In general, assign even-numbere in send first, odd-numbered in rece first coule bo a good solution.</p>
+<p>MPI_Sendrecv() and MIP_Sendrecv_replace() —&gt; deadlock prevent commands.</p>
+<hr>
+<h3 id="Data-Parallel-Computations"><a href="#Data-Parallel-Computations" class="headerlink" title="Data Parallel Computations"></a>Data Parallel Computations</h3><ul>
+<li>ease of programming</li>
+<li>ease of increase to larger problems.<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">forall (i = <span class="number">0</span>; i&lt; n; i++)&#123;</span><br><span class="line">	a[i] = a[i] + k;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// In SIMD, those particularly designed for these, implicitly has barrier itself</span></span><br><span class="line"><span class="comment">// If MP computer using library routines, generally explicit barrier is required.</span></span><br><span class="line"><span class="comment">// Following is an example</span></span><br><span class="line">i = myrank; <span class="comment">// myrank is a process rank between 0 and n-1</span></span><br><span class="line">a[i] = a[i] + k; <span class="comment">/* body */</span></span><br><span class="line">barrier(mygroup) <span class="comment">// consider the barrier overheads as it may longer than its body</span></span><br></pre></td></tr></table></figure>
+<h1 id="Synchronous-Iteration"><a href="#Synchronous-Iteration" class="headerlink" title="Synchronous Iteration"></a>Synchronous Iteration</h1></li>
 </ul>
-</li>
-<li>Processes in the parent and childern group each have thier own MPI_COMM_WORLD</li>
-<li>Send and Recv have a destination and a inter/infra communicator.</li>
-<li>Possible to merge processes or free parents from children by MPI_Intercomm_merge() and MPI_Comm_free().</li>
+<p>Parallel started at the beginning of the iteartion, yet each processes cannot proceed to the next iteration unless all the assigined tasks in the iteration is completed.</p>
+<h2 id="Jacobi-Iteration-all-x-are-updated-together"><a href="#Jacobi-Iteration-all-x-are-updated-together" class="headerlink" title="Jacobi Iteration: all x are updated together."></a>Jacobi Iteration: all x are updated together.</h2><ul>
+<li>guess X, and iterate while hope it converges.</li>
+<li>In converges if tha matrix is diagonally dominant.</li>
+<li>Terminates whin convergence is achieved (subtract of two is within the error tolerance)</li>
 </ul>
-<p><img src="/image/Week%205%202%20Message%20Passing%20Interface%202/Untitled.png" alt=""></p>
-<h3 id="One-sided-Communications"><a href="#One-sided-Communications" class="headerlink" title="One-sided Communications"></a>One-sided Communications</h3><p>For traditional MP, there is an implicit synchronisation - it may be delayed by asynchronous message passing.</p>
-<p>In One-sided Communications,</p>
+<p><img src="/image/Week5%201%20SynchComp/Untitled.png" alt=""></p>
+<p><a href="https://ko.wikipedia.org/wiki/%EC%95%BC%EC%BD%94%EB%B9%84_%EB%B0%A9%EB%B2%95">야코비 방법</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Sequential </span></span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">	x[i] = b[i]; <span class="comment">//b[] holding the constants</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (iteration = <span class="number">0</span>; interation &lt; limit; iteration++)&#123;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)&#123;        <span class="comment">// n number of rows and cols.</span></span><br><span class="line">   		sum = -a[i][i] * x[d]         <span class="comment">// Jacobi method excludes itself.</span></span><br><span class="line">   		<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)&#123;      <span class="comment">// each row summation iteration</span></span><br><span class="line">   			sum = sum + a[i][j] * x[j]  <span class="comment">// summation of one row</span></span><br><span class="line">   		&#125;</span><br><span class="line">        new_x[i] = (b[i] - sum) / a[i][i] <span class="comment">//a[i][i] cannot be zero</span></span><br><span class="line">    &#125;</span><br><span class="line">   	<span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++&#125; x[i] = new_x[i] <span class="comment">//data move</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Parallel</span></span><br><span class="line">i = process_id;</span><br><span class="line">x[i] = b[i];                      <span class="comment">// assign each process array	for (iteration = 0; interation &lt; limit; iteration++)&#123;</span></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)&#123;          <span class="comment">// n number of rows and cols.</span></span><br><span class="line">    sum = -a[i][i] * x[j]         <span class="comment">// Jacobi method excludes itself.</span></span><br><span class="line">   	<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)&#123;      <span class="comment">// each row summation iteration</span></span><br><span class="line">  		sum = sum + a[i][j] * x[j]  <span class="comment">// summation of one row</span></span><br><span class="line">    &#125;</span><br><span class="line">   	new_x[i] = (b[i] - sum) / a[i][i] <span class="comment">//a[i][i] cannot be zero</span></span><br><span class="line">    broadcast_gather (&amp;new_x[i], new_x); <span class="comment">//spread and gather data over processes</span></span><br><span class="line">    global_barrier();</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++&#125; x[i] = new_x[i] <span class="comment">//data move</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/Week5%201%20SynchComp/Untitled%201.png" alt=""></p>
+<p>Broadcast_gather expect all the processes to have matching routines. Hence further implementation must be made to avoid deadlocks whet each prcoss can stop once it met its tolerance (so each has diff num of iterations). It can be easily replaced with send and recv().</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p><img src="/image/Week5%201%20SynchComp/Untitled%202.png" alt=""></p>
+<h2 id="Heat-Equation"><a href="#Heat-Equation" class="headerlink" title="Heat Equation"></a>Heat Equation</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Sequential Code</span></span><br><span class="line"><span class="keyword">for</span> (iter = <span class="number">0</span>; iter &lt; limit; iter++)&#123;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span> (j = <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">        	q[i][j] = <span class="number">0.25</span> * (h[i<span class="number">-1</span>][j]+....);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   	<span class="keyword">for</span> (i =<span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">   		<span class="keyword">for</span> (j = <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">   			h[i][j] = g[i][j];</span><br><span class="line">   		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">// Parallel Code</span></span><br><span class="line"><span class="keyword">for</span> (iter =<span class="number">0</span>; iter &lt; max_iter; iter++)&#123;</span><br><span class="line">	g = <span class="number">0.25</span> * (w + x + y + z+);</span><br><span class="line">	send(&amp;g, ...)</span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">	recv (&amp;z, ...)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/image/Week5%201%20SynchComp/Untitled%203.png" alt=""></p>
 <ul>
-<li>One process specifies all communication parameters.<ul>
-<li>Data transfer and synchronisation are separate.</li>
+<li>Block Partitioning: Each process generates and receives 4 messages each —&gt; hence total of 8.</li>
+<li>Strpi Partitioning: Two edges where data points are exchanged. Each edge generates and receives 2 messages —&gt; hence total of 4.</li>
 </ul>
-</li>
-<li>Typical operations are put, get, accumulate. MPI_put()</li>
-</ul>
-<h3 id="MPI-2-Remote-Memory-Access-RMA"><a href="#MPI-2-Remote-Memory-Access-RMA" class="headerlink" title="MPI-2 Remote Memory Access (RMA)"></a>MPI-2 Remote Memory Access (RMA)</h3><ul>
-<li>Processes assign a portion (or window) of their address space that explicitly expose to RMA operations. MPI_Win()</li>
-<li>Two types of targets<ul>
-<li>Active target RMA: requires all processors that created the window to call  MPI_Win_fence() before any RMA operations is guaranteed to complete.<ul>
-<li>One-sided communication: no process is req to post a recv.</li>
-<li>Cooperative in that all processes must synchronize before any of them are guaranteed to have got/put data.</li>
-</ul>
-</li>
-<li>Passive target RMA: only requirment is that originating process places MPI_Win_Lock() and MPI_Win_Unlock() before and after the data transfer.<ul>
-<li>Transfer is guranteed to have completed on return from unlock.</li>
-<li>Known as one-sided communication.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Potential unsync can be avoided by locks or mutexes.</li>
-</ul>
-<h3 id="MPI-2-File-Operations"><a href="#MPI-2-File-Operations" class="headerlink" title="MPI-2 File Operations"></a>MPI-2 File Operations</h3><ul>
-<li>Positioning: explicit offset, shared pointer/ individual pointers</li>
-<li>Synch: blocking/non-blocking (async)</li>
-<li>Coordination: collective / non-collective</li>
-<li>File types:<ul>
-<li>is a datatype made up of elementary types; MPI_Int()</li>
-<li>allows to specify non-contiguous accesses.</li>
-<li>can be tiled. s.t. process writes to block of the file.</li>
-</ul>
-</li>
-</ul>
-<h3 id="MPI-IO-Usage"><a href="#MPI-IO-Usage" class="headerlink" title="MPI-IO Usage"></a>MPI-IO Usage</h3><ul>
-<li>각 프로세서는 자신의 데이터를 따로 파일에 쓸수 있다</li>
-<li>프로세서들은 하나의 파일로 데이터를 추가 할 수 있다. (로그파일 형식) - 한 파일 포인터 사용</li>
-<li>프로세서들은 협력해서 하나의 큰 매트릭스를 파일에 쓸수 있다<ul>
-<li>파일을 타일 하기 위한 파일타입 생성</li>
-<li>각가의 포인터를 이용</li>
-<li>모음 명령어를 이용하여 데이터 셔플링 가능케 함</li>
-</ul>
-</li>
-<li>병렬 파일 시스템이 사용될수 있지만 그냥 평범한 파일 시스템으로 보일 수 있음</li>
-</ul>
-<h3 id="Simple-MPI-I-O"><a href="#Simple-MPI-I-O" class="headerlink" title="Simple MPI I/O"></a>Simple MPI I/O</h3><p>각 개인 포인터를 이용한 협력 파일 명령어. 각각의 프로세서의 메모리가 할당된 파일 타일에 데이터를 넣는 형식</p>
-<p><img src="/image/Week%205%202%20Message%20Passing%20Interface%202/Untitled%201.png" alt=""></p>
-<ul>
-<li>MPI_File_Open() 을 이용하여 커뮤니케이터와, 각 개인 포인터와 공유 파일 포인터를 생성함<ul>
-<li>Info parameter 는 성능 조절, 특이 케이스 핸들링등에 대해 파일에 공유</li>
-</ul>
-</li>
-<li>각각의 읽기 쓰기는 포지셔닝을 필요로 하는데 이는<ul>
-<li>MPI_File_Seek; …Read() —&gt; 개인 파일 포인터 이용</li>
-<li>MPI_File_Read_at; —&gt; 해당 오프셋에서 직접적으로 읽기</li>
-<li>MPI_File_seek_shared; … read_shared() —&gt; 공유 파일 포인터 이용. Seek_shared is collective.</li>
-<li>읽기 쓰기로 버퍼, 카운트, 데이터 형식을 specify 한다 (보통 send/recev 처럼)</li>
-<li>MPI_File_close() is also collective.</li>
-</ul>
-</li>
-</ul>
-<h3 id="MPI-2-and-Beyond"><a href="#MPI-2-and-Beyond" class="headerlink" title="MPI-2 and Beyond"></a>MPI-2 and Beyond</h3><ul>
-<li>MPI-2 는 많은 기능을 넣었는데 1의 기능보다 훨씬 느려졌고, 해당 사용 회사들의 기능들은 오랫동안 미완성이었음</li>
-<li>MPI-3는 단방향 통신과 non-blocking collective 를 향상 시킴</li>
-</ul>
+<p><strong>In general, strip partition is best for a large startup time, and a block partition is best for a small start up.</strong> </p>
+<p><img src="/image/Week5%201%20SynchComp/Untitled%204.png" alt=""></p>
+<p>For p ≥ 9, if above equation is fulfilled, the block partition has a larger communication time.</p>
+<h3 id="Safety-amp-Deadlock"><a href="#Safety-amp-Deadlock" class="headerlink" title="Safety &amp; Deadlock"></a>Safety &amp; Deadlock</h3><p><img src="/image/Week5%201%20SynchComp/Untitled%205.png" alt=""></p>
+<p>As it is unreliable to assume the internal buffer will be enough, there are two methods.</p>
+<ol>
+<li>Switching send and recv in different order as mentioned couple of times so far.</li>
+<li>Implement Asynchronus communication using ghost points.</li>
+</ol>
+<p>Assign extra receive buffers for edges where data is exchanged. It is typically translated as extra rows and columns in each process’ local array (known as halo). In this buffer, asynchronus calls such as MPI_Isend() can be used.</p>
 
         </div>
         
@@ -315,7 +271,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/67/">67</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
             
         </ul>
     </nav>
@@ -365,7 +321,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            67
+                            66
                         </p>
                     </a>
                 </div>
@@ -377,7 +333,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            7
                         </p>
                     </a>
                 </div>
@@ -389,7 +345,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            4
                         </p>
                     </a>
                 </div>
@@ -482,17 +438,6 @@
         </li>
         
         <li>
-            <a class="level is-marginless" href="/archives/2020/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
             <a class="level is-marginless" href="/archives/2020/06/">
                 <span class="level-start">
                     <span class="level-item">June 2020</span>
@@ -553,14 +498,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -627,7 +564,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
         
@@ -742,13 +679,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
@@ -803,14 +733,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/CPP/">
-            <span class="level-start">
-                <span class="level-item">CPP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Life/">
             <span class="level-start">
                 <span class="level-item">Life</span>
@@ -877,7 +799,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CPP/" style="font-size: 10px;">CPP</a> <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
     </div>
 </div>
     
@@ -992,13 +914,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/CPP/">
-                        <span class="tag">CPP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Keyboard/">
