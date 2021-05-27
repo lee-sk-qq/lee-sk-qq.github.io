@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
+        <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time>
+                <time class="level-item has-text-grey" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1273 words)
+                    6 minutes read (About 880 words)
                 </span>
                 
                 
@@ -156,161 +156,66 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/">Very Simple File System (VSFS)</a>
+                <a class="has-link-black-ter" href="/2021/05/08/CPP/Modern_CPP/Chapter3/">Language Runtime Enhancements</a>
             
         </h1>
         <div class="content">
-            <h1 id="Very-Simple-File-System-VSFS"><a href="#Very-Simple-File-System-VSFS" class="headerlink" title="Very Simple File System (VSFS)"></a>Very Simple File System (VSFS)</h1><p>This is pure software that allows to study/experience the simplified version of UNIX file system.</p>
+            <p>Reference: <a href="https://github.com/changkun/modern-cpp-tutorial">https://github.com/changkun/modern-cpp-tutorial</a></p>
+<h3 id="Lambda-expression"><a href="#Lambda-expression" class="headerlink" title="Lambda expression"></a>Lambda expression</h3><p>Basic Syntax:<br>[capture list] (parameter list) mutable(optional) exception attribute -&gt; return type {<br>  // Function body<br>}</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Example</span></span><br><span class="line">update(m, [](<span class="built_in">std</span>::<span class="built_in">string</span> key) -&gt; <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> &#123;</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>Key Question: How can we struct simple file system? What data structure is needed on top of disk, and how can it track certain data?</li>
+<li>capture list: a type parameter -&gt; can serve to transfer external data to lambda expression.<ul>
+<li>Value Capture: Similar to parameter passing by value - Generated when it is <strong>created</strong> not when called.<ul>
+<li>value = 1, lambda (value), value = 100, lambda call -&gt; lambda value = 1</li>
 </ul>
-<h3 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h3><ol>
-<li>Data Structure: What kind of data structure is needed so that file system can handle its data and metadata?</li>
-<li>Access Method: How system calls are related to the data structure of file system? How efficient are they??? </li>
-</ol>
-<h3 id="Overall-Organization"><a href="#Overall-Organization" class="headerlink" title="Overall Organization"></a>Overall Organization</h3><p>Disk block - normally 4KB.<br>Data Region - Disk space where user data exist.<br>Allocation Structure: Indicate whether the blocks are being used or not.</p>
+</li>
+<li>Reference Capture: parameter passing by refernce<ul>
+<li>lambda value = 100</li>
+</ul>
+</li>
+<li>Implicit capture: Writing capture list is tired, so compiler supports many implicit ways<ul>
+<li>[] - empty capture list</li>
+<li>[name1, name2] - captures series of variables</li>
+<li>[&amp;] - reference capture: compiler will decide which one to refer itself.</li>
+<li>[=] - value capture: compiler execute the list of derivation applications itself.</li>
+</ul>
+</li>
+<li>Expression Capture: Above value and reference caputre capture lvalue (variable name) as it captures the ones that are outer scope. This capture allows captured members to be initialized with arbitrary expressions; rvalues. Type is being judged like auto.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// expression capture</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lambda_expression_capture</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> important = <span class="built_in">std</span>::make_unique&lt;<span class="keyword">int</span>&gt;(<span class="number">1</span>);</span><br><span class="line">  <span class="comment">// std::move : accept rvalue reference parameters - take the rvalue and move it</span></span><br><span class="line">  <span class="keyword">auto</span> add = [v1 = <span class="number">1</span>, v2 = <span class="built_in">std</span>::move(important)](<span class="keyword">int</span> x, <span class="keyword">int</span> y) -&gt; <span class="keyword">int</span>&#123;</span><br><span class="line">    <span class="comment">// Now value of important is not specified</span></span><br><span class="line">    <span class="keyword">return</span> x+y+v1+(*v2); <span class="comment">//as v2 = unique ptr</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; add(<span class="number">3</span>,<span class="number">4</span>) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Generic Lambda</strong></p>
 <ul>
-<li>free list: Manages non-used blocks in a linked list form. Hence inode only remembers the head.</li>
+<li>We learned auto cannot be used in the parameter list as it would conflict with the functionality of the template.</li>
+<li>Lambda expression is not templated -&gt; the parameter table cannot be generalized, hence the parameter table type must be clarified -&gt; From C++14 you can use auto.</li>
 </ul>
-<p>Disk Space (assume 64 blocks):<br><img src="/image/os/inode_disk.png" alt=""></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// From C++14, you can use auto keyword to generate generic meanings.</span></span><br><span class="line"><span class="comment">// Below is C++11</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lambda_generic</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> generic = [](<span class="keyword">auto</span> x, <span class="keyword">auto</span> y)&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Function Object Wrapper</strong></p>
+<p>std::function - generic, polymorphic function wrapper whose instances can store, copy, and call any target entity that can be called; a container of functions. -&gt; We can more easily handle functions and function pointers as objects.</p>
+<p>std::bind - solves the requirement that we may not always be able to get all the parameters of a function at one time.</p>
+<p>std::placeholder::_N - Indicate nth element is not given yet, so when the parameters are given later, it fills from the front.</p>
+<p><strong>rvalue Reference</strong></p>
+<p>It solves a large number of historical issues in C++; extra overheads for vector,string, and allows the function object container, std::function possible.</p>
 <ul>
-<li>Metadata: Information such as data blocks (data region), size of file, owner, access, access change time…. –&gt; usually saved in data structure called inode. </li>
-<li>Inode Table: disk space for saving inodes; saved in array format.</li>
-<li>Inode is usually size between 128 ~ 256 bytes -&gt; 16 inodes in 4KB block, 80 inodes in the file system (as we use 5 * 4KB blocks).</li>
-<li>Superblock: Contain information about the entire file system; how many inodes, data blocks we have, where the inode table starts…<ul>
-<li>When we say “file system is brokeb” means superblock is damaged.</li>
-<li>Usually, file system duplicates superblock for backups.</li>
+<li>lvalue: is a persistent object that still exists after an expression (not necessarily assignment expression). 주소값을 받을 수 있는 모든 것.</li>
+<li>rvalue: is the temporary object that no longer exists after the expression ends. 참조 할 수 없는 값.<ul>
+<li>move(a) 는 a를 rvalue로 바꾸어서 lvalue 로 이동하는것; unconditionally conver lvalue -&gt; rvalue</li>
+<li>pvalue (pure): purely rvalue/literal like 10, true. Temporary variables returned by non-references, temp variables generated by operation expressions, origin literals, lambda expressions.</li>
+<li>xvalue (expiring): A value that is destroyed but can be moved. -&gt; T&amp;&amp;</li>
 </ul>
 </li>
 </ul>
-<p>OS Reads superblock, initialize file system elements, paste each partition to system tree when mount the file system -&gt; by doing so, can know the location of required data structure when access the file.</p>
-<h3 id="File-Organization-inode"><a href="#File-Organization-inode" class="headerlink" title="File Organization: inode"></a>File Organization: inode</h3><p>Inode has:</p>
-<ul>
-<li>File type; normal, directory…</li>
-<li>Size, block allocation, protected info (owner, access), time.</li>
-<li>Location within the disk (as like ptr).<br>And these are called metadata.</li>
-</ul>
-<p>Important to consider within inode structure is way of expressing the data block location. Simple method could be include multipe direct pointer within the inode. Each pointer points on disk block.<br>-&gt; Has file size limitation: Size is limited to num of pointers * block size.</p>
-<h3 id="Multi-Level-Index"><a href="#Multi-Level-Index" class="headerlink" title="Multi Level Index"></a>Multi Level Index</h3><ul>
-<li>To support bigger file, needed to add one more data structure; indirect pointer.<ul>
-<li>Indirect pointer does not point data block. It points the pointer that points the data block. </li>
-<li>Inode has fixed number of direct pointer (i.e. 12) and one indirect pointer. </li>
-<li>Indirect block is allocated to a big file (within disk data block region), and inode indirect pointer points this indirect block.</li>
-</ul>
-</li>
-</ul>
-<p><img src="/image/os/inode_prop.png" alt=""></p>
-<ul>
-<li><p>If bigger file wanted, then use <strong>double indirect pointer</strong> which points indirect pointer. If bigger then <strong>triple indirect pointer</strong>…</p>
-</li>
-<li><p>All together, disk block forms one-sided tree -&gt; multi level index.</p>
-</li>
-<li><p>Extent: </p>
-<ul>
-<li>consists of disk pointer and length of block -&gt; means it required continuous disk space for each extent. </li>
-<li>Therefore, use multipe extents to overcome this limitation which brings <strong>another limitation: metada gets bigger</strong>.</li>
-</ul>
-</li>
-<li><p>Linux use ext2, ext3 (multi level index), some OS use extent.</p>
-</li>
-</ul>
-<p><strong>Reason the tree (MLI) is biased -&gt; most files are small</strong><br>If most files are small, needs to construct file system to read small files fast -&gt; vsfs has inode that can read first (usually) 12 blocks fast (the direct pointers).</p>
-<h3 id="Directory-Organization"><a href="#Directory-Organization" class="headerlink" title="Directory Organization"></a>Directory Organization</h3><p>vsfs direcotry (like the other file system) has (entry name, inum).<br>In the directory data block, it has: inum | reclen | strlen | name.</p>
-<ul>
-<li>dot: current directory</li>
-<li>dot-dot: parent directory</li>
-<li>inmum = 0: unlinked; deleted -&gt; needs len in case create another object in the gap later.</li>
-</ul>
-<p>We should also note again that this simple linear list of directory entries is not the only way to store such information. As before, any data structure is possible.</p>
-<h3 id="Free-space-maintenance"><a href="#Free-space-maintenance" class="headerlink" title="Free space maintenance"></a>Free space maintenance</h3><p>File system must be able to track which inodes and data blocks are free or not -&gt; to allocate new space for file/directory -&gt; <strong>free space management</strong>.</p>
-<p>vsfs uses two bitmaps.</p>
-<ul>
-<li>File creation: <ol>
-<li>file system searches inode bitmap and allocates the empty inode to the file.</li>
-<li>Note the inode now is being used, and update disk bitmap accordingly.</li>
-<li>Similar steps for data block allocation.</li>
-</ol>
-</li>
-<li>Needs to consider…<ul>
-<li>ext2,ext3: If possible, find sequence of blocks so that future additional allocation request can have contiguous on the disk -&gt; performance improving (called <strong>pre-allocation</strong>).</li>
-</ul>
-</li>
-</ul>
-<h3 id="Access-Paths-Reading-and-Writing"><a href="#Access-Paths-Reading-and-Writing" class="headerlink" title="Access Paths: Reading and Writing"></a>Access Paths: Reading and Writing</h3><p>So far has learned how to save file and directory in the disk. Now need to understand how to read and write.</p>
-<ul>
-<li>Reading file from disk</li>
-<li>Open systemcall -&gt; traverse the path name -&gt; find inode to get basic information (metadata)<ol>
-<li>Open Systemcall</li>
-<li>Traverse the path name<ul>
-<li>Filesystem will read root inode first, which gets decided when the filesystem is mounted (usually 2).</li>
-<li>Filesystem extract pointer of a data block which contains root directory information.</li>
-<li>Read this directory information to find the target file.</li>
-</ul>
-</li>
-<li>Find the block that has the inode of the target, and its inode.</li>
-<li>open() read the target’s inode number into the memory.</li>
-<li>Filesystem checks the acess authority.</li>
-<li>Get file descriptor from <strong>open file-table</strong> and return it to user.</li>
-</ol>
-</li>
-<li>Read() - After open(), read comes<ol>
-<li>By inode, know the location of the block in the disk, and read the block.</li>
-<li>Since it is the first read, will read the first block (if file offset is 0).</li>
-<li>After reading the file, record the time.</li>
-<li>Update offset of file descriptor (give by open-file-table).</li>
-<li>Next time, when read() happenes, it starts with the updated offset.</li>
-</ol>
-</li>
-<li>Close: deallocate the file descriptor.<br>In summary:</li>
-</ul>
-<ol>
-<li>Read Root inode -&gt; read Root data -&gt; read foo inode -&gt; read foo data -&gt; read bar inode.</li>
-<li>read bar inode -&gt; bar data[0] -&gt; write bar inode (the offset).</li>
-<li>read bar inode -&gt; bar data[1] -&gt; write bar inode (the offset)….</li>
-</ol>
-<p>As it could be checked, as the path gets longer, relevant inode and data must be read.<br>Hence, if the directory is big, then many data blocks must be read to find the targeted file.</p>
-<ul>
-<li>Write Disk</li>
-<li>Similar to read, it first uses open() and then write(), and deallocate the file descriptor.<ul>
-<li>Unlike read, write may need block allocation which needs to decide which blocks to allocate and write on the disk -&gt; required to update data structures of the disk (such as data bitmap and inode).</li>
-<li>Therofre, logically it makes 5 extra steps of I/O.<ul>
-<li>One for read data bitmap, one for to write bitmap (to apply the change of states at the disk).</li>
-<li>Two for inode read and write (to apply the change of location at the disk).</li>
-<li>One for write the actual block.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>File creation - Very complicated and needs many I/O.<ul>
-<li>One for reading inode bitmap (to find free inode), one to write on the inode bitmap (notice allocation)</li>
-<li>One for making new inode (reset), one for writing data block at directory (link inode name and parent name).</li>
-<li>Two for read and write directory inode (update)…..</li>
-</ul>
-</li>
-</ul>
-<h3 id="Caching-and-buffering"><a href="#Caching-and-buffering" class="headerlink" title="Caching and buffering"></a>Caching and buffering</h3><p>For performance matter, most of filesystem cache frequently used blocks to DRAM. </p>
-<ul>
-<li>If no cahce: At least needs two reads per directory (directory inode and its data).</li>
-<li>Usually, fixed cache occupies 10% of the total memory -&gt; static partitioning is wasteful.</li>
-<li>In the modern OS, use dynamic partitioning.<ul>
-<li>United virtual memory pages and filesystem pages -&gt; unified page cahce.</li>
-<li>Hence, can flexibly allocate between filesystem and virtual memory upon its need.</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>Cached Read: It will cause many I/O for reading directory inode data, but follow up directory (children) will be cached, hence no extra I/O is needed.</li>
-<li>Cached Write: Since the changed data must be written back to the disk –&gt; Called write buffering.<ul>
-<li>By storing/saving the number of write-works,<ol>
-<li>Multiple write processes can be <strong>batched</strong> with fewer I/Os.</li>
-<li>Can improve the performance by scheduling the multiple I/Os.</li>
-</ol>
-</li>
-<li>Of course, it system crashes before saving, cached data will be gone.</li>
-<li>To avoid this situation, use fsync() for jobs that must be written right away,</li>
-</ul>
-</li>
-</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reference</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span>&amp; str)</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"lvalue"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reference</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span>&amp;&amp; str)</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"rvalue"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> lv1 = <span class="string">"string"</span>; <span class="comment">// lv1 is lvalue, "string" is rvalues</span></span><br><span class="line">  <span class="comment">// std::string&amp;&amp; r1 = lv1;  // illegal as rvalue cannot ref to lvalue.</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span>&amp;&amp; rv1 = <span class="built_in">std</span>::move(lv1); <span class="comment">// Legal -&gt; move(lv1) convers lv1 to rvalue.</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; lv2 = lv1 + lv1;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span>&amp;&amp; rv2 = lv1 + lv2; <span class="comment">// legal as lv1 + lv2 is a temp rvalue object.</span></span><br><span class="line">  <span class="comment">// That is why below is Possible</span></span><br><span class="line">  rv2 += <span class="string">"new string"</span>;</span><br><span class="line"></span><br><span class="line">  reference(rv2); <span class="comment">// output: lvalue -&gt; because rv2 refers to rvalue -&gt; rv2 is lvalue</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> &amp;a = <span class="built_in">std</span>::move(<span class="number">1</span>); <span class="comment">// illegal - non-const lvalue ref cannot ref rvalue</span></span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">int</span> &amp;b = <span class="built_in">std</span>::move(<span class="number">1</span>); <span class="comment">// legal</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// lvalue must be const reference to reference rvalue</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Move Semantics</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> *pointer;</span><br><span class="line">  A() : pointer(<span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">1</span>)) &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"ctor"</span> &lt;&lt; pointer &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  A(A&amp; a) : pointer(<span class="keyword">new</span> <span class="keyword">int</span>(*a.pointer))&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"copy"</span> &lt;&lt; pointer &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  &#125; <span class="comment">// meaningless object copy</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Move implementation</span></span><br><span class="line">  A(A&amp;&amp; a) : pointer(a.pointer)&#123;</span><br><span class="line">    a.pointer = <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"move"</span> &lt;&lt; pointer &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ~A()&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"dtor"</span> &lt;&lt; pointer &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">delete</span> pointer;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">A <span class="title">return_rvalue</span><span class="params">(<span class="keyword">bool</span> test)</span></span>&#123;</span><br><span class="line">  A a, b; <span class="comment">// two ctor called</span></span><br><span class="line">  <span class="keyword">if</span> (test) <span class="keyword">return</span> a; <span class="comment">// equal to static_cast&lt;A&amp;&amp;&gt;(a);</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">return</span> b; <span class="comment">// equal to static_cast&lt;A&amp;&amp;&gt;(b);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// rhs is xvalue: moving A(A(A&amp;&amp;)) to obj which is a pointer as rvalue</span></span><br><span class="line">  <span class="comment">// and the pointer = nullptr -&gt; object b becomes obj</span></span><br><span class="line">  <span class="comment">// Therefore there is no dtor called</span></span><br><span class="line">  A obj = return_rvalue(<span class="literal">false</span>); <span class="comment">// return b</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// outputs:</span></span><br><span class="line"><span class="comment">// ctor 0xe7be70 (a)</span></span><br><span class="line"><span class="comment">// ctor 0xe7c2a0 (b)</span></span><br><span class="line"><span class="comment">// move 0xe7c2a0 (obj)</span></span><br><span class="line"><span class="comment">// dtor 0 (b)</span></span><br><span class="line"><span class="comment">// dtor 0xe7be70 (a)</span></span><br><span class="line"><span class="comment">// dtor 0xe7c2a0 (obj)</span></span><br></pre></td></tr></table></figure>
+<p>Above do not use copy constructs -&gt; enhance performance</p>
+<p><strong>Perfect Forwarding</strong><br>No matter what type of reference type the template parameter is, the template parameter can bederived as right reference type if and only if the argument type is a right reference.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reference</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span>&amp; str)</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"lvalue"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reference</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span>&amp;&amp; str)</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"rvalue"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;typenameT&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pass</span><span class="params">(T&amp;&amp; v)</span></span>&#123;</span><br><span class="line">  reference(v);</span><br><span class="line">  reference(<span class="built_in">std</span>::move(v));</span><br><span class="line">  reference(<span class="built_in">std</span>::forward&lt;T&gt;(v));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  pass(<span class="string">"a"</span>); <span class="comment">// rvalue references</span></span><br><span class="line">  <span class="built_in">string</span> b = <span class="string">"a"</span>;</span><br><span class="line">  pass(b); <span class="comment">// lvalue references</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// if both int -&gt; lvalue???</span></span><br><span class="line">  <span class="comment">// Depending on compilers?</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>reference contraction rule<br><img src="/image/CPP/Modern_CPP/rvalue.PNG" alt=""></p>
 
         </div>
         
@@ -344,7 +249,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -394,7 +299,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -418,7 +323,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -500,6 +405,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -538,7 +454,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -571,12 +487,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -637,7 +553,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -646,6 +562,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -666,82 +658,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -752,13 +668,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -806,12 +715,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -872,7 +781,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -881,6 +790,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -901,82 +886,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -987,13 +896,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">

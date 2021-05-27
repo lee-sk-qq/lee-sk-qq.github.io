@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.1" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Category: CPP - SK Lee</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="SK Lee">
+<meta property="og:url" content="https://github.com/qqskda/categories/CPP/index.html">
+<meta property="og:site_name" content="SK Lee">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/images/og_image.png">
+<meta property="article:author" content="Sungkwon Lee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/images/og_image.png">
+<meta name="twitter:creator" content="@qqskda">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/avatar.png">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/monokai-sublime.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/avatar.png" alt="SK Lee" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/qqskda">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">Categories</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">CPP</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 880 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2021/05/08/CPP/Modern_CPP/Chapter3/">Language Runtime Enhancements</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference: <a href="https://github.com/changkun/modern-cpp-tutorial">https://github.com/changkun/modern-cpp-tutorial</a></p>
+<h3 id="Lambda-expression"><a href="#Lambda-expression" class="headerlink" title="Lambda expression"></a>Lambda expression</h3><p>Basic Syntax:<br>[capture list] (parameter list) mutable(optional) exception attribute -&gt; return type {<br>  // Function body<br>}</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Example</span></span><br><span class="line">update(m, [](<span class="built_in">std</span>::<span class="built_in">string</span> key) -&gt; <span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span> &#123;</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>capture list: a type parameter -&gt; can serve to transfer external data to lambda expression.<ul>
+<li>Value Capture: Similar to parameter passing by value - Generated when it is <strong>created</strong> not when called.<ul>
+<li>value = 1, lambda (value), value = 100, lambda call -&gt; lambda value = 1</li>
+</ul>
+</li>
+<li>Reference Capture: parameter passing by refernce<ul>
+<li>lambda value = 100</li>
+</ul>
+</li>
+<li>Implicit capture: Writing capture list is tired, so compiler supports many implicit ways<ul>
+<li>[] - empty capture list</li>
+<li>[name1, name2] - captures series of variables</li>
+<li>[&amp;] - reference capture: compiler will decide which one to refer itself.</li>
+<li>[=] - value capture: compiler execute the list of derivation applications itself.</li>
+</ul>
+</li>
+<li>Expression Capture: Above value and reference caputre capture lvalue (variable name) as it captures the ones that are outer scope. This capture allows captured members to be initialized with arbitrary expressions; rvalues. Type is being judged like auto.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// expression capture</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lambda_expression_capture</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> important = <span class="built_in">std</span>::make_unique&lt;<span class="keyword">int</span>&gt;(<span class="number">1</span>);</span><br><span class="line">  <span class="comment">// std::move : accept rvalue reference parameters - take the rvalue and move it</span></span><br><span class="line">  <span class="keyword">auto</span> add = [v1 = <span class="number">1</span>, v2 = <span class="built_in">std</span>::move(important)](<span class="keyword">int</span> x, <span class="keyword">int</span> y) -&gt; <span class="keyword">int</span>&#123;</span><br><span class="line">    <span class="comment">// Now value of important is not specified</span></span><br><span class="line">    <span class="keyword">return</span> x+y+v1+(*v2); <span class="comment">//as v2 = unique ptr</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; add(<span class="number">3</span>,<span class="number">4</span>) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Generic Lambda</strong></p>
+<ul>
+<li>We learned auto cannot be used in the parameter list as it would conflict with the functionality of the template.</li>
+<li>Lambda expression is not templated -&gt; the parameter table cannot be generalized, hence the parameter table type must be clarified -&gt; From C++14 you can use auto.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// From C++14, you can use auto keyword to generate generic meanings.</span></span><br><span class="line"><span class="comment">// Below is C++11</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lambda_generic</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">auto</span> generic = [](<span class="keyword">auto</span> x, <span class="keyword">auto</span> y)&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Function Object Wrapper</strong></p>
+<p>std::function - generic, polymorphic function wrapper whose instances can store, copy, and call any target entity that can be called; a container of functions. -&gt; We can more easily handle functions and function pointers as objects.</p>
+<p>std::bind - solves the requirement that we may not always be able to get all the parameters of a function at one time.</p>
+<p>std::placeholder::_N - Indicate nth element is not given yet, so when the parameters are given later, it fills from the front.</p>
+<p><strong>rvalue Reference</strong></p>
+<p>It solves a large number of historical issues in C++; extra overheads for vector,string, and allows the function object container, std::function possible.</p>
+<ul>
+<li>lvalue: is a persistent object that still exists after an expression (not necessarily assignment expression). 주소값을 받을 수 있는 모든 것.</li>
+<li>rvalue: is the temporary object that no longer exists after the expression ends. 참조 할 수 없는 값.<ul>
+<li>move(a) 는 a를 rvalue로 바꾸어서 lvalue 로 이동하는것; unconditionally conver lvalue -&gt; rvalue</li>
+<li>pvalue (pure): purely rvalue/literal like 10, true. Temporary variables returned by non-references, temp variables generated by operation expressions, origin literals, lambda expressions.</li>
+<li>xvalue (expiring): A value that is destroyed but can be moved. -&gt; T&amp;&amp;</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reference</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span>&amp; str)</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"lvalue"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reference</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span>&amp;&amp; str)</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"rvalue"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> lv1 = <span class="string">"string"</span>; <span class="comment">// lv1 is lvalue, "string" is rvalues</span></span><br><span class="line">  <span class="comment">// std::string&amp;&amp; r1 = lv1;  // illegal as rvalue cannot ref to lvalue.</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span>&amp;&amp; rv1 = <span class="built_in">std</span>::move(lv1); <span class="comment">// Legal -&gt; move(lv1) convers lv1 to rvalue.</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; lv2 = lv1 + lv1;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span>&amp;&amp; rv2 = lv1 + lv2; <span class="comment">// legal as lv1 + lv2 is a temp rvalue object.</span></span><br><span class="line">  <span class="comment">// That is why below is Possible</span></span><br><span class="line">  rv2 += <span class="string">"new string"</span>;</span><br><span class="line"></span><br><span class="line">  reference(rv2); <span class="comment">// output: lvalue -&gt; because rv2 refers to rvalue -&gt; rv2 is lvalue</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> &amp;a = <span class="built_in">std</span>::move(<span class="number">1</span>); <span class="comment">// illegal - non-const lvalue ref cannot ref rvalue</span></span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">int</span> &amp;b = <span class="built_in">std</span>::move(<span class="number">1</span>); <span class="comment">// legal</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// lvalue must be const reference to reference rvalue</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Move Semantics</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> *pointer;</span><br><span class="line">  A() : pointer(<span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">1</span>)) &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"ctor"</span> &lt;&lt; pointer &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  A(A&amp; a) : pointer(<span class="keyword">new</span> <span class="keyword">int</span>(*a.pointer))&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"copy"</span> &lt;&lt; pointer &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  &#125; <span class="comment">// meaningless object copy</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Move implementation</span></span><br><span class="line">  A(A&amp;&amp; a) : pointer(a.pointer)&#123;</span><br><span class="line">    a.pointer = <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"move"</span> &lt;&lt; pointer &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ~A()&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"dtor"</span> &lt;&lt; pointer &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">delete</span> pointer;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">A <span class="title">return_rvalue</span><span class="params">(<span class="keyword">bool</span> test)</span></span>&#123;</span><br><span class="line">  A a, b; <span class="comment">// two ctor called</span></span><br><span class="line">  <span class="keyword">if</span> (test) <span class="keyword">return</span> a; <span class="comment">// equal to static_cast&lt;A&amp;&amp;&gt;(a);</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">return</span> b; <span class="comment">// equal to static_cast&lt;A&amp;&amp;&gt;(b);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="comment">// rhs is xvalue: moving A(A(A&amp;&amp;)) to obj which is a pointer as rvalue</span></span><br><span class="line">  <span class="comment">// and the pointer = nullptr -&gt; object b becomes obj</span></span><br><span class="line">  <span class="comment">// Therefore there is no dtor called</span></span><br><span class="line">  A obj = return_rvalue(<span class="literal">false</span>); <span class="comment">// return b</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// outputs:</span></span><br><span class="line"><span class="comment">// ctor 0xe7be70 (a)</span></span><br><span class="line"><span class="comment">// ctor 0xe7c2a0 (b)</span></span><br><span class="line"><span class="comment">// move 0xe7c2a0 (obj)</span></span><br><span class="line"><span class="comment">// dtor 0 (b)</span></span><br><span class="line"><span class="comment">// dtor 0xe7be70 (a)</span></span><br><span class="line"><span class="comment">// dtor 0xe7c2a0 (obj)</span></span><br></pre></td></tr></table></figure>
+<p>Above do not use copy constructs -&gt; enhance performance</p>
+<p><strong>Perfect Forwarding</strong><br>No matter what type of reference type the template parameter is, the template parameter can bederived as right reference type if and only if the argument type is a right reference.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reference</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span>&amp; str)</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"lvalue"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reference</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span>&amp;&amp; str)</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"rvalue"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;typenameT&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pass</span><span class="params">(T&amp;&amp; v)</span></span>&#123;</span><br><span class="line">  reference(v);</span><br><span class="line">  reference(<span class="built_in">std</span>::move(v));</span><br><span class="line">  reference(<span class="built_in">std</span>::forward&lt;T&gt;(v));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  pass(<span class="string">"a"</span>); <span class="comment">// rvalue references</span></span><br><span class="line">  <span class="built_in">string</span> b = <span class="string">"a"</span>;</span><br><span class="line">  pass(b); <span class="comment">// lvalue references</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// if both int -&gt; lvalue???</span></span><br><span class="line">  <span class="comment">// Depending on compilers?</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>reference contraction rule<br><img src="/image/CPP/Modern_CPP/rvalue.PNG" alt=""></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    9 minutes read (About 1393 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2021/05/03/CPP/Modern_CPP/Chapter2/">Language Usability Enhancements</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference: <a href="https://github.com/changkun/modern-cpp-tutorial">https://github.com/changkun/modern-cpp-tutorial</a></p>
+<ul>
+<li>Language behaviour that occurred before the runtime.</li>
+</ul>
+<h3 id="Constants"><a href="#Constants" class="headerlink" title="Constants"></a>Constants</h3><p>nullptr:</p>
+<ul>
+<li>CPP does not allow implicit conversion of void * to other types.</li>
+<li>Traditional CPP treats null and 0 same.</li>
+<li>So to certain how to deal with NULL in cpp, use nullptr</li>
+<li>By doing so we can do the right function calls.</li>
+</ul>
+<p>constexpr:</p>
+<ul>
+<li>Expression produces the same result without any side effects.</li>
+<li>Compiler will optimise and embed it at compile time.</li>
+<li>It is useful as CPP array length must be constant expression; yet most compilers these days still support as part of its optimisation.</li>
+<li>Therefore, use constexpr for array length so that it can be compiled.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Below is C++11 form, from 14, you can write like a function.</span></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">const</span> in n)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> n == <span class="number">1</span> || n == <span class="number">2</span> ? <span class="number">1</span> : fib(n<span class="number">-1</span>) + fib(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Variables-and-Initialisation"><a href="#Variables-and-Initialisation" class="headerlink" title="Variables and Initialisation"></a>Variables and Initialisation</h3><p><strong>IF Statement</strong><br>In C++17, following is available like Go</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Original</span></span><br><span class="line"><span class="keyword">auto</span> itr = <span class="built_in">std</span>::find(vec.begin(), vec.end(), <span class="number">2</span>);</span><br><span class="line"><span class="keyword">if</span> (itr != vec.end()) *itr = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CPP17 - can define a local variable, and check the condition</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">auto</span> itr = <span class="built_in">std</span>::find(vec.begin(), vec.end(), <span class="number">3</span>); itr != vec.end())&#123;</span><br><span class="line">  *itr = <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Initialiser_List<T></strong></p>
+<ul>
+<li>It is the one that allows to initialise the different type with same syntax: {} introduced in C++11</li>
+<li>Auto used in followings:<ul>
+<li>Used with {} at Initialisation and assignment expression.</li>
+<li>Binded to auto including ranged for.</li>
+</ul>
+</li>
+<li>It can be implemented with 2 ptr, or 1 ptr and size.</li>
+<li>Be aware that it is a shallow copy which does not guarantee the data for the original instance deleted.</li>
+<li>Possible errors in narrowing conversion like int to double.</li>
+<li>Which means we can use itr for array.</li>
+</ul>
+<p><strong>Structured Binding</strong></p>
+<ul>
+<li>Provide functionality similar to the multiple return values</li>
+<li>Use std::tuple to return multiple values in tuple form.</li>
+<li>But, unfortunately, we have to clearly define how many values the returned tuple has.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">std::tuple&lt;int, double, std::string&gt; f()&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">std</span>::make_tuple(<span class="number">1</span>, <span class="number">2.3</span>, <span class="string">"45"</span>);</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="comment">// auto will be applied indiv to each variables.</span></span><br><span class="line"><span class="keyword">auto</span> [x, y, z] = f();</span><br></pre></td></tr></table></figure>
+
+<h3 id="Type-Inference"><a href="#Type-Inference" class="headerlink" title="Type Inference"></a>Type Inference</h3><p><strong>auto</strong></p>
+<ul>
+<li>Cannot be used for function arguments.</li>
+<li>Cannot be used to derive array types: auto arr[10] = arrOrigin; // cannot infer array type.</li>
+</ul>
+<p><strong>decltype</strong></p>
+<ul>
+<li>Used to solve the defect that the auto keyword can only type that variable -&gt; use expression!<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> x = <span class="number">1</span>; <span class="comment">// int</span></span><br><span class="line"><span class="keyword">auto</span> y = <span class="number">2.1</span>; <span class="comment">// double</span></span><br><span class="line"><span class="keyword">decltype</span>(x+y) z; <span class="comment">// double</span></span><br><span class="line">z = <span class="number">1</span>; <span class="comment">// z is still double = 1.0.</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><strong>tail type inference</strong></p>
+<p>Quick Note: In specifying a template (naming), class and typename are interchangeable = equivalent. However: special cases are</p>
+<ul>
+<li><p>In the case of dependent types. typename is used to declare when referencing a nested type that depends on another template parameter such as typedef as following.</p>
+</li>
+<li><p>When you declare a template template parameter: must use class.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Hint at the compiler that you are referring to a dependent type</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> <span class="keyword">param_t</span>&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>&#123;</span></span><br><span class="line">  <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="keyword">param_t</span>::baz <span class="keyword">sub_t</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// declaring a template template</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">class</span> <span class="title">C</span> &#123;</span>&#125;; <span class="comment">// valid!</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">template</span> <span class="keyword">typename</span> T&gt; <span class="class"><span class="keyword">class</span> <span class="title">C</span>&#123;</span>&#125;; <span class="comment">// Invalid!</span></span><br></pre></td></tr></table></figure>
+
+<p>tail type inference: use decltype in specifying template.</p>
+</li>
+<li><p>Since the compiler will not know which type is the input parameter, decltype must be defined as a tail to define template’s return type as following:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++11</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</span><br><span class="line">auto add(T x, U y) -&gt; decltype(x+y)&#123;</span><br><span class="line">  <span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C++14</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">add</span><span class="params">(T x, U y)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// use link</span></span><br><span class="line"><span class="keyword">auto</span> w = add&lt;<span class="keyword">int</span>, <span class="keyword">double</span>&gt;(<span class="number">1</span>, <span class="number">2.0</span>); <span class="comment">// return is 3.0 as double.</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><strong>decltype(auto)</strong></p>
+<ul>
+<li>It deals with the concept of parameter forwarding in C++, will cover later.</li>
+<li>Mainly to derive the return type of a forwarding function or package, which does not require us to explicitly specify the parameter expression of decltype.</li>
+<li>쉽게 말하면, 그냥 리턴타입 귀찮은거 알아서 해준다는 소리.</li>
+</ul>
+<h3 id="Control-Flow"><a href="#Control-Flow" class="headerlink" title="Control Flow"></a>Control Flow</h3><p><strong>if constexpr in C++17</strong></p>
+<ul>
+<li>간단하게 if statement 에서 constexpr 사용할 수 있게되었다.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">func</span><span class="params">(<span class="keyword">const</span> T&amp; t)</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">if</span> <span class="title">constexpr</span> <span class="params">(<span class="built_in">std</span>::otherFunc&lt;T&gt;::value)</span> <span class="keyword">do</span> something</span>;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">do</span> somethingElse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Templates"><a href="#Templates" class="headerlink" title="Templates"></a>Templates</h3><p>Philosophy: throw all problems at compile time so that only deals with core dynamic services at runtime; optimise the performance of the run time.</p>
+<p><strong>Templates</strong></p>
+<ul>
+<li>When compiler sees fully defined template, it will instantiate it in each compilation unit.</li>
+<li>만약 정의만 하고 사용하지 않는다? 컴파일 되지도 않음 (디버깅 하면 함수가 존재도 안함) -&gt; 이 이유로 다른 함수처럼 헤더에 선언만 하면 안됨. 어디든 정의도 같이.</li>
+<li>만약 더하기 함수를 정의하고 int 와 double 두 가지 자료형으로 사용한다면 -&gt; 컴파일 후 해당 템플릿의 int, double 두가지 형식의 함수가 생김.</li>
+</ul>
+<p><strong>Extern Templates</strong></p>
+<ul>
+<li>By using extern, we can explicitly tell the compiler when to instantiate the template.</li>
+<li>만약 다른 컴파일 유닛에 해당 템플릿과 동일한게 존재 한다면 (같은 자료형을 받는), 한곳에 extern 을 사용하여 해당 템플릿이 단 한번만 컴파일 되게 지정한다 (성능 향상)</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">std</span>:</span>:<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;; <span class="comment">// force instantiation</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">std</span>:</span>:<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;; <span class="comment">// Should not instantiate in current file.</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Type alias templates &amp; Default template Parameter</strong></p>
+<ul>
+<li>Template is not type so cannot use typedef, but we want to make a certain type for a template like followings</li>
+<li>You can set default type for template parameter like a function</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Template Type Alias</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">using</span> soModern = someType&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;t&gt;, <span class="built_in">std</span>::<span class="built_in">string</span>&gt;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  soModern&lt;<span class="keyword">bool</span>&gt; isIt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Default template parameters</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = <span class="keyword">int</span>, <span class="keyword">typename</span> U = <span class="keyword">int</span>&gt;</span><br><span class="line"><span class="keyword">auto</span> add(T x, U y) -&gt; <span class="keyword">decltype</span>(x+y)&#123;<span class="keyword">return</span> x+y;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Variadic Templates - 가변 길이 템플릿</strong></p>
+<ul>
+<li>말 그대로 가변으로써 여러 패러미터들을 따로 명시하지 않고 … 처럼 벌크로 넘길 수 있는 방식.</li>
+<li>bulk 로 주어진 args 를 unpack 하는 방법에는 보통 다음과 같은 형태를 따른다.</li>
+</ul>
+<ol>
+<li>Recursive Template Function</li>
+</ol>
+<ul>
+<li>Most classic approach that we can think of.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> TO&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printf1</span><span class="params">(TO value)</span></span>&#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; value &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printf1</span><span class="params">(T value, Ts... args)</span></span>&#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; value &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  printf1(args...); <span class="comment">// when # args = 1 -&gt; trig above func</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  printf1(<span class="number">1</span>,<span class="number">2</span>,<span class="string">"asdf"</span>, <span class="number">1.1</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>Variable parameter template expansion<br>Very cumbersome - can use std::bind</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tempalte&lt;<span class="keyword">typename</span> TO, <span class="keyword">typename</span>... T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printf2</span><span class="params">(TO t0, T... t)</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; t0 &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="function"><span class="keyword">if</span> <span class="title">constexpr</span> <span class="params">(<span class="keyword">sizeof</span>...(t) &gt; <span class="number">0</span>)</span> <span class="title">printf2</span><span class="params">(t...)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Initialise list expansion<br>Recursive Functions are a standard practice -&gt; drawback is that you must define a terminate function.</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">printf3</span><span class="params">(T value, Ts... args)</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="comment">// Lambda Expression</span></span><br><span class="line">  (<span class="keyword">void</span>) <span class="built_in">std</span>::<span class="built_in">initializer_list</span>&lt;T&gt;&#123;([&amp;args])&#125;&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; args &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  &#125;(), value)...&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Fold-expression"><a href="#Fold-expression" class="headerlink" title="Fold expression"></a>Fold expression</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Available from C++17</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ... T&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">sum</span><span class="params">(T ... t)</span> <span class="title">return</span> <span class="params">(t + ...)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Inheritance constructor: using Parent::Parent; // Inherit parent constructor.</li>
+</ul>
+<h3 id="Explicit-Virtual-function-overwrite"><a href="#Explicit-Virtual-function-overwrite" class="headerlink" title="Explicit Virtual function overwrite"></a>Explicit Virtual function overwrite</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>; <span class="comment">//abstract function - will be overriden by child object.</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Child</span> :</span> Base &#123;</span><br><span class="line">  <span class="comment">// Can be two options: Override parent func | Add the same name func.</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="comment">// If base foo() gets deleted -&gt; Child has its own method -&gt; undefined behaviour.</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>To Avoid above situation C++11 introduced override and final.</p>
+<p><strong>Override</strong></p>
+<ul>
+<li>explicitly tells the compiler to overload -&gt; compiler check the base func if it has a virtual function, otherwise throw error: virtual void foo() override;</li>
+</ul>
+<p><strong>Final</strong></p>
+<ul>
+<li>To prevent the class inherit and to terminate the virtual function to be overloaded.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">  <span class="comment">// No one can inherit &amp; overload this function (so no same name).</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> <span class="keyword">final</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// No one can inherit this Child class.</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Child</span> <span class="title">final</span> :</span> Base &#123;</span><br><span class="line">  <span class="comment">// Legal, but Child cannot be parent because of final.</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Delete-and-default"><a href="#Delete-and-default" class="headerlink" title="Delete and default"></a>Delete and default</h3><p>As discussed, compiler generates default constructor, destructor, and copy assignment if not defined.</p>
+<p>But if you want to prohibit certain behaviour, it must be defined in private -&gt; not comfty.</p>
+<p>By using default and delete, you can remain it in the public scope like following:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Base() = <span class="keyword">default</span>; <span class="comment">// Telling compiler to use default generated ctor.</span></span><br><span class="line">    Base&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Base&amp;) = <span class="keyword">delete</span>; <span class="comment">// to refuse constructor copy assignment (but remain it in the public)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 367 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2021/05/03/CPP/Effective_CPP/Terminology/">Terminology</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference: Effective C++ Third Edition 55 Specific Ways to Improve Your Programs and Designs</p>
+<h3 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h3><p>Declaration: Tells compilers about the name and type of something, but not details.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> x; <span class="comment">// object declaration</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// std defines c++ standard library</span></span><br><span class="line"><span class="comment">// size_t both exists in C and C++ </span></span><br><span class="line"><span class="comment">// signature of a function: return type and its parameter types</span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="keyword">size_t</span> <span class="title">numDigits</span><span class="params">(<span class="keyword">int</span> number)</span> <span class="comment">// func declaration</span></span></span><br><span class="line"><span class="function">class Widget</span>;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; class <span class="title">GraphNode</span><span class="params">(T smallT)</span> <span class="comment">// template declaration</span></span></span><br></pre></td></tr></table></figure>
+
+<p>Definition: provides compilers with the details a declaration omits. It is where compilers set aside memory for the object. </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x; <span class="comment">// object definition</span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="keyword">size_t</span> <span class="title">numDigits</span><span class="params">(<span class="keyword">int</span> number)</span></span>&#123;</span><br><span class="line">    <span class="comment">// function code</span></span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>Initialisation: </p>
+<ul>
+<li>process of giving an object its first value. </li>
+<li>For objects of user-defined types -&gt; initialisation performed by constructors. </li>
+<li>Default Constructor: can be called without any arguments or has default values.</li>
+</ul>
+<p>Explicit: </p>
+<ul>
+<li>it prevents from being used to perform implicit type conversions, but may be used for explicit type conversions.</li>
+<li>Explicit constructors are more preferable than non-explicits as it prevents compilers from performing unexpected type converstions.</li>
+<li><strong>If you dont have good reason to do implicit type conversion -&gt; declare it as explicit!</strong></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">B</span><span class="params">(<span class="keyword">int</span> x= <span class="number">0</span>, <span class="keyword">bool</span> b = <span class="literal">true</span>)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(B object)</span></span>; <span class="comment">// function takes B as an input</span></span><br><span class="line"></span><br><span class="line">doSomething(B(<span class="number">28</span>)); <span class="comment">// explicit type convert for int 28 to object B</span></span><br></pre></td></tr></table></figure>
+
+<p>Copy Constructor: copy the another object of the same type.<br>Copy Assignment Operator: to copy the value from one object to another of the same type.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    A(); <span class="comment">// default constructor</span></span><br><span class="line">    A(<span class="keyword">const</span> A&amp; rhs); <span class="comment">// copy constructor</span></span><br><span class="line">    A&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> A&amp; rhs); <span class="comment">// copy assignment operator</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">A a1; <span class="comment">// Invoke def constr</span></span><br><span class="line"><span class="function">A <span class="title">a2</span><span class="params">(a1)</span></span>; <span class="comment">// Invoke copy constr</span></span><br><span class="line">a1 = a2; <span class="comment">// Invoke copy assignment operator</span></span><br><span class="line">A a3 = a2; <span class="comment">// Invoke copy constructor</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tempFunc</span><span class="params">(A a)</span></span>; <span class="comment">// </span></span><br><span class="line">tempFunc(a3); <span class="comment">// a3 passed by value -&gt; copy constructor called a = a3.</span></span><br></pre></td></tr></table></figure>
+
+<p>How to distinguish? If a new object is being defined like a2 and a3, it is copy constructor. If an existing object copies another like a1 = a2, it is copy assignment constructor.</p>
+<p>Possible undefined behavrious:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = <span class="number">0</span>; <span class="comment">// p is a nullptr</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *p; <span class="comment">// dereferencing a nullptr -&gt; undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> name[] = <span class="string">"sixcha"</span>; <span class="comment">// array of size 7 including trailing null</span></span><br><span class="line"><span class="keyword">char</span> c = name[<span class="number">10</span>]; <span class="comment">// Referencing invalid array index.</span></span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 994 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2021/05/03/CPP/Effective_CPP/Chapter1/">Accustoming Yourself to C++</a>
+            
+        </h1>
+        <div class="content">
+            <p>Reference: Effective C++ Third Edition 55 Specific Ways to Improve Your Programs and Designs</p>
+<h3 id="Prefer-consts-enums-and-inlines-to-defines"><a href="#Prefer-consts-enums-and-inlines-to-defines" class="headerlink" title="Prefer consts, enums, and inlines to #defines"></a>Prefer consts, enums, and inlines to #defines</h3><p><strong>Prefer the compiler to the preprocessor</strong> because #define may be treated as if it is not part of the language per se. </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TEMP 1.65 <span class="comment">// It may never be seen by compilers -&gt; may not in symbol table -&gt; causes problem.</span></span></span><br><span class="line"><span class="comment">// So replace as below is better</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> Temp = <span class="number">1.65</span>; </span><br><span class="line"><span class="comment">// uppercase usually for macros</span></span><br><span class="line"><span class="comment">// above def seen by compilers and be in symbol tables</span></span><br><span class="line"><span class="comment">// const float may yield smaller code than #define</span></span><br></pre></td></tr></table></figure>
+<p>When replacing #define with constants be aware:</p>
+<ol>
+<li><p>Defining constant pointers: Important that the ptr to be constant </p>
+<ul>
+<li>const char * const varName = “value”;</li>
+<li>varName is a const ptr that points const char which is “value”</li>
+<li>For string: const std::string varName(“value”);</li>
+</ul>
+</li>
+<li><p>Class-specific constants: ensure only one copy of it -&gt; static like following</p>
+<ul>
+<li>Usually CPP requires definition except class-specific constants of integeral type (int, chars, bools…). <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Temp</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> var = value; </span><br><span class="line">    <span class="comment">// constant declaration + definition</span></span><br><span class="line">    <span class="comment">// It may be illegal for older compilers, as was illegal to provide initial value for static member. If that,</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> old;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> Temp::old = <span class="number">1</span>; <span class="comment">// def goes in impl. file</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>If, somehow, statis must have value during compilation, use enum hack</p>
+<ul>
+<li>Somehow behaves more #define than a const</li>
+<li>It’s legal to take address of const, but enum is not.</li>
+<li>Typically, not legal to take address of #define</li>
+<li><strong>So, if you don’t want user get a ptr or reference of your constants, use enum</strong></li>
+<li>Enum hack is a fundamental technique of template metaprogramming that you can know when you see it what is it for.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Temp</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">enum</span> &#123;VarName =  <span class="number">5</span>&#125;; <span class="comment">// VarName a symbolic name for 5</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+Don’t use #define macro like MAX_IS(a,b) f((a…)), but use inline type template instead.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CALL_WITH_MAX ... </span></span><br><span class="line"><span class="comment">// Instead use</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">callWithMax</span><span class="params">(<span class="keyword">const</span> T&amp; a, <span class="keyword">const</span> T&amp; b)</span></span>&#123;</span><br><span class="line">    f(a &gt; b ? a : b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Can have efficiency of macro (less overhead for calling a function) + predictable behaviour + type safety</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Use-const-whenever-possible"><a href="#Use-const-whenever-possible" class="headerlink" title="Use const whenever possible"></a>Use const whenever possible</h3><p><strong>It allows you to specify a semantic constraint -&gt; particular object not be modified</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> greeting[] = <span class="string">"HI"</span>;</span><br><span class="line"><span class="keyword">char</span> *p = greeting; <span class="comment">// non const ptr, non const data</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *p = greeting; <span class="comment">// non const ptr, const data</span></span><br><span class="line"><span class="keyword">char</span> * <span class="keyword">const</span> p = greeting; <span class="comment">// const ptr, non const data</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="keyword">const</span> p = greeting; <span class="comment">// const ptr, data.</span></span><br><span class="line"><span class="comment">// Remember to read it from the right side.</span></span><br><span class="line"><span class="comment">// last one: p is a const ptr that points const char</span></span><br></pre></td></tr></table></figure>
+
+<p>Declaring an iterator const = declaring a const ptr<br>Check the following:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// itr = T * const</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator itr = vec.begin();</span><br><span class="line"><span class="comment">// Valid, and invalid</span></span><br><span class="line">*itr = <span class="number">10</span>; ++itr;</span><br><span class="line"></span><br><span class="line"><span class="comment">// itr = const T*</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator cItr = vec.begin();</span><br><span class="line">*cIter = <span class="number">10</span>; <span class="comment">// Invalid!</span></span><br><span class="line">++cIter; <span class="comment">// valid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// const iterator: a const iterator for a value</span></span><br><span class="line"><span class="comment">// const_iterator: an iterator for a const value</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Temp <span class="keyword">operator</span>*(<span class="keyword">const</span> Temp&amp; lhs, <span class="keyword">const</span> Temp&amp; rhs);</span><br><span class="line"><span class="comment">// const here will return const Temp object which prevents the returned object to be modified</span></span><br><span class="line">Temp <span class="keyword">operator</span>*() <span class="keyword">const</span>;</span><br><span class="line"><span class="comment">// const here will ensure no modification on this object as passed by const Temp&amp; this implicitly. but can modify mutable member</span></span><br></pre></td></tr></table></figure>
+
+<p>To remember:</p>
+<ul>
+<li>Declaring const -&gt; helps compilers to detect usage errors. </li>
+<li>Compilers enforce bitwise constness, but you should program using conceptual constness.</li>
+<li>if const and non-const have same implementation, have non-cost and call const version.</li>
+</ul>
+<h3 id="Make-sure-to-initalise-objects-before-use"><a href="#Make-sure-to-initalise-objects-before-use" class="headerlink" title="Make sure to initalise objects before use"></a>Make sure to initalise objects before use</h3><p>Very complicated to understand which one initialised or not -&gt; so always initialise the objects. Dont get confused with assignment and initialisation.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Temp::Temp(a, b, c)&#123;</span><br><span class="line">    <span class="comment">// all assignments</span></span><br><span class="line">    a_ = a;</span><br><span class="line">    b_ = b;</span><br><span class="line">    c_ = c;</span><br><span class="line">&#125;</span><br><span class="line">Temp::Temp(a,b,c) : a_(a), b_(b) ...&#123;&#125; <span class="comment">// initialisation</span></span><br><span class="line"><span class="comment">// Copy constructor is more efficient than default constructor + copy assignment operator call.</span></span><br></pre></td></tr></table></figure>
+
+<p>Order:</p>
+<ul>
+<li>Base class is initialised before derived class.</li>
+<li>Data member is initialised in the order of its declaration.</li>
+</ul>
+<h3 id="The-order-of-initialisation-of-non-local-static-objects-defined-in-different-translation-units"><a href="#The-order-of-initialisation-of-non-local-static-objects-defined-in-different-translation-units" class="headerlink" title="The order of initialisation of non-local static objects defined in different translation units."></a>The order of initialisation of non-local static objects defined in different translation units.</h3><ol>
+<li>A static object: <ol>
+<li>one that exists from the time it’s constructed until the end of the program (on heap).<ol>
+<li>so stack and heap-based objects are thus excluded (as it can be deallocated before the end of the program)</li>
+<li>So include global objects, objects defined at namespace scope, objects declared static inside classes, and inside functions and objects declared static at file scope.</li>
+</ol>
+</li>
+<li>Static objects inside functions: local static objects</li>
+<li>Others are: non-local static objects.</li>
+</ol>
+</li>
+<li>A translation unit: source code giving rise to a single object file - a basic unit of cpp compilation (source file + files included as #include).</li>
+</ol>
+<p>It becomes an issue when it involves at least two separately compiled source files: Each contains non-local static object with dependency <strong>because the relative order of initialization of non-local static objects defined in different translation units is undefined</strong></p>
+<p>Problem solved entirely by set both non-local static object to be local static objects -&gt; singleton pattern.</p>
+<ul>
+<li>CPP gurantee that local static objects are initialised when object’s definition is encountered when to call it.</li>
+<li>By changing direct access to non-local static object to calls to functions (that returns local static..), problem gets solved. </li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Example.</span></span><br><span class="line"><span class="function">Temp&amp; <span class="title">tmp</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> Temp tp;</span><br><span class="line">    <span class="keyword">return</span> tp; <span class="comment">// return reference to this local static object</span></span><br><span class="line">&#125;</span><br><span class="line">TempTwo::TempTwo(...)&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="keyword">size_t</span> asdf = tmp().functionName();</span><br><span class="line">    <span class="comment">// tmp() here is static object that is guaranteed to be initialised.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>This reference-returning function is simple: define and initialise a local static object, and return.</strong></p>
+<ul>
+<li>It makes excellent candidates for inlining if called frequently.</li>
+<li>It makes problematic in multithreaded systems; but it is just what non-const static object always problematic in any multithreaded systems.<ul>
+<li>To solve this, have to manually invoke the functions in single-thread to avoid initialisation-related race condition.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>To avoid initialisation problems -&gt; remember three:</p>
+<ol>
+<li>Manually initialise non-member objects of built-in types.</li>
+<li>Use member initialisation lists to initialise all parts of an object (In a constructor).</li>
+<li>Design to avoid that non-local static object defined in separate translation units problem.</li>
+</ol>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="SK Lee">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        SK Lee
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        A Jobless Personnel
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Australia/ACT</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            69
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            7
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            3
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/lee-sk-qq" target="_blank" rel="noopener">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/qqskda">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Twitter" href="https://twitter.com/qqskda">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://medium.com/@poringpeco" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Medium</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">medium.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.linkedin.com/in/sungkwon-lee-089389145/" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Linkedin</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.linkedin.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">13</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">12</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">28</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/CPP/">
+            <span class="level-start">
+                <span class="level-item">CPP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Machine-Learning/">
+            <span class="level-start">
+                <span class="level-item">Machine Learning</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Network/Lab/">
+            <span class="level-start">
+                <span class="level-item">Lab</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/OCSO/">
+            <span class="level-start">
+                <span class="level-item">OCSO</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Parallel-Computing/">
+            <span class="level-start">
+                <span class="level-item">Parallel Computing</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Layer/">
+                        <span class="tag">Layer</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Summary/">
+                        <span class="tag">Summary</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Theory/">
+                        <span class="tag">Theory</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/CPP/">
+            <span class="level-start">
+                <span class="level-item">CPP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Machine-Learning/">
+            <span class="level-start">
+                <span class="level-item">Machine Learning</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Network/">
+            <span class="level-start">
+                <span class="level-item">Network</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Network/Lab/">
+            <span class="level-start">
+                <span class="level-item">Lab</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/OCSO/">
+            <span class="level-start">
+                <span class="level-item">OCSO</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/OperatingSystem/">
+            <span class="level-start">
+                <span class="level-item">OperatingSystem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Parallel-Computing/">
+            <span class="level-start">
+                <span class="level-item">Parallel Computing</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time></div>
+                    <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Very Simple File System (VSFS)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Layer/">
+                        <span class="tag">Layer</span>
+                        <span class="tag is-grey">20</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Summary/">
+                        <span class="tag">Summary</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Theory/">
+                        <span class="tag">Theory</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/avatar.png" alt="SK Lee" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Sungkwon Lee&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://github.com/qqskda',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

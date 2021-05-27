@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/05/01/Network/Week%207%201%20Realtime/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/realtime.jpg" alt="Realtime">
+        <a href="/2020/05/20/MSL/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/local.jpg" alt="Local Regression">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-05-01T03:28:00.000Z">May 01, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-05-20T05:26:00.000Z">May 20, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                <a class="has-link-grey -link" href="/categories/Machine-Learning/">Machine Learning</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    16 minutes read (About 2422 words)
+                    20 minutes read (About 2939 words)
                 </span>
                 
                 
@@ -156,186 +156,87 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/05/01/Network/Week%207%201%20Realtime/">Realtime</a>
+                <a class="has-link-black-ter" href="/2020/05/20/MSL/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/">Local Regression</a>
             
         </h1>
         <div class="content">
-            <p>Reference: </p>
-<ul>
-<li><p>Computer Networks, Fifth Edition by by Andrew S et al.</p>
-</li>
-<li><p>The Australian National University CECS</p>
-<h2 id="Real-time"><a href="#Real-time" class="headerlink" title="Real-time?"></a>Real-time?</h2></li>
-<li><p>한 패킷 손실을 어느정도 감당할 수 있는가</p>
-</li>
-<li><p>한 지연된 패킷을 어느정도 감당할 수 있는가</p>
-</li>
-<li><p>한 지연을 얼마나 알아차릴 수 있는가</p>
-<ul>
-<li>비디오컨퍼런스와 스트리밍, 비디오와 오디오의 싱크</li>
-</ul>
-</li>
-<li><p>TCP를 Contend Delivery Network (CDN)을 이용하여 스트리밍</p>
-<ul>
-<li>이로 인해 지연의 심각성을 낮추고, 신뢰성을 얻을 수 있다. (빠르게, 그리고 확실하게 스트리밍)</li>
-<li>CDN은 ISP와 User 사이에 있으며, ISP에 서비스 비용을 지불하고, 유저로 부터 비용을 받는다. CDN은 유저의 트래픽을 받아서 저장하고, 시청자에게 같은 데이터를 보냄으로써, 유저의 부담을 덜하며, 다수의 유저에게 같은 데이터를 보내준다.</li>
-<li>즉 트위치, 아프리카등의 플랫폼은 CDN을 이용한다고 봐야한다.</li>
-</ul>
-</li>
-<li><p>UDP for two way (interactive), real-time</p>
-<ul>
-<li>UDP의 특성상 낮은 지연과 낮은 오버헤드를 가지고 있음.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Why-is-it-hard"><a href="#Why-is-it-hard" class="headerlink" title="Why is it hard?"></a>Why is it hard?</h2><p>인터넷은 best-effort (서킷을 가지고 있지 않는한) 의 형식을 띄고 있어서 패킷 손실, 지연 등을 100% 보장할 수 없다. 다양한 종류의 원인으로 인한 손실도 존재한다.</p>
-<h3 id="Network-Delays"><a href="#Network-Delays" class="headerlink" title="Network Delays"></a>Network Delays</h3><ul>
-<li>송신자는 지속적인 흐름의 오디오/비디오 샘플들을 보낸다 (대역폭은 코덱에 따라 다르다)<ul>
-<li>물론 수신자는 지속적인 스트림을 받기를 기대한다 (끊김없이)</li>
-</ul>
-</li>
-<li>이를 위해 라우터의 경로, 대역폭, 용량 (capacity) 등을 모두 필요로 한다. 물론 종단까지의 모든 라우터와 경로가 송신자것이 아니니 불가능하다.</li>
-<li>이상적으로 레이턴시 이후에 100%의 패킷을 받는게 좋지만 (constant delay and everything at once) 현실은 다양하게 변화한다.</li>
-</ul>
-<p><img src="/image/Week%207%201%20Realtime/Untitled.png" alt=""></p>
-<p>Jitter: 처리 시간 및 결과물의 도달 시간의 변동폭 등 (패킷 지연 변동폭)</p>
-<p>즉 위의 패킷 전달 마찰은 밑의 그림과 같은 상황을 야기한다.</p>
-<p><img src="/image/Week%207%201%20Realtime/Untitled%201.png" alt=""></p>
-<p>각 패킷에 대한 지터가 다르기때문에 보낸 순서와 상관없이 도착하는 패킷 순서및 타이밍이 다른것. </p>
-<h3 id="버퍼링-TCP-lite"><a href="#버퍼링-TCP-lite" class="headerlink" title="버퍼링 (TCP - lite)"></a>버퍼링 (TCP - lite)</h3><p>송신자는 당연히 지속적인 오디오/비디오 샘플 (패킷)을 보낸다. 당연하게도 수신자는 끊김없는 스트리밍을 받기를 원한다. </p>
-<p>이와 같은 효과를 내기 위하여 수신자는 playout buffer을 만들어 지연등을 부드럽게 만든다 (보통 바이트 단위로 만들지만, 효과적이기 위해서는 시간 단위로 만들어야 한다)</p>
-<ul>
-<li>지연 시간 (playout)을 일정 단위를 추가해서, 그 시간/단위 기간동안 패킷들을 더 기다린후, 유저에게 보여주는 형식이다.</li>
-<li>내가 아는 하두리? 버퍼링은 바이트 단위의 버퍼링이다 (시간 관계없이 영상 바이트들을 어느정도 받고 나서야 시작이 됬으니까).</li>
-<li>밑의 그림처럼, 어느 선까지 받고서 그 이후의 패킷들은 버린다. (물론 예상컨데 버퍼링 implementation 마다 다를것이다.)</li>
-</ul>
-<p><img src="/image/Week%207%201%20Realtime/Untitled%202.png" alt=""></p>
-<p>물론 위와 같은 버퍼링은 trade-off가 존재한다.</p>
+            <p>Reference:</p>
 <ol>
-<li>큰 버퍼: <ol>
-<li>지연으로 인한 패킷 손실이 줄어든다. 이는 곧 지터/PDV (Packet Delay Variation) 에 대한 tolerant가 늘어난다.</li>
-<li>다만 transmission 과 playout 간의 지연이 늘어난다. 즉 영상을 시작하면 부드럽게 진행되지만, 처음 시작하기까지 오래걸림. </li>
+<li>An Introduction To Statistical Learning with Applications in R (ISLR Sixth Printing)</li>
+<li><a href="https://godongyoung.github.io/category/ML.html">https://godongyoung.github.io/category/ML.html</a></li>
 </ol>
-</li>
-<li>작은 버퍼:<ol>
-<li>transmission and playout 의 delay가 적다</li>
-<li>여유 기간이 짧은 만큼 (큰 버퍼에 비해) 더 많은 패킷들이 지연으로 인해 손실된다. 지터/PDV에 대한 tolerant가 더 적음.</li>
-</ol>
-</li>
-</ol>
-<p>바라는 지연이 짧을수록 손실을 방지하기가 더 어려워진다 - 이로 인해 glitch 가 생성되는데. 흔한 예로는 비디오와 오디오 싱크가 안 맞는등..</p>
-<h3 id="Fixes"><a href="#Fixes" class="headerlink" title="Fixes?"></a>Fixes?</h3><ul>
-<li><p>재전송:</p>
-<ul>
-<li><p>패킷 손실을 알아차리면, ARQ (TCP-like) 를 이용해서 재전송을 요청한다.</p>
-</li>
-<li><p>이로 인해 round-trip-time + latency + Queue 딜레이 만큼 더 걸린다</p>
-<ul>
-<li>이는 곧 큰 수신 버퍼와 지연을 의미하며, 송신자 또한 버퍼 도구가 필요하다 (아마 원하는 패킷을 저장해두고 다시 보낼수 있어야 하니까).</li>
-</ul>
-</li>
-<li><p>멀티캐스트 (UDP) 방식에서는 반드시 송신자가 다시 보내는것은 아니다</p>
-<ul>
-<li>아래와 같이 주위의 다른 수신자가 있으면 걔가 보내줌</li>
-</ul>
-<p><img src="/image/Week%207%201%20Realtime/Untitled%203.png" alt=""></p>
-</li>
-</ul>
-</li>
-<li><p>탄력적 버퍼 (Elastic):</p>
-<ul>
-<li>상황에 맞게 버퍼의 크기를 조정함</li>
-<li>이를 위해 playout을 느리게 함</li>
-<li>상황이 나아지면 버퍼의 크기를 다시 줄여서 (지연/손실이 줄어드니) 빠르게 진행한다 (실시간일 수록 좋으니까 상황이 괜찮으면).</li>
-</ul>
-</li>
-<li><p>Error Correction:</p>
-<ul>
-<li>패킷간의 보간법을 위한 미디어 인코드 - 보간법을 이용해 뭐를 놓쳤는지 알 수 있음<ul>
-<li>Forward Error Correction - 고장난게 있으면 직접 고칠수 있음. 신뢰성이 필요한곳이나 재전송이 비싼 경우에 사용되곤 한다.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>병렬 전송</p>
-<ul>
-<li>다양한 카피들을 같은 시간에 보내는것 - 동영상 화질에 종류가 있는것들. 즉 1080으로 보다가 멈추는것보단 360으로라도 끊김없이 보는게 나으니까. 즉 결국 내용을 볼 수 있다는것 자체로 신뢰성이 필요한곳에 사용될 수 있다.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Realtime-Transport-Protocol-RTP"><a href="#Realtime-Transport-Protocol-RTP" class="headerlink" title="Realtime Transport Protocol (RTP)"></a>Realtime Transport Protocol (RTP)</h2><p>UDP, TCP냐에 따라 연결성이 달라짐. 다양한 미디어 인코딩을 지원하며, 다양한 자원들이 병합, 동기화, 선택 될 수 있다. (비디오 따로 오디오 따로 보내서 두게를 합치거나, 언어와 자막을 선택하는등의)</p>
-<ul>
-<li>송신자는 여러가지들을 고려하여 RTP를 어떻게 보낼것인지 조정할 수 있다. 현재 스트리밍이 어떻게 되고 있는지 (비율, 인코딩, 에러 수정, 재전송 등등), 혹은 얼마나 많은 그리고 어느 종단들이 받고, 보내고 있는지 (멀티캐스트).</li>
-<li>RTP Control Proctocol (RTCP)<ul>
-<li>양방향, Out-of-Band 시그널링 (독립된 채널을 통해 시그널링 하는것) (RTP는 짝수 포트, RTCP는 홀수 포트) - 대역폭을 제한해야한다.</li>
-<li>송수신자 모두 보고를 한다. (통계: 패킷의 수신/손실, 지연, 지연 변동폭등)</li>
-<li>자원 설명, 송수신 시작/완료 (Hello Goodbye)</li>
-<li>존재 알리기 (heartbeat pulse), 거리 (홉), 재전송 요청 채널 등등 다양하게 지원함</li>
-</ul>
-</li>
-</ul>
-<h1 id="ALL-together"><a href="#ALL-together" class="headerlink" title="ALL together"></a>ALL together</h1><p>여러 사이트에 여러 미디어 스트림을 보내기.</p>
-<p>다음과 같은것들을 필요로 한다.</p>
+<p>선형 모델: 모델의 단순성으로 해석과 추론이 쉽다는 장점. 하지만 이러한 가정한 현실적인 문제에 대한 예측을 하기에는 터무니 없는 가정.</p>
+<p>따라서 이와 같은 선형가정을 완화시키되, 해석과 추론력을 최대한 잃지 않는선에서 예측력을 증가 시키는 방법들에대해 배워본다.</p>
 <ol>
-<li>Establish a call: Session Initiation Protocol (SIP) - 세션 시작</li>
-<li>Negotiate the details: Session Description Protocol (SDP) - 세션 정보 협상 (뭐로 할건지)</li>
-<li>Deliver the media: RTP and RTCP - 협의 바탕으로 결정한 프로토콜로 정보 교환</li>
-<li>Playout as reliable and quickly as you can: (buffer) - 알아서 </li>
+<li>Polynomial Regreisson: 다차항을 이용하여 선형 모델을 확장</li>
+<li>Step function: K부분으로 변수를 나누어서 constant를 생성하는 방법</li>
+<li>Regression splines: 위 1,2 방식의 확장으로 K부분으로 나누어 각 부분에 다차항을 적합하는 형식이다. 각 부분은 양 옆의 범주에 대해 매끄럽게 만들어야 한다는 제약이 있지만, 적당한 범주로 나눈다면 유연한 적합이 가능하다</li>
+<li>Smoothing penalty: 위 3번과 비슷하지만 매끄럽게 한다는 제약을 최소화 시키는 방식</li>
+<li>Local Regression: 3,4 번과 비슷하지만, 각 범주가 겹칠수 있다. 이로 인해 유연한 적합이 가능한것</li>
+<li>Generalized additive model: 여러개의 예측 변수들에 적용하는 방법</li>
 </ol>
-<h3 id="Session-Initiation-Protocol-SIP"><a href="#Session-Initiation-Protocol-SIP" class="headerlink" title="Session Initiation Protocol (SIP)"></a>Session Initiation Protocol (SIP)</h3><ul>
-<li>Open with IETF protocol to establish and close the call with RFC.<ul>
-<li>어느 방식으로 전달 하던 상관없음.</li>
-<li>이 세션 프로토콜은 스카이프, 메센저, 줌등에 사용되지 않음</li>
-<li>라이벌로는 ITU H.323 이 존재함</li>
-</ul>
-</li>
-<li>Voice over IP (VOIP)에 주로 쓰임</li>
-<li>프록시,registrars, redirectors, border controller, gateway 등등을 포함하하며 PSTN 연결이나, NATs등에 유용하다.</li>
-</ul>
-<p><img src="/image/Week%207%201%20Realtime/Untitled%204.png" alt=""></p>
-<h3 id="Non-realtime-realtime"><a href="#Non-realtime-realtime" class="headerlink" title="Non-realtime realtime?"></a>Non-realtime realtime?</h3><ul>
-<li>단 방향 미디어 전송: 스트리밍<ul>
-<li>less interactive, 지연에 덜 민감하며 (almost live), 대역폭이나 지터에 문제를 아직 가지고 있음.</li>
-</ul>
-</li>
-<li>Sliding windows을 통한 playout buffer 관리 (나중에 다시 한번 읽을것)<ul>
-<li>수신자는 컨텐츠를 빼내고, 버퍼를 played out 된것처럼 채운다</li>
-</ul>
-</li>
-</ul>
-<h3 id="Real-Time-streaming-Protocol-RTSP"><a href="#Real-Time-streaming-Protocol-RTSP" class="headerlink" title="Real Time streaming Protocol (RTSP)"></a>Real Time streaming Protocol (RTSP)</h3><ul>
-<li>스트리밍 세션을 만들고 미디어 전송을 협의한다 (프로토콜등)</li>
-<li>HTTP 와 SIP와 비슷하다<ul>
-<li>옵션 (무엇을 할 수 있는지) 설명 (무엇을 줄 수 있는지)</li>
-<li>셋업 (스트림(들)을 프로토콜을 통해 수신할 준비</li>
-<li>플레이 (play from time 1 to 2)</li>
-</ul>
-</li>
-<li>RTP/RTCP 등을 통해 대역폭, 인코딩을 적용함</li>
-</ul>
-<h3 id="최후의-수단-HTTP-이용"><a href="#최후의-수단-HTTP-이용" class="headerlink" title="최후의 수단: HTTP 이용"></a>최후의 수단: HTTP 이용</h3><ul>
-<li>방화벽을 통과 할 수 있으니까</li>
-<li>다양한 extensions을 지원하니까 (어플리케이션, 전송 프로토콜등)</li>
-<li>Head Request를 통한 미디어와 옵션들 요구</li>
-<li>Get with Range Get을 통한 요구<ul>
-<li>playout 버퍼를 위한 조각들을 다운, 서버에게 인코딩 부탁하기</li>
-</ul>
-</li>
-<li>HTML 5 has bulit in vidoe player. (to kill flash)</li>
-<li>이득: 서버 state 필요없음, HTTP 프록시, 캐쉬, CDNs 등을 물려 받음</li>
-</ul>
-<h3 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h3><ul>
-<li>완벽하고, 적은 지연, 실시간등은 best effort 네트워크에서 하기 정말 힘들다<ul>
-<li>Very application specific - 유통성이 없음</li>
-</ul>
-</li>
-<li>특별한 서킷을 이용해서 경로를 만드는게 아닌이상, 힘듬</li>
-<li>오디오 비디오는 괜찮음 (기술의 발달로 화질이 올라감) - 괜찮음의 정의가 시대상을 따라감</li>
-<li>기기 조종을 위한 실시간 트래픽이 늘어나는 추세임<ul>
-<li>인터넷이 최선의 선택은 아니더라도, 유일한 선택일지도 모름</li>
-</ul>
-</li>
-</ul>
+<h2 id="Polynomial-Regression"><a href="#Polynomial-Regression" class="headerlink" title="Polynomial Regression"></a>Polynomial Regression</h2><h3 id="예측변수의-전체-구간에-non-linear-형태를-부여하는-방식"><a href="#예측변수의-전체-구간에-non-linear-형태를-부여하는-방식" class="headerlink" title="예측변수의 전체 구간에 non-linear 형태를 부여하는 방식"></a><strong>예측변수의 전체 구간에 non-linear 형태를 부여하는 방식</strong></h3><p>단순하게 각 변수를 다차항의 형식으로 넣어준 방법이다. X2 = X1 ^ 2 과 같은 형식.</p>
+<p>일반적으로 3,4차 이상으로 포함시키지는 않는다.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled.png" alt=""></p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%201.png" alt=""></p>
+<p>왼쪽: Least Square 4차 적합. 오른쪽: 왼쪽의 250이상의 고소득자에 대한 Logistic 4차 적합. 점선들은 예측값의 분산을 통해 구한95%의 confidence interval </p>
+<p>예측값의 분산은 다음과 같이 구할 수 있다</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%202.png" alt=""></p>
+<p>Logistic의 경우 확률을 반환한다는것을 기억하자. 고소득층에 대한 데이터는 79개에 불과하여 신뢰구간이 매우 넓게 나옴을 확인할 수 있다.</p>
+<h2 id="Step-Functions"><a href="#Step-Functions" class="headerlink" title="Step Functions"></a>Step Functions</h2><h3 id="전체-X를-몇개의-구간으로-나누고-일정한-상수를-부여하는-방식"><a href="#전체-X를-몇개의-구간으로-나누고-일정한-상수를-부여하는-방식" class="headerlink" title="전체 X를 몇개의 구간으로 나누고 일정한 상수를 부여하는 방식"></a><strong>전체 X를 몇개의 구간으로 나누고 일정한 상수를 부여하는 방식</strong></h3><p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%203.png" alt=""></p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%204.png" alt=""></p>
+<p>절편인 b0 는 Y값의 평균이고, 나머지 b 들은 각 구간에 속한 데이터의 평균과 b0와의 차이를 의미하게 된다.  C1 ≤ X ≤ C2의 평균값 - b0 = b1. 이러한 각각의 계수들은 마찬가지로 least square로 적합하여 구한다. 각 더미 변수에 대한 (C들은 더미 변수이다) 분산/신뢰구간은 3장 참조</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%205.png" alt=""></p>
+<p>예측값에 자연적으로 부분을 나눌수 있는 지점이 존재 하지 않는다면, 이 방식은 옳지 못한 방향을 나타낼 수 있는데, 명확하게 증가 추세인 구간을 제대로 구분지어주지 않는다면, 이 증가 추세를 반영하지 못하기 때문이다. 위 그래프에서 나이가 들수록 월급이 올라가는 증가 추세를 반영해주지 못한 상황이다.</p>
+<h1 id="Basis-Functions"><a href="#Basis-Functions" class="headerlink" title="Basis Functions"></a>Basis Functions</h1><p>앞의 두 방식은 Bisis funciton의 특별한 형태라고 볼 수도 있다. </p>
+<p>앞선 두 방식과 다르게, 선형 모델로 X를 적합하지 않고 다음과 같은 모델에 적합한다.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%206.png" alt=""></p>
+<p>각 b의 값은 이미 정해져 있으면 알려진 상태임을 명시하자. 이 말인 즉, 우리는 사용할 함수를 미리 선택해 놓는다는 의미이다.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%207.png" alt=""></p>
+<h2 id="Regression-Spines"><a href="#Regression-Spines" class="headerlink" title="Regression Spines"></a>Regression Spines</h2><h3 id="Piecewise-Polynomials"><a href="#Piecewise-Polynomials" class="headerlink" title="Piecewise Polynomials"></a>Piecewise Polynomials</h3><p>맨 위 1번 Polynomial regression 처럼 전체 X에 대한 다항적합을 하는 형식이 아닌 몇개의 범주에 대해 비교적 낮은 차수의 적합을 따로따로 하는것을 piecewise polynomial regression 이라 한다. </p>
+<p>계수가 바뀌는 지점을 knots 라고 하는데 (서로 다른 부분을 묶는거니까) 삼차 다항식에 이 knots가 없다면 결국 그건 그냥 보통의 평범한 삼차항이다. 다음은 knots가 한개 존재할때의 3차항이다.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%208.png" alt=""></p>
+<p>즉 c를 기준으로 2개의 부분으로 나누어 각각의 부분에 다항적합을 한것이다. 이 모델의 degreef of freedom = 8 이다 (각각 4개씩)</p>
+<p>하지만 이 형식은 중간의 knots 들을 부드럽게 연결하는 제약이 없기때문에 다음과 같은 말도 안되는 모델이 탄생하게 된다 (1번).</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%209.png" alt=""></p>
+<h3 id="Constraints-and-Splines"><a href="#Constraints-and-Splines" class="headerlink" title="Constraints and Splines"></a>Constraints and Splines</h3><p>1번의 그래프에서 나이가 50일때 갑자기 월급이 폭등하는 것은 말이 안된다. 이에 50부근의 선들을 연결해 준 그래프가 2번이다 (continuous piecewise cubic). 하지만 이 또한 꺽인듯한 부분을 볼 수 있는데 이러한 약한 제약을 (50 부근 이어준것) 가지고는 다른 그래프에서 v자 형태로 나올수 있기에 고쳐주어야 한다. 이 부분을 부드럽게 해주기 위해 1,2차 미분을 해주어야 한다. 즉 50부분에서 continuous + smooth (1차 2차 미분) 라는 세 가지의 제약을 적용한것이 3번 그래프.</p>
+<p>이러한 제약은, 자유도를 하나씩 잃음을 의미한다. 따라서 1번에서는 자유도가 8, 2번에서는 7, 3번에서는 5이다.  보통 cubic spline uses 4 + K df (K = num of knots).</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2010.png" alt=""></p>
+<h3 id="Splines-Basis-Representation"><a href="#Splines-Basis-Representation" class="headerlink" title="Splines Basis Representation"></a>Splines Basis Representation</h3><p>d차 적합을 하면서 d-1차 까지의 미분을 달성하기 위해서는 basis function 을 올바르게 선택해야 하는데, 이는 trucated power basis funciton 을 이용하면 된다.</p>
+<p>다음은 cubic spline을 cubic regression에서 만드는 방법이다.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2011.png" alt=""></p>
+<p>위의 뱀처럼 생긴것이 knot을 의미한다. 위의 식을 각 knot마다 추가하는것이다.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2012.png" alt=""></p>
+<p>하지만 위와 같은 방식으로 구할 경우, 양 끝에서의 예측 신뢰구간이 넓어지므로 예측의 정확도가 떨어지는 현상이 나타난다. 원래 모든 모델의 분산은 양 끝에서 커지지만 non-linear 적합을 시도한 이 경우에 (which has more flexibility) 분산이 더 커지게 된다. </p>
+<p>이러한 현상을 고치기 위해 맨 양쪽의 knot 이후에 있는 부분의 경우 선형 적합을 하여서 문제를 완화시키는데 이를 Natural Cubic Spline이라 한다. </p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2013.png" alt=""></p>
+<p>위의 그래프를 보면 수직 점선 (knot) 이후에 빨간 점선이 분산을 적게 가지고 있음을 볼 수 있다. 이러한 양끝쪽에 3차 적합이 아닌 1차 적합을 하기에 자유도를 2씩 잃어서 K+4-(2*2) = K df.를 가지게 된다.</p>
+<h3 id="Num-and-Location-of-the-knots"><a href="#Num-and-Location-of-the-knots" class="headerlink" title="Num and Location of the knots"></a>Num and Location of the knots</h3><p>이제 knot를 어떻게 사용하는지 알았으니 몇개를 어디에 사용해야 하는지를 알아야 한다. </p>
+<p>적정한 df를 설정하고, 이에 따른 균등한 quantile에 knot를 배정하는 형식.</p>
+<p>결국 df (자유도)를 몇으로 설정하지가 문제인데, Cross-validation을 이용하여 CV-error 값이 가장 낮은 자유도의 갯수를 사용한다</p>
+<h3 id="Comparison-to-Polynomial-Regression"><a href="#Comparison-to-Polynomial-Regression" class="headerlink" title="Comparison to Polynomial Regression"></a>Comparison to Polynomial Regression</h3><p>보통 Polynomial Regression의 경우 flexible 하기 위해 차수를 엄청나게 높이고는 하는데, 반대로 regression spline의 경우 차수는 유지하되, knots를 늘리는것으로 유연해진다. 따라서 대부분의 경우 regression spline이 produces more stable estimates. 또한 급변하게 변하는 부분에 대해서 우리가 따로 더 많은 knots를 부여함으로써 (반대로 원만하면 knots 수 줄이고) 유연성을 적절하게 조절 할 수 있기에 더 좋다.</p>
+<p><img src="Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2014.png" alt="Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2014.png"></p>
+<p>위의 polynomial의 경우 15차 항인데, 이로 인해 끝쪽이 매우 요동친다. </p>
+<h2 id="Smoothing-Splines"><a href="#Smoothing-Splines" class="headerlink" title="Smoothing Splines"></a>Smoothing Splines</h2><h3 id="Overview-of-Smoothing-Splines"><a href="#Overview-of-Smoothing-Splines" class="headerlink" title="Overview of Smoothing Splines"></a>Overview of Smoothing Splines</h3><p><strong>Regression과 다르게 Smoothing은 모든 x에 knots를 두기에 갯수나 위치 지정의 문제가 없다!</strong></p>
+<p>결국 우리가 원하는 사항은 RSS를 작게 만들면서, 부드러운 함수를 찾는것.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2015.png" alt=""></p>
+<p>위 식의 왼쪽 부분이 RSS이다. 이러한 형태는 Loss (잘 적합) + Penalty (변동이 크지 않게) 식인데, Lassor and Ridge에서 사용되었던 형태와 비슷하다. </p>
+<p>오른쪽의 식은 t부분에서의 변화도를 나타내주는데, 변화도가 음수일 경우도 있으니 제곱을 해준다. 람다 값이 커질수록 더 부드러워질것이다. </p>
+<p>람다가 0이면 모든 데이터를 지나가고, 무한하다면 선형 (굴곡이 없는 직선 - 선형회귀와 같다). 결국 람다 = bias variance trade off 정도를 조정하는 값인것이다. </p>
+<p>이 람다가 3차에서 최소화 될때는 위에서 이야기 했던 2차 미분이 가능한 knot를 가지고 양 끝이 linear 한 natural cubic spline이다. 물론 이와 정확히 같은 값의 식이 나오는게 아니라, 비슷한 형식의 shrink된 함수</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2016.png" alt=""></p>
+<h3 id="Choosing-lambda"><a href="#Choosing-lambda" class="headerlink" title="Choosing lambda"></a>Choosing lambda</h3><p>In smoothing spline, lambda controls the smoothness. Hence, the effective degrees of freedom changes depending on the value of lambda. 람다가 0에서 무한까지 변할때 effective df는 n에서 2까지 변한다. </p>
+<p>기존의 자유도는 pramater의 갯수로 계수의 수를 뜻했다. 따라서 smoothing spline은 명목상 n개의 자유도를 가지고 있지만, 이들인 이미 shrink 되도록 constrain (제약)을 받고 있기에, 이 제약의 정도에 따라 flexibility가 다르다. 따라서 정확히 어느정도의 자유도를 실질적으로 가지고 있는지를 나타내주는것.</p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2017.png" alt=""></p>
+<p>Regression 과는 다르게 람다를 어느 값으로 할지가 남아있다 (RSS를 최소화 하는). 물론 Cross-validation 을 이용한다. </p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2018.png" alt=""></p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2019.png" alt=""></p>
+<p>임의로 정한 effective df 인 16에 비해 계산으로 나온 6.8 이 거의 유사한 형태를 보여주고 있다. </p>
+<h2 id="Local-Regression"><a href="#Local-Regression" class="headerlink" title="Local Regression"></a>Local Regression</h2><p><strong>각 특정 타겟 포인트 근처의 관측 자료들만을 토대로 적합시켜 flexbile하게 하는 방식</strong></p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2020.png" alt=""></p>
+<p><img src="/image/Ch%207%20Local%20Regression%2071eec92f294545e9a27e1a03145a7f40/Untitled%2021.png" alt=""></p>
+<p>위에서 중요한 사항은 얼마나 많은 이웃들을 볼것인지 즉 s를 몇퍼센트로 설정할지이다. s가 작을수록 더 지역적인 (조그만) 부분으로 꾸불한 선이 나올것이다 물론 이 s 또한 cross-validation 을 통해 찾는다. </p>
+<p>Local Regression은 p-차원에서 p가 3이나 4보다 훨씬 클 경우, 굉장히 안좋은데 이는 대체로 트레이닝 데이터가 굉장히 적음을 의미하기 때문이다. Nearest Neighbour Regression의 경우도 같은 단점을 지니고 있다.</p>
 
         </div>
         
@@ -375,7 +276,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -425,7 +326,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -449,7 +350,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -531,6 +432,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -569,7 +481,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -602,12 +514,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -668,7 +580,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -677,6 +589,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -697,82 +685,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -783,13 +695,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -837,12 +742,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -903,7 +808,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -912,6 +817,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -932,82 +913,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1018,13 +923,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">

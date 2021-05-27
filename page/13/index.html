@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/08/03/OperatingSystem/OS%20-%20Ch%201,2/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/OS.jpg" alt="Introduction To OS">
+        <a href="/2020/08/07/OperatingSystem/OS%20-%20ch-7-scheduling/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Scheduling">
         </a>
     </div>
     
@@ -137,7 +137,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-08-03T05:09:07.572Z">Aug 03, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-08-07T05:09:07.572Z">Aug 07, 2020</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 366 words)
+                    2 minutes read (About 293 words)
                 </span>
                 
                 
@@ -156,82 +156,57 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/08/03/OperatingSystem/OS%20-%20Ch%201,2/">Introduction To OS</a>
+                <a class="has-link-black-ter" href="/2020/08/07/OperatingSystem/OS%20-%20ch-7-scheduling/">Scheduling</a>
             
         </h1>
         <div class="content">
-            <h1 id="OS-Ch-1-2"><a href="#OS-Ch-1-2" class="headerlink" title="OS - Ch 1,2"></a>OS - Ch 1,2</h1><p>Reference : Operating Systems: Three Easy Pieces, Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau</p>
-<h1 id="Introduction-To-OS"><a href="#Introduction-To-OS" class="headerlink" title="Introduction To OS"></a>Introduction To OS</h1><ul>
-<li>OS provides system calls that allow application programs request to use. <ul>
-<li>OS privdes the calss for program execution, memory access, etc</li>
-<li>Hence also be referred as providing a “standard library”</li>
-</ul>
-</li>
-<li>Virtualization allows many programs to share a CPU, and to be executed concurrently.<ul>
-<li>Each program can access to its resourse and instructions.</li>
-<li>Hence called as a “resource manager”</li>
-</ul>
-</li>
-</ul>
-<h2 id="Virtualization"><a href="#Virtualization" class="headerlink" title="Virtualization"></a>Virtualization</h2><h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><ul>
-<li>Logical transformation of a/few CPU/s into a number of it to run many programs concurrently.</li>
-</ul>
-<h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><ul>
-<li>Physical memory is an array of byte which has address.</li>
-<li>Do not forget the insturctions are stored within its memory. </li>
-<li>Run the same program concurrently<ul>
-<li>It will have the same memory allocation (002000000 in the given example)[^1]<ul>
-<li>Each process has its own <strong>virtual address space</strong></li>
-<li>The actual memory address (physical) is different.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>[^1]: Make sure address-space randomization is diabled -&gt; enabled for security reason regarding stack-smashing attacks.</p>
-<h3 id="Concurrency"><a href="#Concurrency" class="headerlink" title="Concurrency"></a>Concurrency</h3><ul>
-<li>It becomes an issue because<ul>
-<li>CPU executes one insturction at a time. Hence, insturctions are not atomic.</li>
-</ul>
-</li>
-</ul>
-<h3 id="Persistence"><a href="#Persistence" class="headerlink" title="Persistence"></a>Persistence</h3><ul>
-<li>Device like DRAM saves data in volatile<a href="휘발성">^2</a><ul>
-<li>Disconnection or crash result with data loss.</li>
-</ul>
-</li>
-<li>OS software manages disk : file system.<ul>
-<li>Unlike CPU or memory, OS does not do virtualization on disk, but rather assume users may want to share file info.</li>
-<li>For performance, most File System delays writes, and batch them (try) into larger groups.</li>
-<li>For persistence, most file system incorporate intricate write protocol such as journaling, or copy-on-write.</li>
-</ul>
-</li>
-</ul>
-<h3 id="Design-Goals"><a href="#Design-Goals" class="headerlink" title="Design Goals"></a>Design Goals</h3><ol>
-<li>Define Abstractaions to ease the usage of computer system<ul>
-<li>Abstraction allows:<ul>
-<li>Able to write codes in C (higher lang) even if you do not know Assembly.</li>
-<li>Able to write assembly without considering logic gates.</li>
-<li>Able to write processes without having knowledge in transisters.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Minimize the overhead (performance)<ul>
-<li>Having virtualization and easy-to-use system is meaningful but not necessary.</li>
-</ul>
-</li>
-<li>Safety between OS and Application programs.<ul>
-<li>OS needs to ensure the execution of a program does not negatively influence the others</li>
-<li>Safety is a key concept of <strong>Isolation</strong> principle.</li>
-</ul>
-</li>
-<li>Provides high level reliability<ul>
-<li>OS fails, all the applications bulit on fail.</li>
-</ul>
-</li>
-<li>Energy-efficiency, security, mobility and so on…</li>
+            <p>Sheduling policy = discipline</p>
+<h2 id="Workload-Assumptions"><a href="#Workload-Assumptions" class="headerlink" title="Workload Assumptions"></a>Workload Assumptions</h2><p>let us first make a number of simplifying assumptions about the processes running in the system, sometimes collectively called the workload.</p>
+<ul>
+<li>Assumptions are:<ol>
+<li>Each job runs for the same amount of time.</li>
+<li>All jobs arrive at the same time.</li>
+<li>Once started, each job runs to completion.</li>
+<li>All jobs only use the CPU (i.e., they perform no I/O)</li>
+<li>The run-time of each job is known.</li>
 </ol>
+</li>
+</ul>
+<h3 id="Scheduling-Metric"><a href="#Scheduling-Metric" class="headerlink" title="Scheduling Metric"></a>Scheduling Metric</h3><ul>
+<li><p>Turnaround time = Completion - Arrival.</p>
+<ul>
+<li>Since we assume that all jobs arrive at the same time, T_Arrival = 0. Therefore, turnaround time = completion time.</li>
+</ul>
+</li>
+<li><p>Fariness: Performane and fairness are often at odds in scheduling.</p>
+</li>
+<li><p>FIFO</p>
+<ul>
+<li>Convoy Effect: Short-time required process waits for the long-time process to be completed.</li>
+</ul>
+</li>
+<li><p>Shorted Job First</p>
+<ul>
+<li>Same convoy effect possible as the process (jobs) might be arrived differently; the shortest job arrives at the last, hence still need to wait.</li>
+</ul>
+</li>
+<li><p>Shortest Time to Completion First (STCF)</p>
+<ul>
+<li>Compare the remainer completion time whenever new job arrives, and pick the shortest one. </li>
+<li>It is non-preemptive that the job can be stopped in the middle.</li>
+</ul>
+</li>
+</ul>
+<h3 id="New-scheduling-metric-response-time"><a href="#New-scheduling-metric-response-time" class="headerlink" title="New scheduling metric: response time"></a>New scheduling metric: response time</h3><p>Response Time = Firstrun - Arrival = Time gap between arrival and first run of job.<br>Can intuitively knows the policy such as STCF, FIFO has bad response time.</p>
+<ul>
+<li>Round Robin<ul>
+<li>Time slice/Scheduling quantum –&gt; slice must be multiples of interrupt period.</li>
+<li>If time slice too short –&gt; context switch costs becomes significant.</li>
+<li>In general, the fair policy like Round Robin do bad when the metric is turnaround time. </li>
+</ul>
+</li>
+</ul>
+<h3 id="Incorporating-IO"><a href="#Incorporating-IO" class="headerlink" title="Incorporating IO"></a>Incorporating IO</h3><p><img src="/image/os/4-kf6u2v1r.PNG" alt=""><br>During the IO process, the current process will not use the CPU and in the wait state.<br>To avoid the waste of resource, scheduler utilizes the resource executing the other waiting jobs.</p>
 
         </div>
         
@@ -271,7 +246,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -321,7 +296,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -345,7 +320,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -427,6 +402,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -465,7 +451,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -498,12 +484,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -564,7 +550,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -573,6 +559,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -593,82 +655,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -679,13 +665,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -733,12 +712,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -799,7 +778,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -808,6 +787,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -828,82 +883,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -914,13 +893,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">

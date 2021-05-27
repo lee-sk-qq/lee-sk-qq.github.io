@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/08/07/OperatingSystem/OS%20-%20ch-7-scheduling/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/OS.jpg" alt="Scheduling">
+        <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
         </a>
     </div>
     
@@ -137,7 +137,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-08-07T05:09:07.572Z">Aug 07, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 293 words)
+                    3 minutes read (About 508 words)
                 </span>
                 
                 
@@ -156,57 +156,62 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/08/07/OperatingSystem/OS%20-%20ch-7-scheduling/">Scheduling</a>
+                <a class="has-link-black-ter" href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/">Concurrency</a>
             
         </h1>
         <div class="content">
-            <p>Sheduling policy = discipline</p>
-<h2 id="Workload-Assumptions"><a href="#Workload-Assumptions" class="headerlink" title="Workload Assumptions"></a>Workload Assumptions</h2><p>let us first make a number of simplifying assumptions about the processes running in the system, sometimes collectively called the workload.</p>
+            <h1 id="Concurrency"><a href="#Concurrency" class="headerlink" title="Concurrency"></a>Concurrency</h1><p>So far, we have discussed what and how OS deals with…</p>
 <ul>
-<li>Assumptions are:<ol>
-<li>Each job runs for the same amount of time.</li>
-<li>All jobs arrive at the same time.</li>
-<li>Once started, each job runs to completion.</li>
-<li>All jobs only use the CPU (i.e., they perform no I/O)</li>
-<li>The run-time of each job is known.</li>
-</ol>
-</li>
+<li>Expand a single CPU into multiple virtualized CPUs so that many programs run at the same time.</li>
+<li>Makes each process looks like it has its own independent memory (virtualized).</li>
 </ul>
-<h3 id="Scheduling-Metric"><a href="#Scheduling-Metric" class="headerlink" title="Scheduling Metric"></a>Scheduling Metric</h3><ul>
-<li><p>Turnaround time = Completion - Arrival.</p>
+<p>Through the concept “address space” each program acts like it has its own memory, but OS uses the physical memory by switching the multipe address space. </p>
+<p>The difference between thread and process is that</p>
 <ul>
-<li>Since we assume that all jobs arrive at the same time, T_Arrival = 0. Therefore, turnaround time = completion time.</li>
+<li>threads share the memory space –&gt; can access the same value.</li>
 </ul>
-</li>
-<li><p>Fariness: Performane and fairness are often at odds in scheduling.</p>
-</li>
-<li><p>FIFO</p>
+<p>Thread:</p>
 <ul>
-<li>Convoy Effect: Short-time required process waits for the long-time process to be completed.</li>
+<li>Each thread state is very similar to process states</li>
+<li>has PC, and registers</li>
+<li>If two threads run under one process, threads must be switched by the context switch.<ul>
+<li>Context switch of threads is similar to processes’</li>
+<li>As like process control block (PCB), there is thread control block (TCB).</li>
+<li>The biggest difference is that thread does not change the memory space (keep use the current page table).</li>
 </ul>
 </li>
-<li><p>Shorted Job First</p>
+</ul>
+<p><img src="/image/os/screen-shot-2020-09-09-at-11-57-25-pm-kevg6idu.png" alt=""></p>
 <ul>
-<li>Same convoy effect possible as the process (jobs) might be arrived differently; the shortest job arrives at the last, hence still need to wait.</li>
+<li>A single thread process has one stack at the bottom.</li>
+<li>In a multi thread process, each thread runs independently and mulitple routines can be called to run the thread. Hence, each thread has a stack.</li>
 </ul>
-</li>
-<li><p>Shortest Time to Completion First (STCF)</p>
+<h2 id="Concurrency-Problems"><a href="#Concurrency-Problems" class="headerlink" title="Concurrency Problems"></a>Concurrency Problems</h2><p>Race Condition: Situation where the output changes depends on the order of instruction executions.</p>
 <ul>
-<li>Compare the remainer completion time whenever new job arrives, and pick the shortest one. </li>
-<li>It is non-preemptive that the job can be stopped in the middle.</li>
+<li>In case the context switch triggered in the unfortunate timing, wrong (not what we expected) output comes out. <ul>
+<li>It is indeed indeterminate.</li>
 </ul>
 </li>
+<li>Critical section: where the multiple threads should not be executed<ul>
+<li>Therefore, we need mutex.</li>
 </ul>
-<h3 id="New-scheduling-metric-response-time"><a href="#New-scheduling-metric-response-time" class="headerlink" title="New scheduling metric: response time"></a>New scheduling metric: response time</h3><p>Response Time = Firstrun - Arrival = Time gap between arrival and first run of job.<br>Can intuitively knows the policy such as STCF, FIFO has bad response time.</p>
+</li>
+<li>Waiting for another: Dependency where order must be followed.</li>
+</ul>
+<p>Concurreny must be dealt carefully so that most of kernel data structures, page table, process list, and file system… can work correctly.</p>
+<h1 id="Thread-API"><a href="#Thread-API" class="headerlink" title="Thread API"></a>Thread API</h1><h2 id="Thread-Creation"><a href="#Thread-Creation" class="headerlink" title="Thread Creation"></a>Thread Creation</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pthread_create(thread, attr, routine, arg);</span><br><span class="line"><span class="comment">// thread:type struct pointer. This struct communicates with thread.</span></span><br><span class="line"><span class="comment">// attr: size of stack, thread scheduling priority - most time NULL is enough</span></span><br><span class="line"><span class="comment">// routine: a function that thread will run</span></span><br><span class="line"><span class="comment">// arg: input parameters delivered to the routine.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Thread-Exit"><a href="#Thread-Exit" class="headerlink" title="Thread Exit"></a>Thread Exit</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pthread_join (thread, **value_ptr);</span><br><span class="line"><span class="comment">// thread: Which thread are you watiting for?</span></span><br><span class="line"><span class="comment">// value_ptr: pthread_join changes the value, hence need the pointer instead of val</span></span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>Round Robin<ul>
-<li>Time slice/Scheduling quantum –&gt; slice must be multiples of interrupt period.</li>
-<li>If time slice too short –&gt; context switch costs becomes significant.</li>
-<li>In general, the fair policy like Round Robin do bad when the metric is turnaround time. </li>
+<li>Key Points<ul>
+<li>Can deliver NULL when no parameter is needed</li>
+<li>Do not need to bind the parameters when only one is needed</li>
+<li>Needs to care about how the value changes within the thread. </li>
 </ul>
 </li>
 </ul>
-<h3 id="Incorporating-IO"><a href="#Incorporating-IO" class="headerlink" title="Incorporating IO"></a>Incorporating IO</h3><p><img src="/image/os/4-kf6u2v1r.PNG" alt=""><br>During the IO process, the current process will not use the CPU and in the wait state.<br>To avoid the waste of resource, scheduler utilizes the resource executing the other waiting jobs.</p>
+<h2 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pthread_mutex_t</span> lock = pthread_mutex_initializer;</span><br><span class="line"><span class="keyword">pthread_cond_t</span> cond = pthread_cond_initializer;</span><br><span class="line"><span class="keyword">int</span> rc = pthread_mutex_init (&amp;lock, <span class="literal">NULL</span>);</span><br><span class="line">assert (rc == <span class="number">0</span>);</span><br><span class="line">pthread_mutex_lock (&amp;lock); <span class="comment">// Wait if one thread has the lock</span></span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">ready</span> == <span class="number">0</span>) pthread_cond_wait (&amp;cond, &amp;lock); <span class="comment">// Waiting routine</span></span><br><span class="line"><span class="comment">// It awake, get the lock, and return -&gt; Ensures it always has the lock when executing.</span></span><br><span class="line">x = x + <span class="number">1</span>; <span class="comment">// Critical points</span></span><br><span class="line">pthread_mutex_unlock (&amp;lock);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Other thread gives the wake up call</span></span><br><span class="line">pthread_mutex_lock(&amp;lock);</span><br><span class="line"><span class="comment">// After send the signal, and fix the ready val, it must have the lock</span></span><br><span class="line"><span class="comment">// It guarantees the prevention of race condition.</span></span><br><span class="line"><span class="built_in">ready</span> = <span class="number">1</span>; </span><br><span class="line">pthread_cond_signal (&amp;cond); <span class="comment">// It release the lock and send the signal to awake the thread.</span></span><br><span class="line">pthread_mutex_unlock (&amp;lock);</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -246,7 +251,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -296,7 +301,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -320,7 +325,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -402,6 +407,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -440,7 +456,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -473,12 +489,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -539,7 +555,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -548,6 +564,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -568,82 +660,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -654,13 +670,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -708,12 +717,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -774,7 +783,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -783,6 +792,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -803,82 +888,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -889,13 +898,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">

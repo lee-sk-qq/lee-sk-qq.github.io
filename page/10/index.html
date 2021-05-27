@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/08/06/OperatingSystem/OS%20-%20ch-6-limited-direct-execution/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/OS.jpg" alt="Limited Direct Execution">
+        <a href="/2020/08/10/OperatingSystem/OS%20-%20ch-15/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Address Translation">
         </a>
     </div>
     
@@ -137,7 +137,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-08-06T05:09:07.572Z">Aug 06, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-08-10T05:09:07.572Z">Aug 10, 2020</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 838 words)
+                    5 minutes read (About 700 words)
                 </span>
                 
                 
@@ -156,88 +156,86 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/08/06/OperatingSystem/OS%20-%20ch-6-limited-direct-execution/">Limited Direct Execution</a>
+                <a class="has-link-black-ter" href="/2020/08/10/OperatingSystem/OS%20-%20ch-15/">Address Translation</a>
             
         </h1>
         <div class="content">
-            <ul>
-<li>Virtualization through CPU time sharing methods. Need to overcome/consider:<ul>
-<li>Performance: Virtualization without giving too much of overhead.</li>
-<li>Control: Efficient execution of process with control over CPU.</li>
+            <h1 id="Address-Translation"><a href="#Address-Translation" class="headerlink" title="Address Translation"></a>Address Translation</h1><p>Limited Direct Execution (LDE): When process, in certain times such as systemcalls and timer interrupt happens, OS interrupts process to prevent problems. OS gets little support from hardware to do its best to provide efficient virtualization and gets out of the process’s way.</p>
+<ul>
+<li><p>We want:</p>
+<ul>
+<li>efficiency: hence requires hardware support; using TLB, pagetable…</li>
+<li>control: OS guarantees no access to the memory of the application program -&gt; needs hardware support.</li>
+<li>flexibility: Ez to use address space and ez to program-system.</li>
+</ul>
+</li>
+<li><p>Address Translation = hardware-based address translation</p>
+<ul>
+<li>Can be thought as an additional function of LDE.</li>
+<li>Through address translation:<ul>
+<li>Hardware translate the virtual address (instruction, load, store) to the physical address.</li>
+<li>Hardware translates (changes) to relocate the memory reference of programs into the real ones.</li>
+<li>Of course, OS needs to know empty/used memory space, and control/manage the memory use -&gt; To setup the hardware to ensure the correct/translation of the memory address.</li>
 </ul>
 </li>
 </ul>
-<h2 id="Basic-Concept-Limited-Direct-Execution"><a href="#Basic-Concept-Limited-Direct-Execution" class="headerlink" title="Basic Concept: Limited Direct Execution"></a>Basic Concept: Limited Direct Execution</h2><ul>
-<li>Direct Execution:<ul>
-<li>Just execute the program on CPU. </li>
-<li>OS creates process object in the process list when execute.</li>
-<li>Alloscate the memory, load it on a disk, branch to magin point to run the code.</li>
-</ul>
 </li>
 </ul>
-<p><img src="/image/os/1-kf6o3d43.PNG" alt=""><br>Above figure shows no limited direct execution.<br>It creates several problems:</p>
-<ol>
-<li>How can ensure it does not execute the program that OS does not want?</li>
-<li>How can we stop the execution and switch to the other process during the execution?<br>--&gt; How can we implement Time Sharing Method?</li>
+<p><strong>From now on we assume that user address space is consecutive, not too big, smaller than the physical memory, and each address space is the same</strong></p>
+<h2 id="Dynamic-hardware-based-relocation-base-and-bound"><a href="#Dynamic-hardware-based-relocation-base-and-bound" class="headerlink" title="Dynamic (hardware-based) relocation = base and bound"></a>Dynamic (hardware-based) relocation = base and bound</h2><ol>
+<li>Each CPU needs two hardware register; one base, one bound (or limit) register.</li>
+<li>This base and bound pair allows us to allocate address space where we want.</li>
+<li>In this setupt, each program is written and compiled like address 0 (virtual).</li>
+<li>At the start of the program, OS decides the physical memory location, and set base register as of it.<ul>
+<li>physical address = virtual address + base (This is how address translation happens).</li>
+</ul>
+</li>
+<li>As reallocation is possible later </li>
 </ol>
-<p>This is why we need “Limited” Direct Execution.</p>
-<h2 id="Problem-1-Limited-Execution"><a href="#Problem-1-Limited-Execution" class="headerlink" title="Problem 1 : Limited Execution"></a>Problem 1 : Limited Execution</h2><p>What if the program requires to executr privileged instructions such as IO/additional memory allocation? –&gt; Introduce two different modes</p>
-<ul>
-<li>User Mode: Limited access such as no request for IO.</li>
-<li>Kernel Mode: Non limited access</li>
-</ul>
-<p>To allow privileged instructions, modern OS provides systemcall to user process. </p>
-<ul>
-<li>Filesystem access, process creationa and deletion, communication and allocation…</li>
-</ul>
-<p>To call systemcall, a program needs to execute trap command. </p>
-<ul>
-<li>It elevates the the privilege level from user to Kernel when the instruction branches to the kernel. </li>
-<li>Once elevated to the kernel mode, OS can execute every instructions, and can handle all the requested instructions by the process. </li>
-<li>Once completed, OS calls “return-from-trap” which de-elevates the privilege down to user mode. </li>
-</ul>
-<p>When calls the trap command, hardware needs to store necessary register of the process.<br>It is to return properly to the user process when “return-from-trap” is executed.</p>
-<pre><code>* x86 has PC, flags, and other registers are stored in kernel stack of each process.
-* &quot;return-from-trap&quot; pops these info to re-run the user mode process (from sleep).</code></pre><p>A process cannot state the “branch address” where “trap” gets executed as it means the process has access to the kernel.</p>
-<ul>
-<li>Kernel creates trap table during the boot, and controls the system with it. </li>
-<li>Booting is instructed within kernel mode, hence hardware can be managed as wanted. </li>
-</ul>
-<p>OS uses privileged instructions to deliver the trap handler location to the hardwares.<br>Trap Handler: When some interruptors, or systemcalls happen, which code hardware should execute?</p>
-<p><img src="/image/os/2-kf6palrw.PNG" alt=""><br>In the booting:</p>
-<pre><code>1. Kernel creates/resets trap table
-2. OS lets hardware knows the location of trap handler. </code></pre><p>After the boot:</p>
-<ol>
-<li>User calls trap to OS</li>
-<li>Hardware saves the stack and branch to trap handler.</li>
-<li>Kernel handles the trap, branch back to hardware.</li>
-<li>Restore the registers from kernel stack, branch to user program.</li>
-<li>User program moves on. </li>
-</ol>
-<h2 id="Problem-2-Process-Switch"><a href="#Problem-2-Process-Switch" class="headerlink" title="Problem 2: Process Switch"></a>Problem 2: Process Switch</h2><p>How OS gets CPU back to switch the process?</p>
-<h3 id="A-Cooperative-Approach-Wait-For-System-Calls"><a href="#A-Cooperative-Approach-Wait-For-System-Calls" class="headerlink" title="A Cooperative Approach: Wait For System Calls"></a>A Cooperative Approach: Wait For System Calls</h3><ul>
-<li>OS assumes that process will behave reasonably; process gives up CPU periodically so that other processes get the chance. </li>
-<li>Process often calls systemcall to handover the control of CPU to OS such as while reading files… –&gt; yield systemcall.</li>
-<li>If the application behaves abnormal –&gt; it triggers trap –&gt; OS gets CPU control.</li>
-</ul>
-<h3 id="A-Non-Cooperative-Approach-The-OS-Takes-Control"><a href="#A-Non-Cooperative-Approach-The-OS-Takes-Control" class="headerlink" title="A Non-Cooperative Approach: The OS Takes Control"></a>A Non-Cooperative Approach: The OS Takes Control</h3><p>Timer Interrupt - trigs the interrupt periodically and executes the interrupt handler.<br>OS needs to decide whether to proceed the current process or do the switch; decision is made by sheduler policy.<br><img src="/image/os/3-kf6rf0nk.PNG" alt=""></p>
-<ul>
-<li>Context Save and Store<ul>
-<li>OS saves the current state of the process in the kernel stack, and restore the stack of the next process.</li>
-<li>By doing so, return-from-trap returns to the next process (not the current process).</li>
-<li>Once the next process (current) calls return-from-trap, it calls the previous process to proceed where it stopped.</li>
+<p><em>Note: Static allocation has a main problem: has no protection at all -&gt; can have illegal access from other processes + hard to reallocate later.</em></p>
+<ol start="6">
+<li>Bound register is used for protection.<ul>
+<li>Process first checks if the memory reference is legal - by checking bound.</li>
+<li>If process reference out of base-bound region -&gt; CPU runs exception, kills the process.</li>
+<li>Meaning it literally indicates the <strong>bound</strong> of the region (as we already knows the start; base).</li>
 </ul>
 </li>
+</ol>
+<p><em>Note: Base and Bound registers are hardware structure that exists in CPU chip</em></p>
+<p><strong>Memory management unit (MMU)</strong>: Processes that help address translation; for more detailed memory management, more circuits are needed in MMU.</p>
+<h2 id="Hardware-support-summary"><a href="#Hardware-support-summary" class="headerlink" title="Hardware support: summary"></a>Hardware support: summary</h2><ol>
+<li>Needs two CPU modes:<ul>
+<li>Kernel (privileged): Has access to entire computer.</li>
+<li>User: Application program runs under this mode, has limitations to do something.</li>
 </ul>
-<h3 id="ASIDE-KEY-CPU-VIRTUALIZATION-TERMS-MECHANISMS"><a href="#ASIDE-KEY-CPU-VIRTUALIZATION-TERMS-MECHANISMS" class="headerlink" title="ASIDE: KEY CPU VIRTUALIZATION TERMS (MECHANISMS)"></a>ASIDE: KEY CPU VIRTUALIZATION TERMS (MECHANISMS)</h3><ul>
-<li>The CPU should support at least two modes of execution: a restricted user mode and a privileged (non-restricted) kernel mode.</li>
-<li>Typical user applications run in user mode, and use a system call to trap into the kernel to request operating system services.</li>
-<li>The trap instruction saves register state carefully, changes the hardware status to kernel mode, and jumps into the OS to a pre-specified destination: the trap table.</li>
-<li>When the OS finishes servicing a system call, it returns to the user program via another specialreturn-from-trap instruction, which reduces privilege and returns control to the instruction after the trap that jumped into the OS.</li>
-<li>The trap tables must be set up by the OS at boot time, and make sure that they cannot be readily modified by user programs. All of this is part of the limited direct execution protocol which runs programs efficiently but without loss of OS control.</li>
-<li>Once a program is running, the OS must use hardware mechanisms to ensure the user program does not run forever, namely the timer interrupt. This approach is a non-cooperative approach to CPU scheduling.</li>
-<li>Sometimes the OS, during a timer interrupt or system call, might wish to switch from running the current process to a different one, a low-level technique known as a context switch</li>
+</li>
+<li>Process status word: One bit in a register represents the current execution state of CPU.</li>
+<li>Base and Bound registers; part of MMU<ul>
+<li>Physical address = virtual address + base.</li>
+<li>Hardware must be able to check if it is legal address; check is done using bound register and other CPU circuits (the other MMU).</li>
+<li>Hardware must provide instruction that changes base and bound register values (kernel instructinos).</li>
+<li>Hardware must be able to trigger the exceptions (its handler).</li>
 </ul>
+</li>
+</ol>
+<h2 id="OS-issues"><a href="#OS-issues" class="headerlink" title="OS issues"></a>OS issues</h2><p>To implement base-bound method virtualization memory, it needs three important points.</p>
+<ol>
+<li>At the process creation, OS needs to find memory space which will become address space.<ul>
+<li>OS memory sees memory as an array of slot, and manage each slot’s usage; finding the free list (the empty space).</li>
+</ul>
+</li>
+<li>At the process termination, deallocate the memory so that can be used later. OS puts the memory to <strong>free list</strong> and manage all the relavant data structures.</li>
+<li>OS needs to perform additional steps when context switch happens.<ul>
+<li>Each CPU has a pair of base and bound registers, and each program must have different physical memory address. Hence, OS needs to save and store the base-bound when context switch happens in the PCB.<br><em>Note: If process is not running state, OS can easily move the physical address space easily; copy into the new address, and update the base register in PCB -&gt; Hence program does not realize there was a change as it happens before the restore.</em></li>
+</ul>
+</li>
+<li>OS provides exception handler, or helper function.<ul>
+<li>OS installes handler during the boot through privilege instructions.<br><em>Note: memory translation is handled by hardware, no intervention from OS.</em></li>
+<li>We still follows the LDE, but OS interven only when process does illegal action.</li>
+</ul>
+</li>
+</ol>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Dynamic reallocation is inefficient -&gt; cause internal fragmentation (gapped-space is being wasted).<br>Internal fragmentation can be avoided by Generalizing base-bound; which is called segmentation.</p>
 
         </div>
         
@@ -277,7 +275,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -327,7 +325,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -351,7 +349,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -433,6 +431,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -471,7 +480,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -504,12 +513,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -570,7 +579,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -579,6 +588,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -599,82 +684,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -685,13 +694,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -739,12 +741,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -805,7 +807,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -814,6 +816,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -834,82 +912,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -920,13 +922,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">

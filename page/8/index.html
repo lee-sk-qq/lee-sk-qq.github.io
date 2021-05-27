@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/08/08/OperatingSystem/OS%20-%20ch-8-MLFQ/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/OS.jpg" alt="Multi Level Feedback Queue">
+        <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
         </a>
     </div>
     
@@ -137,7 +137,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-08-08T05:09:07.572Z">Aug 08, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 395 words)
+                    8 minutes read (About 1131 words)
                 </span>
                 
                 
@@ -156,50 +156,126 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/08/08/OperatingSystem/OS%20-%20ch-8-MLFQ/">Multi Level Feedback Queue</a>
+                <a class="has-link-black-ter" href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/">Lock</a>
             
         </h1>
         <div class="content">
-            <h1 id="Multi-Level-Feedback-Queue"><a href="#Multi-Level-Feedback-Queue" class="headerlink" title="Multi Level Feedback Queue"></a>Multi Level Feedback Queue</h1><ul>
-<li>Key Question: How can struct the scheduling that minimizes response time and turnaround time without having any prior information of the job.</li>
-</ul>
-<h2 id="MLFQ-Basic-Rules"><a href="#MLFQ-Basic-Rules" class="headerlink" title="MLFQ Basic Rules"></a>MLFQ Basic Rules</h2><p>MLFQ is consist of multiple queues which has its own priority level.</p>
-<ol>
-<li>If priority(A) &gt; priority (B) then execute A</li>
-<li>If prior(A) == prior(B) then do RR for A and B.</li>
-</ol>
+            <h1 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h1><h2 id="Basic-Concept"><a href="#Basic-Concept" class="headerlink" title="Basic Concept"></a>Basic Concept</h2><p>It is a traditional varaible change.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">lock_t</span> mutex;</span><br><span class="line">lock(&amp;mutex);</span><br><span class="line">balance = balance + <span class="number">1</span>; <span class="comment">// Critical Section</span></span><br><span class="line">unlock(&amp;mutex);</span><br></pre></td></tr></table></figure>
+
+<p>Since lock is a varaible, it must be initialised to be used.<br>Lock has status:</p>
 <ul>
-<li>MLFQ assigns the priority depends on the characteristics of the job; keyboard input waiting…</li>
-<li>If one job maintains the high priority for a long time, lower the level.</li>
+<li>Available/Unlock/free: no thread has the lock.</li>
+<li>Acquired: Excatly one thread has the lock (owner) within the critical section.</li>
 </ul>
-<ol start="3">
-<li>When a job enters the system, it has the highest priority.</li>
-<li><ol>
-<li>a: After use all of its time slice, priority goes lower.</li>
-<li>b: Maintain the priority level if it gives up the CPU before the end of its time slice.</li>
+<p>Lock gives the least control at scheduling for programmer.<br>Generally, programmer creates the thread, and OS controls it. Lock gives partial control of thread to programmer.</p>
+<h2 id="Lock-Implementation"><a href="#Lock-Implementation" class="headerlink" title="Lock Implementation"></a>Lock Implementation</h2><p>Key Question: How can we make efficient lock? What hardware supports does it need? OS?</p>
+<h3 id="Lock-Evaluation"><a href="#Lock-Evaluation" class="headerlink" title="Lock Evaluation"></a>Lock Evaluation</h3><ol>
+<li>Does it support mutex well<ol>
+<li>Basic function that prevents multipe threads enter the critical section.</li>
+</ol>
+</li>
+<li>Performance: Especailly, lock overheads.<ol>
+<li>No race: Overheads when one thread lock/unlock?</li>
+<li>Race: multipe threads compete to achieve the lock within one cpu.</li>
 </ol>
 </li>
 </ol>
-<p>Key Points:<br>    * Scheduler do not know if the job is short or not<br>    * So assume it is the short one at first (assign high prior level).<br>    * Therefore, if the job is the short one, it will be finished fast.<br>    * If not, it will slowly move down to the lower prior queue which proves it is a time consuming job.<br>    * By doing so, MLFQ approximates SJF without having prior info.</p>
-<p>Problems:</p>
+<h3 id="Interrupt-Control"><a href="#Interrupt-Control" class="headerlink" title="Interrupt Control"></a>Interrupt Control</h3><p>Mutex Can be implemented by disabling interrupt within critical section.</p>
 <ol>
-<li>Starvation: if there are too many conversational job (which gives up the time slice earlier), lower prior queue tasks will not have a chance to use CPU.</li>
-<li>Can trick the scheduler: Can program the code intentionally to trick the scheduler, and seize the CPU for a longer time. </li>
-<li>The job may alter its characteristics later; but not able to have the higher priority disregard to its change.</li>
+<li>Pro: Very easy. Codes will be executed atomically.</li>
+<li>Cons:<ol>
+<li>Privileged Thread - enable/disable interrupt. <ol>
+<li>It must be trustable that thread will soley use the privilege for its inteneded purpose.</li>
+<li>i.e. Greedy program gets the lock and use all the process resource, infinite loop…</li>
 </ol>
-<ol>
-<li>After certain time, system moves all the tasks to the highest queue.<ol>
-<li>Non starvation is guaranteed.</li>
-<li>Altered Jobs (characteristics into interactive) can be treated as intended.</li>
+</li>
+<li>Can’t in multi-processors.<ol>
+<li>When multiple threads are running on multipe CPU, each thread may try to access the same critical section.</li>
+<li>In this case, interrupt disable on certain process has no influence on the other process; hence cannot guarantee the mutex.</li>
+</ol>
+</li>
+<li>May miss important interrupt.<ol>
+<li>What if CPU misses that reading request completed from the data storage? When can we awake the process waiting for the data reading?</li>
+</ol>
+</li>
+<li>Inefficient - Modern CPU tends to take more time to enable/disable the interrupt compares to regular instructions.</li>
+</ol>
+</li>
+<li>Usage:<ol>
+<li>Therefore, handling interrupt must be dealt within the limited area.</li>
+<li>i.e. OS disbales interrupt to atomic execution within internal data structures.</li>
+<li>Since internal OS has no such thing as trust/privilege, it is okay for letting OS does what it wants.</li>
 </ol>
 </li>
 </ol>
-<p>Redefine 4a 4b into one rule to prevent the second problem; gaming of the scheduler.<br>4. Once a job uses up its time allotment at a given level (regardless of how many times it has given up the CPU), its priority is reduced (i.e., it moves down one queue).</p>
-<h2 id="Other-problems-concerns"><a href="#Other-problems-concerns" class="headerlink" title="Other problems/concerns"></a>Other problems/concerns</h2><ol>
-<li>How many queues should there be?</li>
-<li>How big should the time slice be per queue?</li>
-<li>How often priority must be reset to avoid starvation?<br>There are no definite answer to these concerns.<br>There could be different implementation such as alloting different time slice per each priority queue (longer for lower level…).</li>
+<h1 id="Spin-Lock"><a href="#Spin-Lock" class="headerlink" title="Spin Lock"></a>Spin Lock</h1><h2 id="Test-And-Set-Atomic-Exchange"><a href="#Test-And-Set-Atomic-Exchange" class="headerlink" title="Test-And-Set (Atomic Exchange)"></a>Test-And-Set (Atomic Exchange)</h2><p>As we discussed, there is no point of disabling interrupt in multi-processors. Hence, multi-processors have hardware support.</p>
+<p>The simplest hardware support is Test-And-Set or atomic exchange.</p>
+<h3 id="Without-hardware-support"><a href="#Without-hardware-support" class="headerlink" title="Without hardware support"></a>Without hardware support</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> __<span class="title">lock_t</span> &#123;</span> </span><br><span class="line">    <span class="keyword">int</span> flag; </span><br><span class="line">&#125; <span class="keyword">lock_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">lock_t</span> *mutex)</span> </span>&#123;</span><br><span class="line"><span class="comment">// 0 -&gt; lock is available, 1 -&gt; held</span></span><br><span class="line">    mutex-&gt;flag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lock</span><span class="params">(<span class="keyword">lock_t</span> *mutex)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (mutex-&gt;flag == <span class="number">1</span>) <span class="comment">// TEST the flag</span></span><br><span class="line">        ; <span class="comment">// spin-wait (do nothing)</span></span><br><span class="line"><span class="comment">// Here can be interrupt after left the while loop</span></span><br><span class="line">    mutex-&gt;flag = <span class="number">1</span>; <span class="comment">// now SET it!</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unlock</span><span class="params">(<span class="keyword">lock_t</span> *mutex)</span> </span>&#123;</span><br><span class="line">    mutex-&gt;flag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Above code has two problems:</p>
+<ol>
+<li>Accuracy: If interrupt is called in the certain timing, the flag will be 1 for both of threads -&gt; Fail to have mutex.</li>
+<li>Performance: spin-wait is infinitely checking the flag value. It wastes the time until the lock is released by the other thread -&gt; Very wasteful especially within one processor.</li>
 </ol>
+<h3 id="With-hardware-support"><a href="#With-hardware-support" class="headerlink" title="With hardware support"></a>With hardware support</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TestAndSet is atomic</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">TestAndSet</span><span class="params">(<span class="keyword">int</span> *old_ptr, <span class="keyword">int</span> <span class="keyword">new</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> old = *old_ptr; <span class="comment">// fetch old value at old_ptr</span></span><br><span class="line">    *old_ptr = <span class="keyword">new</span>; <span class="comment">// store ’new’ into old_ptr</span></span><br><span class="line">    <span class="keyword">return</span> old; <span class="comment">// return the old value</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> __<span class="title">lock_t</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> flag;</span><br><span class="line">&#125; <span class="keyword">lock_t</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">lock_t</span> *lock)</span> </span>&#123;</span><br><span class="line"><span class="comment">// 0: lock is available, 1: lock is held</span></span><br><span class="line">    lock-&gt;flag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lock</span><span class="params">(<span class="keyword">lock_t</span> *lock)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (TestAndSet(&amp;lock-&gt;flag, <span class="number">1</span>) == <span class="number">1</span>) </span><br><span class="line"><span class="comment">// someone has the lock then wait for it</span></span><br><span class="line">    ; <span class="comment">// spin-wait (do nothing)</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unlock</span><span class="params">(<span class="keyword">lock_t</span> *lock)</span> </span>&#123;</span><br><span class="line">    lock-&gt;flag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>It is a spin-lock as it keeps wasting CPU cycles until getting the lock -&gt; Obviously it only works in preemptive scheduler which can trig the interrupt using timer.</p>
+<h3 id="Spin-Lock-Evaluation"><a href="#Spin-Lock-Evaluation" class="headerlink" title="Spin Lock Evaluation"></a>Spin Lock Evaluation</h3><ol>
+<li>Mutex - Works</li>
+<li>Fairness - Can it guarantee the opportunity for waiting threads? <ol>
+<li>No, Indeed, a thread spinning may spin forever,under contention. Simple spin locks (as discussed thus far) are not fair and may lead to starvation.</li>
+</ol>
+</li>
+<li>Performance <ol>
+<li>Case Single CPU: Overheads of spin-lock may be significant.</li>
+<li>Case Multiple CPU: It works reasoably well.</li>
+</ol>
+</li>
+</ol>
+<h2 id="Compare-And-Swap"><a href="#Compare-And-Swap" class="headerlink" title="Compare-And-Swap"></a>Compare-And-Swap</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CompareAndSwap</span> <span class="params">(<span class="keyword">int</span> *ptr, <span class="keyword">int</span> expected, <span class="keyword">int</span> <span class="keyword">new</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> actual = *ptr;</span><br><span class="line">    <span class="keyword">if</span> (actual == expected) *prt = <span class="keyword">new</span>;</span><br><span class="line">    <span class="keyword">return</span> actual;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>CompareAndSwap is stronger than TestAdnSet; wait-free synchronization.</p>
+<p>In spin-lock implementation, it works exactly the same as TestAndSet.</p>
+<h2 id="Load-Linked-amp-Store-Conditional"><a href="#Load-Linked-amp-Store-Conditional" class="headerlink" title="Load-Linked &amp; Store-Conditional"></a>Load-Linked &amp; Store-Conditional</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LoadLinked</span><span class="params">(<span class="keyword">int</span> *ptr)</span> <span class="keyword">return</span> *ptr</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">StoreConditional</span><span class="params">(<span class="keyword">int</span> *ptr, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">not</span> updated since LoadLinked)&#123;</span><br><span class="line">        *ptr = value;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">// Success</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// Fail to update</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Load-Linked works same as load instruction.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lock</span><span class="params">(<span class="keyword">lock_t</span> *lock)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (LoadLinked(&amp;lock-&gt;flag) || !StoreConditional(&amp;lock-&gt;flag,<span class="number">1</span>)) ;</span><br><span class="line">&#125;</span><br><span class="line">void unlock(lock_t *lock) lock-&gt;flag = 0;</span><br></pre></td></tr></table></figure>
+<p>As can be expected, StoreConditional may fail due to interrupt -&gt; But the if condition (not updated since) guarantees that one thread has the lock at a time.</p>
+<h2 id="Fetch-And-Add"><a href="#Fetch-And-Add" class="headerlink" title="Fetch-And-Add"></a>Fetch-And-Add</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">FetchAndAdd</span><span class="params">(<span class="keyword">int</span> *ptr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> old = *ptr;</span><br><span class="line">    *ptr = old + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> old;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Ticket-Turn lock method. Since FetchAndAdd is atomic, assign numbers in ticket and turn to decide which thread’s turn to have the lock.</p>
+<p>Once the thread is done with the lock, it increases the turn numnber, which allows one thread (the ticker holder) will exit the while loop and gets the lock.</p>
+<ul>
+<li>The important difference between the previous lock methods is that it executes in order, hence there is no starvation.</li>
+</ul>
+<h1 id="How-to-not-waste-CPU-time-in-a-spin"><a href="#How-to-not-waste-CPU-time-in-a-spin" class="headerlink" title="How to not waste CPU time in a spin?"></a>How to not waste CPU time in a spin?</h1><h2 id="First-Approach-Yield-양보"><a href="#First-Approach-Yield-양보" class="headerlink" title="First Approach: Yield (양보)"></a>First Approach: Yield (양보)</h2><p>Approach is simple: Yield its allocated CPU to the other thread while waiting for the lock (spin).</p>
+<ul>
+<li>It works fine when there are few threads.</li>
+<li>If many threads exist<ul>
+<li>let’s say the scheduling policy is round-robin, it needs to wait for n-1 strip time to do run-and-yield every time. </li>
+<li>It is better than wasting n-1 threads, but waste contect switch overheads (problematic when context switch is expensive).</li>
+<li>Starvation is possible - What if miss the time while waiting for the other threads to use the CPU?</li>
+</ul>
+</li>
+</ul>
+<h2 id="Secon-Approach-Queue-sleep-instead-of-spinning"><a href="#Secon-Approach-Queue-sleep-instead-of-spinning" class="headerlink" title="Secon Approach: Queue - sleep instead of spinning"></a>Secon Approach: Queue - sleep instead of spinning</h2><p>The fundamental problems of discussed methods are all on luck; either spinning or yield -&gt; wasteful, and cannot prevent starvation.</p>
+<p>Hence, it is required to explicitly control which threads get the next lock -&gt; support from OS and use of Queue.</p>
+<p>Implement two stage: guard and lock. Cases:</p>
+<ul>
+<li>Guard, no lock: Add itself to the queue (release guard) - Before critical</li>
+<li>Both lock and guard: critical section (release guard)</li>
+<li>Lock, guard: Wake up the next queue thread, release guard.</li>
+</ul>
+<p>Guard is still spinning implementation, but alot more efficient as it only deals with few instructions; no critical section parts at all. </p>
+<h1 id="Linux-Lock-Futex"><a href="#Linux-Lock-Futex" class="headerlink" title="Linux Lock - Futex"></a>Linux Lock - Futex</h1><p>Futex:</p>
+<ul>
+<li>Linked with particular physical memory address.</li>
+<li>Has its own internal kernel queue per each futex.</li>
+<li>Caller calls futex, and sleep/awake upon needs.<ul>
+<li>futex_wait(address, expected), futex_wake(address)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Two-Phase-lock"><a href="#Two-Phase-lock" class="headerlink" title="Two Phase lock"></a>Two Phase lock</h2><ul>
+<li>First Phase: wait in spinning with hope it will soon have the lock.</li>
+<li>Second Phase: Sleeps and awake after the lock is released.</li>
+</ul>
 
         </div>
         
@@ -239,7 +315,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -289,7 +365,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -313,7 +389,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -395,6 +471,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -433,7 +520,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -466,12 +553,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -532,7 +619,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -541,6 +628,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -561,82 +724,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -647,13 +734,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -701,12 +781,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -767,7 +847,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -776,6 +856,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -796,82 +952,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -882,13 +962,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">

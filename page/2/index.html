@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
+        <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time>
+                <time class="level-item has-text-grey" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 572 words)
+                    9 minutes read (About 1393 words)
                 </span>
                 
                 
@@ -156,70 +156,155 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/">Concurrency Bugs</a>
+                <a class="has-link-black-ter" href="/2021/05/03/CPP/Modern_CPP/Chapter2/">Language Usability Enhancements</a>
             
         </h1>
         <div class="content">
-            <h1 id="Concurrency-Bugs"><a href="#Concurrency-Bugs" class="headerlink" title="Concurrency Bugs"></a>Concurrency Bugs</h1><p>Key Question: How do we handle the common concurrency bugs?<br>    * Tend to have common patterns. Need to know what to avoid.</p>
-<h2 id="Types-of-bugs"><a href="#Types-of-bugs" class="headerlink" title="Types of bugs"></a>Types of bugs</h2><h3 id="Non-deadlock-Bugs"><a href="#Non-deadlock-Bugs" class="headerlink" title="Non-deadlock Bugs"></a>Non-deadlock Bugs</h3><p>There are two major types of bugs; Atomicity Violation and Order Violation.</p>
+            <p>Reference: <a href="https://github.com/changkun/modern-cpp-tutorial">https://github.com/changkun/modern-cpp-tutorial</a></p>
 <ul>
-<li>Atomicity Violation: “The desired serializability among multiple memory accesses is violated (i.e. a code region is intended to be atomic, but the atomicity is not enforced during execution).”<ul>
-<li>If code A needs B stays the same, do not interrupt A in the middle such as changing B.</li>
-<li>This violation, mostly, easily be fixed by implementing a lock (pthread_mutex_t)</li>
+<li>Language behaviour that occurred before the runtime.</li>
 </ul>
-</li>
-<li>Order Violation: “The desired order between two (groups of) memory accesses is flipped (i.e., A should always be executed before B, but the order is not enforced during execution)”<ul>
-<li>If A needs to be guaranteed before B, then keep the order.</li>
-<li>Can be fixed by forcing the order using condition varaibles (pthread_cond_t).</li>
-</ul>
-</li>
-</ul>
-<h3 id="Deadlock-Bugs"><a href="#Deadlock-Bugs" class="headerlink" title="Deadlock Bugs"></a>Deadlock Bugs</h3><p>The existence of cycle within a graph implies the possibility of deadlock.</p>
-<p>Why is this happening?</p>
+<h3 id="Constants"><a href="#Constants" class="headerlink" title="Constants"></a>Constants</h3><p>nullptr:</p>
 <ul>
-<li>Compelx dependency between components.<ul>
-<li>OS: Virtual memory system access file system for getting disk block. File system needs memory page to losad disk block on its memory, hence access virual memory system. –&gt; Cycle</li>
+<li>CPP does not allow implicit conversion of void * to other types.</li>
+<li>Traditional CPP treats null and 0 same.</li>
+<li>So to certain how to deal with NULL in cpp, use nullptr</li>
+<li>By doing so we can do the right function calls.</li>
 </ul>
-</li>
-<li>Encapsulation property: Modularization and lock do not go well.</li>
-</ul>
-<p>Coditions to have deadlock:</p>
+<p>constexpr:</p>
 <ul>
-<li>Mutex: Threads claim exclusive control of resources that they require (e.g., a thread grabs a lock) - 독자적인 제어권</li>
-<li>Hold-and-wait: Threads hold resources allocated to them (e.g., locks that they have already acquired) while waiting for additional resources e.g., locks that they wish to acquire). - 자원점유및 대기</li>
-<li>No preemption: Resources (e.g., locks) cannot be forcibly removed from threads that are holding them. - 자원을 강제적으로 가져오지 못함.</li>
-<li>Circular wait: There exists a circular chain of threads such that each thread holds one or more resources (e.g., locks) that are being requested by the next thread in the chain. - cycle</li>
+<li>Expression produces the same result without any side effects.</li>
+<li>Compiler will optimise and embed it at compile time.</li>
+<li>It is useful as CPP array length must be constant expression; yet most compilers these days still support as part of its optimisation.</li>
+<li>Therefore, use constexpr for array length so that it can be compiled.</li>
 </ul>
-<p>All those four conditions are requried to have deadlock.</p>
-<p>Deadlock Prevention:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Below is C++11 form, from 14, you can write like a function.</span></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">const</span> in n)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> n == <span class="number">1</span> || n == <span class="number">2</span> ? <span class="number">1</span> : fib(n<span class="number">-1</span>) + fib(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Variables-and-Initialisation"><a href="#Variables-and-Initialisation" class="headerlink" title="Variables and Initialisation"></a>Variables and Initialisation</h3><p><strong>IF Statement</strong><br>In C++17, following is available like Go</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Original</span></span><br><span class="line"><span class="keyword">auto</span> itr = <span class="built_in">std</span>::find(vec.begin(), vec.end(), <span class="number">2</span>);</span><br><span class="line"><span class="keyword">if</span> (itr != vec.end()) *itr = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CPP17 - can define a local variable, and check the condition</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">auto</span> itr = <span class="built_in">std</span>::find(vec.begin(), vec.end(), <span class="number">3</span>); itr != vec.end())&#123;</span><br><span class="line">  *itr = <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Initialiser_List<T></strong></p>
 <ul>
-<li>Circular Wait: Most common and practical method to prevent a deadlock.<ul>
-<li>Easiest: Set total ordering of getting a lock.</li>
-<li>Partial Ordering in complex structures.</li>
+<li>It is the one that allows to initialise the different type with same syntax: {} introduced in C++11</li>
+<li>Auto used in followings:<ul>
+<li>Used with {} at Initialisation and assignment expression.</li>
+<li>Binded to auto including ranged for.</li>
 </ul>
 </li>
-<li>Hold and Wait: Allow getting necessary lock at one time.<ul>
-<li>Such as get a prevention lock which prevents context switch within the process of getting locks (critical section).</li>
-<li>It has problem with encapsulation - as it needs to know all the locks it need -&gt; Hence also lowers the performance.</li>
+<li>It can be implemented with 2 ptr, or 1 ptr and size.</li>
+<li>Be aware that it is a shallow copy which does not guarantee the data for the original instance deleted.</li>
+<li>Possible errors in narrowing conversion like int to double.</li>
+<li>Which means we can use itr for array.</li>
 </ul>
-</li>
-<li>No Preemption: trylock() - flexible interface<ul>
-<li>It causes livelock that attempts to get a lock infinitely without progress. </li>
-<li>It also has problem with encapsulation - if the lock call routine is complicated and expensive, the repetition will be very difficult to implement. </li>
-</ul>
-</li>
-<li>Mutex: Get rid of mutex by implementing wait-free data structures.<ul>
-<li>Instead of lock-fix-unlock, use compare-and-swap to repetitivelt try to fix the value (yet it has possibility of livelock).</li>
-</ul>
-</li>
-</ul>
-<p>Sometime it is better to “avoid” instead of “preven” the deadlock.<br>To do so, needs to know which threads will require which locks. Based on this info, schedule the threads to “AVOID” deadlock.<br>As it is really depends on situations, it is not generally used method.</p>
-<p>Deadlock Detection and Recovery</p>
+<p><strong>Structured Binding</strong></p>
 <ul>
-<li>Detection: Draw resource allocation graph to check the cycle.</li>
-<li>Recovery: Depends on the implementation; whether human based…</li>
-<li></li>
+<li>Provide functionality similar to the multiple return values</li>
+<li>Use std::tuple to return multiple values in tuple form.</li>
+<li>But, unfortunately, we have to clearly define how many values the returned tuple has.</li>
 </ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">std::tuple&lt;int, double, std::string&gt; f()&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">std</span>::make_tuple(<span class="number">1</span>, <span class="number">2.3</span>, <span class="string">"45"</span>);</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="comment">// auto will be applied indiv to each variables.</span></span><br><span class="line"><span class="keyword">auto</span> [x, y, z] = f();</span><br></pre></td></tr></table></figure>
+
+<h3 id="Type-Inference"><a href="#Type-Inference" class="headerlink" title="Type Inference"></a>Type Inference</h3><p><strong>auto</strong></p>
+<ul>
+<li>Cannot be used for function arguments.</li>
+<li>Cannot be used to derive array types: auto arr[10] = arrOrigin; // cannot infer array type.</li>
+</ul>
+<p><strong>decltype</strong></p>
+<ul>
+<li>Used to solve the defect that the auto keyword can only type that variable -&gt; use expression!<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> x = <span class="number">1</span>; <span class="comment">// int</span></span><br><span class="line"><span class="keyword">auto</span> y = <span class="number">2.1</span>; <span class="comment">// double</span></span><br><span class="line"><span class="keyword">decltype</span>(x+y) z; <span class="comment">// double</span></span><br><span class="line">z = <span class="number">1</span>; <span class="comment">// z is still double = 1.0.</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><strong>tail type inference</strong></p>
+<p>Quick Note: In specifying a template (naming), class and typename are interchangeable = equivalent. However: special cases are</p>
+<ul>
+<li><p>In the case of dependent types. typename is used to declare when referencing a nested type that depends on another template parameter such as typedef as following.</p>
+</li>
+<li><p>When you declare a template template parameter: must use class.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Hint at the compiler that you are referring to a dependent type</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> <span class="keyword">param_t</span>&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>&#123;</span></span><br><span class="line">  <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="keyword">param_t</span>::baz <span class="keyword">sub_t</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// declaring a template template</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">class</span> <span class="title">C</span> &#123;</span>&#125;; <span class="comment">// valid!</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">template</span> <span class="keyword">typename</span> T&gt; <span class="class"><span class="keyword">class</span> <span class="title">C</span>&#123;</span>&#125;; <span class="comment">// Invalid!</span></span><br></pre></td></tr></table></figure>
+
+<p>tail type inference: use decltype in specifying template.</p>
+</li>
+<li><p>Since the compiler will not know which type is the input parameter, decltype must be defined as a tail to define template’s return type as following:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++11</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</span><br><span class="line">auto add(T x, U y) -&gt; decltype(x+y)&#123;</span><br><span class="line">  <span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C++14</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">add</span><span class="params">(T x, U y)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// use link</span></span><br><span class="line"><span class="keyword">auto</span> w = add&lt;<span class="keyword">int</span>, <span class="keyword">double</span>&gt;(<span class="number">1</span>, <span class="number">2.0</span>); <span class="comment">// return is 3.0 as double.</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><strong>decltype(auto)</strong></p>
+<ul>
+<li>It deals with the concept of parameter forwarding in C++, will cover later.</li>
+<li>Mainly to derive the return type of a forwarding function or package, which does not require us to explicitly specify the parameter expression of decltype.</li>
+<li>쉽게 말하면, 그냥 리턴타입 귀찮은거 알아서 해준다는 소리.</li>
+</ul>
+<h3 id="Control-Flow"><a href="#Control-Flow" class="headerlink" title="Control Flow"></a>Control Flow</h3><p><strong>if constexpr in C++17</strong></p>
+<ul>
+<li>간단하게 if statement 에서 constexpr 사용할 수 있게되었다.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">func</span><span class="params">(<span class="keyword">const</span> T&amp; t)</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">if</span> <span class="title">constexpr</span> <span class="params">(<span class="built_in">std</span>::otherFunc&lt;T&gt;::value)</span> <span class="keyword">do</span> something</span>;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">do</span> somethingElse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Templates"><a href="#Templates" class="headerlink" title="Templates"></a>Templates</h3><p>Philosophy: throw all problems at compile time so that only deals with core dynamic services at runtime; optimise the performance of the run time.</p>
+<p><strong>Templates</strong></p>
+<ul>
+<li>When compiler sees fully defined template, it will instantiate it in each compilation unit.</li>
+<li>만약 정의만 하고 사용하지 않는다? 컴파일 되지도 않음 (디버깅 하면 함수가 존재도 안함) -&gt; 이 이유로 다른 함수처럼 헤더에 선언만 하면 안됨. 어디든 정의도 같이.</li>
+<li>만약 더하기 함수를 정의하고 int 와 double 두 가지 자료형으로 사용한다면 -&gt; 컴파일 후 해당 템플릿의 int, double 두가지 형식의 함수가 생김.</li>
+</ul>
+<p><strong>Extern Templates</strong></p>
+<ul>
+<li>By using extern, we can explicitly tell the compiler when to instantiate the template.</li>
+<li>만약 다른 컴파일 유닛에 해당 템플릿과 동일한게 존재 한다면 (같은 자료형을 받는), 한곳에 extern 을 사용하여 해당 템플릿이 단 한번만 컴파일 되게 지정한다 (성능 향상)</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">std</span>:</span>:<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;; <span class="comment">// force instantiation</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">std</span>:</span>:<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;; <span class="comment">// Should not instantiate in current file.</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Type alias templates &amp; Default template Parameter</strong></p>
+<ul>
+<li>Template is not type so cannot use typedef, but we want to make a certain type for a template like followings</li>
+<li>You can set default type for template parameter like a function</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Template Type Alias</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">using</span> soModern = someType&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;t&gt;, <span class="built_in">std</span>::<span class="built_in">string</span>&gt;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  soModern&lt;<span class="keyword">bool</span>&gt; isIt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Default template parameters</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = <span class="keyword">int</span>, <span class="keyword">typename</span> U = <span class="keyword">int</span>&gt;</span><br><span class="line"><span class="keyword">auto</span> add(T x, U y) -&gt; <span class="keyword">decltype</span>(x+y)&#123;<span class="keyword">return</span> x+y;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Variadic Templates - 가변 길이 템플릿</strong></p>
+<ul>
+<li>말 그대로 가변으로써 여러 패러미터들을 따로 명시하지 않고 … 처럼 벌크로 넘길 수 있는 방식.</li>
+<li>bulk 로 주어진 args 를 unpack 하는 방법에는 보통 다음과 같은 형태를 따른다.</li>
+</ul>
+<ol>
+<li>Recursive Template Function</li>
+</ol>
+<ul>
+<li>Most classic approach that we can think of.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> TO&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printf1</span><span class="params">(TO value)</span></span>&#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; value &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printf1</span><span class="params">(T value, Ts... args)</span></span>&#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; value &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  printf1(args...); <span class="comment">// when # args = 1 -&gt; trig above func</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  printf1(<span class="number">1</span>,<span class="number">2</span>,<span class="string">"asdf"</span>, <span class="number">1.1</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>Variable parameter template expansion<br>Very cumbersome - can use std::bind</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tempalte&lt;<span class="keyword">typename</span> TO, <span class="keyword">typename</span>... T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printf2</span><span class="params">(TO t0, T... t)</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; t0 &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="function"><span class="keyword">if</span> <span class="title">constexpr</span> <span class="params">(<span class="keyword">sizeof</span>...(t) &gt; <span class="number">0</span>)</span> <span class="title">printf2</span><span class="params">(t...)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Initialise list expansion<br>Recursive Functions are a standard practice -&gt; drawback is that you must define a terminate function.</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">printf3</span><span class="params">(T value, Ts... args)</span></span>&#123;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="comment">// Lambda Expression</span></span><br><span class="line">  (<span class="keyword">void</span>) <span class="built_in">std</span>::<span class="built_in">initializer_list</span>&lt;T&gt;&#123;([&amp;args])&#125;&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; args &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  &#125;(), value)...&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Fold-expression"><a href="#Fold-expression" class="headerlink" title="Fold expression"></a>Fold expression</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Available from C++17</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ... T&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">sum</span><span class="params">(T ... t)</span> <span class="title">return</span> <span class="params">(t + ...)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Inheritance constructor: using Parent::Parent; // Inherit parent constructor.</li>
+</ul>
+<h3 id="Explicit-Virtual-function-overwrite"><a href="#Explicit-Virtual-function-overwrite" class="headerlink" title="Explicit Virtual function overwrite"></a>Explicit Virtual function overwrite</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>; <span class="comment">//abstract function - will be overriden by child object.</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Child</span> :</span> Base &#123;</span><br><span class="line">  <span class="comment">// Can be two options: Override parent func | Add the same name func.</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="comment">// If base foo() gets deleted -&gt; Child has its own method -&gt; undefined behaviour.</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>To Avoid above situation C++11 introduced override and final.</p>
+<p><strong>Override</strong></p>
+<ul>
+<li>explicitly tells the compiler to overload -&gt; compiler check the base func if it has a virtual function, otherwise throw error: virtual void foo() override;</li>
+</ul>
+<p><strong>Final</strong></p>
+<ul>
+<li>To prevent the class inherit and to terminate the virtual function to be overloaded.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">  <span class="comment">// No one can inherit &amp; overload this function (so no same name).</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> <span class="keyword">final</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// No one can inherit this Child class.</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Child</span> <span class="title">final</span> :</span> Base &#123;</span><br><span class="line">  <span class="comment">// Legal, but Child cannot be parent because of final.</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Delete-and-default"><a href="#Delete-and-default" class="headerlink" title="Delete and default"></a>Delete and default</h3><p>As discussed, compiler generates default constructor, destructor, and copy assignment if not defined.</p>
+<p>But if you want to prohibit certain behaviour, it must be defined in private -&gt; not comfty.</p>
+<p>By using default and delete, you can remain it in the public scope like following:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Base() = <span class="keyword">default</span>; <span class="comment">// Telling compiler to use default generated ctor.</span></span><br><span class="line">    Base&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Base&amp;) = <span class="keyword">delete</span>; <span class="comment">// to refuse constructor copy assignment (but remain it in the public)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -255,7 +340,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -305,7 +390,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -329,7 +414,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -411,6 +496,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -449,7 +545,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -482,12 +578,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -548,7 +644,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -557,6 +653,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -577,82 +749,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -663,13 +759,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -717,12 +806,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -783,7 +872,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -792,6 +881,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -812,82 +977,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -898,13 +987,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">

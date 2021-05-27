@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
+        <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time>
+                <time class="level-item has-text-grey" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
+                <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1131 words)
+                    7 minutes read (About 994 words)
                 </span>
                 
                 
@@ -156,126 +156,97 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/">Lock</a>
+                <a class="has-link-black-ter" href="/2021/05/03/CPP/Effective_CPP/Chapter1/">Accustoming Yourself to C++</a>
             
         </h1>
         <div class="content">
-            <h1 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h1><h2 id="Basic-Concept"><a href="#Basic-Concept" class="headerlink" title="Basic Concept"></a>Basic Concept</h2><p>It is a traditional varaible change.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">lock_t</span> mutex;</span><br><span class="line">lock(&amp;mutex);</span><br><span class="line">balance = balance + <span class="number">1</span>; <span class="comment">// Critical Section</span></span><br><span class="line">unlock(&amp;mutex);</span><br></pre></td></tr></table></figure>
+            <p>Reference: Effective C++ Third Edition 55 Specific Ways to Improve Your Programs and Designs</p>
+<h3 id="Prefer-consts-enums-and-inlines-to-defines"><a href="#Prefer-consts-enums-and-inlines-to-defines" class="headerlink" title="Prefer consts, enums, and inlines to #defines"></a>Prefer consts, enums, and inlines to #defines</h3><p><strong>Prefer the compiler to the preprocessor</strong> because #define may be treated as if it is not part of the language per se. </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TEMP 1.65 <span class="comment">// It may never be seen by compilers -&gt; may not in symbol table -&gt; causes problem.</span></span></span><br><span class="line"><span class="comment">// So replace as below is better</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> Temp = <span class="number">1.65</span>; </span><br><span class="line"><span class="comment">// uppercase usually for macros</span></span><br><span class="line"><span class="comment">// above def seen by compilers and be in symbol tables</span></span><br><span class="line"><span class="comment">// const float may yield smaller code than #define</span></span><br></pre></td></tr></table></figure>
+<p>When replacing #define with constants be aware:</p>
+<ol>
+<li><p>Defining constant pointers: Important that the ptr to be constant </p>
+<ul>
+<li>const char * const varName = “value”;</li>
+<li>varName is a const ptr that points const char which is “value”</li>
+<li>For string: const std::string varName(“value”);</li>
+</ul>
+</li>
+<li><p>Class-specific constants: ensure only one copy of it -&gt; static like following</p>
+<ul>
+<li>Usually CPP requires definition except class-specific constants of integeral type (int, chars, bools…). <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Temp</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> var = value; </span><br><span class="line">    <span class="comment">// constant declaration + definition</span></span><br><span class="line">    <span class="comment">// It may be illegal for older compilers, as was illegal to provide initial value for static member. If that,</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> old;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> Temp::old = <span class="number">1</span>; <span class="comment">// def goes in impl. file</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>If, somehow, statis must have value during compilation, use enum hack</p>
+<ul>
+<li>Somehow behaves more #define than a const</li>
+<li>It’s legal to take address of const, but enum is not.</li>
+<li>Typically, not legal to take address of #define</li>
+<li><strong>So, if you don’t want user get a ptr or reference of your constants, use enum</strong></li>
+<li>Enum hack is a fundamental technique of template metaprogramming that you can know when you see it what is it for.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Temp</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">enum</span> &#123;VarName =  <span class="number">5</span>&#125;; <span class="comment">// VarName a symbolic name for 5</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+Don’t use #define macro like MAX_IS(a,b) f((a…)), but use inline type template instead.<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CALL_WITH_MAX ... </span></span><br><span class="line"><span class="comment">// Instead use</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">callWithMax</span><span class="params">(<span class="keyword">const</span> T&amp; a, <span class="keyword">const</span> T&amp; b)</span></span>&#123;</span><br><span class="line">    f(a &gt; b ? a : b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Can have efficiency of macro (less overhead for calling a function) + predictable behaviour + type safety</span></span><br></pre></td></tr></table></figure>
 
-<p>Since lock is a varaible, it must be initialised to be used.<br>Lock has status:</p>
-<ul>
-<li>Available/Unlock/free: no thread has the lock.</li>
-<li>Acquired: Excatly one thread has the lock (owner) within the critical section.</li>
+</li>
 </ul>
-<p>Lock gives the least control at scheduling for programmer.<br>Generally, programmer creates the thread, and OS controls it. Lock gives partial control of thread to programmer.</p>
-<h2 id="Lock-Implementation"><a href="#Lock-Implementation" class="headerlink" title="Lock Implementation"></a>Lock Implementation</h2><p>Key Question: How can we make efficient lock? What hardware supports does it need? OS?</p>
-<h3 id="Lock-Evaluation"><a href="#Lock-Evaluation" class="headerlink" title="Lock Evaluation"></a>Lock Evaluation</h3><ol>
-<li>Does it support mutex well<ol>
-<li>Basic function that prevents multipe threads enter the critical section.</li>
-</ol>
-</li>
-<li>Performance: Especailly, lock overheads.<ol>
-<li>No race: Overheads when one thread lock/unlock?</li>
-<li>Race: multipe threads compete to achieve the lock within one cpu.</li>
-</ol>
 </li>
 </ol>
-<h3 id="Interrupt-Control"><a href="#Interrupt-Control" class="headerlink" title="Interrupt Control"></a>Interrupt Control</h3><p>Mutex Can be implemented by disabling interrupt within critical section.</p>
+<h3 id="Use-const-whenever-possible"><a href="#Use-const-whenever-possible" class="headerlink" title="Use const whenever possible"></a>Use const whenever possible</h3><p><strong>It allows you to specify a semantic constraint -&gt; particular object not be modified</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> greeting[] = <span class="string">"HI"</span>;</span><br><span class="line"><span class="keyword">char</span> *p = greeting; <span class="comment">// non const ptr, non const data</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *p = greeting; <span class="comment">// non const ptr, const data</span></span><br><span class="line"><span class="keyword">char</span> * <span class="keyword">const</span> p = greeting; <span class="comment">// const ptr, non const data</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="keyword">const</span> p = greeting; <span class="comment">// const ptr, data.</span></span><br><span class="line"><span class="comment">// Remember to read it from the right side.</span></span><br><span class="line"><span class="comment">// last one: p is a const ptr that points const char</span></span><br></pre></td></tr></table></figure>
+
+<p>Declaring an iterator const = declaring a const ptr<br>Check the following:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// itr = T * const</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator itr = vec.begin();</span><br><span class="line"><span class="comment">// Valid, and invalid</span></span><br><span class="line">*itr = <span class="number">10</span>; ++itr;</span><br><span class="line"></span><br><span class="line"><span class="comment">// itr = const T*</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator cItr = vec.begin();</span><br><span class="line">*cIter = <span class="number">10</span>; <span class="comment">// Invalid!</span></span><br><span class="line">++cIter; <span class="comment">// valid</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// const iterator: a const iterator for a value</span></span><br><span class="line"><span class="comment">// const_iterator: an iterator for a const value</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Temp <span class="keyword">operator</span>*(<span class="keyword">const</span> Temp&amp; lhs, <span class="keyword">const</span> Temp&amp; rhs);</span><br><span class="line"><span class="comment">// const here will return const Temp object which prevents the returned object to be modified</span></span><br><span class="line">Temp <span class="keyword">operator</span>*() <span class="keyword">const</span>;</span><br><span class="line"><span class="comment">// const here will ensure no modification on this object as passed by const Temp&amp; this implicitly. but can modify mutable member</span></span><br></pre></td></tr></table></figure>
+
+<p>To remember:</p>
+<ul>
+<li>Declaring const -&gt; helps compilers to detect usage errors. </li>
+<li>Compilers enforce bitwise constness, but you should program using conceptual constness.</li>
+<li>if const and non-const have same implementation, have non-cost and call const version.</li>
+</ul>
+<h3 id="Make-sure-to-initalise-objects-before-use"><a href="#Make-sure-to-initalise-objects-before-use" class="headerlink" title="Make sure to initalise objects before use"></a>Make sure to initalise objects before use</h3><p>Very complicated to understand which one initialised or not -&gt; so always initialise the objects. Dont get confused with assignment and initialisation.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Temp::Temp(a, b, c)&#123;</span><br><span class="line">    <span class="comment">// all assignments</span></span><br><span class="line">    a_ = a;</span><br><span class="line">    b_ = b;</span><br><span class="line">    c_ = c;</span><br><span class="line">&#125;</span><br><span class="line">Temp::Temp(a,b,c) : a_(a), b_(b) ...&#123;&#125; <span class="comment">// initialisation</span></span><br><span class="line"><span class="comment">// Copy constructor is more efficient than default constructor + copy assignment operator call.</span></span><br></pre></td></tr></table></figure>
+
+<p>Order:</p>
+<ul>
+<li>Base class is initialised before derived class.</li>
+<li>Data member is initialised in the order of its declaration.</li>
+</ul>
+<h3 id="The-order-of-initialisation-of-non-local-static-objects-defined-in-different-translation-units"><a href="#The-order-of-initialisation-of-non-local-static-objects-defined-in-different-translation-units" class="headerlink" title="The order of initialisation of non-local static objects defined in different translation units."></a>The order of initialisation of non-local static objects defined in different translation units.</h3><ol>
+<li>A static object: <ol>
+<li>one that exists from the time it’s constructed until the end of the program (on heap).<ol>
+<li>so stack and heap-based objects are thus excluded (as it can be deallocated before the end of the program)</li>
+<li>So include global objects, objects defined at namespace scope, objects declared static inside classes, and inside functions and objects declared static at file scope.</li>
+</ol>
+</li>
+<li>Static objects inside functions: local static objects</li>
+<li>Others are: non-local static objects.</li>
+</ol>
+</li>
+<li>A translation unit: source code giving rise to a single object file - a basic unit of cpp compilation (source file + files included as #include).</li>
+</ol>
+<p>It becomes an issue when it involves at least two separately compiled source files: Each contains non-local static object with dependency <strong>because the relative order of initialization of non-local static objects defined in different translation units is undefined</strong></p>
+<p>Problem solved entirely by set both non-local static object to be local static objects -&gt; singleton pattern.</p>
+<ul>
+<li>CPP gurantee that local static objects are initialised when object’s definition is encountered when to call it.</li>
+<li>By changing direct access to non-local static object to calls to functions (that returns local static..), problem gets solved. </li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Example.</span></span><br><span class="line"><span class="function">Temp&amp; <span class="title">tmp</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> Temp tp;</span><br><span class="line">    <span class="keyword">return</span> tp; <span class="comment">// return reference to this local static object</span></span><br><span class="line">&#125;</span><br><span class="line">TempTwo::TempTwo(...)&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="keyword">size_t</span> asdf = tmp().functionName();</span><br><span class="line">    <span class="comment">// tmp() here is static object that is guaranteed to be initialised.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>This reference-returning function is simple: define and initialise a local static object, and return.</strong></p>
+<ul>
+<li>It makes excellent candidates for inlining if called frequently.</li>
+<li>It makes problematic in multithreaded systems; but it is just what non-const static object always problematic in any multithreaded systems.<ul>
+<li>To solve this, have to manually invoke the functions in single-thread to avoid initialisation-related race condition.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>To avoid initialisation problems -&gt; remember three:</p>
 <ol>
-<li>Pro: Very easy. Codes will be executed atomically.</li>
-<li>Cons:<ol>
-<li>Privileged Thread - enable/disable interrupt. <ol>
-<li>It must be trustable that thread will soley use the privilege for its inteneded purpose.</li>
-<li>i.e. Greedy program gets the lock and use all the process resource, infinite loop…</li>
+<li>Manually initialise non-member objects of built-in types.</li>
+<li>Use member initialisation lists to initialise all parts of an object (In a constructor).</li>
+<li>Design to avoid that non-local static object defined in separate translation units problem.</li>
 </ol>
-</li>
-<li>Can’t in multi-processors.<ol>
-<li>When multiple threads are running on multipe CPU, each thread may try to access the same critical section.</li>
-<li>In this case, interrupt disable on certain process has no influence on the other process; hence cannot guarantee the mutex.</li>
-</ol>
-</li>
-<li>May miss important interrupt.<ol>
-<li>What if CPU misses that reading request completed from the data storage? When can we awake the process waiting for the data reading?</li>
-</ol>
-</li>
-<li>Inefficient - Modern CPU tends to take more time to enable/disable the interrupt compares to regular instructions.</li>
-</ol>
-</li>
-<li>Usage:<ol>
-<li>Therefore, handling interrupt must be dealt within the limited area.</li>
-<li>i.e. OS disbales interrupt to atomic execution within internal data structures.</li>
-<li>Since internal OS has no such thing as trust/privilege, it is okay for letting OS does what it wants.</li>
-</ol>
-</li>
-</ol>
-<h1 id="Spin-Lock"><a href="#Spin-Lock" class="headerlink" title="Spin Lock"></a>Spin Lock</h1><h2 id="Test-And-Set-Atomic-Exchange"><a href="#Test-And-Set-Atomic-Exchange" class="headerlink" title="Test-And-Set (Atomic Exchange)"></a>Test-And-Set (Atomic Exchange)</h2><p>As we discussed, there is no point of disabling interrupt in multi-processors. Hence, multi-processors have hardware support.</p>
-<p>The simplest hardware support is Test-And-Set or atomic exchange.</p>
-<h3 id="Without-hardware-support"><a href="#Without-hardware-support" class="headerlink" title="Without hardware support"></a>Without hardware support</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> __<span class="title">lock_t</span> &#123;</span> </span><br><span class="line">    <span class="keyword">int</span> flag; </span><br><span class="line">&#125; <span class="keyword">lock_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">lock_t</span> *mutex)</span> </span>&#123;</span><br><span class="line"><span class="comment">// 0 -&gt; lock is available, 1 -&gt; held</span></span><br><span class="line">    mutex-&gt;flag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lock</span><span class="params">(<span class="keyword">lock_t</span> *mutex)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (mutex-&gt;flag == <span class="number">1</span>) <span class="comment">// TEST the flag</span></span><br><span class="line">        ; <span class="comment">// spin-wait (do nothing)</span></span><br><span class="line"><span class="comment">// Here can be interrupt after left the while loop</span></span><br><span class="line">    mutex-&gt;flag = <span class="number">1</span>; <span class="comment">// now SET it!</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unlock</span><span class="params">(<span class="keyword">lock_t</span> *mutex)</span> </span>&#123;</span><br><span class="line">    mutex-&gt;flag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Above code has two problems:</p>
-<ol>
-<li>Accuracy: If interrupt is called in the certain timing, the flag will be 1 for both of threads -&gt; Fail to have mutex.</li>
-<li>Performance: spin-wait is infinitely checking the flag value. It wastes the time until the lock is released by the other thread -&gt; Very wasteful especially within one processor.</li>
-</ol>
-<h3 id="With-hardware-support"><a href="#With-hardware-support" class="headerlink" title="With hardware support"></a>With hardware support</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TestAndSet is atomic</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">TestAndSet</span><span class="params">(<span class="keyword">int</span> *old_ptr, <span class="keyword">int</span> <span class="keyword">new</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> old = *old_ptr; <span class="comment">// fetch old value at old_ptr</span></span><br><span class="line">    *old_ptr = <span class="keyword">new</span>; <span class="comment">// store ’new’ into old_ptr</span></span><br><span class="line">    <span class="keyword">return</span> old; <span class="comment">// return the old value</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> __<span class="title">lock_t</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> flag;</span><br><span class="line">&#125; <span class="keyword">lock_t</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">lock_t</span> *lock)</span> </span>&#123;</span><br><span class="line"><span class="comment">// 0: lock is available, 1: lock is held</span></span><br><span class="line">    lock-&gt;flag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lock</span><span class="params">(<span class="keyword">lock_t</span> *lock)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (TestAndSet(&amp;lock-&gt;flag, <span class="number">1</span>) == <span class="number">1</span>) </span><br><span class="line"><span class="comment">// someone has the lock then wait for it</span></span><br><span class="line">    ; <span class="comment">// spin-wait (do nothing)</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unlock</span><span class="params">(<span class="keyword">lock_t</span> *lock)</span> </span>&#123;</span><br><span class="line">    lock-&gt;flag = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>It is a spin-lock as it keeps wasting CPU cycles until getting the lock -&gt; Obviously it only works in preemptive scheduler which can trig the interrupt using timer.</p>
-<h3 id="Spin-Lock-Evaluation"><a href="#Spin-Lock-Evaluation" class="headerlink" title="Spin Lock Evaluation"></a>Spin Lock Evaluation</h3><ol>
-<li>Mutex - Works</li>
-<li>Fairness - Can it guarantee the opportunity for waiting threads? <ol>
-<li>No, Indeed, a thread spinning may spin forever,under contention. Simple spin locks (as discussed thus far) are not fair and may lead to starvation.</li>
-</ol>
-</li>
-<li>Performance <ol>
-<li>Case Single CPU: Overheads of spin-lock may be significant.</li>
-<li>Case Multiple CPU: It works reasoably well.</li>
-</ol>
-</li>
-</ol>
-<h2 id="Compare-And-Swap"><a href="#Compare-And-Swap" class="headerlink" title="Compare-And-Swap"></a>Compare-And-Swap</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CompareAndSwap</span> <span class="params">(<span class="keyword">int</span> *ptr, <span class="keyword">int</span> expected, <span class="keyword">int</span> <span class="keyword">new</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> actual = *ptr;</span><br><span class="line">    <span class="keyword">if</span> (actual == expected) *prt = <span class="keyword">new</span>;</span><br><span class="line">    <span class="keyword">return</span> actual;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>CompareAndSwap is stronger than TestAdnSet; wait-free synchronization.</p>
-<p>In spin-lock implementation, it works exactly the same as TestAndSet.</p>
-<h2 id="Load-Linked-amp-Store-Conditional"><a href="#Load-Linked-amp-Store-Conditional" class="headerlink" title="Load-Linked &amp; Store-Conditional"></a>Load-Linked &amp; Store-Conditional</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LoadLinked</span><span class="params">(<span class="keyword">int</span> *ptr)</span> <span class="keyword">return</span> *ptr</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">StoreConditional</span><span class="params">(<span class="keyword">int</span> *ptr, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">not</span> updated since LoadLinked)&#123;</span><br><span class="line">        *ptr = value;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">// Success</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// Fail to update</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Load-Linked works same as load instruction.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lock</span><span class="params">(<span class="keyword">lock_t</span> *lock)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (LoadLinked(&amp;lock-&gt;flag) || !StoreConditional(&amp;lock-&gt;flag,<span class="number">1</span>)) ;</span><br><span class="line">&#125;</span><br><span class="line">void unlock(lock_t *lock) lock-&gt;flag = 0;</span><br></pre></td></tr></table></figure>
-<p>As can be expected, StoreConditional may fail due to interrupt -&gt; But the if condition (not updated since) guarantees that one thread has the lock at a time.</p>
-<h2 id="Fetch-And-Add"><a href="#Fetch-And-Add" class="headerlink" title="Fetch-And-Add"></a>Fetch-And-Add</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">FetchAndAdd</span><span class="params">(<span class="keyword">int</span> *ptr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> old = *ptr;</span><br><span class="line">    *ptr = old + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> old;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Ticket-Turn lock method. Since FetchAndAdd is atomic, assign numbers in ticket and turn to decide which thread’s turn to have the lock.</p>
-<p>Once the thread is done with the lock, it increases the turn numnber, which allows one thread (the ticker holder) will exit the while loop and gets the lock.</p>
-<ul>
-<li>The important difference between the previous lock methods is that it executes in order, hence there is no starvation.</li>
-</ul>
-<h1 id="How-to-not-waste-CPU-time-in-a-spin"><a href="#How-to-not-waste-CPU-time-in-a-spin" class="headerlink" title="How to not waste CPU time in a spin?"></a>How to not waste CPU time in a spin?</h1><h2 id="First-Approach-Yield-양보"><a href="#First-Approach-Yield-양보" class="headerlink" title="First Approach: Yield (양보)"></a>First Approach: Yield (양보)</h2><p>Approach is simple: Yield its allocated CPU to the other thread while waiting for the lock (spin).</p>
-<ul>
-<li>It works fine when there are few threads.</li>
-<li>If many threads exist<ul>
-<li>let’s say the scheduling policy is round-robin, it needs to wait for n-1 strip time to do run-and-yield every time. </li>
-<li>It is better than wasting n-1 threads, but waste contect switch overheads (problematic when context switch is expensive).</li>
-<li>Starvation is possible - What if miss the time while waiting for the other threads to use the CPU?</li>
-</ul>
-</li>
-</ul>
-<h2 id="Secon-Approach-Queue-sleep-instead-of-spinning"><a href="#Secon-Approach-Queue-sleep-instead-of-spinning" class="headerlink" title="Secon Approach: Queue - sleep instead of spinning"></a>Secon Approach: Queue - sleep instead of spinning</h2><p>The fundamental problems of discussed methods are all on luck; either spinning or yield -&gt; wasteful, and cannot prevent starvation.</p>
-<p>Hence, it is required to explicitly control which threads get the next lock -&gt; support from OS and use of Queue.</p>
-<p>Implement two stage: guard and lock. Cases:</p>
-<ul>
-<li>Guard, no lock: Add itself to the queue (release guard) - Before critical</li>
-<li>Both lock and guard: critical section (release guard)</li>
-<li>Lock, guard: Wake up the next queue thread, release guard.</li>
-</ul>
-<p>Guard is still spinning implementation, but alot more efficient as it only deals with few instructions; no critical section parts at all. </p>
-<h1 id="Linux-Lock-Futex"><a href="#Linux-Lock-Futex" class="headerlink" title="Linux Lock - Futex"></a>Linux Lock - Futex</h1><p>Futex:</p>
-<ul>
-<li>Linked with particular physical memory address.</li>
-<li>Has its own internal kernel queue per each futex.</li>
-<li>Caller calls futex, and sleep/awake upon needs.<ul>
-<li>futex_wait(address, expected), futex_wake(address)</li>
-</ul>
-</li>
-</ul>
-<h2 id="Two-Phase-lock"><a href="#Two-Phase-lock" class="headerlink" title="Two Phase lock"></a>Two Phase lock</h2><ul>
-<li>First Phase: wait in spinning with hope it will soon have the lock.</li>
-<li>Second Phase: Sleeps and awake after the lock is released.</li>
-</ul>
 
         </div>
         
@@ -315,7 +286,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -365,7 +336,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -389,7 +360,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -471,6 +442,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -509,7 +491,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -542,12 +524,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -608,7 +590,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -617,6 +599,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -637,82 +695,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -723,13 +705,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -777,12 +752,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -843,7 +818,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -852,6 +827,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -872,82 +923,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -958,13 +933,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">

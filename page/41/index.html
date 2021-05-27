@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/25/Parallel/Week%202%206%20PerfModels/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/perf.jpg" alt="Perfectly Parallel Models">
+        <a href="/2020/04/01/MSL/MSL_Resampling%20Methods/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/sample.jpg" alt="Resampling Methods">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-25T08:06:00.000Z">Mar 25, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-04-01T09:59:00.000Z">Apr 01, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
+                <a class="has-link-grey -link" href="/categories/Machine-Learning/">Machine Learning</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 474 words)
+                    11 minutes read (About 1699 words)
                 </span>
                 
                 
@@ -156,79 +156,72 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/25/Parallel/Week%202%206%20PerfModels/">Perfectly Parallel Models</a>
+                <a class="has-link-black-ter" href="/2020/04/01/MSL/MSL_Resampling%20Methods/">Resampling Methods</a>
             
         </h1>
         <div class="content">
-            <p>Reference : </p>
+            <p>Reference:</p>
+<ol>
+<li>An Introduction To Statistical Learning with Applications in R (ISLR Sixth Printing)</li>
+<li><a href="https://godongyoung.github.io/category/ML.html">https://godongyoung.github.io/category/ML.html</a></li>
+</ol>
+<h1 id="Resampling"><a href="#Resampling" class="headerlink" title="Resampling"></a>Resampling</h1><p>Extract sample from training data set, and apply series of models.</p>
+<p>Application of several models will allow users to estimate which “region” will our models be when the data gets changed.</p>
+<h2 id="Cross-Validation"><a href="#Cross-Validation" class="headerlink" title="Cross-Validation"></a>Cross-Validation</h2><p>Test error and training error are different. </p>
 <ul>
-<li>Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</li>
-<li>The Australian National University CECS</li>
+<li>Lowering the test error (data that was not given) is the goal.</li>
+<li>Training error is the error in the given data that can be underesitimated due to overfitting.</li>
 </ul>
-<h2 id="Granularity"><a href="#Granularity" class="headerlink" title="Granularity"></a>Granularity</h2><ul>
-<li>Granularity: size of the tasks<ul>
-<li>Coarse grain: large tasks/many instructions</li>
-<li>Fine grain: small tasks/few instructions</li>
-</ul>
-</li>
-<li>Metric = t_compute / t_communication</li>
-<li>It may depend on number of processors.</li>
-</ul>
-<h2 id="Speedup"><a href="#Speedup" class="headerlink" title="Speedup"></a>Speedup</h2><ul>
-<li>the relative performance between single and multiple processors<ul>
-<li>⇒ S(n) = exe time on single / exe time on p = t_seq / t_par</li>
-</ul>
-</li>
-<li>t_seq should be the fastest known sequential algo; best parallel algo may be differernt</li>
-<li>S_operation(p) = operation count rate with p / operation count rate on single</li>
-<li>Linear speedup = max possible S(n) = p</li>
-<li>if S(P) &gt; P then<ul>
-<li>May imply the algo is not the best one, go and check the seq algo</li>
-<li>May arise due to the unique feature of architecture.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Parallel-Overhead"><a href="#Parallel-Overhead" class="headerlink" title="Parallel Overhead"></a>Parallel Overhead</h2><ul>
-<li>Factors that limit parallel scalability:<ul>
-<li>periods that not all p works + time when one p is active on seq parts</li>
-<li>load imbalance</li>
-<li>extra computations not in the seq code —&gt; seq code in one p might be faster some cases</li>
-<li>communication times</li>
-</ul>
-</li>
-</ul>
-<p><img src="/image/Week%202%206%20PerfModels/Untitled.png" alt=""></p>
-<p><img src="/image/Week%202%206%20PerfModels/Untitled%201.png" alt=""></p>
-<p><img src="/image/Week%202%206%20PerfModels/Untitled%202.png" alt=""></p>
-<h2 id="Efficiency-and-Cost"><a href="#Efficiency-and-Cost" class="headerlink" title="Efficiency and Cost"></a>Efficiency and Cost</h2><ul>
-<li>Efficiency: How well using the processors</li>
-</ul>
-<p>$$E = t_{seq} / t_{par} / p = S(p)/p * 100%$$</p>
+<p>There are two ways of esitimating test error (often future prediction case) </p>
+<ol>
+<li>Indirectly infer test error by mathematical edition on the training data set (AIC, BIC).</li>
+<li>Hold out some training data to directily infer test error (Cross-Validation).</li>
+</ol>
+<h3 id="The-vaildation-set-approach"><a href="#The-vaildation-set-approach" class="headerlink" title="The vaildation set approach"></a>The vaildation set approach</h3><p><img src="/image/Ch%205%20Resampling%20Methods/Untitled.png" alt=""></p>
+<p>Hold out half of training set randomly — picked data is called vaildation set.</p>
 <ul>
-<li>Cost: parallel execution time * total num of p<ul>
-<li>Cost optimal = cost has same asymptotic growth as a func of input size as the fastest seq algo on a single processor</li>
+<li>반을 자르기 때문에 어떻게 잘리느냐에 따라 모델 변동과 test MSE 도 심하게 변함</li>
+<li>Use remainder training set to get error rate (ususally MSE) about vaildation set and infer test error rate.</li>
 </ul>
-</li>
-</ul>
-<p>$$cost = t_{par} * p = (t_{seq}*p)/S(p) = t_{seq} / E$$</p>
-<h2 id="Adding-n-num-on-n-processors"><a href="#Adding-n-num-on-n-processors" class="headerlink" title="Adding n num on n processors"></a>Adding n num on n processors</h2><p>Adding n in a single core = n; adding n in n processor = lg(n). Therefore speedup = O(n/lg(n))</p>
-<p>cost = number of p * time of execution = n * lg(n) = O(n lg(n))</p>
-<p>Hence it is not cost-optimal</p>
-<p><img src="/image/Week%202%206%20PerfModels/Untitled%203.png" alt=""></p>
-<h2 id="Scalability"><a href="#Scalability" class="headerlink" title="Scalability"></a>Scalability</h2><p>Imprecise measure:</p>
+<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%201.png" alt=""></p>
+<p>Degree of polynomial 이 에러를 줄이는데 도움이 안됨을 알 수 있다.</p>
+<ol>
+<li>어떻게 잘렸는지에 따라 test MSE와 degree 또한 확연하게 달라진다</li>
+<li>반을 잘랐기 때문에 추정 성능 또한 감소한다 - 반으로 적합하다고 모델을 정의 하면, 전체 자료를 적합했을 때는 test MSE가 크게 나올수 밖에 없다 (overestimate 한거니까). 반으로 전체를 예상할수 있다고 한것</li>
+</ol>
+<h3 id="Leave-one-cut-Cross-Validation-LOOCV"><a href="#Leave-one-cut-Cross-Validation-LOOCV" class="headerlink" title="Leave-one-cut Cross Validation (LOOCV)"></a>Leave-one-cut Cross Validation (LOOCV)</h3><p>한개의 자료를 빼고 이 자료에 대한 error rate 을 계산하는데, 이 계산을 모든 자료에 반복한다.</p>
+<p>Training MSE is unbiased to Test MSE but has huge variance. Random error 를 포함하고 있어 이로 인해 분산이 생기는것. 이 분산들을 보완해주는게 validation 이다. validation으로 분산을 줄이지만, 약간의 bias가 생긴다. 이 약간의 편향된 모델들을 평균냄으로써 분산이 줄어드는것</p>
+<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%202.png" alt=""></p>
+<ol>
+<li>데이터 반을 가지고 하는것에 비해, test MSE에 대한 training data가 거의 정확한 추정이 가능하다. 이는 overestimate 하지 않으며 bias가 적음을 의미한다</li>
+<li>Validation set approach 와 다르게 항상 같은 결과가 나온다.</li>
+</ol>
+<h3 id="K-fold-Cross-Validation"><a href="#K-fold-Cross-Validation" class="headerlink" title="K-fold Cross-Validation"></a>K-fold Cross-Validation</h3><p>가장 대중적으로 test error rate 구할때 사용하는 방법이다. 최선의 모델이나, 최종 선택된 모델에 관한 테스트 에러에 대해 이해하는데 사용된다. </p>
+<p>Validation set approach  는 너무 단순하고 LOOCV는 손이 너무 간다 (하나하나 적합해야 하니까). 이 중간지점이 k-fold CV. k 그룹으로 랜덤하게 데이터를 나눈다. 한 그룹을 뺴고 적합해 MSE 구하는것을 k번 반복한다 (LOOCV 처럼). 이후 K로 평균을 낸다.</p>
+<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%203.png" alt=""></p>
+<p>k = n 일경우 LOOCV와 같은식이다.k-fold CV는 LOOCV에 비해 더 간결하고 빠르게 계산을 함에도 불구하고 성응에서 큰 차이를 보이지 않는다 (좋은쪽으로). 즉 LOOCV의 장점들을 다 가지고 있다. 또한 bias-variance trade off에서 LOOCV보다 더 강점을 가지고 있다 (다음 항목 참조)</p>
+<h3 id="Bias-Variance-Trade-off-for-k-fold-CV"><a href="#Bias-Variance-Trade-off-for-k-fold-CV" class="headerlink" title="Bias-Variance Trade off for k-fold CV"></a>Bias-Variance Trade off for k-fold CV</h3><p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%204.png" alt=""></p>
+<p>위 식에서 알 수 있듯 test MSE는 bias 만으로 결정 되는것이 아니다. Variance의 관점에서 (위에 서술하였듯) LOOCV 보다 k-fold CV가 더 좋다.</p>
 <ul>
-<li>hardware: 하드웨어를 늘리면 퍼포먼스가 좋아지나?<ul>
-<li>링, 크로스바, 하이퍼큐브 위상을 고려하고 프로세서에 무슨 변화를 줘야 하는지 고려</li>
+<li>LOOCV는 낮은 bias와 높은 variance를 가지고 있는데 이는 적합시의 데이터 n-1개중 n-2가 동일한 데이터 (두개의 적합에서 2개를 제외한 나머지 데이터는 재사용된것들) 따라서 재사용을 많이한 n개의 모델들는 highly correlated 되었기 때문이다. highly correlated —&gt; higher variance (overfitting과 비슷한 개념)</li>
+<li>이로 인하여 덜 겹치는 k-fold CV가 더 낮은 분산을 갖는것이다</li>
 </ul>
-</li>
-<li>Algorithm: 사용하고 있는 알고리즘이 더 많은 프로세서와 accomodate 가능 한가?</li>
-<li>Combined: 문제 크기 증가를 프로세서를 증가함으로써 accomodate 가능 한가?</li>
-<li>계산 사이즈를 배로 늘렸을때의 변화를 고려<ul>
-<li>N*N 매트릭스의 N사이즈를 두배로 늘리면, 더하기 계산의 비용은 4배지만 곱하기 비용은 8배로 늘어난다</li>
-</ul>
-</li>
-</ul>
-<p><img src="/image/Week%202%206%20PerfModels/Untitled%204.png" alt=""></p>
+<h3 id="CV-on-Classification-Problems"><a href="#CV-on-Classification-Problems" class="headerlink" title="CV on Classification Problems"></a>CV on Classification Problems</h3><p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%205.png" alt=""></p>
+<p>식이 조금 달라졌다. 이전까지의 계산은 데이터 수에 대한 양적 변수를 가정한 CV였고 위의 식은 질적 변수에 대한 식이다 (질적 테스트는 error rate를 의미한다)</p>
+<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%206.png" alt=""></p>
+<p>검은색 선이 10-fold CV인데 파란색인 training error에 비해 테스트 에러를 잘 잡아주고 잇는 모습이다. 저 테스트 에러는 진짜 테스트 에러로 (시뮬레이션 데이터를 이용한) 실 상황에서는 구하지 못하는 경우가 많은 선. 따라서 위 그래프는 진짜 에러 비율에 대해 k-fold CV가 어느정도로 잘 잡아주는지 보여주는 것.</p>
+<h3 id="Bootstrap"><a href="#Bootstrap" class="headerlink" title="Bootstrap"></a>Bootstrap</h3><p>실제로 계산하기 어려운 uncertainty 들을 계산하는데 쓰이는 강력한 기법이다. 선형희귀의 계수 분산의 경우 표준편차 정도는 구할 수 있지만 이에 대한 정확한 통계량은 구할 수 없는데, bootstrap은 이를 가능케 한다. 또한 이 방법은 분포를 미리 가정하지 않은 (실상황처럼) 상태에서 사용 할 수 있기 때문에 더 강력한것.</p>
+<p>밑의 식은 a, 1-a를 각 두 회사에 비율 투자할때, 분산을 (risk) 최소화 할 수 있는 비율을 찾는식이다.</p>
+<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%207.png" alt=""></p>
+<p>위와 같은식을 사용 할 수 있는 이유는 아래와 같이 가지고 있는 데이터들을 복원추출 하여 새로운 샘플들을 계속 만들어 내기 때문. 밑의 식을 반복하여 큰 수인 n 개의 샘플들을 만들어 이에 대한 추정량 hat(a)가 생기는것. </p>
+<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%208.png" alt=""></p>
+<p>위의 식을 이용하며 추정량에 대한 standard error 또한 구할수 있게 된다.</p>
+<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%209.png" alt=""></p>
+<p><img src="/image/Ch%205%20Resampling%20Methods/Untitled%2010.png" alt=""></p>
+<p>노란색이 모든 자료들을 가지고 반복 추출해서 구한값, 파랑색이 bootstrap으로 하나의 data set만으로 반복추출해서 얻은 결과이다. 매우 비슷함을 알 수 있는데, bootstrap이 적은 data set으로 구하기 힘든 통계량의 특성까지고 구사 한다는것을 알 수 있다. </p>
+<h3 id="Bootstrap-for-Prediction-Error"><a href="#Bootstrap-for-Prediction-Error" class="headerlink" title="Bootstrap for Prediction Error?"></a>Bootstrap for Prediction Error?</h3><p>bootstrap 샘플의 경우 원래 데이터 들과 많이 겹치게 되는데, 이로 인해 true prediction error 을 많이 underestimate 하게 된다. 마찬가지로 원래 데이터들을 훈련 샘플로 쓰고 bootstrap의 데이터들을 vaildation 에 쓰게 되면 안 좋은 (쓰레기 같은) 값이 나온다. </p>
+<p>이에 대한 데이터 셋 겹침을 구할수 있으나, 매우 복잡해지고 이로 인해 결국 CV가 prediction error를 예상하는데 더 나은 방식이 된다.</p>
+<p>정리하자면 Test error rate을 구하는데는 bootstrap. Prediction error을 구하는데는 CV.</p>
 
         </div>
         
@@ -268,7 +261,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -318,7 +311,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -342,7 +335,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -424,6 +417,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -462,7 +466,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -495,12 +499,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -561,7 +565,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -570,6 +574,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -590,82 +670,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -676,13 +680,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -730,12 +727,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -796,7 +793,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -805,6 +802,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -825,82 +898,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -911,13 +908,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">

@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
+        <a href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/OS.jpg" alt="Very Simple File System (VSFS)">
         </a>
     </div>
     
@@ -137,7 +137,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-08-15T05:09:07.572Z">Aug 15, 2020</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 508 words)
+                    8 minutes read (About 1273 words)
                 </span>
                 
                 
@@ -156,62 +156,161 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/">Concurrency</a>
+                <a class="has-link-black-ter" href="/2020/08/15/OperatingSystem/OS%20-%20ch-40-FS_Implementation/">Very Simple File System (VSFS)</a>
             
         </h1>
         <div class="content">
-            <h1 id="Concurrency"><a href="#Concurrency" class="headerlink" title="Concurrency"></a>Concurrency</h1><p>So far, we have discussed what and how OS deals with…</p>
+            <h1 id="Very-Simple-File-System-VSFS"><a href="#Very-Simple-File-System-VSFS" class="headerlink" title="Very Simple File System (VSFS)"></a>Very Simple File System (VSFS)</h1><p>This is pure software that allows to study/experience the simplified version of UNIX file system.</p>
 <ul>
-<li>Expand a single CPU into multiple virtualized CPUs so that many programs run at the same time.</li>
-<li>Makes each process looks like it has its own independent memory (virtualized).</li>
+<li>Key Question: How can we struct simple file system? What data structure is needed on top of disk, and how can it track certain data?</li>
 </ul>
-<p>Through the concept “address space” each program acts like it has its own memory, but OS uses the physical memory by switching the multipe address space. </p>
-<p>The difference between thread and process is that</p>
+<h3 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h3><ol>
+<li>Data Structure: What kind of data structure is needed so that file system can handle its data and metadata?</li>
+<li>Access Method: How system calls are related to the data structure of file system? How efficient are they??? </li>
+</ol>
+<h3 id="Overall-Organization"><a href="#Overall-Organization" class="headerlink" title="Overall Organization"></a>Overall Organization</h3><p>Disk block - normally 4KB.<br>Data Region - Disk space where user data exist.<br>Allocation Structure: Indicate whether the blocks are being used or not.</p>
 <ul>
-<li>threads share the memory space –&gt; can access the same value.</li>
+<li>free list: Manages non-used blocks in a linked list form. Hence inode only remembers the head.</li>
 </ul>
-<p>Thread:</p>
+<p>Disk Space (assume 64 blocks):<br><img src="/image/os/inode_disk.png" alt=""></p>
 <ul>
-<li>Each thread state is very similar to process states</li>
-<li>has PC, and registers</li>
-<li>If two threads run under one process, threads must be switched by the context switch.<ul>
-<li>Context switch of threads is similar to processes’</li>
-<li>As like process control block (PCB), there is thread control block (TCB).</li>
-<li>The biggest difference is that thread does not change the memory space (keep use the current page table).</li>
+<li>Metadata: Information such as data blocks (data region), size of file, owner, access, access change time…. –&gt; usually saved in data structure called inode. </li>
+<li>Inode Table: disk space for saving inodes; saved in array format.</li>
+<li>Inode is usually size between 128 ~ 256 bytes -&gt; 16 inodes in 4KB block, 80 inodes in the file system (as we use 5 * 4KB blocks).</li>
+<li>Superblock: Contain information about the entire file system; how many inodes, data blocks we have, where the inode table starts…<ul>
+<li>When we say “file system is brokeb” means superblock is damaged.</li>
+<li>Usually, file system duplicates superblock for backups.</li>
 </ul>
 </li>
 </ul>
-<p><img src="/image/os/screen-shot-2020-09-09-at-11-57-25-pm-kevg6idu.png" alt=""></p>
+<p>OS Reads superblock, initialize file system elements, paste each partition to system tree when mount the file system -&gt; by doing so, can know the location of required data structure when access the file.</p>
+<h3 id="File-Organization-inode"><a href="#File-Organization-inode" class="headerlink" title="File Organization: inode"></a>File Organization: inode</h3><p>Inode has:</p>
 <ul>
-<li>A single thread process has one stack at the bottom.</li>
-<li>In a multi thread process, each thread runs independently and mulitple routines can be called to run the thread. Hence, each thread has a stack.</li>
+<li>File type; normal, directory…</li>
+<li>Size, block allocation, protected info (owner, access), time.</li>
+<li>Location within the disk (as like ptr).<br>And these are called metadata.</li>
 </ul>
-<h2 id="Concurrency-Problems"><a href="#Concurrency-Problems" class="headerlink" title="Concurrency Problems"></a>Concurrency Problems</h2><p>Race Condition: Situation where the output changes depends on the order of instruction executions.</p>
-<ul>
-<li>In case the context switch triggered in the unfortunate timing, wrong (not what we expected) output comes out. <ul>
-<li>It is indeed indeterminate.</li>
-</ul>
-</li>
-<li>Critical section: where the multiple threads should not be executed<ul>
-<li>Therefore, we need mutex.</li>
-</ul>
-</li>
-<li>Waiting for another: Dependency where order must be followed.</li>
-</ul>
-<p>Concurreny must be dealt carefully so that most of kernel data structures, page table, process list, and file system… can work correctly.</p>
-<h1 id="Thread-API"><a href="#Thread-API" class="headerlink" title="Thread API"></a>Thread API</h1><h2 id="Thread-Creation"><a href="#Thread-Creation" class="headerlink" title="Thread Creation"></a>Thread Creation</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pthread_create(thread, attr, routine, arg);</span><br><span class="line"><span class="comment">// thread:type struct pointer. This struct communicates with thread.</span></span><br><span class="line"><span class="comment">// attr: size of stack, thread scheduling priority - most time NULL is enough</span></span><br><span class="line"><span class="comment">// routine: a function that thread will run</span></span><br><span class="line"><span class="comment">// arg: input parameters delivered to the routine.</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Thread-Exit"><a href="#Thread-Exit" class="headerlink" title="Thread Exit"></a>Thread Exit</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pthread_join (thread, **value_ptr);</span><br><span class="line"><span class="comment">// thread: Which thread are you watiting for?</span></span><br><span class="line"><span class="comment">// value_ptr: pthread_join changes the value, hence need the pointer instead of val</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Key Points<ul>
-<li>Can deliver NULL when no parameter is needed</li>
-<li>Do not need to bind the parameters when only one is needed</li>
-<li>Needs to care about how the value changes within the thread. </li>
+<p>Important to consider within inode structure is way of expressing the data block location. Simple method could be include multipe direct pointer within the inode. Each pointer points on disk block.<br>-&gt; Has file size limitation: Size is limited to num of pointers * block size.</p>
+<h3 id="Multi-Level-Index"><a href="#Multi-Level-Index" class="headerlink" title="Multi Level Index"></a>Multi Level Index</h3><ul>
+<li>To support bigger file, needed to add one more data structure; indirect pointer.<ul>
+<li>Indirect pointer does not point data block. It points the pointer that points the data block. </li>
+<li>Inode has fixed number of direct pointer (i.e. 12) and one indirect pointer. </li>
+<li>Indirect block is allocated to a big file (within disk data block region), and inode indirect pointer points this indirect block.</li>
 </ul>
 </li>
 </ul>
-<h2 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pthread_mutex_t</span> lock = pthread_mutex_initializer;</span><br><span class="line"><span class="keyword">pthread_cond_t</span> cond = pthread_cond_initializer;</span><br><span class="line"><span class="keyword">int</span> rc = pthread_mutex_init (&amp;lock, <span class="literal">NULL</span>);</span><br><span class="line">assert (rc == <span class="number">0</span>);</span><br><span class="line">pthread_mutex_lock (&amp;lock); <span class="comment">// Wait if one thread has the lock</span></span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">ready</span> == <span class="number">0</span>) pthread_cond_wait (&amp;cond, &amp;lock); <span class="comment">// Waiting routine</span></span><br><span class="line"><span class="comment">// It awake, get the lock, and return -&gt; Ensures it always has the lock when executing.</span></span><br><span class="line">x = x + <span class="number">1</span>; <span class="comment">// Critical points</span></span><br><span class="line">pthread_mutex_unlock (&amp;lock);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Other thread gives the wake up call</span></span><br><span class="line">pthread_mutex_lock(&amp;lock);</span><br><span class="line"><span class="comment">// After send the signal, and fix the ready val, it must have the lock</span></span><br><span class="line"><span class="comment">// It guarantees the prevention of race condition.</span></span><br><span class="line"><span class="built_in">ready</span> = <span class="number">1</span>; </span><br><span class="line">pthread_cond_signal (&amp;cond); <span class="comment">// It release the lock and send the signal to awake the thread.</span></span><br><span class="line">pthread_mutex_unlock (&amp;lock);</span><br></pre></td></tr></table></figure>
+<p><img src="/image/os/inode_prop.png" alt=""></p>
+<ul>
+<li><p>If bigger file wanted, then use <strong>double indirect pointer</strong> which points indirect pointer. If bigger then <strong>triple indirect pointer</strong>…</p>
+</li>
+<li><p>All together, disk block forms one-sided tree -&gt; multi level index.</p>
+</li>
+<li><p>Extent: </p>
+<ul>
+<li>consists of disk pointer and length of block -&gt; means it required continuous disk space for each extent. </li>
+<li>Therefore, use multipe extents to overcome this limitation which brings <strong>another limitation: metada gets bigger</strong>.</li>
+</ul>
+</li>
+<li><p>Linux use ext2, ext3 (multi level index), some OS use extent.</p>
+</li>
+</ul>
+<p><strong>Reason the tree (MLI) is biased -&gt; most files are small</strong><br>If most files are small, needs to construct file system to read small files fast -&gt; vsfs has inode that can read first (usually) 12 blocks fast (the direct pointers).</p>
+<h3 id="Directory-Organization"><a href="#Directory-Organization" class="headerlink" title="Directory Organization"></a>Directory Organization</h3><p>vsfs direcotry (like the other file system) has (entry name, inum).<br>In the directory data block, it has: inum | reclen | strlen | name.</p>
+<ul>
+<li>dot: current directory</li>
+<li>dot-dot: parent directory</li>
+<li>inmum = 0: unlinked; deleted -&gt; needs len in case create another object in the gap later.</li>
+</ul>
+<p>We should also note again that this simple linear list of directory entries is not the only way to store such information. As before, any data structure is possible.</p>
+<h3 id="Free-space-maintenance"><a href="#Free-space-maintenance" class="headerlink" title="Free space maintenance"></a>Free space maintenance</h3><p>File system must be able to track which inodes and data blocks are free or not -&gt; to allocate new space for file/directory -&gt; <strong>free space management</strong>.</p>
+<p>vsfs uses two bitmaps.</p>
+<ul>
+<li>File creation: <ol>
+<li>file system searches inode bitmap and allocates the empty inode to the file.</li>
+<li>Note the inode now is being used, and update disk bitmap accordingly.</li>
+<li>Similar steps for data block allocation.</li>
+</ol>
+</li>
+<li>Needs to consider…<ul>
+<li>ext2,ext3: If possible, find sequence of blocks so that future additional allocation request can have contiguous on the disk -&gt; performance improving (called <strong>pre-allocation</strong>).</li>
+</ul>
+</li>
+</ul>
+<h3 id="Access-Paths-Reading-and-Writing"><a href="#Access-Paths-Reading-and-Writing" class="headerlink" title="Access Paths: Reading and Writing"></a>Access Paths: Reading and Writing</h3><p>So far has learned how to save file and directory in the disk. Now need to understand how to read and write.</p>
+<ul>
+<li>Reading file from disk</li>
+<li>Open systemcall -&gt; traverse the path name -&gt; find inode to get basic information (metadata)<ol>
+<li>Open Systemcall</li>
+<li>Traverse the path name<ul>
+<li>Filesystem will read root inode first, which gets decided when the filesystem is mounted (usually 2).</li>
+<li>Filesystem extract pointer of a data block which contains root directory information.</li>
+<li>Read this directory information to find the target file.</li>
+</ul>
+</li>
+<li>Find the block that has the inode of the target, and its inode.</li>
+<li>open() read the target’s inode number into the memory.</li>
+<li>Filesystem checks the acess authority.</li>
+<li>Get file descriptor from <strong>open file-table</strong> and return it to user.</li>
+</ol>
+</li>
+<li>Read() - After open(), read comes<ol>
+<li>By inode, know the location of the block in the disk, and read the block.</li>
+<li>Since it is the first read, will read the first block (if file offset is 0).</li>
+<li>After reading the file, record the time.</li>
+<li>Update offset of file descriptor (give by open-file-table).</li>
+<li>Next time, when read() happenes, it starts with the updated offset.</li>
+</ol>
+</li>
+<li>Close: deallocate the file descriptor.<br>In summary:</li>
+</ul>
+<ol>
+<li>Read Root inode -&gt; read Root data -&gt; read foo inode -&gt; read foo data -&gt; read bar inode.</li>
+<li>read bar inode -&gt; bar data[0] -&gt; write bar inode (the offset).</li>
+<li>read bar inode -&gt; bar data[1] -&gt; write bar inode (the offset)….</li>
+</ol>
+<p>As it could be checked, as the path gets longer, relevant inode and data must be read.<br>Hence, if the directory is big, then many data blocks must be read to find the targeted file.</p>
+<ul>
+<li>Write Disk</li>
+<li>Similar to read, it first uses open() and then write(), and deallocate the file descriptor.<ul>
+<li>Unlike read, write may need block allocation which needs to decide which blocks to allocate and write on the disk -&gt; required to update data structures of the disk (such as data bitmap and inode).</li>
+<li>Therofre, logically it makes 5 extra steps of I/O.<ul>
+<li>One for read data bitmap, one for to write bitmap (to apply the change of states at the disk).</li>
+<li>Two for inode read and write (to apply the change of location at the disk).</li>
+<li>One for write the actual block.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>File creation - Very complicated and needs many I/O.<ul>
+<li>One for reading inode bitmap (to find free inode), one to write on the inode bitmap (notice allocation)</li>
+<li>One for making new inode (reset), one for writing data block at directory (link inode name and parent name).</li>
+<li>Two for read and write directory inode (update)…..</li>
+</ul>
+</li>
+</ul>
+<h3 id="Caching-and-buffering"><a href="#Caching-and-buffering" class="headerlink" title="Caching and buffering"></a>Caching and buffering</h3><p>For performance matter, most of filesystem cache frequently used blocks to DRAM. </p>
+<ul>
+<li>If no cahce: At least needs two reads per directory (directory inode and its data).</li>
+<li>Usually, fixed cache occupies 10% of the total memory -&gt; static partitioning is wasteful.</li>
+<li>In the modern OS, use dynamic partitioning.<ul>
+<li>United virtual memory pages and filesystem pages -&gt; unified page cahce.</li>
+<li>Hence, can flexibly allocate between filesystem and virtual memory upon its need.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Cached Read: It will cause many I/O for reading directory inode data, but follow up directory (children) will be cached, hence no extra I/O is needed.</li>
+<li>Cached Write: Since the changed data must be written back to the disk –&gt; Called write buffering.<ul>
+<li>By storing/saving the number of write-works,<ol>
+<li>Multiple write processes can be <strong>batched</strong> with fewer I/Os.</li>
+<li>Can improve the performance by scheduling the multiple I/Os.</li>
+</ol>
+</li>
+<li>Of course, it system crashes before saving, cached data will be gone.</li>
+<li>To avoid this situation, use fsync() for jobs that must be written right away,</li>
+</ul>
+</li>
+</ul>
 
         </div>
         
@@ -251,7 +350,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -301,7 +400,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -325,7 +424,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -407,6 +506,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -445,7 +555,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -478,12 +588,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -544,7 +654,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -553,6 +663,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -573,82 +759,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -659,13 +769,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -713,12 +816,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -779,7 +882,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -788,6 +891,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -808,82 +987,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -894,13 +997,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">

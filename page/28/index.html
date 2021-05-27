@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/05/19/MSL/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/pca.jpg" alt="Unsupervised Learning">
+        <a href="/2020/05/26/Network/Lab%205%20b6548719daad4143ab78c5edc0d51241/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/lab.jpg" alt="Network - Lab 5">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-05-19T10:36:00.000Z">May 19, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-05-26T09:44:00.000Z">May 26, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Machine-Learning/">Machine Learning</a>
+                <a class="has-link-grey -link" href="/categories/Network/">Network</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Network/Lab/">Lab</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    15 minutes read (About 2316 words)
+                    4 minutes read (About 660 words)
                 </span>
                 
                 
@@ -156,48 +156,52 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/05/19/MSL/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/">Unsupervised Learning</a>
+                <a class="has-link-black-ter" href="/2020/05/26/Network/Lab%205%20b6548719daad4143ab78c5edc0d51241/">Network - Lab 5</a>
             
         </h1>
         <div class="content">
-            <p>Reference:</p>
-<ol>
-<li>An Introduction To Statistical Learning with Applications in R (ISLR Sixth Printing)</li>
-<li><a href="https://bkshin.tistory.com/">https://bkshin.tistory.com/</a></li>
-</ol>
-<h2 id="Unsupervised-Learning"><a href="#Unsupervised-Learning" class="headerlink" title="Unsupervised Learning"></a>Unsupervised Learning</h2><h2 id="The-challenge"><a href="#The-challenge" class="headerlink" title="The challenge"></a>The challenge</h2><p>이전 챕터들에서 supervised Learning 에 관해서 여러가지들을 배웠다. 만약 이진 결과값을 데이터로 부터 도출하여 추측하여야 한다면, 로지스틱, LDA, classification Trees 등을 이용하여 값을 도출하고, 이 결과값에 대하여 어떻게 접근해야 할지에 대한 명료한 지식들을 배웠다 (CV, validaton…)</p>
-<p>반면에 unsupervised learning 의 경우 조금더 어려운데 이는 대부분의 실험들이 주관적이고, 분석 (예측)과 같은 간단한 목표를 가지고 있지 않기 때문이다. 대신 unsupervised learning은 exploratory data analysis 에 대한 부분으로 행해진다. 또한 결과값을 도출하는데도 어려움이 있을수 밖에 없는 이유가 이 모델이 맞는지에 대해 테스트 할 수 있는지에 대한 방식이 존재하지 않기 때문이다 (예를 들어 예측하는데에 대해 예측할 값이 존재하지 않는다던가)</p>
-<h3 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h3><p>correlated variables가 많은 데이터를 마주 하였을때 principle component (PC)를 이용하여 더 적은 변수들로 대부분의 variability를 summarize 하여 설명할 수 있게 해준다. 챕터 6에서 이야기 하였듯, PC directions는 본래의 데이터에서 highly varaibla한 방향을 보여줌과 동시에 데이터 클라우드에 대해 가장 가까운 선과 부분 공간을 보여준다.</p>
-<p>PCR을 사용하기 위해서, 우리는 PC를 예측 변수로 사용한다. 이 PC를 이용해 supervised 한 방법이 (PLS)</p>
-<p>PCA는 또한 데이터 비율어화에 대한 도구로써 사용되고 한다 </p>
-<h3 id="Principal-Component란-무엇인가"><a href="#Principal-Component란-무엇인가" class="headerlink" title="Principal Component란 무엇인가"></a>Principal Component란 무엇인가</h3><p>2차원의 scatter plot을 이용하여 데이터간의 관계를 보통 확인하는데 p=10일 경우, 그려지는 그래프만 45개에 달한다. 또한 각각의 그래프 또한 딱히 중요하지는 않을텐데 이는 각각의 그래프가 나타내는것이 총 데이터에서 일부분에 지나지 않기 때문이다. 즉 우리가 2차원의 그래프를 그릴때, 해당 변수가 데이터에 대해 가장 영양가 있는 (informative) 상황이라면 우리는 큰 데이터를 더 낮은 차원의 공간에서 관찰할 수 있게 되는것이다. (즉 데이터에 대해 가장 잘 나타내는 변수만 관찰하면 파악하기 쉬우니까)</p>
-<p>PCA provides a tool to do just this. It finds a low-dimensional representation of a data set that contains as much as possible of the variation. 여러개의 변수중에 흥미로운 변수 (차원들)을 파악하려고 노력하는데 이는 관련 변수의 observations가 각 차원에서 얼마나 vary하는가를 기준으로 한다. </p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled.png" alt=""></p>
-<p>계수로 인한 분산이 무한이 커지는것을 막기위해 합을 1로 제한한다.</p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%201.png" alt=""></p>
-<p>기존의 데이터셋에 공분산 행렬을 생성하고 (괄호 안), 고유의 Vector와 값을 계산 (대괄호). 그런 다음에 고유 값이 큰 순서대로 정렬 후 변환해야할 차원의 수 만큼 고유 값을 정한 뒤. 고유 Vector에 투영하여 차원을 축소한다.</p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%202.png" alt=""></p>
-<p><a href="https://bkshin.tistory.com/entry/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D-9-PCA-Principal-Components-Analysis">머신러닝 - 9. 차원 축소와 PCA (Principal Components Analysis)</a></p>
-<p>variance가 maxmized 될때 데이터 클라우드에 가장 가까운 이유가 이 때문. variance가 maxmized 되어야 information loss를 최소화 할 수 있다.</p>
-<p>1st Principal Component (PC1) 은 주어진 변수들 중에서 데이터를 강 잘 설명하는 성분이다. 만약 PC1의 기울기가 0.25라면,  feature 1 increases 4 then feature 2 increases 1 의 선형 결합이 (Linear Combinaito) 해당 데이터를 가장 잘 설명하는 요소라는 의미가 된다.</p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%203.png" alt=""></p>
-<p>위의 그래프에서 PC1은 Rape Assault Murder에 가중치를 더 부여하고, PC2는 UrbanPop에 더 가중치를 주는것을 볼 수 있다. 따라서 UrbanPop은 변수들이 설명하고자 하는 도시화에 대해 roughly corresponding 한다고 볼 수 있다. 전체적으로, 범죄와 관련된 변수들이 서로 가까이 있으며, 인구수는 이들과 동떨어져있다. 이는 범죄와 관련된 변수들은 서로 correlated되어 있음을 의미한다.</p>
-<p>위의 그래프로부터 다음과 같이 해석될 수 있다. 버지니아와 인디애나 같은 주들은 평균치에 가까운 범죄율과 도시화를 가지고 있고, 캘리포니아는 높은 범죄율과 높은 도시율을 가지고 있다고 본다. 이에 비해 하와이는 낮은 범죄율을 가지면서 높은 도시율을 가졌다.</p>
-<h3 id="Another-Interpretation-of-Principal-Components"><a href="#Another-Interpretation-of-Principal-Components" class="headerlink" title="Another Interpretation of Principal Components"></a>Another Interpretation of Principal Components</h3><p>위 섹션에서는 PCA를 이용한 시각화 그래프에 대해 variance 최대화에 초점을 맞추었는데. PC1의 로딩 벡터는 또다른 특별한 특징을 가지고 있다: p 차원의 공간에서 n개의 관측점에 대해 가장 가까운 선이라는것. 이 해석이 말하고자 하는것은 매우 분명한데 이는 “모든 데이터에 대해 가장 가깝게 그려진 일 차원 데이터를 찾는데, 이는 이 선이 모든 데이터에 대해 좋은 요약을 해줄것이기 때문” 물론 반드시 일 차원 데이터를 찾는것은 아니다 (적을수록 좋다는것)</p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%204.png" alt=""></p>
-<p>90개의 샘플에 대하여 왼쪽은 삼차원, 오른쪽은 이차원으로 나타낸것이다. 즉 오른쪽에 대해 한 차원을 더 포함한 (third PC) 상태.</p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%205.png" alt=""></p>
-<h3 id="More-on-PCA"><a href="#More-on-PCA" class="headerlink" title="More on PCA"></a>More on PCA</h3><p>변수들 스케일링 하기.</p>
-<p>위에서 우리는 PCA를 하기전에 변수들의 평균이 0이 되도록 센터링 시켜야 한다고 하였다. 이에 더불어서 우리가 PCA를 통해 도출한 결과값은 변수들이 각각 얼마나 스케일 되었는지에 대하여 dependant 하다. 이는 다른 supervised &amp; unsupervised 와 차이점으로 존재한다 (다른 방법들은 스케일링으로 인한 결과값이 변하지 않는다).  </p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%206.png" alt=""></p>
-<p>왼쪽의 경우 위와 같이 SD의 총합이 1이 되도록 scaling 한 상태. 오른쪽에서 Assault가 PC1에서 가장 큰 로딩을 가지고 있는데 이는 다른 변수들에 비해 가장 높은 분산을 가지고 있기때문이다. 또한 각 변수들의 unit 또한 각기 다르기 때문에 (100명당 하나, 1000명당 하나, 돈의 경우 1000달러 등등) 그냥 기본적으로 SD를 1로 설정하는 방식이 추천된다.</p>
-<p>These four variables have variance 18.97, 87.73, <strong>6945.16</strong>, and 209.5, respectively. Consequently, if we perform PCA on the unscaled variables, then the first principal component loading vector will have a very large loading for Assault , since that variable has by far the highest variance.</p>
-<p><strong>만약, 모든 변수들이 같은 unit으로 측정되었다면, SD를 1로 하지 않는게 좋다.</strong></p>
-<h3 id="Uniqueness-of-the-Principal-Components"><a href="#Uniqueness-of-the-Principal-Components" class="headerlink" title="Uniqueness of the Principal Components"></a>Uniqueness of the Principal Components</h3><p>Each PC loading vector는 고유하다. 이 로딩 벡터의 사인 (플마)는 바뀔지 언정 값 자체는 어느 소프트웨어 패키지에서 실행하던지 같다. 또한 이 사인의 변동또한 의미가 없는것이 결국 방향을 이용하여 분석하기 때문. 따라서 loading vector, and score vector 가 동시에 사인이 바뀌는 이상 최종 결론에는 문제가 없다. (하나만 바뀌고 그러면 안됨)</p>
-<h3 id="Proportion-of-Variance-Explained"><a href="#Proportion-of-Variance-Explained" class="headerlink" title="Proportion of Variance Explained"></a>Proportion of Variance Explained</h3><p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%207.png" alt=""></p>
-<p><img src="/image/Ch%2010%20Unsupervised%20Learning%20cd06ce30533144c7a419b2f3f621a004/Untitled%208.png" alt=""></p>
-<p>위와 같은 방식으로 각각의 PC가 얼마만큼의 분산을 설명하는지에 대하여 알 수 있지만, 어느선에서 얼마정도의 PC가 필요한가? 에 대한 사항은 특별히 정해진게 없다. scree plot (각각의 PC의 분산 설명도 그래프) 을 이용하여 elbow 를 이용하여 정할수도 있긴 하다. 현실적으로, 혹은 실증적으로는, 우리는 첫 몇몇의 PC를 시각화해서 특이한 패턴이 있는지 확인 하는 식으로 결정한다. 당연하게도, 이러한 방식의 접근은 매우 주관적이며 이로 인해 우리는 PCA는 exploratory data analysis를 위한 시각화 도구로 사용하는 이유중 하나다. </p>
-<p>물론 PCA를 supervised에 사용한다면, CV와 같은 방법을 이용하여 score vectors 를 regresisson 튜닝 패러미터로 사용된다면, 몇개의 PC가 사용되어야 하는지 알 수 있다 (왜냐면 이걸 지금 어디에 쓰는지 우리가 분명하게 알고있으니까)</p>
+            <p>Q: What is the ‘root’ of the Domain Name System? i.e. what is at the very top?</p>
+<p>A: “,” is the root of the DNS. It is to refer the root DNS server </p>
+<hr>
+<p>Let’s look at some Fully Qualified Domain Names (FQDN) with different Top Level Domains (TLD). Consider: <a href="http://www.anu.edu.au/">www.anu.edu.au</a>. and <a href="http://www.gov/">www.gov</a>.au </p>
+<p>Q: Which part is the ‘genericTLD’ (gTLD)? </p>
+<p>A: Edu, gov. </p>
+<hr>
+<p>Q: Which part is the ‘countrycodeTLD’ (ccTLD)?</p>
+<p>A: au 다만 미국의 경우 us 를 사용하지 않음. </p>
+<hr>
+<p>Q: Which part is the hostname?</p>
+<p>A: www 가 이에 해당한다. DNS에서 해당 주소 (<a href="http://www.anu.edu.au">www.anu.edu.au</a>) 의 A가 이 호스트 주소에 해당된다. </p>
+<p>호스트 네임은 종단 기기에 지정된 이름 (DNS를 통해 식별)</p>
+<p>도메인 네임은 네트워크에 지정된 이름 (네트워크에 연결되야함)</p>
+<p><img src="/image/Lab%205%20b6548719daad4143ab78c5edc0d51241/Untitled.png" alt=""></p>
+<hr>
+<p>Q: In the case of <a href="http://cbs.anu.edu.au/">cbs.anu.edu.au</a> is the ‘cbs’ a hostname or a domain name, or both? How can you tell the difference? What’s the benefit/downsides of this approach?</p>
+<p>A:</p>
+<ul>
+<li>모두 가능하다. (host and domain)</li>
+<li><a href="http://www.cbs.anu.edu.au">www.cbs.anu.edu.au</a> 혹은 <a href="http://mail.cbs.anu.edu.au">mail.cbs.anu.edu.au</a> 와 같은 호스트네임을 가질수도 있다 (www, mail)</li>
+<li>아니면 <a href="http://cbs.anu.edu.au">cbs.anu.edu.au</a> 라는 cbs 호스트 네임을 anu.edu.au 라는 도메인에 가질수 있을수도 있음</li>
+<li>어차피 DNS를 통해 확인후 전달 하기 때문에 길다면 줄일 수도 있는거. 대신 커넥션을 만들기전에 확인해야 한다.</li>
+</ul>
+<p>만약 종단의 이름이 a 이고 도메인이 x 라면</p>
+<p>해당 종단에 대한 주소는 a.x 가 되는 형식</p>
+<hr>
+<hr>
+<p>Q: In HTTP, how does the application handle the ‘session’ and ‘presentation’ layers?</p>
+<p>A: 세션은 쿠키로 관리된다. 또한 URL-Referenced tokens 들로 관리 되기도 하는데 이때는 쿼리 필드의 어느 부분을 공유하는 식을 이용한다.</p>
+<ul>
+<li>세션 기반의 문제점은 이 기록을 서버에 저장을 해야 하는데, 이로 인해 확장성이 좋지 않음<ul>
+<li>세션을 유지 할 수 록 더 많은 트래픽을 감당하기 위해 프로세서, 서버등을 추가해야함</li>
+<li>이 과정이 매우 복잡하다</li>
+</ul>
+</li>
+<li>토큰의 경우 상태 유지를 하지 않아 (stateless) 고로 확장성이 좋다<ul>
+<li>클라이언트 쪽에서 정보를 저장하기 때문에 서버 확장에 용이하다.</li>
+<li>또한 클라이언트가 서버에게 쿠키를 전달하지 않음으로 쿠키로 인한 보안 취약점이 사라짐 (대신 토큰 보안 취약점 존재)</li>
+</ul>
+</li>
+</ul>
 
         </div>
         
@@ -237,7 +241,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -287,7 +291,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -311,7 +315,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -393,6 +397,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -431,7 +446,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -464,12 +479,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -530,7 +545,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -539,6 +554,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -559,82 +650,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -645,13 +660,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -699,12 +707,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -765,7 +773,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -774,6 +782,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -794,82 +878,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -880,13 +888,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">

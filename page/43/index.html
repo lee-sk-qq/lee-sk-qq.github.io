@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/24/Parallel/Week%204%209%20Pipelining/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/pipelining.jpg" alt="Pipelining">
+        <a href="/2020/03/29/Parallel/Week5%201%20SynchComp/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/barrier.jpg" alt="Synchronous Computations">
         </a>
     </div>
     
@@ -137,7 +137,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-24T05:35:00.000Z">Mar 24, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-03-29T10:07:00.000Z">Mar 29, 2020</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 207 words)
+                    5 minutes read (About 750 words)
                 </span>
                 
                 
@@ -156,40 +156,82 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/24/Parallel/Week%204%209%20Pipelining/">Pipelining</a>
+                <a class="has-link-black-ter" href="/2020/03/29/Parallel/Week5%201%20SynchComp/">Synchronous Computations</a>
             
         </h1>
         <div class="content">
-            <p>Reference : Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</p>
-<h1 id="Pipelinig"><a href="#Pipelinig" class="headerlink" title="Pipelinig"></a>Pipelinig</h1><ul>
-<li>There are three types of pipelining;<ol>
-<li>Adding numbers (type 1)</li>
-<li>Insertion Sort (type 2)</li>
-<li>Linear System back substitution (type 3)</li>
-</ol>
-</li>
-<li>Prblems that can be divided into a series of seq tasks that can be completed one after another.</li>
-<li>Typical Scenario<ol>
-<li>독립된 문제가 한 개 이상 계산 될 예정일때 (Instruction)</li>
-<li>각각 여러 계산을 필요로 하는 연결된 데이터들을 계산되어야 할때 (Graphics)</li>
-<li>다른 계산에 필요한 작업이 그 계산이 필요로 하기전에 작업을 마칠수 있을때 (Software)</li>
-</ol>
-</li>
+            <p>Reference: Barry Wilkinson, Michael Allen - Parallel Programming_ Techniques and Applications Using Networked Workstations and Parallel Computers (2nd Edition)  -Prentice Hall (2004)</p>
+<h1 id="Barrier"><a href="#Barrier" class="headerlink" title="Barrier"></a>Barrier</h1><ul>
+<li>A particular reference point for processors which no one can proceed until every processors (or stated number) get to the point.</li>
+<li>Commonly when processes need to exchange data and then continue.</li>
+<li>Once the last one has arrived, inactive processes are awakened.</li>
+<li>Apply both shared memory, and message-passing systemss</li>
 </ul>
-<h3 id="Type-1-Adding-number"><a href="#Type-1-Adding-number" class="headerlink" title="Type 1 - Adding number"></a>Type 1 - Adding number</h3><p><img src="/image/Week%204%209%20Pipelining/Untitled.png" alt=""></p>
+<h2 id="Barrier-MPI"><a href="#Barrier-MPI" class="headerlink" title="Barrier - MPI"></a>Barrier - MPI</h2><ul>
+<li>MPI_Barrier(MPI_Comm comm) is called by each process and return once everyone arrives.</li>
+<li>Naturally synchronus, and message tags are not used.</li>
+</ul>
+<h3 id="Counter-Implementation"><a href="#Counter-Implementation" class="headerlink" title="Counter Implementation"></a>Counter Implementation</h3><p>Called a linear barrier as well. Counting the number of processes is handled by a single counter.</p>
 <ul>
-<li>Single Intance:</li>
+<li>Implementations must handle possible time delays for eg. two barriers in quick succession.</li>
+<li>There are two phases:<ul>
+<li>Arrival Phase : Send msg to master and stay inactive or idle as not all are arrived.</li>
+<li>Departure Phase : Receive from master and released.</li>
 </ul>
-<p><img src="/image/Week%204%209%20Pipelining/Untitled%201.png" alt=""></p>
+</li>
+</ul>
+<p>— Remember Send() is not the blocking (depend on the buffer size), but Receive() always do the blocking. Cost = O(p) for time and computation complexity</p>
+<h3 id="Tree-Based-Implementation"><a href="#Tree-Based-Implementation" class="headerlink" title="Tree-Based Implementation"></a>Tree-Based Implementation</h3><ul>
+<li>Use of decentralized tree construction.</li>
+<li>Arrival and Depature order is reversal as it supposed to be.</li>
+<li>Since it is up and down, O(2 lg p) = O(lg p) for communication time.</li>
+</ul>
+<p><strong>Note: broadcast does not ensure synch in terms of a global time</strong></p>
+<h3 id="Butterfly-Omega-Barrier"><a href="#Butterfly-Omega-Barrier" class="headerlink" title="Butterfly (Omega) Barrier"></a>Butterfly (Omega) Barrier</h3><p>Pairs of processes sync at each stage as following</p>
+<ol>
+<li>01 23 45 67 (4 has 4,5)</li>
+<li>02 13 46 57 (4 has 4,5,6,7)</li>
+<li>04 15 26 37 (4 has 0,1,2,3,4,5,6,7)</li>
+</ol>
+<p>After the stages, every processes are synchronized and can continue. O(2 lg p) = O(lg p) for communication time.</p>
+<h3 id="Local-Synchronization"><a href="#Local-Synchronization" class="headerlink" title="Local Synchronization"></a>Local Synchronization</h3><p>It can be formulated for only essential synchronization among few processes, instead of being “wastefully” idle — In a mesh or a pipeline and only neighbours sync. Not using barriers, but ues Receive to communicate and idle certian processes to exchange its data.</p>
+<h3 id="DeadLock"><a href="#DeadLock" class="headerlink" title="DeadLock"></a>DeadLock</h3><p>It will occur using synchronous routines (or blocking routines without sufficient buffering) if both performs the send first to each other. In general, assign even-numbere in send first, odd-numbered in rece first coule bo a good solution.</p>
+<p>MPI_Sendrecv() and MIP_Sendrecv_replace() —&gt; deadlock prevent commands.</p>
+<hr>
+<h3 id="Data-Parallel-Computations"><a href="#Data-Parallel-Computations" class="headerlink" title="Data Parallel Computations"></a>Data Parallel Computations</h3><ul>
+<li>ease of programming</li>
+<li>ease of increase to larger problems.<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">forall (i = <span class="number">0</span>; i&lt; n; i++)&#123;</span><br><span class="line">	a[i] = a[i] + k;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// In SIMD, those particularly designed for these, implicitly has barrier itself</span></span><br><span class="line"><span class="comment">// If MP computer using library routines, generally explicit barrier is required.</span></span><br><span class="line"><span class="comment">// Following is an example</span></span><br><span class="line">i = myrank; <span class="comment">// myrank is a process rank between 0 and n-1</span></span><br><span class="line">a[i] = a[i] + k; <span class="comment">/* body */</span></span><br><span class="line">barrier(mygroup) <span class="comment">// consider the barrier overheads as it may longer than its body</span></span><br></pre></td></tr></table></figure>
+<h1 id="Synchronous-Iteration"><a href="#Synchronous-Iteration" class="headerlink" title="Synchronous Iteration"></a>Synchronous Iteration</h1></li>
+</ul>
+<p>Parallel started at the beginning of the iteartion, yet each processes cannot proceed to the next iteration unless all the assigined tasks in the iteration is completed.</p>
+<h2 id="Jacobi-Iteration-all-x-are-updated-together"><a href="#Jacobi-Iteration-all-x-are-updated-together" class="headerlink" title="Jacobi Iteration: all x are updated together."></a>Jacobi Iteration: all x are updated together.</h2><ul>
+<li>guess X, and iterate while hope it converges.</li>
+<li>In converges if tha matrix is diagonally dominant.</li>
+<li>Terminates whin convergence is achieved (subtract of two is within the error tolerance)</li>
+</ul>
+<p><img src="/image/Week5%201%20SynchComp/Untitled.png" alt=""></p>
+<p><a href="https://ko.wikipedia.org/wiki/%EC%95%BC%EC%BD%94%EB%B9%84_%EB%B0%A9%EB%B2%95">야코비 방법</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Sequential </span></span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">	x[i] = b[i]; <span class="comment">//b[] holding the constants</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (iteration = <span class="number">0</span>; interation &lt; limit; iteration++)&#123;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)&#123;        <span class="comment">// n number of rows and cols.</span></span><br><span class="line">   		sum = -a[i][i] * x[d]         <span class="comment">// Jacobi method excludes itself.</span></span><br><span class="line">   		<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)&#123;      <span class="comment">// each row summation iteration</span></span><br><span class="line">   			sum = sum + a[i][j] * x[j]  <span class="comment">// summation of one row</span></span><br><span class="line">   		&#125;</span><br><span class="line">        new_x[i] = (b[i] - sum) / a[i][i] <span class="comment">//a[i][i] cannot be zero</span></span><br><span class="line">    &#125;</span><br><span class="line">   	<span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++&#125; x[i] = new_x[i] <span class="comment">//data move</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Parallel</span></span><br><span class="line">i = process_id;</span><br><span class="line">x[i] = b[i];                      <span class="comment">// assign each process array	for (iteration = 0; interation &lt; limit; iteration++)&#123;</span></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)&#123;          <span class="comment">// n number of rows and cols.</span></span><br><span class="line">    sum = -a[i][i] * x[j]         <span class="comment">// Jacobi method excludes itself.</span></span><br><span class="line">   	<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)&#123;      <span class="comment">// each row summation iteration</span></span><br><span class="line">  		sum = sum + a[i][j] * x[j]  <span class="comment">// summation of one row</span></span><br><span class="line">    &#125;</span><br><span class="line">   	new_x[i] = (b[i] - sum) / a[i][i] <span class="comment">//a[i][i] cannot be zero</span></span><br><span class="line">    broadcast_gather (&amp;new_x[i], new_x); <span class="comment">//spread and gather data over processes</span></span><br><span class="line">    global_barrier();</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++&#125; x[i] = new_x[i] <span class="comment">//data move</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/Week5%201%20SynchComp/Untitled%201.png" alt=""></p>
+<p>Broadcast_gather expect all the processes to have matching routines. Hence further implementation must be made to avoid deadlocks whet each prcoss can stop once it met its tolerance (so each has diff num of iterations). It can be easily replaced with send and recv().</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p><img src="/image/Week5%201%20SynchComp/Untitled%202.png" alt=""></p>
+<h2 id="Heat-Equation"><a href="#Heat-Equation" class="headerlink" title="Heat Equation"></a>Heat Equation</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Sequential Code</span></span><br><span class="line"><span class="keyword">for</span> (iter = <span class="number">0</span>; iter &lt; limit; iter++)&#123;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span> (j = <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">        	q[i][j] = <span class="number">0.25</span> * (h[i<span class="number">-1</span>][j]+....);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   	<span class="keyword">for</span> (i =<span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">   		<span class="keyword">for</span> (j = <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">   			h[i][j] = g[i][j];</span><br><span class="line">   		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">// Parallel Code</span></span><br><span class="line"><span class="keyword">for</span> (iter =<span class="number">0</span>; iter &lt; max_iter; iter++)&#123;</span><br><span class="line">	g = <span class="number">0.25</span> * (w + x + y + z+);</span><br><span class="line">	send(&amp;g, ...)</span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">	...</span><br><span class="line">	recv (&amp;z, ...)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/image/Week5%201%20SynchComp/Untitled%203.png" alt=""></p>
 <ul>
-<li>Multiple Instance:</li>
+<li>Block Partitioning: Each process generates and receives 4 messages each —&gt; hence total of 8.</li>
+<li>Strpi Partitioning: Two edges where data points are exchanged. Each edge generates and receives 2 messages —&gt; hence total of 4.</li>
 </ul>
-<p><img src="/image/Week%204%209%20Pipelining/Untitled%202.png" alt=""></p>
-<h3 id="Type-2-Insertion-Sort"><a href="#Type-2-Insertion-Sort" class="headerlink" title="Type 2 - Insertion Sort"></a>Type 2 - Insertion Sort</h3><p><img src="/image/Week%204%209%20Pipelining/Untitled%203.png" alt=""></p>
-<h3 id="Type-3-Linear-Equations"><a href="#Type-3-Linear-Equations" class="headerlink" title="Type 3 - Linear Equations"></a>Type 3 - Linear Equations</h3><p>Back substitution —&gt; passes calculated value to solve the other ones (like fibonacci).</p>
-<p><img src="/image/Week%204%209%20Pipelining/Untitled%204.png" alt=""></p>
-<p>Process i performs i sends and receives, i multiply/adds, one division/subtract and one final send</p>
-<p>t_comm = (2i + 1) * (t_s +t_w) and t_comp =  2i + 2</p>
+<p><strong>In general, strip partition is best for a large startup time, and a block partition is best for a small start up.</strong> </p>
+<p><img src="/image/Week5%201%20SynchComp/Untitled%204.png" alt=""></p>
+<p>For p ≥ 9, if above equation is fulfilled, the block partition has a larger communication time.</p>
+<h3 id="Safety-amp-Deadlock"><a href="#Safety-amp-Deadlock" class="headerlink" title="Safety &amp; Deadlock"></a>Safety &amp; Deadlock</h3><p><img src="/image/Week5%201%20SynchComp/Untitled%205.png" alt=""></p>
+<p>As it is unreliable to assume the internal buffer will be enough, there are two methods.</p>
+<ol>
+<li>Switching send and recv in different order as mentioned couple of times so far.</li>
+<li>Implement Asynchronus communication using ghost points.</li>
+</ol>
+<p>Assign extra receive buffers for edges where data is exchanged. It is typically translated as extra rows and columns in each process’ local array (known as halo). In this buffer, asynchronus calls such as MPI_Isend() can be used.</p>
 
         </div>
         
@@ -229,7 +271,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -279,7 +321,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -303,7 +345,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -385,6 +427,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -423,7 +476,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -456,12 +509,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -522,7 +575,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -531,6 +584,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -551,82 +680,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -637,13 +690,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -691,12 +737,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -757,7 +803,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -766,6 +812,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -786,82 +908,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -872,13 +918,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">

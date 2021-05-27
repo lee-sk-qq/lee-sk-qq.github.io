@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/19/MSL/MSL_Linear%20Regression/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/stat2.jpeg" alt="Linear Regression">
+        <a href="/2020/03/19/OCSO/OCSO_The%20Defender/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/defense.jpeg" alt="Defender">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-19T02:52:00.000Z">Mar 19, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-03-19T08:23:00.000Z">Mar 19, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Machine-Learning/">Machine Learning</a>
+                <a class="has-link-grey -link" href="/categories/OCSO/">OCSO</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    10 minutes read (About 1432 words)
+                    4 minutes read (About 667 words)
                 </span>
                 
                 
@@ -156,180 +156,63 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/19/MSL/MSL_Linear%20Regression/">Linear Regression</a>
+                <a class="has-link-black-ter" href="/2020/03/19/OCSO/OCSO_The%20Defender/">Defender</a>
             
         </h1>
         <div class="content">
-            <p>Reference:</p>
-<ol>
-<li>An Introduction To Statistical Learning with Applications in R (ISLR Sixth Printing)</li>
-<li><a href="https://godongyoung.github.io/category/ML.html">https://godongyoung.github.io/category/ML.html</a></li>
-</ol>
-<p><strong>Linear Regerssion is uesful tool for predicting a quantitative response. It is a good jumping-off point for newer approaches.</strong></p>
-<h3 id="SLR"><a href="#SLR" class="headerlink" title="SLR"></a>SLR</h3><ul>
-<li>It assumes there is a approximately a linear relationship between X and Y.</li>
-<li>hat denote the estimated value for an unknown parameter or coefficient or to denote the predicted value of the response.</li>
-</ul>
-<h3 id="Estimating-the-Coefficients"><a href="#Estimating-the-Coefficients" class="headerlink" title="Estimating the Coefficients"></a>Estimating the Coefficients</h3><ul>
-<li>Wants to find parameter and coefficient as close as possible → use Least Squares</li>
-</ul>
-<p><img src="/image/Ch%203%20Linear%20Regression/Untitled.png" alt=""></p>
-<h3 id="Assessing-the-accruacy-od-the-Coeff-Ests"><a href="#Assessing-the-accruacy-od-the-Coeff-Ests" class="headerlink" title="Assessing the accruacy od the Coeff Ests."></a>Assessing the accruacy od the Coeff Ests.</h3><p>Population Regression Line: Generally not known.</p>
-<ul>
-<li>best linear approximation to the true relationship between X and Y.</li>
-<li>Each regression line may differ from this as the models are based on a separate random set of observations.</li>
-</ul>
-<p>The purpose of using least square is to estimate caharacteristics of a large population. </p>
-<p>If we estimate certain parameter based on a particular data set, it may overestimate or underestimate. However, observing huge amount of data and average will give us the exact value of it. Hence, treat the estimates as unbiased (such as hat values).</p>
-<p><img src="/image/Ch%203%20Linear%20Regression/Untitled%201.png" alt=""></p>
-<p>Stadarad Errors </p>
-<ul>
-<li>tells us the average amount that this estimate hat(mean) differs from the actual value of mean.</li>
-<li>can be used to conduct the confidence interval.</li>
-<li>can be used to perform hypothesis tests on the coeff.<ul>
-<li>t = hat(b1) - 0 / SE(hat b1)</li>
-<li>if SE(hat b1) is small, it means the strong enough to reject null hypothesis</li>
-<li>t  measures the num of SD that hat(b1) is away from 0.</li>
-<li>if no relationship, will have t-distrib with n-2 degrees of freedom.</li>
-</ul>
-</li>
-</ul>
-<p>p-value: indicates the unlikeness to observe the association between predictor and the response. Therefore, small p implies the associtaion.</p>
-<h3 id="The-accuracy-of-the-model"><a href="#The-accuracy-of-the-model" class="headerlink" title="The accuracy of the model"></a>The accuracy of the model</h3><p>After we performs the hypothesis tests, want to quantify the extent to which the model fits the data by using: residual SE, and R^2 statistic.</p>
-<ol>
-<li><p>Residual Standard Error (RSE): </p>
-<p> <img src="/image/Ch%203%20Linear%20Regression/Untitled%202.png" alt=""></p>
-<ul>
-<li>is an estimate of the standard deviation of error.</li>
-<li>is the average amount that the response will deviate from the true regression line.</li>
-<li>measure of lack of fit —&gt; Small RES : well fit of data.</li>
-</ul>
-</li>
-<li><p>R squared: takes the form of proportion.</p>
-<p> <img src="/image/Ch%203%20Linear%20Regression/Untitled%203.png" alt=""></p>
-<ul>
-<li>TSS measures the total variance in the Y and can be thought of as the amount of variability inherent in the response before the regression is performed.</li>
-<li>RSS measures the amount of variability that is left unexplained after performing the regression.</li>
-<li>Therefore TSS-RSS : var explained after the regression.</li>
-<li>Hence, R-squared measures the proportion of var in Y that can be explained using X.</li>
-<li>R-squared  = correlation.</li>
-</ul>
-</li>
-</ol>
-<h3 id="MLR"><a href="#MLR" class="headerlink" title="MLR"></a>MLR</h3><h3 id="Important-Qs"><a href="#Important-Qs" class="headerlink" title="Important Qs"></a>Important Qs</h3><ol>
-<li>Is at least one of the predictors useful?</li>
-<li>Do all the predictors help to explain Y, or is only a subset of the predictors useful?</li>
-<li>How well does the model fit the data?</li>
-<li>Given a set of predictor values, what response value should we predict, and how accurate is our prediction? </li>
-</ol>
-<h2 id="Relationship-between-Y-and-Xs"><a href="#Relationship-between-Y-and-Xs" class="headerlink" title="Relationship between Y and Xs"></a>Relationship between Y and Xs</h2><p><img src="/image/Ch%203%20Linear%20Regression/Untitled%204.png" alt=""></p>
-<p><img src="/image/Ch%203%20Linear%20Regression/Untitled%205.png" alt=""></p>
-<p>When n is large, F close to 1 might still provide evidence against null hypo.</p>
-<p>Given these individual p-values for each variable, why do we need to look<br>at the overall F-statistic? After all, it seems likely that if any one of the<br>p-values for the individual variables is very small, then at least one of the<br>predictors is related to the response. However, this logic is flawed, especially<br>when the number of predictors p is large.</p>
-<p>Hence, if H_0 is true, there is only a 5 % chance that the F-statistic will result in a p-value below 0.05, regardless of the number of predictors or the number of observations.</p>
-<h2 id="Decide-on-important-variables"><a href="#Decide-on-important-variables" class="headerlink" title="Decide on important variables"></a>Decide on important variables</h2><p>Variable Selection: AIC and BIC and Adjusted R-squared.</p>
-<ul>
-<li>Forward Selection: Start from Null. Fit p SLR and add to null model the variable that results in the lowest RSS.</li>
-<li>Backward Selection: Start from all. Remove the variable with the largest p-value (the least significant).</li>
-<li>Mixed Selection: p-values can become larger as more predictors. Hence. at some point conduct backward selection.</li>
-</ul>
-<h3 id="Model-Fit"><a href="#Model-Fit" class="headerlink" title="Model Fit"></a>Model Fit</h3><p>RSE and R-squared : the fraction of variance explained. </p>
-<ol>
-<li>R-squared<ul>
-<li>In MLR, = Cor (y,hat(y))^2</li>
-<li>In SLR, = Cor(y,x)</li>
-<li>Will always increase with more variables - as it increase the accuracy of the model by adding more training data.</li>
-<li>If the variable significant, it will bring substantial increase in the R-sq.</li>
-</ul>
-</li>
-<li>RSE<ul>
-<li>more variables can have higher RSE if RSS is small relative to the increase in p</li>
-</ul>
-</li>
-</ol>
-<h3 id="Predictions"><a href="#Predictions" class="headerlink" title="Predictions"></a>Predictions</h3><p>Uncertainty associated with prediction:</p>
-<ol>
-<li>The inaccuracy in the coeff est. is related to the reducible error. Use confidence interval to determine the closness to true population regression plane.</li>
-<li>Model Bias: potential reducible error that may come from the model. But we ignore and operate as if the model is correct.</li>
-<li>Even if knows the TPRP, irreducible error makes impossible to accurately estimate the response value. Hence use prediction interval. It is always wider than CI as it both covers the irreducible and reducible.</li>
-</ol>
-<p>Use CI for Y over a large num of cities. While use PI for Y over a particular city.</p>
+            <p>Reference : Network Attacks and Exploitation by Matthew Monte</p>
+<h3 id="Principle-of-Humanity"><a href="#Principle-of-Humanity" class="headerlink" title="Principle of Humanity"></a>Principle of Humanity</h3><p>The Defender consists solely of the people actively or passively preventing the Attackter from completing any portion of the operational life cycle.</p>
+<h3 id="Humanity-And-Network-Layout"><a href="#Humanity-And-Network-Layout" class="headerlink" title="Humanity And Network Layout"></a>Humanity And Network Layout</h3><p>The human inertia of “if it ain’t broke, don’t fix it” often prevents any reconsideration of security. Detailed network diagram shows how the organization grew.</p>
+<p>Because the influences in layout and technology of a network reflects stuff which are the influences of human in nature, the network itself will have an inherent humanity.</p>
+<h3 id="Humanity-And-Security-Policy"><a href="#Humanity-And-Security-Policy" class="headerlink" title="Humanity And Security Policy"></a>Humanity And Security Policy</h3><p>Keep things working well enough that no one complains; improve them when necessary and keep management happy.</p>
+<p>The humanity of convenience and habit will always trump security policy.</p>
 <hr>
-<p>The coefficients and their p-values do depend on the choice of dummy variable coding —&gt; use F-test.</p>
-<h3 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h3><p>Important assumptions betwenn predictor and response are</p>
+<h2 id="Principle-of-Access"><a href="#Principle-of-Access" class="headerlink" title="Principle of Access"></a>Principle of Access</h2><p>It is attacker’s comfort, it is the Defender’s daily struggle; need to conduct all the jobs while keeping out the attacker.</p>
+<p>Principle of Least Privilege: limit access to documents, DB, and etc. —&gt; It requires seeking out feedback via the constant testing of security boundaries and the monitoring of access.</p>
+<p>Access denied —&gt; users notice —&gt; complains. </p>
+<p>Access mistakenly granted —&gt; not notice / no problem with it —&gt; no complaints —&gt; not able to fix within close dates unless reported.</p>
+<p><strong>The Principle of Access gurantees the Defender will always be vulnerable.</strong></p>
+<h3 id="The-Defensive-Life-Cycle"><a href="#The-Defensive-Life-Cycle" class="headerlink" title="The Defensive Life Cycle"></a>The Defensive Life Cycle</h3><p>The Offensive Life Cycel is : Start → Targeting → Inintial Access → Persistence/Access Expansion/Exfiltration → Detection</p>
+<p>The Defensive Life Cycle is: Start → Privacy → Prevntion → Prevention/Constraint/Obstruction → Detection →Response</p>
 <ol>
-<li>Additive Assumption: the effect of changes in a predictor on the Y is independent of the values of the other predictors<ul>
-<li>Synergy Effect = Interaction Effect : spend newspaper and TV half can be better than putting all money in one place.</li>
-<li>Use interaction term —&gt; if X1X2 term has low p-val, then it means X1 and X2 (the main effects) are not additive each other (share the effect)</li>
-<li><strong>if we include an interaction in a model, we should also include the main effects, even if the p-val associated with their coeff are not significant.</strong></li>
+<li>Privacy : the management of the publishing of information used for targeting (기업구조 차트, 파트너십 계약 등) ; marketing may want to tout this info.<ul>
+<li>Difficult to manage but can be an important counter to targeting.</li>
 </ul>
 </li>
-<li>Linear Relationship: using polynomid regression to accommodate non-linear relationship which still allows to use linear system.<ul>
-<li>Include polynomial functions of the prdecitors in the model to improve the fit</li>
-<li>Unnecessary predictor makes the model wiggely, which casts doubt whether that additional variable makes the model more accurate.</li>
+<li>Prevention: can stop the Attacker from gaining initial access or persistence.<ul>
+<li>Firewalls, spam filters, browser security setting …</li>
+<li>Also exercised via less technical means such as creating a sane network architecture, consistent updates, or training users.</li>
 </ul>
 </li>
+<li>Constraint: limiting of lateral movement within a network. Counters access persistence and expansion.<ul>
+<li>can be thought as an insider mitigation, except the case attacker pretend being an insider.</li>
+<li>Requiring most users to use nonadmin accounts is a good one</li>
+</ul>
+</li>
+<li>Obstruction:  hard for attacker to get data back out of the network.<ul>
+<li>called Data Exfiltration prevention or data loss prevention.</li>
+<li>Imposing bandwidth quota is a simple example of limiting attacker’s ability to move the data.</li>
+</ul>
+</li>
+<li>Detection: catchcall for finding and recognizing the Attacker during any part of the operational life cycle.<ul>
+<li>No fixed way to ensure detection.</li>
+</ul>
+</li>
+<li>Response: Action the Defender takes once realize the compromise.</li>
 </ol>
-<h3 id="Potential-Problem"><a href="#Potential-Problem" class="headerlink" title="Potential Problem"></a>Potential Problem</h3><ol>
-<li><p>Non-linearity of the response-predictor relationships</p>
-<ul>
-<li>Residual Plot - tool to identify non-linearity. Due to multiple predictors, plot residuals vs predicted (or fitted) y.</li>
-<li>The presence of a pattern —&gt; some aspect of the linear model.</li>
-<li>If non-linear association, use non-linear transformations of the predictors such as log X, sqrt(X), and X^2</li>
+<hr>
+<h3 id="Principle-of-Economy"><a href="#Principle-of-Economy" class="headerlink" title="Principle of Economy"></a>Principle of Economy</h3><p>Dynamism : the economy of resources will affect the administrator base  (the true defender who is directily responsible for security). The people are inevitably tasktd with upgrading hardware, …. overall IT stuff. </p>
+<p>Money may cost alot, but the benefits is not readily apparent untill after a robbery.</p>
+<p>Risk-based decision : one that should be based on actual risk and not legal requirements, but a decision nonetheless. </p>
+<p>This principle ensures that Defender will never devote as much time and attention to security as wanted. </p>
+<hr>
+<h3 id="The-helpful-Defender"><a href="#The-helpful-Defender" class="headerlink" title="The helpful Defender"></a>The helpful Defender</h3><ul>
+<li>Targeting: 이메일 주소의 형식화. 이로 유저 계정 유지에 도움이 되지만, 공격자 입장에서도 도움이 됨</li>
+<li>Access : Ensuring compatibility and reliability while postpone the software update makes it vulnerable for a longer period of the time.</li>
+<li>Persistence: Upgrading on a fixed schedule. 유저와 공격자 모두 대비 가능</li>
+<li>Expansion: Centralizing administrative authority to a few users → may help lock down insider access, 이 계정이 뚫리면 엑세스 다 허용됨</li>
+<li>Exfiltration: 사람들에게 인터넷 접근 허용은 생산성 증가, 공격자와의 통신채널을 줄 수 있음.</li>
 </ul>
-</li>
-<li><p>Correlation of error terms</p>
-<ul>
-<li>If correlation exists, estimated SE will tend to underestimate the true SE. Hence, PI gets narrower, p-val is lower which could cause errorneously conclude that a parameter is statistically significant.</li>
-<li>In short, lead unwarranted sense of CI in the model.</li>
-<li>Time series data: Residual plot, if error terms are positively correlated, tracking in the residuals - adjacent resi may have similar valuse.</li>
-</ul>
-</li>
-<li><p>Non-constant variance of error terms</p>
-<ul>
-<li><p>SD, CI, Hypothesis test rely upon this</p>
-</li>
-<li><p>heteroscedasticity: funnel shape in the residual plot.</p>
-</li>
-<li><p>Solution: transform results in a greater amount of shrinkage of the larger responses, leading to a reduction in heteroscedasticity.</p>
-<p><img src="/image/Ch%203%20Linear%20Regression/Untitled%206.png" alt=""></p>
-</li>
-</ul>
-</li>
-<li><p>Outliers</p>
-<ul>
-<li>Usually has no effect on the least square fit. But has significant effect on RSE which is used for CI and p-values —&gt; important for the interpretation of the fit. + R-sq declines as well.</li>
-<li>Use studentized residuals: each residual / ESE. ≥ 3 is outlier</li>
-<li>It may imply missing predictor, so be aware.</li>
-</ul>
-</li>
-<li><p>High-leverage points</p>
-<ul>
-<li><p>Removing high leverage has more substantial impact on the least squares line than removing an outlier.</p>
-</li>
-<li><p>It may invalidate the entire fit —&gt; better remove it.</p>
-</li>
-<li><p>Leverage Stat: ≥ (p+1)/n —&gt; suspect</p>
-<p><img src="/image/Ch%203%20Linear%20Regression/Untitled%207.png" alt=""></p>
-</li>
-</ul>
-</li>
-<li><p>Collinearity</p>
-<ul>
-<li><p>predictors are closely related. Use Contour plot of RSS for visual.</p>
-</li>
-<li><p>Small change in the data could cause the pair of coeff values that yield the smallest RSS, the smallest LSE, to move anywhere along the valley. It is a great deal of uncertainty in the coeff est.</p>
-</li>
-<li><p>It reduces the accuracy of the esitimates of the regression coefficients, hence, increases the SE of hat(predictor).</p>
-</li>
-<li><p>It reduces the t-stat hence affect the hypothesis test weak (the probability of detecting a non-zero coeff).</p>
-</li>
-<li><p>Use Variance inflation factor (VIF): value of 1 indicates the absence of collinearity. Exceeds 5 or 10 —&gt; problematic amount of collinearity.</p>
-<p><img src="/image/Ch%203%20Linear%20Regression/Untitled%208.png" alt=""></p>
-</li>
-</ul>
-</li>
-</ol>
 
         </div>
         
@@ -369,7 +252,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -419,7 +302,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -443,7 +326,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -525,6 +408,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -563,7 +457,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -596,12 +490,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -662,7 +556,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -671,6 +565,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -691,82 +661,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -777,13 +671,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -831,12 +718,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -897,7 +784,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -906,6 +793,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -926,82 +889,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1012,13 +899,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">

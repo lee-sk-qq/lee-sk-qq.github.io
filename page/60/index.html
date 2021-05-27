@@ -128,8 +128,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/03/11/Network/Network_LAN/" class="image is-7by1">
-            <img class="thumbnail" src="/thumb/lan.jpg" alt="LAN">
+        <a href="/2020/03/15/Parallel/Week%202%202%20MP/" class="image is-7by1">
+            <img class="thumbnail" src="/thumb/mpi.jpeg" alt="Message Passing">
         </a>
     </div>
     
@@ -137,17 +137,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-11T03:06:00.000Z">Mar 11, 2020</time>
+                <time class="level-item has-text-grey" datetime="2020-03-15T08:05:00.000Z">Mar 15, 2020</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Network/">Network</a>
+                <a class="has-link-grey -link" href="/categories/Parallel-Computing/">Parallel Computing</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 813 words)
+                    16 minutes read (About 2459 words)
                 </span>
                 
                 
@@ -156,150 +156,73 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/11/Network/Network_LAN/">LAN</a>
+                <a class="has-link-black-ter" href="/2020/03/15/Parallel/Week%202%202%20MP/">Message Passing</a>
             
         </h1>
         <div class="content">
-            <p>Reference: </p>
-<ul>
-<li>Computer Networks, Fifth Edition by by Andrew S et al.</li>
-<li>The Australian National University CECS</li>
-</ul>
-<hr>
-<h3 id="Local-Area-Network"><a href="#Local-Area-Network" class="headerlink" title="Local Area Network"></a>Local Area Network</h3><ul>
-<li>Adiministrative Domain: as a collection of hosts and routers, and the interconnecting network managed by a single authority.</li>
-<li>Broadcast Domain: Can talk to anyone on the LAN!</li>
-</ul>
-<p>Design should be:</p>
-<ul>
-<li>Simple as possible</li>
-<li>Deliver msg from sender to receiver asap/efficiently (over a cable)</li>
-<li>LAN is hardware. Leave the difficulties to software</li>
-</ul>
-<p><strong>There is:</strong></p>
-<ul>
-<li>No guaranteed delivery</li>
-<li>No built in error detection and correction</li>
-<li>No specialised features (realtime, bulk-transfer)</li>
-<li>Yes to performance</li>
-</ul>
-<h3 id="Multiplexing"><a href="#Multiplexing" class="headerlink" title="Multiplexing"></a>Multiplexing</h3><p>It can be by time, space, and frequency. Everyone gets an equal share but does everyone need that much?</p>
-<ul>
-<li>It’s a effectively a circuit —&gt; wasting capacity.</li>
-</ul>
-<p><strong>Statistical Multiplexing</strong> </p>
-<ul>
-<li>Demand for capacity varies with time<ul>
-<li>Random access-priority across all devices</li>
-<li>Statistically don’t need the bandwidth all the time, give it a try!</li>
-</ul>
-</li>
-<li>A communcation channel is divided into an arbitrary number of variable bitrate digital channel or data streams. The link sharing is adapted to the instantaneous traffic demands of the data streams that are transderred over each channel.</li>
-<li>Is faciliated through packet mode or packet oriented communication which is utilized by packet switch.</li>
-<li>Code Division Multiple Access (CDMA) - different amount of spreading codes or spreading factors can be assigned to diff users.</li>
-</ul>
-<hr>
-<p><strong>Circuits</strong> : a fixed pipe only for you that tied to both endpoints - send bits whenever wants to the other end</p>
-<p><strong>Cells</strong> : TDM - Send a specific number of bits when it is your turn to the other end</p>
-<p><strong>Frames</strong> : Arbitrary length, targeted messages - Send a collection of bits when you want (The most common LAN approach).</p>
-<h3 id="Frames"><a href="#Frames" class="headerlink" title="Frames"></a>Frames</h3><ul>
-<li>Destination address, source address, assemblage of bits starts and stops.</li>
-<li>Need to agree how long the frame could be</li>
-<li>Need to agree how to access the network fairly</li>
-</ul>
-<p>Flag is needed to ensure the sync.</p>
-<p><img src="/image/Week%203%201%20LAN/Untitled.png" alt=""></p>
-<p>payload has escape byte before its escape byte or flag byte</p>
-<p>ig. FABEFCDF (F is flag and E is escape) To ensure the message, it must be sent as FABEEEFCDF. Then receiver drops two Es.</p>
-<h2 id="Media-Access-Control-MAC-and-sharing"><a href="#Media-Access-Control-MAC-and-sharing" class="headerlink" title="Media Access Control (MAC) and sharing"></a>Media Access Control (MAC) and sharing</h2><p>It Needs</p>
+            <p>Reference : Introduction to Parallel Computing, Edition Second by Vipin Kumar et al</p>
+<h2 id="Message-Passing-Cost"><a href="#Message-Passing-Cost" class="headerlink" title="Message Passing Cost"></a>Message Passing Cost</h2><ol>
+<li>Startup Time (t_s): prepare the message (header, trailer, error correction information), execute the routing algorithm, establish an interface betw local node ane the router. —&gt; Delay is incurred only once for a single msg</li>
+<li>Per-hop Time (t_h): after a msg leaves a node, takes a finite amount of time to reach the next node (=node latency). 어느 채널, 아웃풋 버퍼로 보내야 하는지 라우팅 스위치가 판단하는 동안 대기하는 시간과 직결된다.</li>
+<li>Per-word Transfer Time (t_w): if channel bandwidth is r words per second, t_w = 1 / r to traverse the link.</li>
+</ol>
+<h2 id="Store-and-Forward-Routing-전체-메세지-수신후-저장-다음-노드로-전송"><a href="#Store-and-Forward-Routing-전체-메세지-수신후-저장-다음-노드로-전송" class="headerlink" title="Store and Forward Routing - 전체 메세지 수신후 저장, 다음 노드로 전송"></a>Store and Forward Routing - 전체 메세지 수신후 저장, 다음 노드로 전송</h2><p>msg sizeof m, l links, t_h for header, t_w speed.</p>
+<p>Total time = t_s + (t_h + t_w * m ) * l = t_s + mlt_w as t_h is comparatively small.</p>
+<h2 id="Packet-Routing-Modification-of-SF"><a href="#Packet-Routing-Modification-of-SF" class="headerlink" title="Packet Routing - Modification of SF."></a>Packet Routing - Modification of SF.</h2><p>Adv : 통신 자원 활용, 패킷 손실 (오류)로 인한 오버 헤드 감소, 다른 경로 선택 확률, 더 나은 오류 수정 기능.</p>
+<p>이로 인해 장거리 네트워크 (인터넷 - 오류율, 홉 수, 그리고 네트워크 상태 변화 변수) 에 쓰임 </p>
+<p>Total Time = t_s + t_h * l + t_w * m where t_w = t_w1 + t_w2 * (1 + s/r)</p>
+<p>각각의 패킷들이 다른 루트를 통해 전송 될수 있고, 잃어버린 패킷들의 재전송 때문에 지역/글로벌 네트워크에 많이 쓰임.</p>
+<h2 id="Cut-Through-Routing"><a href="#Cut-Through-Routing" class="headerlink" title="Cut Through Routing"></a>Cut Through Routing</h2><ol>
+<li>모든 패킷이 같은 경로를 사용하도록 해서 라우팅 정보 오버 헤드를 제거</li>
+<li>시퀀스 내 전달을 강제함으로 시퀀스 정보 제거</li>
+<li>메세지 레벨 오류 정보 (패킷 레벨 말고)를 연관함으로 오류 검출 및 정정 오버 헤드 감소</li>
+<li>병렬 시스템 오류율이 낮기 때문에, 값 비싼 오류 수정 체제대신 싼 오류 잠지 메커니즘 사용 가능</li>
+</ol>
+<p>메세지를 flow control digits or filts 라는 고정 단위로 나눔 이는 패킷 오버 헤드를 미포함 하기에 패킷보다 작을수 있음</p>
+<p>Tracer 가 목적지 노드에 먼저 도착후, 연결을 설정, 플릿이 차례대로 전송 (모두 동일한 경로, 중간에 기다림 없음 따라서 버퍼 미필요)</p>
+<p>이 와 같은 특성으로 중간 노드에서 더 적은 memory and memory bandwidth and faster</p>
+<p><strong>Total Time = t_s + l * t_h + t_w * m</strong></p>
+<p>** 메세지가 작거나, 거리가 가까운 경우, 저장후전송과 컷쓰루 방식의 통신시간은 비슷하다.</p>
+<p>제어 회로의 속도는 플릿 속도로 작동해야 하는데, 플릿 크기가 작으면 제어 회로 속도가 빨라지는데, 이는 라우터 설계에 상당한 어려움을 줌</p>
+<p>플릿 크기가 크면, 내부 버퍼 크기가 증가하므로, 메세지 전송 대기 시간 (첫 시작노드) 이 늘어남.</p>
+<p>요즘 플릿 크기는 4-32 바이트. </p>
+<p><strong>Total Time = t_s + l * t_h + t_w * m - 컷 쓰루 라우팅 공식</strong></p>
+<p>메세지 전송 비용 최적화를 위해</p>
 <ol>
-<li>Address Scheme:<ol>
-<li>MAC address for your network interface </li>
-<li>Identity of the interface</li>
-<li>Listen to all traffic, respond msg sent to you</li>
+<li>Communication in Bulk: 조그만 메세지에 각각 t_s를 주느니, 큰 메세지 하나에 한번 주는것. 왜냐하면 클러스터/메세지 전달 시스템 같은 일반 플랫폼에서 t_s가 t_w 보다 훨씬 커서</li>
+<li>데이터 볼륨 최소화: t_w로 인한 오버헤드 최소화를 위해, 통신되는 데이터 양을 줄이기</li>
+<li>데이터 거리 최소화: 메세지가 통과해야 하는 홉 수를 최소화.</li>
 </ol>
-</li>
-<li>Access Scheme for multiple devices:<ol>
-<li>Party Atmosphere : your job to listen and respond.</li>
-</ol>
-</li>
-</ol>
-<h3 id="Randomised-Access-try-your-luck"><a href="#Randomised-Access-try-your-luck" class="headerlink" title="Randomised Access (try your luck)"></a>Randomised Access (try your luck)</h3><ol>
-<li>Send data if you have</li>
-<li>If receiver does not acknowledge or you hear other sending its data, we have collision</li>
-<li>If collision then back off and try again.</li>
-</ol>
-<p>Simple but effective if the congestion is not high. </p>
-<p>Stat performance is 18-36% while it depends on the back-off scheme.</p>
-<h3 id="Carrier-Sense-for-Multiple-Access-CSMA-Stricter-Rules"><a href="#Carrier-Sense-for-Multiple-Access-CSMA-Stricter-Rules" class="headerlink" title="Carrier Sense (for) Multiple Access (CSMA) - Stricter Rules"></a>Carrier Sense (for) Multiple Access (CSMA) - Stricter Rules</h3><p>It is good for wired network</p>
+<p>첫 1,2번의 경우 쉬우나 통신 노드 거리를 줄이는 (3)은 알고리즘 설계자에게 불필요한 부담을 줌. 왜냐하면</p>
 <ol>
-<li>Check if anyone sending (senses for carrier)</li>
-<li>if clean, send the whole frame</li>
+<li>MPI 에서 프로그래머가 물리적 프로세서에 프로세서들을 맵핑하는것에 권한이 조금 밖에 없음. 가까운 이웃간에 통신은 괜찮을 수 있으나, 전체적인 매핑에 손상을 줄 수 있기 때문</li>
+<li>대부분의 아키텍처가 2단계 랜덤 라우팅을 이용하는데 (처음 한번 중간 한번). 이는 네트워크의 핫스팟과 부담감 (contention)을 줄여줌. 무작위 라우팅의 홉을 최소화 하면 이득이 없음</li>
+<li>홉당 시간은 t_s 와 t_w * m 에 비하면 굉장히 작아, 홉당 시간을 무시해도 된다.</li>
 </ol>
-<p>It may cause:</p>
-<ul>
-<li>Delay on long cable as both may send at the same time.</li>
-<li>As bandwidth delay gets bigger, problem gets bigger.</li>
-<li>Sets upper limits on delay and minimus frame size.<ul>
-<li>Need time to detect a collision</li>
-<li>Min frame time  = 2* (oneway delay)</li>
-</ul>
-</li>
-</ul>
-<h3 id="CSMA-CA-collision-avoidance"><a href="#CSMA-CA-collision-avoidance" class="headerlink" title="CSMA/CA (collision avoidance)"></a>CSMA/CA (collision avoidance)</h3><ul>
-<li>Listen for carrier. If clean, wait for random time (to avoid everyone wait and start at the same time.) Then send the frame</li>
-</ul>
-<h3 id="CSMA-CD-collision-Detection"><a href="#CSMA-CD-collision-Detection" class="headerlink" title="CSMA/CD (collision Detection)"></a>CSMA/CD (collision Detection)</h3><ul>
-<li>Listen carrier. Send and listen for a collision while sending. Collision —&gt; stop immediately and jam everyone. Then back-off and retry (while everyone wait)</li>
-</ul>
-<hr>
-<p>Backing off needs</p>
-<ul>
-<li>some limits for how long - not too short or long</li>
-<li>Ideally 1/N (n  = num of terminals)</li>
-<li>Binary Exponential Back-Off  (BEB) is to estimate out the N - Count num of collision you had. First wait 0-1 second wait 0-3 Third wait 0-7 frames.</li>
-</ul>
-<hr>
-<h2 id="Wireless"><a href="#Wireless" class="headerlink" title="Wireless"></a>Wireless</h2><p>Wireless is harder as </p>
-<ul>
-<li>each node has coverage  - can be part of a single network but can’t see all the nodes due to power limitation.</li>
-<li>TX (transmit) can be a million times louder than RX (Response) - Can’t listen collisions, or can’t respond quickly (wasting time).</li>
-</ul>
-<h3 id="MACA-Broadcast-anyone-can-hear"><a href="#MACA-Broadcast-anyone-can-hear" class="headerlink" title="MACA (Broadcast - anyone can hear)"></a>MACA (Broadcast - anyone can hear)</h3><ul>
-<li>Multiple Access, Collision Avoidance.</li>
-<li>Quick handshake before yelling</li>
-<li>Sender: Request To Send (RTS) + N bytes</li>
-<li>Receiver: Clear To Send (CTS) + N bytes</li>
-<li>Sender Transmits<ul>
-<li>Any nodes heard CTS silent for N bytes</li>
-<li>Any nodes heard RTS silent for CTS.</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="Contention-Free-Access"><a href="#Contention-Free-Access" class="headerlink" title="Contention Free Access"></a>Contention Free Access</h2><p>Not random, take turns</p>
-<h3 id="Token-Ring"><a href="#Token-Ring" class="headerlink" title="Token Ring"></a>Token Ring</h3><p>Passes around the token and can send data only if u have it. Ideally aligned with physical reality.</p>
-<ul>
-<li>If token lost - need regenerate after agreed timeout</li>
-<li>less efficient TDM with lower loads.</li>
-<li>Great under load, but doesn’t scale well</li>
-</ul>
-<hr>
-<h3 id="Topologies"><a href="#Topologies" class="headerlink" title="Topologies"></a>Topologies</h3><p>Most wired LANs have moved away from bus topologies.</p>
-<ul>
-<li>Hard to scale</li>
-<li>Make cable longer<ul>
-<li>Needs repeater, hub, bridge (which links two smaller LANs and learns addresses on each side.)</li>
-</ul>
-</li>
-</ul>
-<p>Nearly all moved to Switch</p>
-<ul>
-<li>Crossbar devices that learn source/destination addresses from the traffic</li>
-<li>Makes every link point to point</li>
-<li>Great in scalability and performance</li>
-</ul>
-<hr>
+<p>따라서 Total Time = t_s + t_w * m  으로 정리될 수 있다. —&gt; 이 식은 혼잡하지 않은 네트워크에만 유효하다.</p>
+<p>위 식은 런타임 예측 정확성과 독립적 알고리즘 설계에 중요한 영향을 미친다. 위의 식은 모든 노드간 통신에 같은 시간이 걸림으로, 완전히 연결된 네트워크에 해당함.</p>
+<p>따라서 각 아키텍처 알고리즘 설계 하는 대신 비용을 생각한 알고리즘을 병렬 컴퓨터에 설계할 수 있게 한다.</p>
+<p>물론 간소화된 공식으로 알고리즘을 설계 하면, 예측 정확도 손실이 발생하나, 홉당 시간이 굉장히 작다는 가정만 따른다면, 그 손실액은 미미하다.</p>
+<p>For communication patterns that do not congest the network, the effective bandwidth is identical to the link bandwidth. However, for communication operations that congest the network, the effective bandwidth is the link bandwidth scaled down by the degree of congestion on the most congested link.</p>
+<p>네트워크 정체 시키지 않는 대역폭은 링크대역폭. 네트워크 정체 시키는 통신의 경우 유효 대역폭은 가장 정체된 링크의 정체 정도에 따라 축소된 링크 대역폭. 이 값은 구하기 어려울 떄가 있음.</p>
+<p>따라서 우리는 하한선을 이용하는데, <strong>link bandwidth =  p/b (b = bisection width)</strong></p>
+<h2 id="Communication-Costs-in-Shared-Address-Space-Machines"><a href="#Communication-Costs-in-Shared-Address-Space-Machines" class="headerlink" title="Communication Costs in Shared-Address-Space Machines"></a>Communication Costs in Shared-Address-Space Machines</h2><p>Cache Coherence에서 비용줄이기가 더 어려운 이유</p>
+<ol>
+<li>메모리 레이아웃은 보통 시스템에 의해 결정된다. 프로그래머는 특정 데이터 아이템의 위치와, 순열 데이터 구조 최적화에 권한이 적음. 이는 이 공유 주소 공간 아키텍처에서 중요한데 로컬 및 원격 엑세스를 식별하기 어렵기 떄문. 로컬 과 원격 엑세스의 시간이 차이가 나면, 통신 비용은 데이터 레이아웃에 의해 크게 달라지기 때문.</li>
+<li>유한 캐시 크기로 인한 캐시 스래싱 발생 가능. 사용 가능한 캐쉬보다 필요한 데이터가 클 경우, 특정부분이 덮어 쓰기 되어 여러번 엑세스 될 수 있음. 이 오버헤드로 인한 프로그램 성능이 크게 저하됨. 이 문제를 피하기 위해서는 작업 세트 크기를 최소화 한 실행 스케쥴이 필요. 멀티 프로세서의 경우 페널티가 심각해지는데, 이는 프로세서간 통신과 coherence 작업이 연관되기 때문.</li>
+<li>무효화 프로토콜과 업데이트 작업은 수량화 하기 어렵다. 업데이트시 발생하는 트래픽의 경우 프로세서마다의 작업에 따라 확연히 달라지는데, 이 동시화된 데이터 갯수와 스케쥴은 프로그래머 권한 밖인 경우가 대부분.</li>
+<li>공간적 지역성 (Spatial locality) 는 모델링 하기 어렵다. 캐쉬라인은 보통 한 단어(데이터)보다 길기에 여러개를 부르는데, 이에 따른 접근 시간이 단어마다 다르다. 이전에 불려진 데이터가 불려지는 경우 (다른것은 새거) 등은 프로그래머가 최소한의 제어를 가지기 떄문에, 프로그래머가 할 수 있는것은 순열 데이터 구조를 극대화 시켜 공간적 지역성을 최대화 하는것 밖에 없다. </li>
+<li>prefetching 은 데이터 엑세스와 관련된 오버헤드를 줄이는데 중요함. 컴파일러는 미리 로드를 진행할 수 있으며, 만약 자원이 충분할 경우 이에대한 오버헤드를 숨길수 있다 (현재 진행하는 작업을 느리게 하지 않으니, 몰래 미리 스윽 해놓기 때문에 오버헤드가 없는것) 이 와 관련된 사항은, 컴파일러, 레지스터, 캐쉬의 기능이므로 정확한 모델링이 어렵다.</li>
+<li>False Sharing 은 두 프로세서가 각각 사용하는 두 단어가 동일 캐쉬 라인에 있을수 있음 (공유하지 않아도) 이때 일관성 작업과 통신 오버헤드가 발생할수 있는데, 프로그래머는 이를 최소화 하기 위해 데이터 구조를 채우는 수밖에 없다.</li>
+<li>Contention in shared access 는 공유 주소 공간 기계에서 오버헤드를 발생시키는 주요 이유중 하나. 하지만 이는 실행 스케쥴의 기능이므로, 정확한 모델링이 어렵다 (스케줄링 알고리즘 문제가 아니니까). 계산해서 점근 추정값은 가능하나, 이 수치는 의미가 없다. </li>
+</ol>
+<p>공유 주소 공간 머신의 모든 비용 모델은 이러한 오버 헤드를 고려해야 함.</p>
+<p> Total Time = t_s + t_w * m </p>
+<p>유한 캐쉬에서 발생하는 영향은  각 시스템마다의 다양한 캐쉬 사이즈로 인해 다르므로 무시됨</p>
+<p>공간적 지역성의 최대화 (캐시 라인 효과)는 명시적으로 미포함</p>
+<p>거짓 공유는 데이터 레이아웃과 같이 명령 스케줄의 기능</p>
+<p>비용 모델은 공유 데이터 구조가 잘 채워져 있다고 가정하기에, 잘못된 비용 미포함</p>
+<p>중복된 통신 및 계산을 설명하지 않음</p>
 
         </div>
         
@@ -339,7 +262,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/66/">66</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/69/">69</a></li>
             
         </ul>
     </nav>
@@ -389,7 +312,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            66
+                            69
                         </p>
                     </a>
                 </div>
@@ -413,7 +336,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            3
                         </p>
                     </a>
                 </div>
@@ -495,6 +418,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2021/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/08/">
                 <span class="level-start">
                     <span class="level-item">August 2020</span>
@@ -533,7 +467,7 @@
                     <span class="level-item">April 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -566,12 +500,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -632,7 +566,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
         
@@ -641,6 +575,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -661,82 +671,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -747,13 +681,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
@@ -801,12 +728,12 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Life/">
+        <a class="level is-marginless" href="/categories/CPP/">
             <span class="level-start">
-                <span class="level-item">Life</span>
+                <span class="level-item">CPP</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Machine-Learning/">
@@ -867,7 +794,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Keyboard/" style="font-size: 10px;">Keyboard</a> <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 15px;">Summary</a> <a href="/tags/Theory/" style="font-size: 15px;">Theory</a>
+        <a href="/tags/Layer/" style="font-size: 20px;">Layer</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Theory/" style="font-size: 10px;">Theory</a>
     </div>
 </div>
     
@@ -876,6 +803,82 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Runtime Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-08T05:04:00.000Z">May 08, 2021</time></div>
+                    <a href="/2021/05/08/CPP/Modern_CPP/Chapter3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Runtime Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/modern_cpp.PNG" alt="Language Usability Enhancements">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:04:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Modern_CPP/Chapter2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Language Usability Enhancements</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Terminology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:03:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Terminology/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Terminology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/thumb/effective_CPP_old.jpeg" alt="Accustoming Yourself to C++">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-05-03T05:02:00.000Z">May 03, 2021</time></div>
+                    <a href="/2021/05/03/CPP/Effective_CPP/Chapter1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Accustoming Yourself to C++</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/CPP/">CPP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -896,82 +899,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency Bugs">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-14T05:09:07.572Z">Aug 14, 2020</time></div>
-                    <a href="/2020/08/14/OperatingSystem/OS%20-%20ch-32-concurrency%20bugs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency Bugs</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Semaphore">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-13T05:09:07.572Z">Aug 13, 2020</time></div>
-                    <a href="/2020/08/13/OperatingSystem/OS%20-%20ch-31-semaphore/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Semaphore</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Lock">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-12T05:09:07.572Z">Aug 12, 2020</time></div>
-                    <a href="/2020/08/12/OperatingSystem/OS%20-%20ch-28-lock/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Lock</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/thumb/OS.jpg" alt="Concurrency">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-08-11T05:09:07.572Z">Aug 11, 2020</time></div>
-                    <a href="/2020/08/11/OperatingSystem/OS%20-%20ch-26-27-concurrency-thread-api/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Concurrency</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/OperatingSystem/">OperatingSystem</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -982,13 +909,6 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Keyboard/">
-                        <span class="tag">Keyboard</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Layer/">
